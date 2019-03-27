@@ -85,7 +85,7 @@ es:
       subject: "Nuevo comentario de evaluación"
       title: Nuevo comentario de evaluación para %{investment}
       hi: Hola
-      new_comment_by_html: Hay un nuevo comentario de evaluación de <b>%{commenter}</b> en el presupuesto participativo %{investment}
+      new_comment_by_html: Hay un nuevo comentario de evaluación de <strong>%{commenter}</strong> en el presupuesto participativo %{investment}
       commenter_info: "%{commenter}, %{time}"
     new_actions_notification_rake_created:
       subject: "Más novedades de tu propuesta ciudadana"

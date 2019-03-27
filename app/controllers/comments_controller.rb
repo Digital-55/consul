@@ -16,6 +16,7 @@ class CommentsController < ApplicationController
       add_notification @comment
       auto_moderate_comment @comment
       log_comment_event
+      EvaluationCommentNotifier.new(comment: @comment).process if send_evaluation_notification?
     else
       render :new
     end
@@ -143,6 +144,10 @@ class CommentsController < ApplicationController
       else
         log_event("proposal", "comment_reply")
       end
+    end
+
+    def send_evaluation_notification?
+      @comment.valuation && Setting["feature.valuation_comment_notification"]
     end
 
     def auto_moderate_comment(comment, matches = nil)

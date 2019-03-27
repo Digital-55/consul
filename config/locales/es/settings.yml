@@ -145,6 +145,8 @@ es:
       help_page_description: 'Muestra un menú Ayuda que contiene una página con una sección de información sobre cada funcionalidad habilitada. También se pueden crear páginas y menús personalizados en las secciones "Personalizar páginas" y "Personalizar bloques"'
       captcha: "reCAPTCHA"
       captcha_description: "Habilita un sistema de verificación humana después de un número de intentos de autentificación fallidos. Frecuentemente usado para prevenir ataques de fuerza bruta"
+      valuation_comment_notification: "Notificar comentarios de evaluación"
+      valuation_comment_notification_description: "Envía un email a todos los usuarios menos al que haya comentado asociados a un presupuesto participativo cuando se cree un nuevo comentario de evaluación"
     map:
       latitude: "Latitud"
       latitude_description: "Latitud para mostrar la posición del mapa"

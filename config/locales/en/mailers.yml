@@ -85,7 +85,7 @@ en:
       subject: "New evaluation comment"
       title: New evaluation comment for %{investment}
       hi: Hi
-      new_comment_by_html: There is a new evaluation comment from <b>%{commenter}</b> to the budget investment %{investment}
+      new_comment_by_html: There is a new evaluation comment from <strong>%{commenter}</strong> to the budget investment %{investment}
       commenter_info: "%{commenter}, %{time}:"
     new_actions_notification_rake_created:
       subject: "More news about your citizen proposal"
