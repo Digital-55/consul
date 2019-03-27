@@ -81,6 +81,12 @@ es:
       signatory: "Área de Participación Ciudadana, Transparencia y Gobierno Abierto del Ayuntamiento de Madrid"
       resource:
         comment: "comentario"
+    evaluation_comment:
+      subject: "Nuevo comentario de evaluación"
+      title: Nuevo comentario de evaluación para %{investment}
+      hi: Hola
+      new_comment_by_html: Hay un nuevo comentario de evaluación de <b>%{commenter}</b> en el presupuesto participativo %{investment}
+      commenter_info: "%{commenter}, %{time}"
     new_actions_notification_rake_created:
       subject: "Más novedades de tu propuesta ciudadana"
       hi: "Hola %{name},"

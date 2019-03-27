@@ -152,6 +152,13 @@ class Mailer < ApplicationMailer
     end
   end
 
+  def evaluation_comment(comment, to)
+    @email = EvaluationCommentEmail.new(comment)
+    @email_to = to
+
+    mail(to: @email_to.email, subject: @email.subject) if @email.can_be_sent?
+  end
+
   private
 
   def with_user(user, &block)

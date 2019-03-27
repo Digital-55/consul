@@ -1276,6 +1276,9 @@ es:
       declined_moderation:
         title: "Moderación declinada"
         description: "Enviado al usuario cuyo recurso moderable ha sido determinado no ofensivo."
+      evaluation_comment:
+        title: "Nuevo comentario de evaluación"
+        description: "Enviado a administradores y evaluadores del presupuesto."
       edit_info: "Puedes editar este email en"
       message_title: "Título del mensaje"
       message_body: "Este es un ejemplo de contenido de un mensaje."
@@ -1284,6 +1287,7 @@ es:
         no_comments: "No se ha creado ningún comentario. Se necesita algún ejemplo para poder previsualizar el email."
         no_replies: "No se ha creado ninguna respuesta. Se necesita algún ejemplo para poder previsualizar el email."
         no_moderations: "No se ha moderado ningún recurso. Se necesita algún ejemplo para poder previsualizar el email."
+        no_evaluation_comments: "No se ha creado ningún comentario de evaluación. Se necesita algún ejemplo para poder previsualizar el email."
     emails_download:
       index:
         title: Descarga de emails

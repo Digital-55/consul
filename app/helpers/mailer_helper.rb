@@ -9,4 +9,16 @@ module MailerHelper
     return probe_probe_option_url(commentable.probe, commentable) if commentable.is_a?(ProbeOption)
   end
 
+  def valuation_comments_url(commentable)
+    admin_budget_budget_investment_url( commentable.budget, commentable, anchor: "comments")
+  end
+
+  def valuation_comments_link(commentable)
+    link_to(
+      commentable.title,
+      valuation_comments_url(@email.commentable),
+      target: :blank,
+      style: "color: #2895F1; text-decoration:none;"
+    )
+  end
 end
