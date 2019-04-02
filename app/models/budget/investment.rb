@@ -125,7 +125,7 @@ class Budget
       results = Investment.by_budget(budget)
 
       results = results.where("cached_votes_up + physical_votes >= ?",
-                              params[:min_total_supports])                 if params[:min_total_supports].present?
+                              params[:min_total_supports])                    if params[:min_total_supports].present?
       results = results.where("cached_votes_up + physical_votes <= ?",
                               params[:max_total_supports])                 if params[:max_total_supports].present?
       results = results.where(group_id: params[:group_id])                 if params[:group_id].present?
