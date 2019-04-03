@@ -87,6 +87,7 @@ GEM
       execjs
     av (0.9.0)
       cocaine (~> 0.5.3)
+    awesome_print (1.8.0)
     axlsx (3.0.0.pre)
       htmlentities (~> 4.3, >= 4.3.4)
       mimemagic (~> 0.3)
@@ -571,6 +572,7 @@ DEPENDENCIES
   ancestry (~> 3.0.2)
   animate-rails (~> 1.0.10)
   autoprefixer-rails (~> 8.2.0)
+  awesome_print
   axlsx (~> 3.0.0.pre)
   axlsx_rails (~> 0.5.2)
   browser (~> 2.5.3)
@@ -663,4 +665,8 @@ DEPENDENCIES
   wkhtmltopdf-binary (= 0.12.4)
 
 BUNDLED WITH
+<<<<<<< HEAD
    2.1.4
+=======
+   1.17.3
+>>>>>>> 48ea32cdb... PR3351 Modulo 15
