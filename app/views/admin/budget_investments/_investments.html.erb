@@ -39,18 +39,14 @@
           <%= t("admin.budget_investments.index.list.valuation_group") %> /
           <%= t("admin.budget_investments.index.list.valuator") %>
         </th>
-        <th data-field="geozone"><%= t("admin.budget_investments.index.list.geozone") %></th>
-        <th data-field="feasibility"><%= t("admin.budget_investments.index.list.feasibility") %></th>
-        <th data-field="price"><%= t("admin.budget_investments.index.list.price") %></th>
-        <th data-field="valuation_finished">
-          <%= t("admin.budget_investments.index.list.valuation_finished") %>
-        </th>
-        <th data-field="visible_to_valuators">
-          <%= t("admin.budget_investments.index.list.visible_to_valuators") %>
-        </th>
-        <th data-field="selected"><%= t("admin.budget_investments.index.list.selected") %></th>
-        <% if params[:advanced_filters]&.include?("selected") %>
-          <th data-field="incompatible"><%= t("admin.budget_investments.index.list.incompatible") %></th>
+        <th><%= t("admin.budget_investments.index.list.geozone") %></th>
+        <th><%= t("admin.budget_investments.index.list.feasibility") %></th>
+        <th><%= t("admin.budget_investments.index.list.price") %></th>
+        <th class="text-center"><%= t("admin.budget_investments.index.list.valuation_finished") %></th>
+        <th class="text-center"><%= t("admin.budget_investments.index.list.visible_to_valuators") %></th>
+        <th class="text-center"><%= t("admin.budget_investments.index.list.selected") %></th>
+        <% if params[:filter]  == "selected" %>
+          <th class="text-center"><%= t("admin.budget_investments.index.list.incompatible") %></th>
         <% end %>
       </tr>
     </thead>
