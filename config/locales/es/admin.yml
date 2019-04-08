@@ -24,7 +24,7 @@ es:
           all: Todos
           with_active: Activos
           with_inactive: Inactivos
-        preview: Vista previa
+        preview: Vista previa de presupuesto
       banner:
         title: Título (opcional)
         description: Descripción (opcional)
@@ -247,7 +247,6 @@ es:
         dossier: Informe
         edit_dossier: Editar informe
         tags: Etiquetas
-        user_tags: Etiquetas del usuario
         undefined: Sin definir
         compatibility:
           title: Compatibilidad
@@ -262,13 +261,7 @@ es:
           "true": "Si"
           "false": "No"
         valuator_groups: "Grupos de evaluadores"
-        image: "Imagen"
-        see_image: "Ver imagen"
-        no_image: "Sin imagen"
-        documents: "Documentos"
-        see_documents: "Ver documentos (%{count})"
-        no_documents: "Sin documentos"
-        valuator_groups: "Grupos de evaluadores"
+        preview: Vista previa
       edit:
         classification: Clasificación
         compatibility: Compatibilidad

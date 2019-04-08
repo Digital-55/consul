@@ -13,9 +13,14 @@
 <% end %>
 
 <%= link_to t("admin.budget_investments.show.edit"),
-            edit_admin_budget_budget_investment_path(@budget, @investment,
-                                                Budget::Investment.filter_params(params).to_h) unless @budget.finished? %>
+            edit_admin_budget_budget_investment_path(
+              @budget,
+              @investment,
+              Budget::Investment.filter_params(params).to_h
+            ) unless @budget.finished? %>
 
+<hr>
+<%= render partial: "/budgets/investments/investment_detail", locals: {investment: @investment, preview: true} %>
 <hr>
 
 <h2 id="classification"><%= t("admin.budget_investments.show.classification") %></h2>
