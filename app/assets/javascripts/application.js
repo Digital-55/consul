@@ -91,6 +91,8 @@
 //= require starrr.js
 //= require menu_items.js
 //= require custom_page_modules.js
+//= require cookies
+//= require columns_selector
 
 var initialize_modules = function() {
   App.Answers.initialize();
@@ -142,6 +144,9 @@ var initialize_modules = function() {
   App.ModalDownload.initialize();
   App.Settings.initialize();
   App.LoginForm.initialize();
+  App.Cookies.initialize();
+  if ( $('#js-columns-selector').length )
+    App.ColumnsSelector.initialize();
 };
 
 $(function(){
@@ -214,7 +219,7 @@ function showhideElement(element_show, elements_hide) {
   }
 
   if (element_show) {
-    $('#' + element_show).show(); 
+    $('#' + element_show).show();
   }
 }
 
