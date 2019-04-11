@@ -297,7 +297,7 @@ es:
         type_other_proposal: Tipo de propuesta
         name: Razón social (nombre)
         address: Dirección
-        phone: Teléfono 
+        phone: Teléfono
         agent: Representante legal
         agent_title: Título que le otorga la representación
         citizen_entities: ¿Registrado como Entidad ciudadana?
@@ -454,6 +454,11 @@ es:
         url: Enlace
       moderated_text:
         text: Texto
+      valuator:
+        description: Descripción
+        valuator_group_id: Grupo de evaluación
+        can_comment: Puede comentar
+        can_edit_dossier: Puede editar informes
     errors:
       models:
         user:

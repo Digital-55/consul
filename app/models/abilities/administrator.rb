@@ -77,6 +77,7 @@ module Abilities
       can [:valuate, :comment_valuation], Budget::Investment
       can :create, Budget::ValuatorAssignment
       can [:read_results], Budget, phase: "reviewing_ballots"
+      can [:edit_dossier], Budget::Investment
 
       can(:read_admin_stats, Budget) { |budget| budget.balloting_or_later? }
 
