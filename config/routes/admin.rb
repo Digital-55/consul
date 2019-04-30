@@ -105,7 +105,6 @@ namespace :admin do
     collection { get :search }
   end
 
-<<<<<<< HEAD
   resources :menus do
     resources :menu_items do
       collection do
@@ -128,9 +127,7 @@ namespace :admin do
   end
 
   resources :comments, only: :index do
-=======
   resources :hidden_comments, only: :index do
->>>>>>> 6758a0210... PR3376
     member do
       put :restore
       put :confirm_hide
@@ -171,11 +168,15 @@ namespace :admin do
     get :search, on: :collection
   end
 
+<<<<<<< HEAD
   resources :superadministrators, only: [:index, :new, :create, :destroy] do
     get :search, on: :collection
   end
 
   resources :administrators, only: [:index, :new, :create, :destroy] do
+=======
+  resources :administrators, only: [:index, :create, :destroy, :edit, :update] do
+>>>>>>> 34803c3c1... PR3389/1 Module 15
     get :search, on: :collection
   end
 

@@ -152,6 +152,8 @@ es:
         one: Texto para moderación automática
         other: Textos para moderación automática
     attributes:
+      administrator:
+        description: Descripción
       budget:
         name: "Nombre"
         url: "Enlace a presupuestos del Ayuntamiento"

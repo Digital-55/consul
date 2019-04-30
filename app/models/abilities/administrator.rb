@@ -58,7 +58,7 @@ module Abilities
                                       Legislation::Question, Legislation::Proposal, Legislation::Annotation,
                                       Topic, ProbeOption]
       can [:search, :create, :index, :destroy], ::Superadministrator
-      can [:search, :create, :index, :destroy], ::Administrator
+      can [:search, :create, :index, :destroy, :edit, :update], ::Administrator
       can [:search, :create, :index, :destroy], ::SuresAdministrator
       can [:search, :create, :index, :destroy], ::SectionAdministrator
       can [:search, :create, :index, :destroy], ::Consultant

@@ -1029,6 +1029,7 @@ es:
         back: Volver
         name: Nombre
         email: Email
+        description: Descripción
         id: ID de Administrador
         no_administrators: No hay administradores.
       administrator:
@@ -1039,6 +1040,9 @@ es:
         title: "Administradores: Búsqueda de usuarios"
       new:
         title: Crear nuevo usuario administrador
+      form:
+        edit_title: "Editar administrador"
+        updated: "Administrador actualizado correctamente"
     sures_administrators:
       index:
         title: Administradores de Sures
@@ -1108,6 +1112,7 @@ es:
         title: "Editores: Búsqueda de usuarios"
       new:
         title: Crear nuevo usuario editor
+
     moderators:
       index:
         title: Moderadores
