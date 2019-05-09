@@ -7,9 +7,9 @@ class Comment < ApplicationRecord
   include Notifiable
   extend DownloadSettings::CommentCsv
 
-  COMMENTABLE_TYPES = %w(Debate Proposal Budget::Investment Poll Topic Legislation::Question
-                        Legislation::Annotation Legislation::Proposal
-                        Poll::Question ProbeOption).freeze
+  COMMENTABLE_TYPES = %w[Debate Proposal Budget::Investment Poll Topic
+                        Legislation::Question Legislation::Annotation
+                        Legislation::Proposal Legislation::PeopleProposal].freeze
 
   acts_as_paranoid column: :hidden_at
   include ActsAsParanoidAliases
