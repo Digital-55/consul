@@ -15,6 +15,7 @@ class Admin::BudgetInvestmentsController < Admin::BaseController
   before_action :load_investments, only: [:index, :toggle_selection]
 
   def index
+    load_tags
     respond_to do |format|
       format.html
       format.js
