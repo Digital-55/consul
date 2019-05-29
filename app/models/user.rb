@@ -36,7 +36,10 @@ class User < ApplicationRecord
   has_many :direct_messages_sent,     class_name: "DirectMessage", foreign_key: :sender_id, dependent: :destroy
   has_many :direct_messages_received, class_name: "DirectMessage", foreign_key: :receiver_id, dependent: :destroy
   has_many :legislation_answers, class_name: "Legislation::Answer", dependent: :destroy, inverse_of: :user
-  has_many :follows, dependent: :destroy
+  has_many :follows
+  has_many :budget_rol_assignments
+  has_many :budgets, through: :budget_rol_assignments
+  has_many :votation_set_answers
   belongs_to :geozone
   belongs_to :adress
   belongs_to :profile

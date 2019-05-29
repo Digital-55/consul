@@ -1864,50 +1864,27 @@ ActiveRecord::Schema.define(version: 20210420102437) do
     t.index ["user_id"], name: "index_visits_on_user_id", using: :btree
   end
 
-  create_table "volunteer_polls", force: :cascade do |t|
-    t.string  "email"
-    t.string  "turns"
-    t.boolean "any_district"
-    t.boolean "arganzuela"
-    t.boolean "barajas"
-    t.boolean "carabanchel"
-    t.boolean "centro"
-    t.boolean "chamartin"
-    t.boolean "chamberi"
-    t.boolean "ciudad_lineal"
-    t.boolean "fuencarral_el_pardo"
-    t.boolean "hortaleza"
-    t.boolean "latina"
-    t.boolean "moncloa_aravaca"
-    t.boolean "moratalaz"
-    t.boolean "puente_de_vallecas"
-    t.boolean "retiro"
-    t.boolean "salamanca"
-    t.boolean "san_blas_canillejas"
-    t.boolean "tetuan"
-    t.boolean "usera"
-    t.boolean "vicalvaro"
-    t.boolean "villa_de_vallecas"
-    t.boolean "villaverde"
-    t.string  "first_name"
-    t.string  "last_name"
-    t.string  "document_number"
-    t.string  "phone"
-    t.boolean "monday_13_morning"
-    t.boolean "monday_13_afternoon"
-    t.boolean "tuesday_14_morning"
-    t.boolean "tuesday_14_afternoon"
-    t.boolean "wednesday_15_morning"
-    t.boolean "wednesday_15_afternoon"
-    t.boolean "thursday_16_morning"
-    t.boolean "thursday_16_afternoon"
-    t.boolean "friday_17_morning"
-    t.boolean "friday_17_afternoon"
-    t.boolean "saturday_18_morning"
-    t.boolean "saturday_18_afternoon"
-    t.boolean "sunday_19_morning"
-    t.boolean "sunday_19_afternoon"
-    t.boolean "monday_20_morning"
+  create_table "votation_set_answers", force: :cascade do |t|
+    t.integer  "author_id"
+    t.integer  "votation_type_id"
+    t.string   "answer"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["author_id"], name: "index_votation_set_answers_on_author_id", using: :btree
+    t.index ["votation_type_id"], name: "index_votation_set_answers_on_votation_type_id", using: :btree
+  end
+
+  create_table "votation_types", force: :cascade do |t|
+    t.integer  "questionable_id"
+    t.string   "questionable_type"
+    t.integer  "enum_type"
+    t.boolean  "open_answer"
+    t.boolean  "prioritized"
+    t.integer  "prioritization_type"
+    t.integer  "max_votes"
+    t.integer  "max_groups_answers"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
   create_table "votes", force: :cascade do |t|
