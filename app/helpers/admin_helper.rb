@@ -60,7 +60,7 @@ module AdminHelper
     ["sures", "actuations", "customizes", "searchs"].include?(controller_name) || menu_sures_customize? ||  menu_sures_actuation? || menu_sures_search?
   end
 
-  def menu_sures_actuation? 
+  def menu_sures_actuation?
     ["actuations"].include?(controller_name) && controller.class.parent.to_s == "Admin::Sures"
   end
 
