@@ -8,6 +8,8 @@ namespace :legislation do
       get :proposals
       get :milestones
       get :map
+      get :resume
+
     end
 
     resources :questions, only: [:show] do

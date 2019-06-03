@@ -65,6 +65,8 @@ gem 'paperclip-ffmpeg'
 gem 'paperclip-av-transcoder'
 gem "cocaine"
 gem 'jw_player_helper'
+gem "axlsx", "~> 3.0.0.pre"
+gem "axlsx_rails", "~> 0.5.2"
 
 source "https://rails-assets.org" do
   gem "rails-assets-leaflet"

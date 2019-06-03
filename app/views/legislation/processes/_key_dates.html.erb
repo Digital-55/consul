@@ -41,6 +41,7 @@
               <% end %>
             </li>
           <% end %>
+
           <% if process.allegations_phase.enabled? %>
             <li <%= "class=is-active" if phase.to_sym == :allegations_phase %>>
               <%= link_to allegations_legislation_process_path(process) do %>
@@ -60,8 +61,17 @@
               <% end %>
             </li>
           <% end %>
+
+          <% if process.result_publication.enabled? && process.end_date <= Date.today %>
+            <li <%= "class=is-active" if phase == :resume %>>
+              <%= link_to resume_legislation_process_path(process) do %>
+                <h4><%= t("legislation.summary.title") %></h4>
+                  <span><%= format_date(process.result_publication_date) %></span>
+              <% end %>
+            </li>
+          <% end %>
         </ul>
       </div>
     </div>
   </nav>
-<%end%>
+<% end %>
