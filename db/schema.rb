@@ -373,6 +373,9 @@ ActiveRecord::Schema.define(version: 20210420102437) do
     t.text     "description_informing"
     t.text     "budget_link"
     t.boolean  "budget_link_enabled",                      default: false
+    t.string   "help_link"
+    t.string   "budget_milestone_tags"
+    t.string   "budget_valuation_tags"
   end
 
   create_table "campaigns", force: :cascade do |t|
