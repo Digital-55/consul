@@ -156,9 +156,9 @@ ActiveRecord::Schema.define(version: 20210420102437) do
     t.integer  "budget_id"
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
+    t.integer  "ballot_lines_count", default: 0
     t.boolean  "physical",           default: false
     t.integer  "poll_ballot_id"
-    t.integer  "ballot_lines_count", default: 0
   end
 
   create_table "budget_content_blocks", force: :cascade do |t|
@@ -282,6 +282,7 @@ ActiveRecord::Schema.define(version: 20210420102437) do
     t.datetime "ignored_flag_at"
     t.integer  "flags_count",                                 default: 0
     t.integer  "original_heading_id"
+    t.integer  "tracker_assignments_count"
     t.index ["administrator_id"], name: "index_budget_investments_on_administrator_id", using: :btree
     t.index ["author_id"], name: "index_budget_investments_on_author_id", using: :btree
     t.index ["community_id"], name: "index_budget_investments_on_community_id", using: :btree
@@ -1327,12 +1328,12 @@ ActiveRecord::Schema.define(version: 20210420102437) do
     t.integer  "comments_count",     default: 0
     t.integer  "author_id"
     t.datetime "hidden_at"
+    t.string   "slug"
     t.boolean  "results_enabled",    default: false
     t.boolean  "stats_enabled",      default: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "budget_id"
-    t.string   "slug"
     t.string   "related_type"
     t.integer  "related_id"
     t.index ["budget_id"], name: "index_polls_on_budget_id", unique: true, using: :btree
@@ -2046,6 +2047,7 @@ ActiveRecord::Schema.define(version: 20210420102437) do
   add_foreign_key "sures_actuations", "geozones"
   add_foreign_key "sures_administrators", "users"
   add_foreign_key "users", "adresses"
+  add_foreign_key "trackers", "users"
   add_foreign_key "users", "geozones"
   add_foreign_key "users", "profiles", column: "profiles_id"
   add_foreign_key "valuators", "users"

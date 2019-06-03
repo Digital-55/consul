@@ -80,6 +80,10 @@ module UsersHelper
     current_user && current_user.poll_officer?
   end
 
+  def current_tracker?
+    current_user && current_user.tracker?
+  end
+
   def show_admin_menu?(user = nil)
     unless namespace == "officing"
       current_administrator? || current_sures? || current_editor? || current_consultant? || current_moderator? || current_valuator? || current_manager? || current_section_administrator? ||

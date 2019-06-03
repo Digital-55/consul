@@ -68,6 +68,10 @@ FactoryBot.define do
     user
   end
 
+  factory :tracker do
+    user
+  end
+
   factory :valuator do
     user
   end

@@ -8,10 +8,11 @@ class Ability
     if user # logged-in users
       merge Abilities::Valuator.new(user) if user.valuator?
       merge Abilities::Officing::Voter.new(user) if user.officing_voter?
+      merge Abilities::Tracker.new(user) if user.tracker?
       if user.consultant?
-        merge Abilities::Consultant.new(user) 
+        merge Abilities::Consultant.new(user)
       elsif user.editor?
-        merge Abilities::Editor.new(user) 
+        merge Abilities::Editor.new(user)
       elsif user.administrator? || user.super_administrator?
         merge Abilities::Administrator.new(user)
       elsif user.moderator?
