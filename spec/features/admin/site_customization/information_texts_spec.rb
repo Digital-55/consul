@@ -15,10 +15,17 @@ describe "Admin custom information texts" do
   scenario "page is correctly loaded" do
     visit admin_site_customization_information_texts_path
 
-    click_link "Debates"
-    expect(page).to have_content "Help about citizen debates"
+    click_link "Basic customization"
+    expect(page).to have_content "Help about debates"
+    expect(page).to have_content "Help about proposals"
+    expect(page).to have_content "Help about voting"
+    expect(page).to have_content "Help about collaborative legislation"
+    expect(page).to have_content "Help with participatory budgets"
 
-    click_link "Community"
+    within("#information-texts-tabs") { click_link "Debates" }
+    expect(page).to have_content "Help about debates"
+
+    within("#information-texts-tabs") { click_link "Community" }
     expect(page).to have_content "Access the community"
 
     within("#information-texts-tabs") { click_link "Proposals" }

@@ -85,6 +85,7 @@
 //= require managers
 //= require globalize
 //= require send_admin_notification_alert
+//= require modal_download
 //= require settings
 //= require login_form
 //= require starrr.js
@@ -138,6 +139,7 @@ var initialize_modules = function() {
   App.Managers.initialize();
   App.Globalize.initialize();
   App.SendAdminNotificationAlert.initialize();
+  App.ModalDownload.initialize();
   App.Settings.initialize();
   App.LoginForm.initialize();
 };

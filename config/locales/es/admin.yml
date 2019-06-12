@@ -455,6 +455,18 @@ es:
         notice: "Barra de progreso actualizada"
       delete:
         notice: "Barra de progreso eliminada correctamente"
+    comments:
+      index:
+        id: "ID"
+        content: "Contenido"
+        author: "Autor"
+        commentable_type: "Tipo"
+        link: "Descargar comentarios"
+        title: Comentarios
+        no_comments: No hay comentarios.
+        hidden_debate: Debate oculto
+        hidden_proposal: Propuesta oculta
+        table_link: "Link"
     hidden_comments:
       index:
         filter: Filtro
@@ -541,6 +553,13 @@ es:
           request: Recurso solicitado
         update:
           success: La tarea ha sido marcada como resuelta
+    debates:
+      index:
+        id: ID
+        author: Autor
+        title: Debates
+        no_debates: No hay debates.
+        link: "Descargar debates"
     hidden_debates:
       index:
         filter: Filtro
@@ -640,6 +659,7 @@ es:
           filters:
             active: Activos
             all: Todos
+          link: "Descargar procesos legislativos"
         new:
           back: Volver
           title: Crear nuevo proceso de legislación colaborativa
@@ -816,7 +836,7 @@ es:
         index:
           create: Nueva actuación
           delete: Borrar
-          title: Actuaciones de SURES          
+          title: Actuaciones de SURES
           filters:
             active: Activos
             all: Todos
@@ -990,8 +1010,18 @@ es:
         restricted_removal: "Lo sentimos, no puedes eliminarte a ti mismo de la lista"
       search:
         title: "Super Administradores: Búsqueda de usuarios"
-      new: 
+      new:
         title: Crear nuevo usuario super administrador
+      download_settings:
+        title: "Configuración de descarga"
+        debates: "Debates"
+        proposals: "Propuestas"
+        legislation_processes: "Procesos legislativos"
+        budget_investments: "Pressupuestos participativos"
+        comments: "Comentarios"
+        budget_investments_milestones: "Pressupuestos participativos (Seguimiento)"
+      debates: "Debates"
+      comments: "Comentarios"
     administrators:
       index:
         title: Administradores
@@ -1007,7 +1037,7 @@ es:
         restricted_removal: "Lo sentimos, no puedes eliminarte a ti mismo de la lista"
       search:
         title: "Administradores: Búsqueda de usuarios"
-      new: 
+      new:
         title: Crear nuevo usuario administrador
     sures_administrators:
       index:
@@ -1024,7 +1054,7 @@ es:
         restricted_removal: "Lo sentimos, no puedes eliminarte a ti mismo de la lista"
       search:
         title: "Administradores de Sures: Búsqueda de usuarios"
-      new: 
+      new:
         title: Crear nuevo usuario administrador de Sures
 
     section_administrators:
@@ -1042,7 +1072,7 @@ es:
         restricted_removal: "Lo sentimos, no puedes eliminarte a ti mismo de la lista"
       search:
         title: "Administradores Sectoriales: Búsqueda de usuarios"
-      new: 
+      new:
         title: Crear nuevo usuario Administrador Sectorial
     consultants:
       index:
@@ -1059,7 +1089,7 @@ es:
         restricted_removal: "Lo sentimos, no puedes eliminarte a ti mismo de la lista"
       search:
         title: "Consultores: Búsqueda de usuarios"
-      new: 
+      new:
         title: Crear nuevo usuario consultor
     editors:
       index:
@@ -1076,7 +1106,7 @@ es:
         restricted_removal: "Lo sentimos, no puedes eliminarte a ti mismo de la lista"
       search:
         title: "Editores: Búsqueda de usuarios"
-      new: 
+      new:
         title: Crear nuevo usuario editor
     moderators:
       index:
@@ -1620,6 +1650,7 @@ es:
         select: Seleccionar
         selected: Seleccionada
         no_proposals: No hay propuestas.
+        link: "Descargar propuestas"
       show:
         create_question: Añadir esta propuesta a una votación para ser votada
       form:
@@ -1999,7 +2030,7 @@ es:
         title: Título
         description: Descripción
         link_text: Texto del enlace
-        link_url: URL del enlace     
+        link_url: URL del enlace
       new:
         header_title: Nuevo encabezado
         submit_header: Crear encabezado
