@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20210420102437) do
+=======
+ActiveRecord::Schema.define(version: 20191220110217) do
+>>>>>>> e4556ba79... PR3489 Module 19
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -812,10 +816,7 @@ ActiveRecord::Schema.define(version: 20210420102437) do
     t.string   "instagram"
     t.string   "youtube"
     t.string   "website"
-    t.string   "external_url"
-    t.integer  "geozone_id"
     t.index ["cached_votes_score"], name: "index_legislation_people_proposals_on_cached_votes_score", using: :btree
-    t.index ["geozone_id"], name: "index_legislation_people_proposals_on_geozone_id", using: :btree
   end
 
   create_table "legislation_process_translations", force: :cascade do |t|
@@ -845,7 +846,6 @@ ActiveRecord::Schema.define(version: 20210420102437) do
     t.datetime "hidden_at"
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
-    t.text     "summary"
     t.boolean  "debate_phase_enabled",              default: false
     t.boolean  "allegations_phase_enabled",         default: false
     t.boolean  "draft_publication_enabled",         default: false
@@ -1827,6 +1827,7 @@ ActiveRecord::Schema.define(version: 20210420102437) do
     t.integer  "failed_email_digests_count",                default: 0
     t.boolean  "officing_voter",                            default: false
     t.text     "former_users_data_log",                     default: ""
+    t.integer  "balloted_heading_id"
     t.boolean  "public_interests",                          default: false
     t.boolean  "recommended_debates",                       default: true
     t.boolean  "recommended_proposals",                     default: true
@@ -1845,7 +1846,6 @@ ActiveRecord::Schema.define(version: 20210420102437) do
     t.integer  "adress_id"
     t.integer  "profiles_id"
     t.index ["adress_id"], name: "index_users_on_adress_id", using: :btree
-    t.integer  "balloted_heading_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["geozone_id"], name: "index_users_on_geozone_id", using: :btree

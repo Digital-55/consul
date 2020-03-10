@@ -196,7 +196,6 @@ LOREM_IPSUM
     confidence_score "0"
   end
 
-<<<<<<< HEAD
   factory :text_comment, class: "Comment" do
     commentable_id "10"
     commentable_type Legislation::Annotation
@@ -209,7 +208,6 @@ LOREM_IPSUM
     ancestry nil
   end
 
-=======
   factory :legislation_people_proposal, class: "Legislation::PeopleProposal" do
     sequence(:title) { |n| "People and group #{n} for a legislation" }
     summary "This law should be implemented by..."
@@ -232,5 +230,4 @@ LOREM_IPSUM
       validated true
     end
   end
->>>>>>> bcbe7ccb1... Create Legislation::PeopleProposal model
 end
