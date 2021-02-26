@@ -220,10 +220,10 @@ es:
       title_3: "¿Te gustaría decidir con nosotros sobre algunas de las actuaciones que se llevarán a cabo?"
       content_1: "Si vives en alguno de los 9 distritos del Plan Sures, regístrate y participa en decidir cómo mejorarlos."
       content_2: "<p>
-          Carabanchel, Latina, Moratalaz, Puente de Vallecas, San Blas, Usera, Vicálvaro, Villa de Vallecas y 
+          Carabanchel, Latina, Moratalaz, Puente de Vallecas, San Blas, Usera, Vicálvaro, Villa de Vallecas y
           Villaverde son los 9 distritos que están en el ámbito de actuación del Plan SURES:
         </p>
-        <p>El Plan SURES es un PLAN de desarrollo de los distritos del Sur y del Este de Madrid. 
+        <p>El Plan SURES es un PLAN de desarrollo de los distritos del Sur y del Este de Madrid.
         <a href=\"http://preview.munimadrid.es:8080/portales/munimadrid/es/Inicio/El-Ayuntamiento/Oficina-del-Sur/?vgnextfmt=default&vgnextchannel=1c9c5c3a93f30710VgnVCM2000001f4a900aRCRD\">
         Conoce más sobre el Plan Sures</a>.</p>"
     application:
@@ -319,6 +319,7 @@ es:
     edit_organization: Edición de organización
     start_organization: Crea una organización
     access_denied: No tienes permisos para operar en este distrito.
+    related_proposals: Propuestas relacionadas
   omniauth:
     facebook:
       sign_in: Entra con Facebook
