@@ -1,0 +1,24 @@
+<% provide :title do %>
+  <%= t("admin.header.title") %> - <%= t("admin.sg.title") %>
+<% end %>
+
+<div class="sg-edit">
+    <h2><%= t("admin.sg.title") %></h2> 
+    <ul class="menu simple clear" id="filter-subnav">
+      <%  get_filter_sg_tab.each do |filter| %>
+        <li class="<%="is-active" if @type.to_s==filter[:type].to_s%>">
+          <% if @type.to_s==filter[:type].to_s %>
+            <h2><%=filter[:name]%></h2>
+          <%else%>  
+            <%= link_to filter[:name], admin_sgs_path(type: filter[:type].to_s) %>
+          <%end%>
+        </li>
+      <%end%>
+    </ul>
+
+    <% if @type.to_s=='search' %>
+        <%= render partial: "search", locals: { } %>
+    <% elsif @type.to_s=='order' %>
+        <%= render partial: "order", locals: { } %>
+    <%end%>    
+</div>

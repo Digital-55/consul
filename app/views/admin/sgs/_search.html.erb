@@ -1,0 +1,48 @@
+<%=form_tag ({type: @type.to_s}) do %>
+    <%if !@sg_generic.blank?%>
+        <div class="small-12 column">
+            <fieldset class="sg_fieldset">
+                <legend><%= @sg_generic.try(:title)%></legend>
+                <div class="row">
+                    <div class="small-12 medium-3 column">
+                        <%= label_tag "generic_table_name".to_sym, t('admin.sures.searchs_settings.form.data_type')%>
+                        <%= select_tag "generic_table_name".to_sym, options_for_select([]) %>
+                    </div>
+                    <div class="small-12 medium-3 column">
+                        <%= label_tag "generic_field_name".to_sym, t('admin.sures.searchs_settings.form.data_type')%>
+                        <%= select_tag "generic_field_name".to_sym, options_for_select([]) %>
+                    </div> 
+                    <div class="small-12 medium-3 column end">
+                        <%= submit_tag t('admin.sures.searchs_settings.form.button_send'), class: "button expanded" %>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="small-12 column">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <%get_header_tables_fields.each do |header|%>
+                                        <th><%=header%></th>
+                                    <%end%>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%@sg_generic.try(:sg_table_fields).each do |tf|%>
+                                    <tr>
+                                        <td><%=tf.table_name%></td>
+                                        <td><%=tf.field_name%></td>
+                                        <td></td>
+                                    </tr>
+                                <%end%>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    <%else%>
+        <%=t('admin.sg.no_search_generic')%>
+    <%end%>    
+<%end%>

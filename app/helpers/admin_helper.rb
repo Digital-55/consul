@@ -52,8 +52,8 @@ module AdminHelper
   end
 
   def menu_customization?
-    ["pages", "banners", "information_texts", "documents"].include?(controller_name) ||
-    menu_homepage? || menu_pages?
+    ["pages", "banners", "information_texts", "documents", "sgs"].include?(controller_name) ||
+    menu_homepage? || menu_pages? || menu_sg?
   end
 
   def menu_sures?
@@ -74,6 +74,10 @@ module AdminHelper
 
   def menu_homepage?
     ["homepage", "cards"].include?(controller_name) && params[:page_id].nil?
+  end
+
+  def menu_sg?
+    ["sgs"].include?(controller_name)
   end
 
   def menu_pages?
