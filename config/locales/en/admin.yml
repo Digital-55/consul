@@ -281,6 +281,18 @@ en:
         undefined: Undefined
         user_groups: "Groups"
       search_unfeasible: Search unfeasible
+    menus:
+      index:
+        create: Create a menu
+        filters:
+          all: All
+          header: Header
+          footer: Footer
+        title: Menus
+      menu:
+        title: Title
+        enabled: State
+        section: Section
     milestones:
       index:
         table_id: "ID"
@@ -735,6 +747,7 @@ en:
       administrators: Administrators
       managers: Managers
       moderators: Moderators
+      menus: Menus
       messaging_users: Messages to users
       newsletters: Newsletters
       admin_notifications: Notifications
