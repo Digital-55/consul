@@ -313,6 +313,19 @@ es:
         undefined: Sin definir
         user_groups: "Grupos"
       search_unfeasible: Buscar inviables
+    menus:
+      index:
+        create: Crear un menú
+        filters:
+          all: Todos
+          header: Cabecera
+          footer: Pie de página
+        title: Menús
+      menu:
+        title: Título
+        enabled: Estado
+        section: Sección
+        created_at: Fecha creación
     milestones:
       index:
         table_id: "ID"
@@ -1197,6 +1210,7 @@ es:
       consultants: Consultores
       editors: Editores
       managers: Gestores
+      menus: Menús
       moderators: Moderadores
       messaging_users: Mensajes a usuarios
       newsletters: Newsletters

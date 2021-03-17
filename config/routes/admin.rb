@@ -166,6 +166,8 @@ namespace :admin do
     collection { get :search }
   end
 
+  resources :menus
+
   resources :comments, only: :index do
     member do
       put :restore
