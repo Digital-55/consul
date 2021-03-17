@@ -1,10 +1,10 @@
-<%=form_tag create_generic_admin_sgs_path, method: :post do %>
-    <%=hidden_field_tag :type, @type.to_s%>
-    <%=hidden_field_tag :generic, true%>
-    <%if !@sg_generic.blank?%>
-        <div class="small-12 column">
-            <fieldset class="sg_fieldset">
-                <legend><%= @sg_generic.try(:title)%></legend>
+<%if !@sg_generic.blank?%>
+    <div class="small-12 column">
+        <fieldset class="sg_fieldset">
+            <legend><%= @sg_generic.try(:title)%></legend>
+            <%=form_tag create_generic_admin_sgs_path, method: :post do %>
+                <%=hidden_field_tag :type, @type.to_s%>
+                <%=hidden_field_tag :generic, true%>
                 <div class="row">
                     <div class="small-12 medium-3 column">
                         <%#= label_tag "generic_table_name".to_sym, t('admin.sg.form.table_name')%>
@@ -19,37 +19,37 @@
                         <%= submit_tag t('admin.sg.form.add'), class: "button" %>
                     </div>
                 </div>
+            <%end%>
 
-                <div class="row">
-                    <div class="small-12 column">
-                        <%if !@sg_generic.try(:sg_table_fields).blank?%>
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <%get_header_tables_fields.each do |header|%>
-                                            <th><%=header%></th>
-                                        <%end%>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <%@sg_generic.try(:sg_table_fields).each do |tf|%>
-                                        <tr>
-                                            <td><%=tf.table_name%></td>
-                                            <td><%=tf.field_name%></td>
-                                            <td><%= submit_tag t('admin.sg.list.delete'), class: "button alert" %></td>
-                                        </tr>
+            <div class="row">
+                <div class="small-12 column">
+                    <%if !@sg_generic.try(:sg_table_fields).blank?%>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <%get_header_tables_fields.each do |header|%>
+                                        <th><%=header%></th>
                                     <%end%>
-                                </tbody>
-                            </table>
-                        <%else%>
-                            <%=t("admin.sg.list.no_data")%>
-                        <%end%>
-                    </div>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%@sg_generic.try(:sg_table_fields).each do |tf|%>
+                                    <tr>
+                                        <td><%=tf.table_name%></td>
+                                        <td><%=tf.field_name%></td>
+                                        <td><%= link_to t('admin.sg.list.delete'),  delete_generic_admin_sg_path(tf.id, type: @type), class: "button alert", data: {confirm: t("admin.sg.list.delete_confirm")}%></td>
+                                    </tr>
+                                <%end%>
+                            </tbody>
+                        </table>
+                    <%else%>
+                        <%=t("admin.sg.list.no_data")%>
+                    <%end%>                       
                 </div>
-            </fieldset>
-        </div>
-    <%else%>
-        <%=t('admin.sg.no_search_generic')%>
-    <%end%>    
-<%end%>
+            </div>
+        </fieldset>
+    </div>
+<%else%>
+    <%=t('admin.sg.no_search_generic')%>
+<%end%>    

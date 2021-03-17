@@ -1,24 +1,29 @@
-<%=form_tag ({type: @type.to_s, generic: true}) do %>
-    <%if !@sg_generic.blank?%>
-        <div class="small-12 column">
-            <fieldset class="sg_fieldset">
-                <legend><%= @sg_generic.try(:title)%></legend>
+<%if !@sg_generic.blank?%>
+    <div class="small-12 column">
+        <fieldset class="sg_fieldset">
+            <legend><%= @sg_generic.try(:title)%></legend>
+            <%=form_tag create_generic_admin_sgs_path, method: :post do %>
+                <%=hidden_field_tag :type, @type.to_s%>
+                <%=hidden_field_tag :generic, true%>
                 <div class="row">
                     <div class="small-12 medium-3 column">
-                        <%= label_tag "generic_table_name".to_sym, t('admin.sures.searchs_settings.form.data_type')%>
-                        <%= select_tag "generic_table_name".to_sym, options_for_select([]) %>
+                        <%#= label_tag "generic_table_name".to_sym, t('admin.sg.form.table_name')%>
+                        <%= select_tag "generic_table_name".to_sym, options_for_select(get_tables) %>
                     </div>
+                    <div id="generic_field_name_change">
                     <div class="small-12 medium-3 column">
-                        <%= label_tag "generic_field_name".to_sym, t('admin.sures.searchs_settings.form.data_type')%>
-                        <%= select_tag "generic_field_name".to_sym, options_for_select([]) %>
+                        <%#= label_tag "generic_field_name".to_sym, t('admin.sg.form.field_name')%>
+                        <%= number_field_tag "generic_order".to_sym, 0 %>
                     </div> 
                     <div class="small-12 medium-3 column end">
-                        <%= submit_tag t('admin.sures.searchs_settings.form.button_send'), class: "button expanded" %>
+                        <%= submit_tag t('admin.sg.form.add'), class: "button" %>
                     </div>
                 </div>
+            <%end%>
 
-                <div class="row">
-                    <div class="small-12 column">
+            <div class="row">
+                <div class="small-12 column">
+                    <%if !@sg_generic.try(:sg_table_orders).blank?%>
                         <table>
                             <thead>
                                 <tr>
@@ -29,20 +34,22 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <%@sg_generic.try(:sg_table_fields).each do |tf|%>
+                                <%@sg_generic.try(:sg_table_orders).each do |tf|%>
                                     <tr>
                                         <td><%=tf.table_name%></td>
-                                        <td><%=tf.field_name%></td>
-                                        <td></td>
+                                        <td><%=tf.order%></td>
+                                        <td><%= link_to t('admin.sg.list.delete'),  delete_generic_admin_sg_path(tf.id, type: @type), class: "button alert", data: {confirm: t("admin.sg.list.delete_confirm_order")}%></td>
                                     </tr>
                                 <%end%>
                             </tbody>
                         </table>
-                    </div>
+                    <%else%>
+                        <%=t("admin.sg.list.no_data")%>
+                    <%end%>                       
                 </div>
-            </fieldset>
-        </div>
-    <%else%>
-        <%=t('admin.sg.no_search_generic')%>
-    <%end%>    
-<%end%>
+            </div>
+        </fieldset>
+    </div>
+<%else%>
+    <%=t('admin.sg.no_search_generic')%>
+<%end%>  

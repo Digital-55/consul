@@ -18,6 +18,7 @@ namespace :admin do
 
   resources :sgs do
     post :create_generic, on: :collection
+    get :delete_generic, on: :member
   end
 
   resources :hidden_users, only: [:index, :show] do

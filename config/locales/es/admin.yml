@@ -935,11 +935,21 @@ es:
         add: Añadir
         table_name: Tabla
         field_name: Campo
+        notice_generic: Se ha guardado correctamente la tabla para el buscador general
+        notice_generic_destroy: Se ha eliminado la tabla del buscador general
+        error_generic: No se ha podido guardar la tabla para el buscador general
+        error_generic_destroy: No se ha podido eliminar la tabla del buscador general
+        notice_generic_order: Se ha guardado correctamente la tabla para la ordenación de apartados
+        error_generic_order: No se ha podido guardar la tabla para la ordenación de apartados
+        notice_generic_order_destroy: Se ha eliminado la tabla de la ordenación de apartados
+        error_generic_order_destroy: No se ha podido eliminar la tabla de la ordenación de apartados
       list:
         delete: Borrar
         table_name: Nombre de la tabla
         field_name: Campo
         no_data: No hay tablas asociadas
+        delete_confirm: "¿Estás seguro de eliminar la tabla y el campo del listado del buscador general?"
+        delete_confirm_order: "¿Estás seguro de eliminar la tabla y el orden del listado de ordenación de apartados?"
     section_administrators:
       index:
         title: Administradores Sectoriales
