@@ -16,7 +16,9 @@ namespace :admin do
     resources :customize_cards
   end
 
-  resources :sgs
+  resources :sgs do
+    post :create_generic, on: :collection
+  end
 
   resources :hidden_users, only: [:index, :show] do
     member do

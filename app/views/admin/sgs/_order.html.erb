@@ -1,65 +1,48 @@
-<%=form_tag ({type: @type.to_s}) do %>
-      <% @search_settings.each do |s|%>
-        <div class="row">
-          <div class="small-12 column">
-            <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
-              <legend><%= text_field_tag "title_#{s.id}".to_sym, s.title%></legend>
-              <div class="row">
-                <div class="small-12 medium-3 column">
-                  <%=label_tag "data_type_#{s.id}".to_sym, t('admin.sures.searchs_settings.form.data_type')%>
-                  <%= select_tag "data_type_#{s.id}".to_sym, options_for_select(get_sures_search_types_data, s.data_type) %>
+<%=form_tag ({type: @type.to_s, generic: true}) do %>
+    <%if !@sg_generic.blank?%>
+        <div class="small-12 column">
+            <fieldset class="sg_fieldset">
+                <legend><%= @sg_generic.try(:title)%></legend>
+                <div class="row">
+                    <div class="small-12 medium-3 column">
+                        <%= label_tag "generic_table_name".to_sym, t('admin.sures.searchs_settings.form.data_type')%>
+                        <%= select_tag "generic_table_name".to_sym, options_for_select([]) %>
+                    </div>
+                    <div class="small-12 medium-3 column">
+                        <%= label_tag "generic_field_name".to_sym, t('admin.sures.searchs_settings.form.data_type')%>
+                        <%= select_tag "generic_field_name".to_sym, options_for_select([]) %>
+                    </div> 
+                    <div class="small-12 medium-3 column end">
+                        <%= submit_tag t('admin.sures.searchs_settings.form.button_send'), class: "button expanded" %>
+                    </div>
                 </div>
-                <div class="small-12 medium-3 column">
-                  <%=label_tag t('admin.sures.searchs_settings.form.resource')%>
-                  <%= s.resource %>
-                </div> 
-                <div class="small-12 medium-3 column end">
-                  <%=label_tag "field_#{s.id}".to_sym, t('admin.sures.searchs_settings.form.field')%>
-                  <%= select_tag "field_#{s.id}".to_sym, options_for_select(Sures::SearchSetting.fieldSuresAnotation.map{|x| [s.resource.classify.constantize.human_attribute_name(x),x]} , s.field) %>
-                </div>  
-                <div class="small-12 medium-3 column">
-                  <%=label_tag "active_#{s.id}".to_sym, t('admin.sures.searchs_settings.form.active')%>
-                  <%= check_box_tag "active_#{s.id}".to_sym, s.active, s.active %>
-                </div>              
-              </div>
-              <div class="row">    
-                <%if s.data_type == 'order' %>            
-                  <div class="small-12 medium-6 column end">
-                    <%=label_tag "rules_#{s.id}".to_sym, t('admin.sures.searchs_settings.form.rules')%>
-                    <%= select_tag "rules_#{s.id}".to_sym, options_for_select(get_sures_search_rules, s.rules) %>
-                  </div>  
-                <%end%>
-                <%if s.data_type == 'select' %>  
-                  <div class="small-12 medium-9 column end">
-                    <%=label_tag "data_#{s.id}".to_sym, t('admin.sures.searchs_settings.form.data')%>
-                    <% if !s.data.blank?%>
-                      <div class="row">
-                        <div class="small-6 column">
-                          <%=label_tag t('admin.sures.searchs_settings.form.key')%>
-                        </div>
-                        <div class="small-6 column">
-                          <%=label_tag t('admin.sures.searchs_settings.form.value')%>
-                        </div>
-                      </div>
-                      <% parse_data_json(s.data).each_with_index do |k, i|%>
-                        <div class="row">
-                          <div class="small-6 column">
-                            <%= text_field_tag "data_key_#{s.id}_#{i}".to_sym, k[0]%>
-                          </div>
-                          <div class="small-6  column">
-                            <%= text_field_tag "data_value_#{s.id}_#{i}".to_sym, k[1]%>
-                          </div>
-                        </div>
-                      <%end%>
-                    <%end%>
-                  </div>
-                <%end%>
-              </div>         
+
+                <div class="row">
+                    <div class="small-12 column">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <%get_header_tables_fields.each do |header|%>
+                                        <th><%=header%></th>
+                                    <%end%>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%@sg_generic.try(:sg_table_fields).each do |tf|%>
+                                    <tr>
+                                        <td><%=tf.table_name%></td>
+                                        <td><%=tf.field_name%></td>
+                                        <td></td>
+                                    </tr>
+                                <%end%>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </fieldset>
-          </div>
         </div>
-      <% end%>
-      <div class="small-12 medium-3 column end">
-        <%= submit_tag t('admin.sures.searchs_settings.form.button_send'), class: "button expanded" %>
-      </div>
-    <%end%>
+    <%else%>
+        <%=t('admin.sg.no_search_generic')%>
+    <%end%>    
+<%end%>

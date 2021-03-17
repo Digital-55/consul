@@ -799,6 +799,7 @@ es:
           proposal: Propuesta
           legislation/proposal: Proceso
     menu:
+      sg: Gestionar buscador general
       activity: Actividad de moderadores
       admin: Menú de administración
       banner: Gestionar banners
@@ -925,7 +926,20 @@ es:
         title: "Administradores de Sures: Búsqueda de usuarios"
       new: 
         title: Crear nuevo usuario administrador de Sures
-
+    sg:
+      title: Gestión del buscador general
+      tab:
+        search: Campos del buscador
+        order: Filtros de ordenación
+      form:
+        add: Añadir
+        table_name: Tabla
+        field_name: Campo
+      list:
+        delete: Borrar
+        table_name: Nombre de la tabla
+        field_name: Campo
+        no_data: No hay tablas asociadas
     section_administrators:
       index:
         title: Administradores Sectoriales

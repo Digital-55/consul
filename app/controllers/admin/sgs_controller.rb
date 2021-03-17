@@ -12,4 +12,13 @@ class Admin::SgsController < Admin::BaseController
         end
         @sg_settings =  @sg_settings.order(id: :asc)
     end
+
+    def create_generic
+
+    end
+
+
+    def delete_generic
+
+    end
 end

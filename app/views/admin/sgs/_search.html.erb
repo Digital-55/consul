@@ -1,43 +1,50 @@
-<%=form_tag ({type: @type.to_s}) do %>
+<%=form_tag create_generic_admin_sgs_path, method: :post do %>
+    <%=hidden_field_tag :type, @type.to_s%>
+    <%=hidden_field_tag :generic, true%>
     <%if !@sg_generic.blank?%>
         <div class="small-12 column">
             <fieldset class="sg_fieldset">
                 <legend><%= @sg_generic.try(:title)%></legend>
                 <div class="row">
                     <div class="small-12 medium-3 column">
-                        <%= label_tag "generic_table_name".to_sym, t('admin.sures.searchs_settings.form.data_type')%>
-                        <%= select_tag "generic_table_name".to_sym, options_for_select([]) %>
+                        <%#= label_tag "generic_table_name".to_sym, t('admin.sg.form.table_name')%>
+                        <%= select_tag "generic_table_name".to_sym, options_for_select(get_tables), onchange: "getFieldNames($('#generic_table_name option:selected'),'#generic_field_name_change')" %>
                     </div>
+                    <div id="generic_field_name_change">
                     <div class="small-12 medium-3 column">
-                        <%= label_tag "generic_field_name".to_sym, t('admin.sures.searchs_settings.form.data_type')%>
-                        <%= select_tag "generic_field_name".to_sym, options_for_select([]) %>
+                        <%#= label_tag "generic_field_name".to_sym, t('admin.sg.form.field_name')%>
+                        <%= select_tag "generic_field_name".to_sym, options_for_select(get_fields_by_table(params[:select_table_generic])) %>
                     </div> 
                     <div class="small-12 medium-3 column end">
-                        <%= submit_tag t('admin.sures.searchs_settings.form.button_send'), class: "button expanded" %>
+                        <%= submit_tag t('admin.sg.form.add'), class: "button" %>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="small-12 column">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <%get_header_tables_fields.each do |header|%>
-                                        <th><%=header%></th>
-                                    <%end%>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <%@sg_generic.try(:sg_table_fields).each do |tf|%>
+                        <%if !@sg_generic.try(:sg_table_fields).blank?%>
+                            <table>
+                                <thead>
                                     <tr>
-                                        <td><%=tf.table_name%></td>
-                                        <td><%=tf.field_name%></td>
-                                        <td></td>
+                                        <%get_header_tables_fields.each do |header|%>
+                                            <th><%=header%></th>
+                                        <%end%>
+                                        <th></th>
                                     </tr>
-                                <%end%>
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    <%@sg_generic.try(:sg_table_fields).each do |tf|%>
+                                        <tr>
+                                            <td><%=tf.table_name%></td>
+                                            <td><%=tf.field_name%></td>
+                                            <td><%= submit_tag t('admin.sg.list.delete'), class: "button alert" %></td>
+                                        </tr>
+                                    <%end%>
+                                </tbody>
+                            </table>
+                        <%else%>
+                            <%=t("admin.sg.list.no_data")%>
+                        <%end%>
                     </div>
                 </div>
             </fieldset>
