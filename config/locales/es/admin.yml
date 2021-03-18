@@ -285,6 +285,11 @@ es:
         user_groups: "Grupos"
       search_unfeasible: Buscar inviables
     menus:
+      create:
+        notice: ¡Menú creado con éxito!
+      edit:
+        form:
+          submit_button: Guardar cambios
       index:
         create: Crear un menú
         filters:
@@ -297,6 +302,13 @@ es:
         enabled: Estado
         section: Sección
         created_at: Fecha creación
+      new:
+        creating: Crear menú
+        draft: Borrador
+        published: Publicado
+        footer: Pie de página
+        header: Cabecera
+        section_select: Selecciona sección
     milestones:
       index:
         table_id: "ID"
