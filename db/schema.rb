@@ -1303,7 +1303,7 @@ ActiveRecord::Schema.define(version: 20210624085951) do
   create_table "menus", force: :cascade do |t|
     t.string   "title"
     t.string   "section"
-    t.boolean  "enabled",    default: false
+    t.boolean  "published",  default: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
   end

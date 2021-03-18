@@ -22,9 +22,9 @@
     </div>
 
     <div class="small-12 medium-4 column end">
-      <%= f.label :enabled, t("admin.menus.menu.enabled") %>
-      <%= f.select :enabled, {}, label: false do %>
-        <%= options_for_select( publish_options, @menu.enabled) %>
+      <%= f.label :published, t("admin.menus.menu.published") %>
+      <%= f.select :published, {}, label: false do %>
+        <%= options_for_select( publish_options, @menu.published) %>
       <% end %>
     </div>
 

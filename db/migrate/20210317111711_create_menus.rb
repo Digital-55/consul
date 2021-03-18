@@ -3,7 +3,7 @@ class CreateMenus < ActiveRecord::Migration[5.0]
     create_table :menus do |t|
       t.string :title
       t.string :section
-      t.boolean :enabled, default: false
+      t.boolean :published, default: false
 
       t.timestamps
     end
