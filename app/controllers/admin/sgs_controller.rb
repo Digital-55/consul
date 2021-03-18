@@ -1,6 +1,8 @@
 class Admin::SgsController < Admin::BaseController
     respond_to :html, :js
 
+    before_action :load_setting, only: [:generate_search, :update_search, :delete_setting, :generate_order, :update_order]
+
     def index
         @type = params[:type].blank? ? 'search' : params[:type]
         if @type == 'search'
@@ -70,7 +72,42 @@ class Admin::SgsController < Admin::BaseController
         redirect_to admin_sgs_path(type: type.to_s)
     end
 
+    def generate_setting
+        type = params[:type].blank? ? 'search' : params[:type]
+        sg_table_field = ::Sg::Setting.new(setting_type: type)
+        if sg_table_field.save(:validate => false)
+            redirect_to admin_sgs_path(type: type.to_s),  notice: I18n.t("admin.sg.form.notice_generic_order_destroy") 
+        else
+            flash[:error] = type == 'search' ? I18n.t("admin.sg.form.error_generic_destroy") : I18n.t("admin.sg.form.error_generic_order_destroy")
+            redirect_to admin_sgs_path(type: type.to_s)
+        end
+    rescue
+        flash[:error] = type == 'search' ? I18n.t("admin.sg.form.error_generic_destroy") : I18n.t("admin.sg.form.error_generic_order_destroy")
+        redirect_to admin_sgs_path(type: type.to_s)
+    end
+
+    def update_setting
+        
+    end
+
+    def delete_setting
+        type = @sg_settings.setting_type
+        if @sg_settings.destroy
+            redirect_to admin_sgs_path(type: type.to_s),  notice:  I18n.t("admin.sg.form.notice_generic_destroy") 
+        else
+            flash[:error] = I18n.t("admin.sg.form.error_generic_destroy")
+            redirect_to admin_sgs_path(type: type.to_s)
+        end
+    rescue
+        flash[:error] = I18n.t("admin.sg.form.error_generic_destroy")
+        redirect_to admin_sgs_path(type: type.to_s)
+    end
+
     private
+
+    def load_setting
+        @sg_settings = ::Sg::Setting.find(params[:id])
+    end
 
     def permit_generic_data_search(parameters)
         parameters.permit(:generic_table_name, :generic_field_name)

@@ -19,6 +19,9 @@ namespace :admin do
   resources :sgs do
     post :create_generic, on: :collection
     get :delete_generic, on: :member
+    get :generate_setting, on: :collection
+    post :update_setting, on: :member
+    get :delete_setting, on: :member
   end
 
   resources :hidden_users, only: [:index, :show] do

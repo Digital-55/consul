@@ -928,6 +928,7 @@ es:
         title: Crear nuevo usuario administrador de Sures
     sg:
       title: Gestión del buscador general
+      title_avanced: Campos avanzados
       tab:
         search: Campos del buscador
         order: Filtros de ordenación
@@ -935,6 +936,8 @@ es:
         add: Añadir
         table_name: Tabla
         field_name: Campo
+        title_select: Datos del seleccionable
+        active: Activo
         notice_generic: Se ha guardado correctamente la tabla para el buscador general
         notice_generic_destroy: Se ha eliminado la tabla del buscador general
         error_generic: No se ha podido guardar la tabla para el buscador general
@@ -943,8 +946,11 @@ es:
         error_generic_order: No se ha podido guardar la tabla para la ordenación de apartados
         notice_generic_order_destroy: Se ha eliminado la tabla de la ordenación de apartados
         error_generic_order_destroy: No se ha podido eliminar la tabla de la ordenación de apartados
+        placeholder:
+          title: Título
       list:
         delete: Borrar
+        update: Actualizar
         table_name: Nombre de la tabla
         field_name: Campo
         no_data: No hay tablas asociadas

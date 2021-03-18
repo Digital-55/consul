@@ -53,3 +53,12 @@
 <%else%>
     <%=t('admin.sg.no_search_generic')%>
 <%end%>  
+
+<%#@sg_setting.each do |order|%>
+
+
+<%#end%>
+
+<div class="small-12 medium-3 column end">
+    <%= link_to t('admin.sg.form.add'),  generate_setting_admin_sgs_path(type: @type), class: "button"%>
+</div>

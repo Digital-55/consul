@@ -16,6 +16,13 @@ module Admin::SgHelper
         ]
     end
 
+    def get_header_select
+        [
+            I18n.t('admin.sg.list.key'),
+            I18n.t('admin.sg.list.value')
+        ]
+    end
+
     def get_tables
         tables = []
         Dir.glob(Rails.root.join('app/models/*')).each do |x|
