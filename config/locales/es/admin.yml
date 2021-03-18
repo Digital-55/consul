@@ -307,7 +307,7 @@ es:
         title: Menús
       menu:
         title: Título
-        enabled: Estado
+        published: Estado
         section: Sección
         date: Fecha
       new:

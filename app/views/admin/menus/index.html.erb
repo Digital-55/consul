@@ -11,7 +11,7 @@
       <tr>
         <th scope="col"><%= t("admin.menus.menu.title")%></th>
         <th scope="col"><%= t("admin.menus.menu.section")%></th>
-        <th scope="col"><%= t("admin.menus.menu.enabled")%></th>
+        <th scope="col"><%= t("admin.menus.menu.published")%></th>
         <th scope="col"><%= t("admin.menus.menu.date")%></th>
         <th scope="col" class="small-4"><%= t("admin.actions.actions")%></th>
       </tr>
@@ -21,7 +21,7 @@
         <tr id="<%= dom_id(menu) %>">
           <td><%= menu.try(:title) %></td>
           <td><%= retrieve_options_key(section_options, menu.try(:section)) %></td>
-          <td><%= retrieve_options_key(publish_options, menu.try(:enabled)) %></td>
+          <td><%= retrieve_options_key(publish_options, menu.try(:published)) %></td>
           <td><%= menu.try(:updated_at).strftime("%Y-%m-%d %H:%M") %></td>
           <td>
             <div class="small-12 medium-6 column">
