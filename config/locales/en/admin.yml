@@ -285,8 +285,10 @@ en:
       create:
         notice: Menu created successfully!
       edit:
+        editing: Edit menu
         form:
           submit_button: Save changes
+        notice: Menu updated successfully!
       index:
         create: Create a menu
         filters:

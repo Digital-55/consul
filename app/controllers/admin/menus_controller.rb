@@ -1,5 +1,6 @@
 class Admin::MenusController < Admin::BaseController
   include Translatable
+  before_action :set_menu, except: [:index, :new]
 
   has_filters %w{all header footer}, only: :index
 
@@ -20,9 +21,23 @@ class Admin::MenusController < Admin::BaseController
     end
   end
 
+  def edit; end
+
+  def update
+    if @menu.update(menu_params)
+      redirect_to admin_menus_path, notice: t("admin.menus.edit.notice")
+    else
+      render :edit
+    end
+  end
+
   private
 
   def menu_params
     params.require(:menu).permit(:title, :section, :enabled)
+  end
+
+  def set_menu
+    @menu = Menu.find(params[:id])
   end
 end
