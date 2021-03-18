@@ -17,23 +17,14 @@
     <div class="small-12 medium-4 column">
       <%= f.label :section, t("admin.menus.menu.section") %>
       <%= f.select :section, {}, label: false do %>
-        <%= options_for_select({
-          t("admin.menus.new.section_select") => '',
-          t("admin.menus.new.header") => 'header',
-          t("admin.menus.new.footer") => 'footer'},
-          @menu.section || t("admin.menus.new.section_select"))
-        %>
+        <%= options_for_select( section_options, @menu.section || t("admin.menus.new.section_select")) %>
       <% end %>
     </div>
 
     <div class="small-12 medium-4 column end">
       <%= f.label :enabled, t("admin.menus.menu.enabled") %>
       <%= f.select :enabled, {}, label: false do %>
-        <%= options_for_select({
-          t("admin.menus.new.draft") => false,
-          t("admin.menus.new.published") => true},
-          @menu.enabled)
-        %>
+        <%= options_for_select( publish_options, @menu.enabled) %>
       <% end %>
     </div>
 
