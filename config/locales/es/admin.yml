@@ -288,8 +288,10 @@ es:
       create:
         notice: ¡Menú creado con éxito!
       edit:
+        editing: Editar menú
         form:
           submit_button: Guardar cambios
+        notice: ¡Menú actualizado con éxito!
       index:
         create: Crear un menú
         filters:
