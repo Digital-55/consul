@@ -282,6 +282,11 @@ en:
         user_groups: "Groups"
       search_unfeasible: Search unfeasible
     menus:
+      create:
+        notice: Menu created successfully!
+      edit:
+        form:
+          submit_button: Save changes
       index:
         create: Create a menu
         filters:
@@ -293,6 +298,13 @@ en:
         title: Title
         enabled: State
         section: Section
+      new:
+        creating: Create menu
+        draft: Draft
+        published: Published
+        footer: Footer
+        header: Header
+        section_select: Select section
     milestones:
       index:
         table_id: "ID"
