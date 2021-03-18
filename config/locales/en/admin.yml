@@ -284,6 +284,9 @@ en:
     menus:
       create:
         notice: Menu created successfully!
+      destroy:
+        success: Menu deleted successfully!
+        error: An error has ocurred while deleting menu. Please, try again.
       edit:
         editing: Edit menu
         form:
@@ -291,6 +294,8 @@ en:
         notice: Menu updated successfully!
       index:
         create: Create a menu
+        delete: Delete menu
+        edit: Edit menu
         filters:
           all: All
           header: Header

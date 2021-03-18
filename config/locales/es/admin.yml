@@ -287,6 +287,9 @@ es:
     menus:
       create:
         notice: ¡Menú creado con éxito!
+      destroy:
+        success: ¡Menú eliminado con éxito!
+        error: Hubo algún error al intentar eliminar el menú. Inténtalo de nuevo.
       edit:
         editing: Editar menú
         form:
@@ -294,6 +297,8 @@ es:
         notice: ¡Menú actualizado con éxito!
       index:
         create: Crear un menú
+        delete: Eliminar menú
+        edit: Editar menú
         filters:
           all: Todos
           header: Cabecera

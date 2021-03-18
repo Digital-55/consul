@@ -1,6 +1,6 @@
 class Admin::MenusController < Admin::BaseController
   include Translatable
-  before_action :set_menu, except: [:index, :new]
+  before_action :set_menu, only: [:edit, :update, :destroy]
 
   has_filters %w{all header footer}, only: :index
 
@@ -29,6 +29,15 @@ class Admin::MenusController < Admin::BaseController
     else
       render :edit
     end
+  end
+
+  def destroy
+    if @menu.destroy
+      flash[:notice] = t("admin.menus.destroy.success")
+    else
+      flash[:notice] = t("admin.menus.destroy.error")
+    end
+    redirect_to admin_menus_path
   end
 
   private
