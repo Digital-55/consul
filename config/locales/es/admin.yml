@@ -288,6 +288,7 @@ es:
       create:
         notice: ¡Menú creado con éxito!
       destroy:
+        alert_notice: "Esta acción eliminará el menú y todos sus ítems."
         success: ¡Menú eliminado con éxito!
         error: Hubo algún error al intentar eliminar el menú. Inténtalo de nuevo.
       edit:
@@ -308,7 +309,7 @@ es:
         title: Título
         enabled: Estado
         section: Sección
-        created_at: Fecha creación
+        date: Fecha
       new:
         creating: Crear menú
         draft: Borrador

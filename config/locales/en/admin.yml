@@ -285,6 +285,7 @@ en:
       create:
         notice: Menu created successfully!
       destroy:
+        alert_notice: This action will remove the menu and all its items.
         success: Menu deleted successfully!
         error: An error has ocurred while deleting menu. Please, try again.
       edit:
@@ -305,6 +306,7 @@ en:
         title: Title
         enabled: State
         section: Section
+        date: Date
       new:
         creating: Create menu
         draft: Draft

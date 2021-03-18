@@ -6,38 +6,38 @@
 <%= render "shared/filter_subnav", i18n_namespace: "admin.menus.index" %>
 
 <h3><%= page_entries_info @menus %></h3>
-
-<% @menus.each do |menu| %>
   <table>
     <thead>
-      <tr id="<%= dom_id(menu) %>">
+      <tr>
         <th scope="col"><%= t("admin.menus.menu.title")%></th>
         <th scope="col"><%= t("admin.menus.menu.section")%></th>
         <th scope="col"><%= t("admin.menus.menu.enabled")%></th>
-        <th scope="col"><%= t("admin.menus.menu.created_at")%></th>
+        <th scope="col"><%= t("admin.menus.menu.date")%></th>
         <th scope="col" class="small-4"><%= t("admin.actions.actions")%></th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td><%= menu.try(:title) %></td>
-        <td><%= menu.try(:section) %></td>
-        <td><%= menu.try(:enabled) %></td>
-        <td><%= menu.try(:created_at).strftime("%Y-%m-%d %H:%M:%S") %></td>
-        <td>
-          <div class="small-12 medium-6 column">
-            <%= link_to t("admin.menus.index.edit"), edit_admin_menu_path(menu),
-                        class: "button hollow expanded" %>
-          </div>
-          <div class="small-12 medium-6 column">
-            <%= link_to t("admin.menus.index.delete"), admin_menu_path(menu),
-                        method: :delete,
-                        class: "button hollow alert expanded" %>
-          </div>
-        </td>
-      </tr>
+      <% @menus.sorted.each do |menu| %>
+        <tr id="<%= dom_id(menu) %>">
+          <td><%= menu.try(:title) %></td>
+          <td><%= retrieve_options_key(section_options, menu.try(:section)) %></td>
+          <td><%= retrieve_options_key(publish_options, menu.try(:enabled)) %></td>
+          <td><%= menu.try(:updated_at).strftime("%Y-%m-%d %H:%M") %></td>
+          <td>
+            <div class="small-12 medium-6 column">
+              <%= link_to t("admin.menus.index.edit"), edit_admin_menu_path(menu),
+                          class: "button hollow expanded" %>
+            </div>
+            <div class="small-12 medium-6 column">
+              <%= link_to t("admin.menus.index.delete"), admin_menu_path(menu),
+                          method: :delete,
+                          data: {confirm: t("admin.menus.destroy.alert_notice")},
+                          class: "button hollow alert expanded" %>
+            </div>
+          </td>
+        </tr>
+      <% end%>
     </tbody>
   </table>
-<% end%>
 
 <%= paginate @menus %>
