@@ -1,0 +1,123 @@
+<%if !@sg_settings.blank?%>
+    <%@sg_settings.each do |search|%>
+        <%=form_tag update_setting_admin_sg_path(search.id), method: :post do %>
+            <div class="small-12 column">
+                <fieldset class="sg_fieldset">
+                    <legend><%= text_field_tag "#{search.id}_title".to_sym, search.title ,placeholder: t('admin.sg.form.placeholder.title')%></legend>
+                    
+                    <%=hidden_field_tag "#{search.id}_type".to_sym, @type.to_s%>
+                    <%=hidden_field_tag "#{search.id}_generic".to_sym, false%>
+                    <div class="row">
+                        <div class="small-12 medium-3 column">
+                            <%= select_tag "#{search.id}_setting_type".to_sym, options_for_select(get_sg_search_types_data) %>
+                        </div>
+                        <div class="small-12 medium-3 column end">
+                            <p>
+                                <%= check_box_tag "#{search.id}_active".to_sym, true, search.active || false %> <%= label_tag "#{search.id}_active".to_sym, t('admin.sg.form.active')%>
+                            </p>
+                        </div> 
+                    </div>
+
+                    <div class="row">
+                        <div class="small-12 medium-3 column">
+                            <%= select_tag "#{search.id}_table_name".to_sym, options_for_select(get_tables), onchange: "getFieldNames($('##{search.id}_table_name option:selected'),'##{search.id}_field_name_change')" %>
+                        </div>
+                        <div id="<%=search.id%>_field_name_change">
+                        <div class="small-12 medium-3 column">
+                            <%= select_tag "#{search.id}_field_name".to_sym, options_for_select(get_fields_by_table(params[:select_table_generic])) %>
+                        </div> 
+                        <div class="small-12 medium-3 column end">
+                            <%= submit_tag t('admin.sg.form.add'), class: "button" %>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="small-12 column">
+                            <%if !search.try(:sg_table_fields).blank?%>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <%get_header_tables_fields.each do |header|%>
+                                                <th><%=header%></th>
+                                            <%end%>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <%search.try(:sg_table_fields).each do |tf|%>
+                                            <tr>
+                                                <td><%=tf.table_name%></td>
+                                                <td><%=tf.field_name%></td>
+                                                <td><%= link_to t('admin.sg.list.delete'),  delete_generic_admin_sg_path(tf.id, type: @type), class: "button alert", data: {confirm: t("admin.sg.avanced_list.delete_confirm")}%></td>
+                                            </tr>
+                                        <%end%>
+                                    </tbody>
+                                </table>
+                            <%else%>
+                                <%=t("admin.sg.list.no_data")%>
+                            <%end%>                       
+                        </div>
+                    </div>
+
+                    <fieldset class="sg_fieldset">
+                        <legend><%= t('admin.sg.form.title_select')%></legend>
+
+                        <div class="row">
+                            <div class="small-12 medium-3 column">
+                                <%#= label_tag "generic_table_name".to_sym, t('admin.sg.form.table_name')%>
+                                <%= text_field_tag "#{search.id}_key".to_sym %>
+                            </div>
+                            
+                            <div class="small-12 medium-3 column">
+                                <%#= label_tag "generic_field_name".to_sym, t('admin.sg.form.field_name')%>
+                                <%= text_field_tag "#{search.id}_value".to_sym %>
+                            </div> 
+                            <div class="small-12 medium-3 column end">
+                                <%= submit_tag t('admin.sg.form.add'), class: "button" %>
+                            </div>
+                        </div>
+                        
+
+                        <div class="row">
+                            <div class="small-12 column">
+                                <%if !search.try(:sg_selects).blank?%>
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <%get_header_select.each do |header|%>
+                                                    <th><%=header%></th>
+                                                <%end%>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <%search.try(:sg_selects).each do |tf|%>
+                                                <tr>
+                                                    <td><%=tf.key%></td>
+                                                    <td><%=tf.value%></td>
+                                                    <td><%= link_to t('admin.sg.list.delete'),  delete_generic_admin_sg_path(tf.id, type: @type), class: "button alert", data: {confirm: t("admin.sg.avanced_list.delete_select_confirm")}%></td>
+                                                </tr>
+                                            <%end%>
+                                        </tbody>
+                                    </table>
+                                <%else%>
+                                    <%=t("admin.sg.list.no_data")%>
+                                <%end%>                       
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="small-12 column text-right">
+                        <%= link_to t('admin.sg.list.update'),  update_setting_admin_sg_path(search.id, type: @type), remote: true, class: "button"%>
+                        <%= link_to t('admin.sg.list.delete'),  delete_setting_admin_sg_path(search.id, type: @type), remote: true, class: "button alert", data: {confirm: t("admin.sg.avanced.delete_confirm")}%>
+                    </div>
+                </fieldset>
+            </div>
+        <%end%>
+    <%end%>
+<%else%>
+    <div class="row">
+        <div class="small-12 column end">
+            <p><%=t('admin.sg.no_search_settings')%></p>
+        </div>
+    </div>
+<%end%>

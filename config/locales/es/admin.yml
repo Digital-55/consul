@@ -929,6 +929,13 @@ es:
     sg:
       title: Gestión del buscador general
       title_avanced: Campos avanzados
+      title_avanced_order: Orden avanzado
+      no_search_settings: No hay campos avanzados del buscador general
+      avanced:
+        delete_confirm: "¿Estás seguro de eliminar el filtro avanzado del buscador general?"
+      avanced_list:
+        delete_confirm: "¿Estás seguro de eliminar la tabla y el campo del listado del filtro avanzado?"
+        delete_select_confirm: "¿Estás seguro de eliminar la clave y valor del listado del filtro avanzado?"
       tab:
         search: Campos del buscador
         order: Filtros de ordenación
@@ -946,9 +953,23 @@ es:
         error_generic_order: No se ha podido guardar la tabla para la ordenación de apartados
         notice_generic_order_destroy: Se ha eliminado la tabla de la ordenación de apartados
         error_generic_order_destroy: No se ha podido eliminar la tabla de la ordenación de apartados
+        notice_table_order_destroy: Se ha eliminado correctamente la tabla del orden avanzado
+        error_table_order_destroy: No se ha podido eliminar la tabla del orden avanzado
+        notice_table_search_destroy: Se ha eliminado la tabla del campo de búsqueda avanzado
+        error_table_search_destroy: No se ha podido eliminar la tabla del campo de búsqueda avanzado
         placeholder:
           title: Título
+        avanced:
+          error_order_destroy: No se ha podido eliminar el filtro de ordenación avanzado
+          error_search_destroy: No se ha podido eliminar el filtro de búsqueda avanzado
+          notice_order_destroy: Se ha podido eliminar el filtro de ordenación avanzado
+          notice_search_destroy: Se ha podido eliminar el filtro de búsqueda avanzado
+          error_order: No se ha podido crear el filtro de ordenación avanzado
+          error_search: No se ha podido crear el filtro de búsqueda avanzado
+          notice_order: Se ha creado el filtro de ordenación avanzado
+          notice_search: Se ha creado el filtro de búsqueda avanzado
       list:
+        title_table: Tablas asociadas
         delete: Borrar
         update: Actualizar
         table_name: Nombre de la tabla

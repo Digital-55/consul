@@ -2,17 +2,14 @@
     <div class="small-12 column">
         <fieldset class="sg_fieldset">
             <legend><%= @sg_generic.try(:title)%></legend>
-            <%=form_tag create_generic_admin_sgs_path, method: :post do %>
+            <%=form_tag create_generic_admin_sgs_path, method: :post, remote: true do %>
                 <%=hidden_field_tag :type, @type.to_s%>
                 <%=hidden_field_tag :generic, true%>
                 <div class="row">
                     <div class="small-12 medium-3 column">
-                        <%#= label_tag "generic_table_name".to_sym, t('admin.sg.form.table_name')%>
                         <%= select_tag "generic_table_name".to_sym, options_for_select(get_tables) %>
                     </div>
-                    <div id="generic_field_name_change">
                     <div class="small-12 medium-3 column">
-                        <%#= label_tag "generic_field_name".to_sym, t('admin.sg.form.field_name')%>
                         <%= number_field_tag "generic_order".to_sym, 0 %>
                     </div> 
                     <div class="small-12 medium-3 column end">
@@ -21,32 +18,8 @@
                 </div>
             <%end%>
 
-            <div class="row">
-                <div class="small-12 column">
-                    <%if !@sg_generic.try(:sg_table_orders).blank?%>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <%get_header_tables_fields.each do |header|%>
-                                        <th><%=header%></th>
-                                    <%end%>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <%@sg_generic.try(:sg_table_orders).each do |tf|%>
-                                    <tr>
-                                        <td><%=tf.table_name%></td>
-                                        <td><%=tf.order%></td>
-                                        <td><%= link_to t('admin.sg.list.delete'),  delete_generic_admin_sg_path(tf.id, type: @type), class: "button alert", data: {confirm: t("admin.sg.list.delete_confirm_order")}%></td>
-                                    </tr>
-                                <%end%>
-                            </tbody>
-                        </table>
-                    <%else%>
-                        <%=t("admin.sg.list.no_data")%>
-                    <%end%>                       
-                </div>
+            <div id="results_searchs">
+                <%= render partial: "results_generic" %>
             </div>
         </fieldset>
     </div>
@@ -54,11 +27,14 @@
     <%=t('admin.sg.no_search_generic')%>
 <%end%>  
 
-<%#@sg_setting.each do |order|%>
-
-
-<%#end%>
-
-<div class="small-12 medium-3 column end">
-    <%= link_to t('admin.sg.form.add'),  generate_setting_admin_sgs_path(type: @type), class: "button"%>
+<div class="small-12 column">
+    <fieldset class="sg_fieldset">
+        <legend><%= t('admin.sg.title_avanced_order')%></legend>
+        <div id="results_changes">
+            <%= render partial: "results_avanced" %>
+        </div>
+        <div class="small-12 column text-right">
+            <%= link_to t('admin.sg.form.add'),  generate_setting_admin_sgs_path(type: @type), remote: true, class: "button"%>
+        </div>
+    </fieldset>
 </div>
