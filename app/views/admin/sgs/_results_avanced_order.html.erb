@@ -2,22 +2,20 @@
     <%@sg_settings.each do |order|%>
         <div class="small-12 column">
             <fieldset class="sg_fieldset">
-            <legend><%=order.title%></legend>
+            <legend id="<%=order.id%>_title_legend"><%= params[:legend_title] || order.title%></legend>
                 <%=form_tag update_setting_admin_sg_path(order.id), method: :post, remote: true do %>
-                   
-
                     <%=hidden_field_tag "#{order.id}_type".to_sym, @type.to_s%>
                     <%=hidden_field_tag "#{order.id}_generic".to_sym, false%>
                     <div class="small-12 column text-right">
-                        <%= link_to t('admin.sg.list.update'),  update_setting_admin_sg_path(order.id, type: @type), remote: true, class: "button"%>
+                        <%= submit_tag t('admin.sg.list.update'),  class: "button"%>
                         <%= link_to t('admin.sg.list.delete'),  delete_setting_admin_sg_path(order.id, type: @type), remote: true, class: "button alert", data: {confirm: t("admin.sg.avanced.delete_confirm")}%>
                     </div>
                     <div class="row">
                         <div class="small-12 medium-6 column end">
-                            <%= text_field_tag "#{order.id}_title".to_sym, order.title ,placeholder: t('admin.sg.form.placeholder.title')%>
+                            <%= text_field_tag "#{order.id}_title".to_sym, order.title ,placeholder: t('admin.sg.form.placeholder.title'), onkeyup: "changetitle($(this),'##{order.id}_title_legend')"%>
                         </div>
                         <div class="small-12 medium-3 column">
-                            <%= select_tag "#{order.id}_setting_type".to_sym, options_for_select(get_sg_search_rules) %>
+                            <%= select_tag "#{order.id}_setting_type".to_sym, options_for_select(get_sg_search_rules, order.data_type) %>
                         </div>
                         <div class="small-12 medium-3 column end">
                             <p>
@@ -26,53 +24,7 @@
                         </div> 
                     </div>
                 <%end%>
-
-                <fieldset class="sg_fieldset">
-                    <legend><%=t('admin.sg.list.title_table')%></legend>
-                    <%=form_tag generate_table_setting_admin_sg_path(order.id), method: :post, remote: true do %>
-                        <%=hidden_field_tag "#{order.id}_type".to_sym, @type.to_s%>
-                        <div class="row">
-                            <div class="small-12 medium-3 column">
-                                <%= select_tag "#{order.id}_table_name".to_sym, options_for_select(get_tables), onchange: "getFieldNames($('##{order.id}_table_name option:selected'),'##{order.id}_field_name_change')" %>
-                            </div>
-                            <div id="<%=order.id%>_field_name_change">
-                            <div class="small-12 medium-3 column">
-                                <%= select_tag "#{order.id}_field_name".to_sym, options_for_select(get_fields_by_table(params[:select_table_generic])) %>
-                            </div> 
-                            <div class="small-12 medium-3 column end">
-                                <%= submit_tag t('admin.sg.form.add'), class: "button" %>
-                            </div>
-                        </div>
-                    <%end%>
-
-                    <div class="row">
-                        <div class="small-12 column">
-                            <%if !order.try(:sg_table_fields).blank?%>
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <%get_header_tables_fields.each do |header|%>
-                                                <th><%=header%></th>
-                                            <%end%>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <%order.try(:sg_table_fields).each do |tf|%>
-                                            <tr>
-                                                <td><%=tf.table_name%></td>
-                                                <td><%=tf.field_name%></td>
-                                                <td><%= link_to t('admin.sg.list.delete'), delete_table_setting_admin_sg_path(tf.id) , remote: true, class: "button alert", data: {confirm: t("admin.sg.avanced_list.delete_confirm")}%></td>
-                                            </tr>
-                                        <%end%>
-                                    </tbody>
-                                </table>
-                            <%else%>
-                                <%=t("admin.sg.list.no_data")%>
-                            <%end%>                       
-                        </div>
-                    </div>
-                </fieldset>
+                <%=render partial: "table_settings_form", locals: {setting: order}%>
             </fieldset>
         </div>
     <%end%>

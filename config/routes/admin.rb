@@ -24,6 +24,8 @@ namespace :admin do
     get :delete_setting, on: :member
     post :generate_table_setting, on: :member
     get :delete_table_setting, on: :member
+    post :generate_table_select, on: :member
+    get :delete_table_select, on: :member
   end
 
   resources :hidden_users, only: [:index, :show] do

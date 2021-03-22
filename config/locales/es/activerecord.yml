@@ -1,4 +1,10 @@
 es:
+  direct_upload:
+    one: "Carga directa"
+    other: "Cargas directas"
+  import_user:
+    one: "Importación de usuario"
+    other: "Importaciones de usuarios"
   attributes:
     results_enabled: "Mostrar resultados"
     stats_enabled: "Mostrar estadísticas"
@@ -8,11 +14,11 @@ es:
   activerecord:
     models:
       sures/actuation:
-        one: "actuación"
-        other: "actuaciones"
+        one: "Actuación"
+        other: "Actuaciones"
       activity:
-        one: "actividad"
-        other: "actividades"
+        one: "Actividad"
+        other: "Actividades"
       budget:
         one: "Presupuesto participativo"
         other: "Presupuestos participativos"
@@ -20,8 +26,8 @@ es:
         one: "Proyecto de gasto"
         other: "Proyectos de gasto"
       milestone:
-        one: "hito"
-        other: "hitos"
+        one: "Hito"
+        other: "Hitos"
       milestone/status:
         one: "Estado de seguimiento"
         other: "Estados de seguimiento"
@@ -49,6 +55,27 @@ es:
       administrator:
         one: "Administrador"
         other: "Administradores"
+      active_poll:
+        one: "Encuesta activa"
+        other: "Encuestas activas"
+      admin_notification:
+        one: "Notificación de administrador"
+        other: "Notificaciones de administrador"
+      administrator_task:
+        one: "Tarea de administrador"
+        other: "Tareas de administrador"
+      adress:
+        one: "Dirección"
+        other: "Direcciones"
+      answer:
+        one: "Respuesta"
+        other: "Respuestas"
+      application_record:
+        one: "Recurso de la aplicación"
+        other: "Recursos de la aplicación"
+      campaign:
+        one: "Campaña"
+        other: "Campañas"
       sures_administrator:
         one: "Administrador de Sures"
         other: "Administradores de Sures"
@@ -70,6 +97,96 @@ es:
       manager:
         one: "Gestor"
         other: "Gestores"
+      verified_user:
+        one: "Verificación de usuario"
+        other: "Verificaciones de usuarios"
+      community:
+        one: "Comunidad"
+        other: "Comunidades"
+      visit:
+        one: "Visita"
+        other: "Visitas"
+      direct_message:
+        one: "Mensaje directo"
+        other: "Mensajes directos"
+      direct_upload:
+        one: "Carga directa"
+        other: "Cargas directas"
+      failed_census_call:
+        one: "Llamada de censo fallida"
+        other: "Llamadas de censo fallidas"
+      web_section:
+        one: "Sección web"
+        other: "Secciones web"
+      flag:
+        one: "Bandera"
+        other: "Banderas"
+      follow:
+        one: "Seguimiento"
+        other: "Seguimientos"
+      geozone:
+        one: "Geozona"
+        other: "Geozonas"
+      tagging:
+        one: "Etiquetado"
+        other: "Etiquetados"
+      i18n_content:
+        one: "Contenido en idioma"
+        other: "Contenidos en idiomas"
+      i18n_content_translation:
+        one: "Contenido en idioma traducido"
+        other: "Contenidos en idiomas traducidos"
+      identity:
+        one: "Identidad"
+        other: "Identidades"
+      image:
+        one: "Imagen"
+        other: "Imágenes"
+      import_user:
+        one: "Importación de usuario"
+        other: "Importaciones de usuarios"
+      local_census_record:
+        one: "Registro del censo local"
+        other: "Registros del censo local"
+      lock:
+        one: "Bloqueo"
+        other: "Bloqueos"
+      map_location:
+        one: "Ubicación del mapa"
+        other: "Ubicaciones del mapa"
+      moderated_content:
+        one: "Contenido moderado"
+        other: "Contenidos moderados"
+      notification:
+        one: "Notificación"
+        other: "Notificaciones"
+      profile:
+        one: "Perfil"
+        other: "Perfiles"
+      redeemable_code:
+        one: "Código canjeable"
+        other: "Códigos canjeables"
+      related_content:
+        one: "Contenido relacionado"
+        other: "Contenidos relacionados"
+      report:
+        one: "Reporte"
+        other: "Reportes"
+      setting:
+        one: "Configuración"
+        other: "Configuraciones"
+      signature:
+        one: "Firma"
+        other: "Firmas"
+      signature_sheet:
+        one: "Hoja de firma"
+        other: "Hojas de firmas"
+      stat:
+        one: "Estadística"
+        other: "Estadísticas"
+      stats_version:
+        one: "Versión de estadísticas"
+        other: "Versiones de estadísticas"
       newsletter:
         one: "Newsletter"
         other: "Newsletters"
@@ -91,6 +208,9 @@ es:
       proposal:
         one: "Propuesta ciudadana"
         other: "Propuestas ciudadanas"
+      related_content_score:
+        one: "Puntuación de contenido relacionado"
+        other: "Puntuaciones de contenidos relacionados"
       site_customization/page:
         one: Página
         other: Páginas

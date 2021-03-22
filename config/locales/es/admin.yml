@@ -957,6 +957,10 @@ es:
         error_table_order_destroy: No se ha podido eliminar la tabla del orden avanzado
         notice_table_search_destroy: Se ha eliminado la tabla del campo de búsqueda avanzado
         error_table_search_destroy: No se ha podido eliminar la tabla del campo de búsqueda avanzado
+        error_select_destroy: No se ha podido eliminar el seleccionable del filtro de búsqueda avanzado
+        notice_select_destroy: Se ha podido eliminar el seleccionable para el filtro de búsqueda avanzado
+        notice_select: Se ha creado un nuevo seleccionable con clave y valor para el filtro de búsqueda avanzado
+        error_select: No se ha podido crear el seleccionable para el filtro de búsqueda avanzado
         placeholder:
           title: Título
         avanced:
@@ -968,7 +972,13 @@ es:
           error_search: No se ha podido crear el filtro de búsqueda avanzado
           notice_order: Se ha creado el filtro de ordenación avanzado
           notice_search: Se ha creado el filtro de búsqueda avanzado
+          error_update_order: No se ha podido actualizar el filtro de ordenación avanzado
+          error_update_search: No se ha podido actualizar el filtro de búsqueda avanzado
+          notice_update_order: Se ha actualizado el filtro de ordenación avanzado
+          notice_update_search: Se ha actualizado el filtro de búsqueda avanzado
       list:
+        key: Clave
+        value: Valor
         title_table: Tablas asociadas
         delete: Borrar
         update: Actualizar

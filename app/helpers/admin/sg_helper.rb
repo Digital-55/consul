@@ -24,12 +24,15 @@ module Admin::SgHelper
     end
 
     def get_tables
+        exclusiones = ["DirectUpload", "ImportUser", "I18nContent", "I18nContentTranslation"]
         tables = []
         Dir.glob(Rails.root.join('app/models/*')).each do |x|
             if x.include?(".rb")
                 model = "#{x}".gsub(".rb", '').gsub(Rails.root.join('app/models/').to_s, '').singularize.classify.constantize
                 begin
-                    tables << [model.model_name.human, model.model_name]
+                    if !exclusiones.include?(model.model_name)
+                        tables << [model.model_name.human, model.model_name]
+                    end
                 rescue
                 end
             end
@@ -46,7 +49,7 @@ module Admin::SgHelper
         fields = []
         if !model.try(:column_names).blank?
             model.try(:column_names).each do |field|
-                fields << [field,field]
+                fields << [model.human_attribute_name(field),field]
             end
         end
 
@@ -59,7 +62,7 @@ module Admin::SgHelper
     def get_sg_search_types_data
         [
             [I18n.t('admin.sures.searchs_settings.types_data.select'), 'select'],
-            [I18n.t('admin.sures.searchs_settings.types_data.order'), 'order'],
+            [I18n.t('admin.sures.searchs_settings.types_data.checkbox'), 'checkbox'],
             [I18n.t('admin.sures.searchs_settings.types_data.text'), 'text']
         ]
     end
