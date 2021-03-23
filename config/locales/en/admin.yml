@@ -307,6 +307,14 @@ en:
         enabled: State
         section: Section
         date: Date
+      menu_items:
+        add: Add items
+        index: Menu items
+        new: New item
+        no_target: Open in same tab
+        target: Target
+        target_blank: Open in new tab
+        title: Title
       new:
         creating: Create menu
         draft: Draft

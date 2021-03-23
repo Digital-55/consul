@@ -17,8 +17,8 @@ module MenusHelper
 
   def target_options
     {
-      "Abrir en misma pestaña" => '',
-      "Abrir en nueva pestaña" => "_blank"
+      t("admin.menus.menu_items.no_target") => '',
+      t("admin.menus.menu_items.target_blank") => "_blank"
     }
   end
 

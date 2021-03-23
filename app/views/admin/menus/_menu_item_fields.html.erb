@@ -1,6 +1,6 @@
 <li class="card nested-fields">
   <div class="card-divider">
-    <h4 class="small-6 column"><%= f.object.title || "Nuevo ítem" %></h4>
+    <h4 class="small-6 column"><%= f.object.title || t("admin.menus.menu_items.new") %></h4>
     <div class="small-6 column text-right">
         <%= link_to_remove_association f do %>
         <span class="icon-x delete"></span>
@@ -9,13 +9,15 @@
   </div>
   <div class="card-section">
     <div class="small-12 medium-2 column">
-        <%= f.text_field :title %>
+        <%= f.label :title, t("admin.menus.menu_items.title") %>
+        <%= f.text_field :title, label: false %>
     </div>
     <div class="small-12 medium-6 column">
         <%= f.text_field :url %>
     </div>
     <div class="small-12 medium-4 column">
-        <%= f.select :target, {} do %>
+        <%= f.label :target, t("admin.menus.menu_items.target") %>
+        <%= f.select :target, {}, label: false do %>
           <%= options_for_select( target_options, f.object.target) %>
         <% end %>
     </div>
