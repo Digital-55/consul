@@ -310,6 +310,14 @@ es:
         published: Estado
         section: Sección
         date: Fecha
+      menu_items:
+        add: Añadir ítems
+        index: Ítems de menú
+        new: Nuevo ítem
+        no_target: Abrir en misma pestaña
+        target: Objetivo
+        target_blank: Abrir en nueva pestaña
+        title: Título
       new:
         creating: Crear menú
         draft: Borrador
