@@ -4,32 +4,41 @@
   <%= render "errors" %>
 
   <div class="row">
-    <div class="small-12 medium-8 column end">
+    <div class="small-12 medium-12 column end">
       <%= f.label :title, t("admin.menus.menu.title") %>
       <%= f.text_field :title,
                         label: false,
                         placeholder: t("admin.menus.menu.title"),
                         id: "title" %>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="small-12 medium-4 column">
+    <div class="small-12 medium-6 column end">
       <%= f.label :section, t("admin.menus.menu.section") %>
       <%= f.select :section, {}, label: false do %>
         <%= options_for_select( section_options, @menu.section || t("admin.menus.new.section_select")) %>
       <% end %>
     </div>
 
-    <div class="small-12 medium-4 column end">
+    <div class="small-12 medium-6 column end">
       <%= f.label :published, t("admin.menus.menu.published") %>
       <%= f.select :published, {}, label: false do %>
         <%= options_for_select( publish_options, @menu.published) %>
       <% end %>
     </div>
+    <hr>
 
+    <h4 class="inline-block"><%= "Items de menú" %></h4>
 
+    <ul class="row no-bullet">
+      <%= f.fields_for :menu_items do |menu_items_form| %>
+        <%= render 'menu_item_fields', f: menu_items_form %>
+      <% end %>
+      <%= link_to_add_association "Add Menu Items", f, :menu_items,
+                                                      'data-association-insertion-node': 'ul.row.no-bullet',
+                                                      'data-association-insertion-method': 'prepend' %>
+    </ul>
   </div>
+
 
   <div class="row">
     <div class="actions small-12 medium-3 column">

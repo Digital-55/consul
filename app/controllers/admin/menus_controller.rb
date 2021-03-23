@@ -43,7 +43,7 @@ class Admin::MenusController < Admin::BaseController
   private
 
   def menu_params
-    params.require(:menu).permit(:title, :section, :published)
+    params.require(:menu).permit(:title, :section, :published, menu_items_attributes: [:id, :title, :url, :position, :target, :editable, :enabled, :_destroy])
   end
 
   def set_menu

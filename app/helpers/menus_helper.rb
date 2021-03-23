@@ -15,6 +15,13 @@ module MenusHelper
     }
   end
 
+  def target_options
+    {
+      "Abrir en misma pestaña" => '',
+      "Abrir en nueva pestaña" => "_blank"
+    }
+  end
+
   def retrieve_options_key(hash, value)
     key = hash.key(value)
     value == true ? "<strong>#{key}</strong>".html_safe : key

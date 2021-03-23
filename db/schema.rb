@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210317111711) do
+ActiveRecord::Schema.define(version: 20210322113315) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1054,6 +1054,19 @@ ActiveRecord::Schema.define(version: 20210317111711) do
     t.integer "investment_id"
     t.index ["investment_id"], name: "index_map_locations_on_investment_id", using: :btree
     t.index ["proposal_id"], name: "index_map_locations_on_proposal_id", using: :btree
+  end
+
+  create_table "menu_items", force: :cascade do |t|
+    t.string   "title"
+    t.string   "url"
+    t.integer  "position",   default: 0
+    t.string   "target"
+    t.boolean  "editable",   default: true
+    t.boolean  "enabled",    default: false
+    t.integer  "menu_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["menu_id"], name: "index_menu_items_on_menu_id", using: :btree
   end
 
   create_table "menus", force: :cascade do |t|
@@ -2121,6 +2134,7 @@ ActiveRecord::Schema.define(version: 20210317111711) do
   add_foreign_key "legislation_proposals", "legislation_processes"
   add_foreign_key "locks", "users"
   add_foreign_key "managers", "users"
+  add_foreign_key "menu_items", "menus"
   add_foreign_key "moderators", "users"
   add_foreign_key "notifications", "users"
   add_foreign_key "organizations", "users"
