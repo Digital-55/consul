@@ -1,4 +1,7 @@
 class Menu < ApplicationRecord
+  has_many :menu_items, inverse_of: :menu
+  accepts_nested_attributes_for :menu_items, allow_destroy: true, reject_if: :all_blank
+
   validates :title, presence: true
   validates :section, presence: true
 
@@ -9,8 +12,7 @@ class Menu < ApplicationRecord
   scope :sorted, -> { order(published: :desc, updated_at: :desc) }
 
   def set_unique_published_menu
-    if published
-      Menu.where(published: true, section: section).each{ |menu| menu.update_column(:published, false) }
-    end
+    (Menu.where(published: true, section: section) - [self]).each{ |menu| menu.update_column(:published, false) } if published
   end
+
 end
