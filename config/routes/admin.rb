@@ -104,7 +104,11 @@ namespace :admin do
   end
 
   resources :menus do
-    resources :menu_items
+    resources :menu_items do
+      collection do
+        patch :sort
+      end
+    end
   end
 
   resources :comments, only: :index do

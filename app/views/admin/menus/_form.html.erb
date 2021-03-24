@@ -29,14 +29,14 @@
 
     <h4 class="inline-block"><%= t("admin.menus.menu_items.index") %></h4>
 
-    <ul class="row no-bullet">
-      <%= f.fields_for :menu_items do |menu_items_form| %>
+    <div class="row no-bullet" id="menu-items-list" data-url="<%= sort_admin_menu_menu_items_path(@menu) %>">
+      <%= f.fields_for :menu_items, @menu.menu_items.sort_by(&:position) do |menu_items_form| %>
         <%= render 'menu_item_fields', f: menu_items_form %>
       <% end %>
       <%= link_to_add_association t("admin.menus.menu_items.add"), f, :menu_items,
-                                                      'data-association-insertion-node': 'ul.row.no-bullet',
+                                                      'data-association-insertion-node': '#menu-items-list',
                                                       'data-association-insertion-method': 'prepend' %>
-    </ul>
+    </div>
   </div>
 
 
@@ -46,4 +46,4 @@
     </div>
   </div>
 
-<% end%>
+<% end %>
