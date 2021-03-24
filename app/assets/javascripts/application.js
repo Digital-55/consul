@@ -90,6 +90,7 @@
 //= require starrr.js
 //= require sg.js
 //= require parbudget
+//= require menu_items.js
 
 var initialize_modules = function() {
   App.Answers.initialize();
