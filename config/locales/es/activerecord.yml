@@ -272,6 +272,9 @@ es:
         one: Texto para moderación automática
         other: Textos para moderación automática
     attributes:
+      activity:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       budget:
         name: "Nombre"
         url: "Enlace a presupuestos del Ayuntamiento"
@@ -284,6 +287,8 @@ es:
         description_finished: "Descripción cuando el presupuesto ha finalizado / Resultados"
         phase: "Fase"
         currency_symbol: "Divisa"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       budget/investment:
         heading_id: "Partida presupuestaria"
         title: "Título"
@@ -294,39 +299,57 @@ es:
         organization_name: "Si estás proponiendo en nombre de una organización o colectivo, o en nombre de más gente, escribe su nombre"
         image: "Imagen descriptiva del proyecto de gasto"
         image_title: "Título de la imagen"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       geozone:
         name: Nombre
         external_code: "Código externo (opcional)"
         census_code: "Código del censo (opcional)"
         html_map_coordinates: "Coordenadas HTML <map> (opcional)"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       milestone:
         status_id: "Estado actual (opcional)"
         title: "Título"
         description: "Descripción (opcional si hay un estado asignado)"
         publication_date: "Fecha de publicación"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       milestone/status:
         name: "Nombre"
         description: "Descripción (opcional)"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       progress_bar:
         kind: "Tipo"
         title: "Título"
         percentage: "Progreso"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       progress_bar/kind:
         primary: "Principal"
         secondary: "Secundaria"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       budget/heading:
         name: "Nombre de la partida"
         price: "Coste"
         population: "Población"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       comment:
         body: "Comentario"
         user: "Usuario"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       debate:
         author: "Autor"
         author_name: "Autor"
         description: "Opinión"
         terms_of_service: "Términos de servicio"
         title: "Título"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       proposal:
         author: "Autor"
         author_name: "Autor"
@@ -335,6 +358,8 @@ es:
         description: "Descripción"
         selected: "Marcar como seleccionada"
         terms_of_service: "Términos de servicio"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       user:
         login: "Email o nombre de usuario"
         email: "Email"
@@ -346,9 +371,13 @@ es:
         official_position: "Cargo público"
         official_level: "Nivel del cargo"
         redeemable_code: "Código de verificación por carta (opcional)"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       organization:
         name: "Nombre de la organización"
         responsible_name: "Persona responsable del colectivo"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       poll:
         name: "Nombre"
         starts_at: "Fecha de apertura"
@@ -356,25 +385,37 @@ es:
         geozone_restricted: "Restringida por zonas"
         summary: "Resumen"
         description: "Descripción"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       poll/translation:
         name: "Nombre"
         summary: "Resumen"
         description: "Descripción"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       poll/question:
         title: "Pregunta"
         summary: "Resumen"
         description: "Descripción"
         external_url: "Enlace a documentación adicional"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       poll/question/translation:
         title: "Pregunta"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       poll/ballot_sheet:
         data: Datos de CSV
         poll_id: Votación
         officer_assignment_id: Turno
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       signature_sheet:
         signable_type: "Tipo de hoja de firmas"
         signable_id: "ID Propuesta ciudadana/Proyecto de gasto"
         document_numbers: "Números de documentos"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       site_customization/page:
         content: Contenido
         created_at: Creada
@@ -386,26 +427,40 @@ es:
         more_info_flag: Mostrar en la página de ayuda
         print_content_flag: Botón de imprimir contenido
         locale: Idioma
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       site_customization/page/translation:
         title: Título
         subtitle: Subtítulo
         content: Contenido
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       site_customization/image:
         name: Nombre
         image: Imagen
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       site_customization/content_block:
         name: Nombre
         locale: Idioma
         body: Contenido
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       banner:
         background_color: Color del fondo
         font_color: Color del texto
         subsection: Subsección
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       legislation/category:
         name: Título
         tag: Etiqueta
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       legislation/proposal:
         type_other_proposal: Tipo de propuesta
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       legislation/other_proposal:
         title_proposal: Título del servicio
         text_description: Texto desarrollado del servicio
@@ -423,6 +478,8 @@ es:
         citizen_entities: ¿Registrado como Entidad ciudadana?
         cif: CIF
         entity_type: Tipo de entidad
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       legislation/process:
         title: Título del proceso
         geozone_restricted: "Restringida por zonas"
@@ -443,56 +500,86 @@ es:
         result_publication_date: Fecha de publicación del resultado final
         background_color: Color del fondo
         font_color: Color del texto
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       legislation/process/translation:
         title: Título del proceso
         summary: Resumen
         description: En qué consiste
         additional_info: Información adicional
         milestones_summary: Seguimiento del proceso
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       legislation/draft_version:
         title: Título de la versión
         body: Texto
         changelog: Cambios
         status: Estado
         final_version: Versión final
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       legislation/draft_version/translation:
         title: Título de la versión
         body: Texto
         changelog: Cambios
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       legislation/question:
         title: Título
         question_options: Respuestas
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       legislation/question_option:
         value: Valor
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       legislation/annotation:
         text: Comentario
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       document:
         title: Título
         attachment: Archivo adjunto
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       image:
         title: Título
         attachment: Archivo adjunto
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       poll/booth:
         physical: Tipo de urna
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       poll/question/answer:
         title: Respuesta
         description: Descripción
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       poll/question/answer/translation:
         title: Respuesta
         description: Descripción
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       poll/question/answer/video:
         title: Título
         url: Vídeo externo
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       newsletter:
         segment_recipient: Destinatarios
         subject: Asunto
         from: Enviado por
         body: Contenido del email
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       admin_notification:
         segment_recipient: Destinatarios
         title: Título
         link: Enlace
         body: Texto
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       sures/actuation:
         borought: Barrio
         geozone: Distrito
@@ -520,9 +607,13 @@ es:
         location_performance: "Ubicación de la actuación"
         technical_visibility: "Viabilidad técnica"
         actions_taken: "Actualizaciones a realizar"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       admin_notification/translation:
         title: Título
         body: Texto
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       widget/card:
         label: Etiqueta (opcional)
         title: Título (opcional)
@@ -533,11 +624,15 @@ es:
         left: Izquierda
         right: Derecha
         columns: Número de columnas
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       widget/card/translation:
         label: Etiqueta (opcional)
         title: Título (opcional)
         description: Descripción (opcional)
         link_text: Texto del enlace
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       sures/customize_card:
         label: Etiqueta (opcional)
         title: Título (opcional)
@@ -548,13 +643,19 @@ es:
         left: Izquierda
         right: Derecha
         columns: Número de columnas
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       sures/customize_card/translation:
         label: Etiqueta (opcional)
         title: Título (opcional)
         description: Descripción (opcional)
         link_text: Texto del enlace
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       widget/feed:
         limit: Número de elementos
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       dashboard/action:
         title: Título
         short_description: Descripción corta
@@ -566,14 +667,22 @@ es:
         order: Puedes introducir la posición en la que se mostrará al usuario esta acción en la lista de acciones
         active: Activa
         action_type: Tipo
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       dashboard/administrator_task:
         source: Fuente
         user: Ejecutado por
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       link:
         label: Título
         url: Enlace
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       moderated_text:
         text: Texto
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
     errors:
       models:
         user:

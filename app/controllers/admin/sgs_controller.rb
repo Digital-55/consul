@@ -120,13 +120,13 @@ class Admin::SgsController < Admin::BaseController
 
     def update_setting
         @type = @sg_settings.setting_type
-        permit_param = {title: params["#{@sg_settings.id}_title"], data_type: params["#{@sg_settings.id}_setting_type"], active: params["#{@sg_settings.id}_active"]}
+        permit_param = {title: params["#{@sg_settings.id}_title"], data_type: params["#{@sg_settings.id}_setting_type"], active: params["#{@sg_settings.id}_active"] }
 
         @sg_settings.title = permit_param[:title]
         @sg_settings.active = permit_param[:active]
         @sg_settings.data_type = permit_param[:data_type]
         
-        if @sg_settings.save
+        if @sg_settings.save           
             redirect_to admin_sgs_path(type: @type.to_s),  notice: @type == 'search' ? I18n.t("admin.sg.form.avanced.notice_update_search") : I18n.t("admin.sg.form.avanced.notice_update_order") 
         else
             flash[:error] = @type == 'search' ? I18n.t("admin.sg.form.avanced.error_update_search") : I18n.t("admin.sg.form.avanced.error_update_order")

@@ -14,8 +14,8 @@
                 <tbody>
                     <%@sg_generic.try(:sg_table_fields).each do |tf|%>
                         <tr>
-                            <td><%=tf.table_name%></td>
-                            <td><%=tf.field_name%></td>
+                            <td><%=tf.table_name.singularize.classify.constantize.model_name.human%></td>
+                            <td><%=tf.table_name.singularize.classify.constantize.human_attribute_name(tf.field_name)%></td>
                             <td><%= link_to t('admin.sg.list.delete'),  delete_generic_admin_sg_path(tf.id, type: @type), class: "button alert",remote: true, data: {confirm: t("admin.sg.list.delete_confirm")}%></td>
                         </tr>
                     <%end%>

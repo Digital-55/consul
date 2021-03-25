@@ -5,10 +5,10 @@
         <%=hidden_field_tag "#{setting.id}_type".to_sym, @type.to_s%>
         <div class="row">
             <div class="small-12 medium-3 column">
-                <%= text_field_tag "#{setting.id}_key".to_sym %>
+                <%= text_field_tag "#{setting.id}_key".to_sym,nil, placeholder: t('admin.sg.form.key') %>
             </div>
             <div class="small-12 medium-3 column">
-                <%= text_field_tag "#{setting.id}_value".to_sym %>
+                <%= text_field_tag "#{setting.id}_value".to_sym,nil,  placeholder: t('admin.sg.form.value') %>
             </div> 
             <div class="small-12 medium-3 column end">
                 <%= submit_tag t('admin.sg.form.add'), class: "button" %>

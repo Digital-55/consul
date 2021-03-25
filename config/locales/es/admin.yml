@@ -941,6 +941,8 @@ es:
         order: Filtros de ordenación
       form:
         add: Añadir
+        key: Clave...
+        value: Valor...
         table_name: Tabla
         field_name: Campo
         title_select: Datos del seleccionable
@@ -977,6 +979,7 @@ es:
           notice_update_order: Se ha actualizado el filtro de ordenación avanzado
           notice_update_search: Se ha actualizado el filtro de búsqueda avanzado
       list:
+        sugestion: Valores sugeridos para el seleccionable
         key: Clave
         value: Valor
         title_table: Tablas asociadas
