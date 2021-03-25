@@ -1,6 +1,6 @@
 <div class="card nested-fields" id="<%= dom_id(f.object) %>">
   <div class="card-divider">
-    <span class="icon-bars"></span><h4 class="small-6 column"><%= f.object.title || t("admin.menus.menu_items.new") %></h4>
+    <span class="icon-bars"></span><h5 class="small-6 column"><%= f.object.title || t("admin.menus.menu_items.new") %></h5>
     <div class="small-6 column text-right">
         <%= link_to_remove_association f do %>
         <span class="icon-x delete"></span>
@@ -21,6 +21,5 @@
           <%= options_for_select( target_options, f.object.target) %>
         <% end %>
     </div>
-    
   </div>
 </div>
