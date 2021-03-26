@@ -32,6 +32,7 @@ class Admin::MenusController < Admin::BaseController
   end
 
   def destroy
+    byebug
     if @menu.destroy
       flash[:notice] = t("admin.menus.destroy.success")
     else

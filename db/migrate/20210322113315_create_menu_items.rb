@@ -4,6 +4,7 @@ class CreateMenuItems < ActiveRecord::Migration[5.0]
       t.string :title
       t.string :url
       t.integer :position, default: 0
+      t.integer :parent_item_id, default: 0
       t.string :target
       t.boolean :editable, default: true
       t.boolean :enabled, default: false

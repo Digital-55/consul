@@ -29,14 +29,15 @@
 
     <h4 class="inline-block"><%= t("admin.menus.menu_items.index") %></h4>
 
-    <div class="row" >
-      <div class="small-12 medium-10 column end" id="menu-items-list" data-url="<%= sort_admin_menu_menu_items_path(@menu) %>" style="margin: 5px; padding: 0 5px 5px 5px;">
-          <%= f.fields_for :menu_items, @menu.menu_items.sort_by(&:position) do |menu_items_form| %>
-            <%= render 'menu_item_fields', f: menu_items_form %>
-          <% end %>
-          <%= link_to_add_association t("admin.menus.menu_items.add"), f, :menu_items,
-                                                          'data-association-insertion-node': '#menu-items-list',
-                                                          'data-association-insertion-method': 'prepend' %>
+    <div class="row">
+      <div class="small-12 medium-12 column end nesting-wrapper" id="menu-items-list" data-url="<%= sort_admin_menu_menu_items_path(@menu) %>">
+        <%= f.fields_for :menu_items, @menu.menu_items.where(parent_item_id: 0).sort_by(&:position) do |menu_items_form| %>
+          <%= render 'menu_item_fields', f: menu_items_form %>
+        <% end %>
+        <%= link_to_add_association t("admin.menus.menu_items.add"), f, :menu_items,
+                                                        class: 'button hollow',
+                                                        'data-association-insertion-node': '#menu-items-list',
+                                                        'data-association-insertion-method': 'prepend' %>
       </div>
     </div>
   </div>

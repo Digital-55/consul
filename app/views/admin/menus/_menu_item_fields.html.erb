@@ -1,25 +1,38 @@
-<div class="card nested-fields" id="<%= dom_id(f.object) %>">
-  <div class="card-divider">
-    <span class="icon-bars"></span><h5 class="small-6 column"><%= f.object.title || t("admin.menus.menu_items.new") %></h5>
-    <div class="small-6 column text-right">
-        <%= link_to_remove_association f do %>
-        <span class="icon-x delete"></span>
-        <% end %>
+<%# byebug %>
+<%# f.object = f.object.first if f.object.is_a?(Array) %>
+<% f.object = f.object.is_a?(Array) ? f.object : [f.object] %>
+<% if f.object.present? %>
+  <% f.object.each do |object| %>
+    <% f.object = object %>
+    <div class="card nested-fields" id="<%= dom_id(f.object) %>">
+      <div class="card-divider">
+        <span class="icon-bars"></span><h5 class="small-6 column"><%= f.object.title || t("admin.menus.menu_items.new") %></h5>
+        <div class="small-6 column text-right">
+          <%= link_to_remove_association f do %>
+            <span class="icon-x delete"></span>
+          <% end %>
+        </div>
+      </div>
+      <div class="card-section">
+        <div class="small-12 medium-2 column">
+            <%= f.label :title, t("admin.menus.menu_items.title") %>
+            <%= f.text_field :title, label: false %>
+        </div>
+        <div class="small-12 medium-6 column">
+            <%= f.text_field :url %>
+        </div>
+        <div class="small-12 medium-4 column">
+            <%= f.label :target, t("admin.menus.menu_items.target") %>
+            <%= f.select :target, {}, label: false do %>
+              <%= options_for_select( target_options, f.object.target) %>
+            <% end %>
+        </div>
+      </div>
+        <div class="nesting-wrapper subitem dropped" data-url="<%= sort_admin_menu_menu_items_path(@menu) %>">
+          <%= f.fields_for :menu_items, @menu.menu_items.where(parent_item_id: f.object.id).sort_by(&:position) do |menu_subitems_form| %>
+            <%= render('menu_item_fields', f: menu_subitems_form) if menu_subitems_form %>
+          <% end %>
+        </div>
     </div>
-  </div>
-  <div class="card-section">
-    <div class="small-12 medium-2 column">
-        <%= f.label :title, t("admin.menus.menu_items.title") %>
-        <%= f.text_field :title, label: false %>
-    </div>
-    <div class="small-12 medium-6 column">
-        <%= f.text_field :url %>
-    </div>
-    <div class="small-12 medium-4 column">
-        <%= f.label :target, t("admin.menus.menu_items.target") %>
-        <%= f.select :target, {}, label: false do %>
-          <%= options_for_select( target_options, f.object.target) %>
-        <% end %>
-    </div>
-  </div>
-</div>
+  <% end %>
+<% end %>
