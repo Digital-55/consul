@@ -12,4 +12,6 @@ class Sg::Setting < ApplicationRecord
 
     scope :search_settings, -> { where(setting_type: "search") }
     scope :order_settings, -> { where(setting_type: "order") }
+
+    validates :title, :setting_type, presence: true
 end

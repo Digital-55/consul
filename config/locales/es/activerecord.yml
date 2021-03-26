@@ -19,9 +19,39 @@ es:
       activity:
         one: "Actividad"
         other: "Actividades"
+      budget_poll:
+        one: "Encuesta presupuestaria"
+        other: "Encuestas presupuestarias"
       budget:
         one: "Presupuesto participativo"
         other: "Presupuestos participativos"
+      budget/valuator_assignment:
+        one: "Asignación de tasa de presupuesto"
+        other: "Asignaciones de tasa de presupuesto"
+      budget/valuator_group_assignment:
+        one: "Asignación grupal de tasa de presupuesto"
+        other: "Asignaciones grupales de tasa de presupuesto"
+      budget/ballot:
+        one: "Votación de presupuesto"
+        other: "Votaciones de presupuesto"
+      budget/content_block:
+        one: "Bloque de contenido de presupuesto"
+        other: "Bloques de contenidos de presupuesto"
+      budget/group:
+        one: "Grupo de presupuesto"
+        other: "Grupos de presupuestos"
+      budget/heading:
+        one: "Cabecera de presupuesto"
+        otehr: "Cabeceras de presupuestos"
+      budget/ballot/line:
+        one: "Línea de votación de presupuesto"
+        other: "Líneas de votaciones de presupuesto"
+      budget/phase:
+        one: "Fase presupuestaria"
+        other: "Fases presupuestarias"
+      budget/reclassified_vote:
+        one: "Reclasificación de votos presupuestarios"
+        other: "Reclasificaciones de votos presupuestarios"
       budget/investment:
         one: "Proyecto de gasto"
         other: "Proyectos de gasto"
@@ -196,12 +226,54 @@ es:
       organization:
         one: "Organización"
         other: "Organizaciones"
+      poll/officer_assignment:
+        one: "Asignación oficial de votación"
+        other: "Asignaciones oficiales de votación"
+      poll/shift:
+        one: "Turno de encuesta"
+        other: "Turnos de encuestas"
+      poll/answer:
+        one: "Respuesta de la encuesta"
+        other: "Respuestas de las encuestas"
+      poll/question/answer:
+        one: "Respuesta de la pregunta de la encuesta"
+        other: "Respuestas de las preguntas de la encuesta"
+      poll/question/answer/video:
+        one: "Video de la respuesta de la pregunta de la encuesta"
+        other: "Videos de las respuestas de la pregunta de la encuesta"
+      poll/voter:
+        one: "Votante de la encuesta"
+        other: "Votantes de la encuesta"
+      poll/ballot:
+        one: "Votación electoral"
+        other: "Votaciones electorales"
+      poll/booth_assignment:
+        one: "Asignación de cabina de votación"
+        other: "Asignaciones de cabinas de votación"
+      poll/final_recount:
+        one: "Recuento final de la encuesta"
+        other: "Recuentos finales de la encuesta"
+      poll/letter_officer_log:
+        one: "Registro oficial de la carta de votación"
+        other: "Registros oficiales de la carga de votación"
+      poll/nvote:
+        one: "Numero de votos de la encuesta"
+        other: "Numeros de votos de la encuesta"
+      poll/partial_result:
+        one: "Resultado parcial de la encuesta"
+        other: "Resultados parciales de la encuesta"
+      poll/question:
+        one: "Pregunta de la encuesta"
+        other: "Preguntas de la encuesta"
+      poll/recount:
+        one: "Recuento de la encuesta"
+        other: "Recuentos de la encuesta"
       poll/booth:
-        one: "urna"
-        other: "urnas"
+        one: "Urna"
+        other: "Urnas"
       poll/officer:
-        one: "presidente de mesa"
-        other: "presidentes de mesa"
+        one: "Presidente de mesa"
+        other: "Presidentes de mesa"
       poll/ballot_sheet:
         one: Papeleta de votación
         other: Papeletas de votación
@@ -223,6 +295,21 @@ es:
       document:
         one: Documento
         other: Documentos
+      legislation/other_proposal:
+        one: "Otra propuesta"
+        other: "Otras propuestas"
+      legislation/draf_version:
+        one: "Versión de borrador legislativo"
+        other: "Versiones de borrador legislativo" 
+      legislation/answer:
+        one: "Respuesta legislativa"
+        other: "Respuestas legislativas"
+      legislation/question:
+        one: "Pregunta legislativa"
+        other: "Preguntas legislativas"
+      legislation/question_option:
+        one: "Opción de pregunta legislativa"
+        other: "Opciones de pregunta legislativa"
       legislation/process:
         one: "Proceso"
         other: "Procesos"
@@ -259,6 +346,9 @@ es:
       proposal_notification:
         one: "Notificación de propuesta"
         other: "Notificaciones de propuestas"
+      dashboard/executed_action:
+        one: Acción ejecutada del panel de control de propuestas
+        other: Acciones ejecutadas del panel de control de propuestas
       dashboard/action:
         one: Acción del panel de control de propuestas
         other: Acciones del panel de control de propuestas
@@ -268,9 +358,27 @@ es:
       link:
         one: Enlace
         other: Enlaces
+      probe:
+        one: "Investigación"
+        other: "Investigaciones"
+      probe_option:
+        one: "Opción de investigación"
+        other: "Opciones de investigación"
+      probe_selection:
+        one: "Selección de investigación"
+        other: "Selecciones de investigación"
       moderated_text:
         one: Texto para moderación automática
         other: Textos para moderación automática
+      widget/card:
+        one: "Tarjeta widget"
+        other: "Tarjetas widget"
+      widget/feed:
+        one: "Feed widget"
+        other: "Feeds widget"
+      officing/residence:
+        one: "Residencia oficial"
+        other: "Residencias oficiales"
     attributes:
       activity:
         updated_at: "Fecha de actualización"
@@ -452,6 +560,7 @@ es:
         subsection: Subsección
         updated_at: "Fecha de actualización"
         created_at: "Fecha de creación"
+
       legislation/category:
         name: Título
         tag: Etiqueta

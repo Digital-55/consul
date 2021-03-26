@@ -30,7 +30,7 @@ class Admin::SgsController < Admin::BaseController
                 redirect_to admin_sgs_path(type: @type.to_s),  notice: I18n.t("admin.sg.form.notice_generic")
             else
                 flash[:error] = I18n.t("admin.sg.form.error_generic")
-                redirect_to admin_sgs_path(type: @type.to_s)
+                redirect_to admin_sgs_path(type: @type.to_s, errors: sg_table_field.errors.full_messages)
             end
         elsif @type == 'order'
             sg_generic = ::Sg::Generic.order_settings
@@ -39,10 +39,10 @@ class Admin::SgsController < Admin::BaseController
             sg_order_field = ::Sg::TableOrder.new(sg_generic: sg_generic, table_name: param_permit[:generic_table_name], order: param_permit[:generic_order] )
 
             if sg_order_field.save
-                redirect_to admin_sgs_path(type: @type.to_s),  notice: I18n.t("admin.sg.form.notice_generic_order")
+                redirect_to admin_sgs_path(type: @type.to_s), notice: I18n.t("admin.sg.form.notice_generic_order")
             else
                 flash[:error] = I18n.t("admin.sg.form.error_generic_order")
-                redirect_to admin_sgs_path(type: @type.to_s)
+                redirect_to admin_sgs_path(type: @type.to_s, errors: sg_order_field.errors.full_messages)
             end
         end
     rescue
@@ -58,7 +58,7 @@ class Admin::SgsController < Admin::BaseController
                 redirect_to admin_sgs_path(type: @type.to_s),  notice:  I18n.t("admin.sg.form.notice_generic_destroy") 
             else
                 flash[:error] = I18n.t("admin.sg.form.error_generic_destroy")
-                redirect_to admin_sgs_path(type: @type.to_s)
+                redirect_to admin_sgs_path(type: @type.to_s, errors: sg_table_field.errors.full_messages)
             end
         elsif @type == 'order'
             sg_order_field = ::Sg::TableOrder.find(params[:id])
@@ -66,7 +66,7 @@ class Admin::SgsController < Admin::BaseController
                 redirect_to admin_sgs_path(type: @type.to_s),  notice: I18n.t("admin.sg.form.notice_generic_order_destroy") 
             else
                 flash[:error] = I18n.t("admin.sg.form.error_generic_order_destroy")
-                redirect_to admin_sgs_path(type: @type.to_s)
+                redirect_to admin_sgs_path(type: @type.to_s, errors: sg_order_field.errors.full_messages)
             end
         end
     rescue
@@ -83,7 +83,7 @@ class Admin::SgsController < Admin::BaseController
             redirect_to admin_sgs_path(type: @type.to_s),  notice: @type == 'search' ? I18n.t("admin.sg.form.notice_generic") : I18n.t("admin.sg.form.notice_generic_order")
         else
             flash[:error] = @type == 'search' ? I18n.t("admin.sg.form.error_generic") : I18n.t("admin.sg.form.error_generic_order")
-            redirect_to admin_sgs_path(type: @type.to_s)
+            redirect_to admin_sgs_path(type: @type.to_s, errors: sg_table_field.errors.full_messages)
         end
     rescue
         flash[:error] =  @type == 'search' ? I18n.t("admin.sg.form.error_generic") : I18n.t("admin.sg.form.error_generic_order") 
@@ -97,7 +97,7 @@ class Admin::SgsController < Admin::BaseController
             redirect_to admin_sgs_path(type: @type.to_s),  notice:  @type == 'search' ? I18n.t("admin.sg.form.notice_table_search_destroy") : I18n.t("admin.sg.form.notice_table_order_destroy")
         else
             flash[:error] = @type == 'search' ? I18n.t("admin.sg.form.error_table_search_destroy") : I18n.t("admin.sg.form.error_table_order_destroy")
-            redirect_to admin_sgs_path(type: @type.to_s)
+            redirect_to admin_sgs_path(type: @type.to_s, errors: sg_table_field.errors.full_messages)
         end
     rescue
         flash[:error] = @type == 'search' ? I18n.t("admin.sg.form.error_table_search_destroy") : I18n.t("admin.sg.form.error_table_order_destroy")
@@ -111,7 +111,7 @@ class Admin::SgsController < Admin::BaseController
             redirect_to admin_sgs_path(type: @type.to_s),  notice: @type == 'search' ? I18n.t("admin.sg.form.avanced.notice_search") : I18n.t("admin.sg.form.avanced.notice_order") 
         else
             flash[:error] = @type == 'search' ? I18n.t("admin.sg.form.avanced.error_search") : I18n.t("admin.sg.form.avanced.error_order")
-            redirect_to admin_sgs_path(type: @type.to_s)
+            redirect_to admin_sgs_path(type: @type.to_s, errors: sg_table_field.errors.full_messages)
         end
     rescue
         flash[:error] = @type == 'search' ? I18n.t("admin.sg.form.avanced.error_search") : I18n.t("admin.sg.form.avanced.error_order")
@@ -130,7 +130,7 @@ class Admin::SgsController < Admin::BaseController
             redirect_to admin_sgs_path(type: @type.to_s),  notice: @type == 'search' ? I18n.t("admin.sg.form.avanced.notice_update_search") : I18n.t("admin.sg.form.avanced.notice_update_order") 
         else
             flash[:error] = @type == 'search' ? I18n.t("admin.sg.form.avanced.error_update_search") : I18n.t("admin.sg.form.avanced.error_update_order")
-            redirect_to admin_sgs_path(type: @type.to_s)
+            redirect_to admin_sgs_path(type: @type.to_s, errors: @sg_settings.errors.full_messages)
         end
     rescue 
         flash[:error] = @type == 'search' ? I18n.t("admin.sg.form.avanced.error_update_search") : I18n.t("admin.sg.form.avanced.error_update_order")
@@ -143,7 +143,7 @@ class Admin::SgsController < Admin::BaseController
             redirect_to admin_sgs_path(type: type.to_s),  notice:  type == 'search' ? I18n.t("admin.sg.form.avanced.notice_search_destroy") : I18n.t("admin.sg.form.avanced.notice_order_destroy")
         else
             flash[:error] =  type == 'search' ? I18n.t("admin.sg.form.avanced.error_search_destroy") : I18n.t("admin.sg.form.avanced.error_order_destroy")
-            redirect_to admin_sgs_path(type: type.to_s)
+            redirect_to admin_sgs_path(type: type.to_s, errors: @sg_settings.errors.full_messages)
         end
     rescue
         flash[:error] = type == 'search' ? I18n.t("admin.sg.form.avanced.error_search_destroy") : I18n.t("admin.sg.form.avanced.error_order_destroy")
@@ -159,7 +159,7 @@ class Admin::SgsController < Admin::BaseController
             redirect_to admin_sgs_path(type: @type.to_s),  notice: I18n.t("admin.sg.form.notice_select")
         else
             flash[:error] = I18n.t("admin.sg.form.error_select")
-            redirect_to admin_sgs_path(type: @type.to_s)
+            redirect_to admin_sgs_path(type: @type.to_s, errors: sg_select.errors.full_messages)
         end
     rescue
         flash[:error] = I18n.t("admin.sg.form.error_select")
@@ -173,7 +173,7 @@ class Admin::SgsController < Admin::BaseController
             redirect_to admin_sgs_path(type: @type.to_s),  notice: I18n.t("admin.sg.form.notice_select_destroy")
         else
             flash[:error] = I18n.t("admin.sg.form.error_select_destroy")
-            redirect_to admin_sgs_path(type: @type.to_s)
+            redirect_to admin_sgs_path(type: @type.to_s, errors: sg_select.errors.full_messages)
         end
     rescue
         flash[:error] = I18n.t("admin.sg.form.error_select_destroy")

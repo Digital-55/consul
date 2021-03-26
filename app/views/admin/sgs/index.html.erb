@@ -15,6 +15,9 @@
         </li>
       <%end%>
     </ul>
+    <div id="errors_validation">
+      <%= render partial: "errors_validation" %>
+    </div>
 
     <% if @type.to_s=='search' %>
         <%= render partial: "search", locals: { } %>

@@ -24,12 +24,12 @@ module Admin::SgHelper
     end
 
     def get_tables
-        exclusiones = ["DirectUpload", "ImportUser", "I18nContent", "I18nContentTranslation"]
+        exclusiones = ["DirectUpload", "ImportUser", "I18nContent", "I18nContentTranslation", "ApplicationRecord", "Officing::Residence"]
         tables = []
         Dir.glob(Rails.root.join('app/models/**/*.rb')).each do |x|
             begin
                 model =  x.gsub('.rb','').gsub(Rails.root.join('app/models/').to_s, '').gsub('custom/','').singularize.classify
-                if exclusiones.exclude?(model.to_s) && !model["Concern"] && !model["Abilities"]
+                if exclusiones.exclude?(model.to_s) && !model["Concern"] && !model["Abilities"] && !model["Verification::"] && !model["Sures::"] && !model["Ahoy::"] && !model["Sg::"] && !model["Ckeditor"]
                     tables << ["#{model.constantize.model_name.human} (#{model})", model.constantize.model_name]
                 end
             rescue
@@ -118,6 +118,9 @@ module Admin::SgHelper
                 return Proposal::RETIRE_OPTIONS
             end
         end
+        []
+    rescue
+        []
     end
 
 end
