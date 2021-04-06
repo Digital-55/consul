@@ -17,16 +17,16 @@
         <%= f.hidden_field :item_type, value: 'page_link' %>
         <div class="small-12 medium-4 column">
             <%= f.label :title, t("admin.menus.menu_items.title") %>
-            <%= f.text_field :title, label: false, class: 'menu-item-title' %>
+            <%= f.text_field :title, label: false, class: 'menu-item-title', disabled: !f.object.editable %>
         </div>
         <div class="small-12 medium-5 column">
           <%= f.label :page_link, t("admin.menus.menu_items.page_link") %>
-          <%= f.select :page_link, {}, label: false, class: 'menu-item-page_link' do %>
-            <%= options_for_select(page_link_options, f.object.page_link || t("admin.menus.menu_items.page_link_select")) %>
+          <%= f.select :page_link, {}, {label: false}, {class: 'menu-item-page_link', disabled: !f.object.editable} do %>
+            <%= options_for_select(page_link_options, (f.object.page_link || t("admin.menus.menu_items.page_link_select"))) %>
           <% end %>
         </div>
         <div class="small-12 medium-3 column">
-          <%= f.check_box :target_blank, label: false, class: 'menu-item-target_blank' %>
+          <%= f.check_box :target_blank, label: false, class: 'menu-item-target_blank', disabled: !f.object.editable %>
           <%= f.label :target_blank, t("admin.menus.menu_items.target_blank") %>
         </div>
       </div>

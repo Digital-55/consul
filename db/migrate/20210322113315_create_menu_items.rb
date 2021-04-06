@@ -1,5 +1,5 @@
 class CreateMenuItems < ActiveRecord::Migration[5.0]
-  def change
+  def up
     create_table :menu_items do |t|
       t.string :title
       t.string :url
@@ -14,5 +14,18 @@ class CreateMenuItems < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
+
+    @menu = Menu.create(title: "Principal", section: "header", published: true)
+    @menu.menu_items.build(title: "Inicio", page_link: '', item_type: 'page_link', position: 1, editable: false, enabled: true).save
+    @menu.menu_items.build(title: "Debates", page_link: 'debates', item_type: 'page_link', position: 2, editable: false, enabled: true).save
+    @menu.menu_items.build(title: "Propuestas", page_link: 'proposals', item_type: 'page_link', position: 3, editable: false, enabled: true).save
+    @menu.menu_items.build(title: "Votaciones", page_link: 'vota', item_type: 'page_link', position: 4, editable: false, enabled: true).save
+    @menu.menu_items.build(title: "Procesos", page_link: 'procesos', item_type: 'page_link', position: 5, editable: false, enabled: true).save
+    @menu.menu_items.build(title: "Presupuestos participativos", page_link: 'presupuestos', item_type: 'page_link', position: 6, editable: false, enabled: true).save
+    @menu.menu_items.build(title: "Ayuda", page_link: 'mas-informacion', item_type: 'page_link', position: 7, editable: false, enabled: true).save
+  end
+
+  def down
+    drop_table :menu_items
   end
 end
