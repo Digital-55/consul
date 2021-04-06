@@ -21,7 +21,19 @@ module MenusHelper
       key = "#{key} (/#{value})"
       hash[key] = value
     end
-    hash
+    hash.merge(default_link_options)
+  end
+
+  def default_link_options
+    {
+      "Inicio (/)" => '',
+      "Debates (/debates)" => 'debates',
+      "Propuestas (/proposals)" => 'proposals',
+      "Votaciones (/vota)" => 'vota',
+      "Procesos (/procesos)" => 'procesos',
+      "Presupuestos Participativos (/presupuestos)" => 'presupuestos',
+      "Ayuda (/mas-informacion)" => 'mas-informacion'
+    }
   end
 
   def retrieve_options_key(hash, value)
