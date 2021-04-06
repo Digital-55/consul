@@ -395,6 +395,44 @@ es:
         one: "Residencia oficial"
         other: "Residencias oficiales"
     attributes:
+      probe_selection:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        probe_id: "Investigación"
+        probe_option_id: "Opción de investigación"
+        user_id: "Usuario"
+      probe_option:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        code: "Código"
+        name: "Nombre"
+        probe_id: "Investigación"
+        probe_selections_count: "Recuento de investigaciones seleccionadas"
+        debate_id: "Debate"
+        comments_count: "Recuento de comentarios"
+        topic_id: "Tema"
+      probe:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        codename: "Nombre clave"
+        selecting_allowed: "Permite seleccionar"
+      dashboard/executed_action:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        proposal_id: "Propuesta"
+        action_id: "Acción"
+        executed_at: "Fecha de ejecución"
+      proposal_notification:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        title: "Título"
+        body: "Cuerpo"
+        author_id: "Autor"
+        proposal_id: "Propuesta"
+        moderated: "Moderado"
+        hidden_at: "Fecha de ocultación"
+        ignored_at: "Fecha en la que se ignora"
+        confirmed_hide_at: "Fecha de confirmación de ocultación"
       topic:
         updated_at: "Fecha de actualización"
         created_at: "Fecha de creación"
@@ -1580,6 +1618,10 @@ es:
         columns: Número de columnas
         updated_at: "Fecha de actualización"
         created_at: "Fecha de creación"
+        header: "Cabecera"
+        site_customization_page_id: "Pagina personalizada"
+        widget_card_id: "Widget"
+        locale: "Localización"
       widget/card/translation:
         label: Etiqueta (opcional)
         title: Título (opcional)
@@ -1610,6 +1652,7 @@ es:
         limit: Número de elementos
         updated_at: "Fecha de actualización"
         created_at: "Fecha de creación"
+        kind: "Tipo"
       dashboard/action:
         title: Título
         short_description: Descripción corta
@@ -1623,16 +1666,24 @@ es:
         action_type: Tipo
         updated_at: "Fecha de actualización"
         created_at: "Fecha de creación"
+        hidden_at: "Fecha de ocultación"
+        published_proposal: "Propuesta publicada"
       dashboard/administrator_task:
         source: Fuente
+        source_type: "Tipo de fuente"
+        source_id: "ID de fuente"
         user: Ejecutado por
+        user_id: "Ejecutado por"
         updated_at: "Fecha de actualización"
         created_at: "Fecha de creación"
+        executed_at: "Fecha de ejecución"
       link:
         label: Título
         url: Enlace
         updated_at: "Fecha de actualización"
-        created_at: "Fecha de creación"
+        created_at: "Fecha de creación"       
+        linkable_type: "Tipo de enlazado"
+        linkable_id: "ID del enlazado"
       moderated_text:
         text: Texto
         updated_at: "Fecha de actualización"
