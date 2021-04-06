@@ -46,26 +46,25 @@ $(document).on('page:change', function(){
   $('#menu-items-list').on('change', function(e) {
     var menuItem = getMenuItem(e.target);
     if (!!menuItem) {
-      var urlArray = window.location.href.split("/")
-      var menuId = urlArray.find(e => Number.isInteger(parseInt(e)))
-      var itemClass = e.target.classList.value
-      var itemField = itemClass.split('-').pop()
-      var itemType, url, page_link
-      var link =  menuItem.children[1].children[3].children[1].value
+      var urlArray = window.location.href.split("/");
+      var menuId = urlArray.find(e => Number.isInteger(parseInt(e)));
+      var itemField = getItemField(menuItem.classList);
+      var itemType, url, page_link;
+      var link =  menuItem.children[1].children[3].children[1].value;
       if (["title", "url", "page_link", "target_blank"].includes(itemField)) {
-        var title = menuItem.children[1].children[2].children[1].value
+        var title = menuItem.children[1].children[2].children[1].value;
         if(menuItem.classList.value.includes("url")) {
           itemType = "url"
           url = link
           page_link = ''
-        }
+        };
         if(menuItem.classList.value.includes("page_link")) {
           itemType = "page_link"
           url = ''
           page_link = link
-        }
-        var parentItemId = menuItem.parentElement.parentElement.id.split("_").pop() || 0
-        var targetBlank = menuItem.children[1].children[4].children[1]['checked']
+        };
+        var parentItemId = menuItem.parentElement.parentElement.id.split("_").pop() || 0;
+        var targetBlank = menuItem.children[1].children[4].children[1]['checked'];
         if (title.length > 0) {
           if (menuItem.id == "new_menu_item") {
             $.ajax({
@@ -76,14 +75,14 @@ $(document).on('page:change', function(){
                 var itemData = data['menu_item']
                 var title = itemData['title']
                 var id = itemData['id']
-                $('#new_menu_item h5').text(title)
+                $('#new_menu_item h5').first().text(title)
                 $('#new_menu_item').attr('id', "menu_item_" + id)
               }
             });
-          }
+          };
 
           if (menuItem.id.includes('menu_item_')) {
-            var itemId = menuItem.id.split('_').pop()
+            var itemId = menuItem.id.split('_').pop();
             $.ajax({
               url: "/admin/menus/" + menuId + "/menu_items/" + itemId,
               type: "PUT",
@@ -92,36 +91,45 @@ $(document).on('page:change', function(){
                 var itemData = data['menu_item']
                 var title = itemData['title']
                 var id = itemData['id']
-                $("#menu_item_" + id + " h5").text(title)
+                $("#menu_item_" + id + " h5.menu-item-tag").first().text(title)
               }
-            })
-          }
+            });
+          };
         }
       }
-    }
+    };
 
   })
 
   $('.remove_fields.existing').click(function(e) {
-    var urlArray = window.location.href.split("/")
-    var menuId = urlArray.find(e => Number.isInteger(parseInt(e)))
+    var urlArray = window.location.href.split("/");
+    var menuId = urlArray.find(e => Number.isInteger(parseInt(e)));
     var menuItem = getMenuItem(e.target);
-    var itemId = menuItem.id.split('_').pop()
+    var itemId = menuItem.id.split('_').pop();
     $.ajax({
       url: "/admin/menus/" + menuId + "/menu_items/" + itemId,
       type: "DELETE"
-    })
+    });
   })
 
   function getMenuItem(event_target) {
-    var newMenuItem = event_target.closest('#new_menu_item')
-    var persistedMenuItem = event_target.closest('[id*="menu_item_"]')
+    var newMenuItem = event_target.closest('#new_menu_item');
+    var persistedMenuItem = event_target.closest('[id*="menu_item_"]');
     if (!!newMenuItem) {
       return newMenuItem;
-    }
+    };
     if (!!persistedMenuItem) {
       return persistedMenuItem;
-    }
+    };
+  }
+
+  function getItemField(itemClasses) {
+    if(itemClasses.value.includes("url")) {
+      return "url";
+    };
+    if(itemClasses.value.includes("page_link")) {
+      return "page_link";
+    };
   }
 
 
