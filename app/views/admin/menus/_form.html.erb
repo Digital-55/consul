@@ -1,52 +1,68 @@
 <%= javascript_include_tag 'swfobject' %>
 
+<% provide :title do %>
+  <%= t("admin.header.title") %> - <%= t("admin.menu.menus_manager") %>
+<% end %>
+
 <%= form_for [:admin, @menu] do |f| %>
   <%= render "errors" %>
 
   <div class="row">
-    <div class="small-12 medium-12 column end">
-      <%= f.label :title, t("admin.menus.menu.title") %>
-      <%= f.text_field :title,
-                        label: false,
-                        placeholder: t("admin.menus.menu.title"),
-                        id: "title" %>
+    <div class="row menu-fields">
+      <div class="small-12 medium-12 column end">
+        <%= f.label :title, t("admin.menus.menu.title") %>
+        <%= f.text_field :title,
+                          label: false,
+                          placeholder: t("admin.menus.menu.title"),
+                          id: "title" %>
+      </div>
+
+      <div class="small-12 medium-6 column end">
+        <%= f.label :section, t("admin.menus.menu.section") %>
+        <%= f.select :section, {}, label: false do %>
+          <%= options_for_select( section_options, @menu.section || t("admin.menus.new.section_select")) %>
+        <% end %>
+      </div>
+
+      <div class="small-12 medium-6 column end">
+        <%= f.label :published, t("admin.menus.menu.published") %>
+        <%= f.select :published, {}, label: false do %>
+          <%= options_for_select( publish_options, @menu.published) %>
+        <% end %>
+      </div>
+    </div>
+      <div class="row">
+      <div class="actions small-12 medium-3 column">
+        <%= f.submit(class: "button expanded", value: t("admin.menus.edit.form.submit_button")) %>
+      </div>
     </div>
 
-    <div class="small-12 medium-6 column end">
-      <%= f.label :section, t("admin.menus.menu.section") %>
-      <%= f.select :section, {}, label: false do %>
-        <%= options_for_select( section_options, @menu.section || t("admin.menus.new.section_select")) %>
-      <% end %>
-    </div>
-
-    <div class="small-12 medium-6 column end">
-      <%= f.label :published, t("admin.menus.menu.published") %>
-      <%= f.select :published, {}, label: false do %>
-        <%= options_for_select( publish_options, @menu.published) %>
-      <% end %>
-    </div>
     <hr>
 
     <h4 class="inline-block"><%= t("admin.menus.menu_items.index") %></h4>
 
-    <div class="row">
-      <div class="small-12 medium-12 column end nesting-wrapper" id="menu-items-list" data-url="<%= sort_admin_menu_menu_items_path(@menu) %>">
-        <%= f.fields_for :menu_items, @menu.menu_items.where(parent_item_id: 0).sort_by(&:position) do |menu_items_form| %>
-          <%= render 'menu_item_fields', f: menu_items_form %>
-        <% end %>
-        <%= link_to_add_association t("admin.menus.menu_items.add"), f, :menu_items,
+    <% if @menu.persisted? %>
+      <div class="row">
+        <div class="small-12 medium-12 column end nesting-wrapper" id="menu-items-list" data-url="<%= sort_admin_menu_menu_items_path(@menu) if @menu.present? %>">
+          <%= f.fields_for :menu_items, @menu.menu_items.where(parent_item_id: 0).sort_by(&:position) do |menu_items_form| %>
+            <% [menu_items_form.object].flatten.each do |menu_items_form_data| %>
+              <%= render menu_items_partial(menu_items_form_data), f: menu_items_form %>
+            <% end %>
+          <% end %>
+
+        </div>
+        <%= link_to_add_association t("admin.menus.menu_items.add_url"), f, :menu_items,
                                                         class: 'button hollow',
+                                                        partial: 'menu_item_fields',
+                                                        'data-association-insertion-node': '#menu-items-list',
+                                                        'data-association-insertion-method': 'prepend' %>
+
+        <%= link_to_add_association t("admin.menus.menu_items.add_page"), f, :menu_items,
+                                                        class: 'button hollow',
+                                                        partial: 'menu_item_fields_page_link',
                                                         'data-association-insertion-node': '#menu-items-list',
                                                         'data-association-insertion-method': 'prepend' %>
       </div>
-    </div>
+    <% end %>
   </div>
-
-
-  <div class="row">
-    <div class="actions small-12 medium-3 column">
-      <%= f.submit(class: "button expanded", value: t("admin.menus.edit.form.submit_button")) %>
-    </div>
-  </div>
-
 <% end %>

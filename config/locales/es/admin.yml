@@ -305,6 +305,11 @@ es:
           header: Cabecera
           footer: Pie de página
         title: Menús
+      errors:
+        form:
+          error:
+            one: "error impidió guardar el menú"
+            other: "errores impidieron guardar el menú."
       menu:
         title: Título
         published: Estado
@@ -312,9 +317,13 @@ es:
         date: Fecha
       menu_items:
         add: Añadir ítems
+        add_url: Añadir ítems de enlace
+        add_page: Añadir ítems de página
         index: Ítems de menú
         new: Nuevo ítem
         no_target: Abrir en misma pestaña
+        page_link: Enlace de página
+        page_link_select: Selecciona página
         target: Objetivo
         target_blank: Abrir en nueva pestaña
         title: Título
@@ -862,6 +871,7 @@ es:
       editor: Editores
       managers: Gestores
       menus: Menús
+      menus_manager: Gestor de menús
       moderators: Moderadores
       messaging_users: Mensajes a usuarios
       newsletters: Newsletters

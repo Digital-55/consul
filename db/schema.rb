@@ -1059,9 +1059,11 @@ ActiveRecord::Schema.define(version: 20210322113315) do
   create_table "menu_items", force: :cascade do |t|
     t.string   "title"
     t.string   "url"
+    t.string   "page_link"
+    t.string   "item_type"
     t.integer  "position",       default: 0
     t.integer  "parent_item_id", default: 0
-    t.string   "target"
+    t.boolean  "target_blank",   default: false
     t.boolean  "editable",       default: true
     t.boolean  "enabled",        default: false
     t.integer  "menu_id"

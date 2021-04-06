@@ -15,16 +15,23 @@ module MenusHelper
     }
   end
 
-  def target_options
-    {
-      t("admin.menus.menu_items.no_target") => '',
-      t("admin.menus.menu_items.target_blank") => "_blank"
-    }
+  def page_link_options
+    hash = { t("admin.menus.menu_items.page_link_select") => nil }
+    SiteCustomization::Page.pluck(:title, :slug).each do |key, value|
+      key = "#{key} (/#{value})"
+      hash[key] = value
+    end
+    hash
   end
 
   def retrieve_options_key(hash, value)
     key = hash.key(value)
     value == true ? "<strong>#{key}</strong>".html_safe : key
+  end
+
+  def menu_items_partial(form_data)
+    return 'menu_item_fields_page_link' if form_data.item_type == "page_link"
+    return 'menu_item_fields' if form_data.item_type == "url"
   end
 
 end

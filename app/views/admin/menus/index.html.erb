@@ -1,3 +1,7 @@
+<% provide :title do %>
+  <%= t("admin.header.title") %> - <%= t("admin.menu.menus_manager") %>
+<% end %>
+
 <%= link_to t("admin.menus.index.create"),
               new_admin_menu_path, class: "button float-right" %>
 
