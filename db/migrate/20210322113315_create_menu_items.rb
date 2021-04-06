@@ -3,9 +3,11 @@ class CreateMenuItems < ActiveRecord::Migration[5.0]
     create_table :menu_items do |t|
       t.string :title
       t.string :url
+      t.string :page_link
+      t.string :item_type
       t.integer :position, default: 0
       t.integer :parent_item_id, default: 0
-      t.string :target
+      t.boolean :target_blank, default: false
       t.boolean :editable, default: true
       t.boolean :enabled, default: false
       t.references :menu, foreign_key: true

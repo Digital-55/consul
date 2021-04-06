@@ -15,7 +15,7 @@ class Admin::MenusController < Admin::BaseController
   def create
     @menu = Menu.new(menu_params)
     if @menu.save
-      redirect_to admin_menus_path, notice: t("admin.menus.create.notice")
+      redirect_to edit_admin_menu_path(@menu), notice: t("admin.menus.create.notice")
     else
       render :new
     end
@@ -32,7 +32,6 @@ class Admin::MenusController < Admin::BaseController
   end
 
   def destroy
-    byebug
     if @menu.destroy
       flash[:notice] = t("admin.menus.destroy.success")
     else
@@ -44,7 +43,7 @@ class Admin::MenusController < Admin::BaseController
   private
 
   def menu_params
-    params.require(:menu).permit(:title, :section, :published, menu_items_attributes: [:id, :title, :url, :position, :target, :editable, :enabled, :_destroy])
+    params.require(:menu).permit(:title, :section, :published)
   end
 
   def set_menu

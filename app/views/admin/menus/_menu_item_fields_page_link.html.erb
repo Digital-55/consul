@@ -3,7 +3,7 @@
 <% if f.object.present? %>
   <% f.object.each do |object| %>
     <% f.object = object %>
-    <div class="card nested-fields url" id="<%= dom_id(f.object) %>">
+    <div class="card nested-fields page_link" id="<%= dom_id(f.object) %>">
       <div class="card-divider">
         <span class="icon-bars"></span><h5 class="small-6 column menu-item-tag"><%= f.object.title || t("admin.menus.menu_items.new") %></h5>
         <div class="small-6 column text-right">
@@ -14,24 +14,27 @@
       </div>
       <div class="card-section">
         <%= f.hidden_field :parent_item_id %>
-        <%= f.hidden_field :item_type, value: 'url' %>
+        <%= f.hidden_field :item_type, value: 'page_link' %>
         <div class="small-12 medium-4 column">
             <%= f.label :title, t("admin.menus.menu_items.title") %>
             <%= f.text_field :title, label: false, class: 'menu-item-title' %>
         </div>
         <div class="small-12 medium-5 column">
-          <%= f.text_field :url, class: 'menu-item-url' %>
+          <%= f.label :page_link, t("admin.menus.menu_items.page_link") %>
+          <%= f.select :page_link, {}, label: false, class: 'menu-item-page_link' do %>
+            <%= options_for_select(page_link_options, f.object.page_link || t("admin.menus.menu_items.page_link_select")) %>
+          <% end %>
         </div>
         <div class="small-12 medium-3 column">
           <%= f.check_box :target_blank, label: false, class: 'menu-item-target_blank' %>
           <%= f.label :target_blank, t("admin.menus.menu_items.target_blank") %>
         </div>
       </div>
-      <div class="nesting-wrapper subitem dropped" data-url="<%= sort_admin_menu_menu_items_path(@menu) if @menu.present? %>">
+        <div class="nesting-wrapper subitem dropped" data-url="<%= sort_admin_menu_menu_items_path(@menu) if @menu.present? %>">
           <%= f.fields_for :menu_items, @menu.menu_items.where(parent_item_id: f.object.id).sort_by(&:position) do |menu_subitems_form| %>
             <% [menu_subitems_form.object].flatten.each do |menu_subitems_form_data| %>
               <%= render menu_items_partial(menu_subitems_form_data), f: menu_subitems_form %>
-            <% end %>
+            <% end if menu_subitems_form.object %>
           <% end %>
         </div>
     </div>

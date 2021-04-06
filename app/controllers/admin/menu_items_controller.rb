@@ -1,16 +1,43 @@
 class Admin::MenuItemsController < Admin::BaseController
   before_action :set_menu, only: [:sort]
+  before_action :set_menu_item, only: [:update, :destroy]
+
   def sort
     if params[:menu_item].present?
       params[:menu_item].each_with_index do |id, index|
-        @menu.menu_items.where(id: id).update_all(position: index + 1, parent_item_id: params[:parent_id]  )
+        @menu.menu_items.where(id: id).update_all(position: index + 1, parent_item_id: params[:parent_item_id]  )
       end
     end
+    head :ok
+  end
+
+  def create
+    @menu_item = MenuItem.create(menu_item_params)
+    render json: {menu_item: @menu_item}
+  end
+
+  def update
+    @menu_item.update(menu_item_params)
+    render json: {menu_item: @menu_item}
+  end
+
+  def destroy
+    subitems = MenuItem.where(parent_item_id: @menu_item.id)
+    subitems.destroy_all
+    @menu_item.destroy
     head :ok
   end
 
   private
   def set_menu
     @menu = Menu.find(params[:menu_id])
+  end
+
+  def set_menu_item
+    @menu_item = MenuItem.find(params[:id])
+  end
+
+  def menu_item_params
+    params.permit(:id, :title, :url, :page_link, :item_type, :target_blank, :parent_item_id, :menu_id, :editable)
   end
 end
