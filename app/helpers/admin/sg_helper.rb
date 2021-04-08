@@ -47,7 +47,7 @@ module Admin::SgHelper
         fields = []
         if !model.try(:column_names).blank?
             model.try(:column_names).each do |field|
-                fields << [model.human_attribute_name(field),field]
+                fields << ["#{model.human_attribute_name(field)} (#{field})",field]
             end
         end
 

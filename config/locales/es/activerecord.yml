@@ -394,6 +394,9 @@ es:
       officing/residence:
         one: "Residencia oficial"
         other: "Residencias oficiales"
+      legislation/annotation:
+        one: "Anotación legislativa"
+        other: "Anotaciones legislativas"
     attributes:
       probe_selection:
         updated_at: "Fecha de actualización"
@@ -1486,6 +1489,17 @@ es:
         text: Comentario
         updated_at: "Fecha de actualización"
         created_at: "Fecha de creación"
+        quote: "Quota"
+        ranges: "Rangos"        
+        legislation_draft_version_id: "Borrador de versión legislativa"
+        author_id: "Autor"
+        hidden_at: "Fecha de ocultación"        
+        comments_count: "Recuento de comentarios"
+        range_start: "Comienzo de rango"
+        range_start_offset: "Comienzo exterior de rango"
+        range_end: "Fin de rango"
+        range_end_offset: "Fin exterior de rango"
+        context: "Contexto"
       document:
         title: Título
         attachment: Archivo adjunto

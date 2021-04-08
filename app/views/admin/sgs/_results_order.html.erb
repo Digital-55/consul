@@ -14,7 +14,7 @@
                 <tbody>
                     <%@sg_generic.try(:sg_table_orders).each do |tf|%>
                         <tr>
-                            <td><%=tf.table_name.singularize.classify.constantize.model_name.human%></td>
+                            <td><%=tf.table_name.singularize.classify.constantize.model_name.human%> (<%=tf.table_name.singularize.classify.constantize.model_name%>)</td>
                             <td><%=tf.order%></td>
                             <td><%= link_to t('admin.sg.list.delete'),  delete_generic_admin_sg_path(tf.id, type: @type), remote: true, class: "button alert", data: {confirm: t("admin.sg.list.delete_confirm_order")}%></td>
                         </tr>

@@ -34,7 +34,7 @@
                         <%setting.try(:sg_table_fields).each do |tf|%>
                             <tr>
                                 <td><%="#{tf.table_name.singularize.classify.constantize.model_name.human} (#{tf.table_name.singularize.classify.constantize.model_name})"%></td>
-                                <td><%=tf.table_name.singularize.classify.constantize.human_attribute_name(tf.field_name)%></td>
+                                <td><%=tf.table_name.singularize.classify.constantize.human_attribute_name(tf.field_name)%> (<%=tf.field_name%>)</td>
                                 <td>
                                     <%if setting.data_type.to_s == "select"%>
                                         <%if !get_sg_select(tf.table_name, tf.field_name).blank?%>
