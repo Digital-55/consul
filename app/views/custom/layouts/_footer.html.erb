@@ -31,12 +31,32 @@
   <div class="subfooter">
     <div class="row">
       <div class="small-12 medium-7 column">        
-        <ul class="no-bullet inline-block">
-          <li class="inline-block"><%= t("layouts.footer.copyright", year: Time.current.year) %>&nbsp;&nbsp;</li>
-          <li class="inline-block"><%= link_to t("layouts.footer.privacy"), privacy_path %>&nbsp;|</li>
-          <li class="inline-block"><%= link_to t("layouts.footer.conditions"), conditions_path %>&nbsp;|</li>
-          <li class="inline-block"><%= link_to t("layouts.footer.accessibility"), accessibility_path %></li>
-        </ul>
+        <% if main_footer_menu %>
+          <ul class="dropdown menu no-bullet inline-block" data-dropdown-menu>
+            <li class="inline-block"><%= t("layouts.footer.copyright", year: Time.current.year) %>&nbsp;&nbsp;</li>
+            <% main_menu_items(main_footer_menu).each do |menu_item| %>
+            <li class="inline-block">
+              <%= link_to menu_item.title, menu_item_link(menu_item), title: t("shared.go_to_page") + menu_item.title, target: menu_item_target(menu_item) %>
+              <% if children_menu_items(main_footer_menu, menu_item.id).present? %>
+                <ul class="submenu menu no-bullet">
+                  <% children_menu_items(main_footer_menu, menu_item.id).each do |child_menu_item| %>
+                    <li class="is-submenu-item inline-block">
+                      <%= link_to child_menu_item.title, menu_item_link(child_menu_item), title: t("shared.go_to_page") + child_menu_item.title, target: menu_item_target(child_menu_item) %>
+                    </li>
+                  <% end %>
+                </ul>
+              <% end %>
+            </li>
+            <% end %>
+          </ul>
+        <% else %>
+          <ul class="no-bullet inline-block">
+            <li class="inline-block"><%= t("layouts.footer.copyright", year: Time.current.year) %>&nbsp;&nbsp;</li>
+            <li class="inline-block"><%= link_to t("layouts.footer.privacy"), privacy_path %>&nbsp;|</li>
+            <li class="inline-block"><%= link_to t("layouts.footer.conditions"), conditions_path %>&nbsp;|</li>
+            <li class="inline-block"><%= link_to t("layouts.footer.accessibility"), accessibility_path %></li>
+          </ul>
+        <% end %>
       </div>
 
       <div class="small-12 medium-5 column social">
