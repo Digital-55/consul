@@ -9,6 +9,7 @@ class Menu < ApplicationRecord
 
   scope :header, -> { where(section: 'header') }
   scope :footer, -> { where(section: 'footer') }
+  scope :published, -> { where(published: true) }
   scope :sorted, -> { order(published: :desc, updated_at: :desc) }
 
   def set_unique_published_menu

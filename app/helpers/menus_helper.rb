@@ -26,7 +26,7 @@ module MenusHelper
 
   def default_link_options
     {
-      "Inicio (/)" => '',
+      "Inicio (/)" => root_path,
       "Debates (/debates)" => 'debates',
       "Propuestas (/proposals)" => 'proposals',
       "Votaciones (/vota)" => 'vota',
@@ -46,4 +46,29 @@ module MenusHelper
     return 'menu_item_fields' if form_data.item_type == "url"
   end
 
+  def main_header_menu
+    Menu.header.published.first
+  end
+
+  def main_footer_menu
+    Menu.footer.published.first
+  end
+
+  def main_menu_items(main_menu)
+    main_menu.menu_items.where(parent_item_id: 0).sort_by(&:position)
+  end
+
+  def children_menu_items(menu_item_id)
+    main_header_menu.menu_items.where(parent_item_id: menu_item_id)
+  end
+
+  def menu_item_link(menu_item)
+    return menu_item.url if menu_item.url.present?
+    return menu_item.page_link if menu_item.page_link.present?
+    return ''
+  end
+
+  def menu_item_target(menu_item)
+    menu_item.target_blank ? '_blank' : ''
+  end
 end
