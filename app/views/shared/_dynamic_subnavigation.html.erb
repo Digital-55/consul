@@ -4,9 +4,9 @@
     <% main_menu_items(main_header_menu).each do |menu_item| %>
     <li>
       <%= link_to menu_item.title, menu_item_link(menu_item), title: t("shared.go_to_page") + menu_item.title, target: menu_item_target(menu_item) %>
-      <% if children_menu_items(menu_item.id).present? %>
+      <% if children_menu_items(main_header_menu, menu_item.id).present? %>
         <ul class="submenu menu">
-          <% children_menu_items(menu_item.id).each do |child_menu_item| %>
+          <% children_menu_items(main_header_menu, menu_item.id).each do |child_menu_item| %>
             <li class="is-submenu-item">
               <%= link_to child_menu_item.title, menu_item_link(child_menu_item), title: t("shared.go_to_page") + child_menu_item.title, target: menu_item_target(child_menu_item) %>
             </li>
