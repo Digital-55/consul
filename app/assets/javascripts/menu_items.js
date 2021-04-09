@@ -65,12 +65,13 @@ $(document).on('page:change', function(){
         };
         var parentItemId = menuItem.parentElement.parentElement.id.split("_").pop() || 0;
         var targetBlank = menuItem.children[1].children[4].children[1]['checked'];
+        var disabled = menuItem.children[1].children[5].children[1]['checked'];
         if (title.length > 0) {
           if (menuItem.id == "new_menu_item") {
             $.ajax({
               url: "/admin/menus/" + menuId + "/menu_items",
               type: "POST",
-              data: {'title': title, 'url': url, 'page_link': page_link, 'parent_item_id': parentItemId, 'item_type': itemType, 'target_blank': targetBlank, 'editable': true },
+              data: {'title': title, 'url': url, 'page_link': page_link, 'parent_item_id': parentItemId, 'item_type': itemType, 'target_blank': targetBlank, 'disabled': disabled },
               success: function(data){
                 var itemData = data['menu_item']
                 var title = itemData['title']
@@ -86,7 +87,7 @@ $(document).on('page:change', function(){
             $.ajax({
               url: "/admin/menus/" + menuId + "/menu_items/" + itemId,
               type: "PUT",
-              data: {'title': title, 'url': url, 'page_link': page_link, 'parent_item_id': parentItemId, 'item_type': itemType, 'target_blank': targetBlank, 'editable': false },
+              data: {'title': title, 'url': url, 'page_link': page_link, 'parent_item_id': parentItemId, 'item_type': itemType, 'target_blank': targetBlank, 'disabled': disabled },
               success: function(data){
                 var itemData = data['menu_item']
                 var title = itemData['title']

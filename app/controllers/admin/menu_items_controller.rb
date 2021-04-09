@@ -38,6 +38,6 @@ class Admin::MenuItemsController < Admin::BaseController
   end
 
   def menu_item_params
-    params.permit(:id, :title, :url, :page_link, :item_type, :target_blank, :parent_item_id, :menu_id, :editable)
+    params.permit(:id, :title, :url, :page_link, :item_type, :target_blank, :parent_item_id, :menu_id, :editable, :disabled)
   end
 end

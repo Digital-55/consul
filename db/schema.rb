@@ -1065,7 +1065,7 @@ ActiveRecord::Schema.define(version: 20210322113315) do
     t.integer  "parent_item_id", default: 0
     t.boolean  "target_blank",   default: false
     t.boolean  "editable",       default: true
-    t.boolean  "enabled",        default: false
+    t.boolean  "disabled",       default: false
     t.integer  "menu_id"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
