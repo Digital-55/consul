@@ -30,13 +30,13 @@
           <%= f.label :target_blank, t("admin.menus.menu_items.target_blank") %>
         </div>
       </div>
-        <div class="nesting-wrapper subitem dropped" data-url="<%= sort_admin_menu_menu_items_path(@menu) if @menu.present? %>">
-          <%= f.fields_for :menu_items, @menu.menu_items.where(parent_item_id: f.object.id).sort_by(&:position) do |menu_subitems_form| %>
-            <% [menu_subitems_form.object].flatten.each do |menu_subitems_form_data| %>
-              <%= render menu_items_partial(menu_subitems_form_data), f: menu_subitems_form %>
-            <% end if menu_subitems_form.object %>
-          <% end %>
-        </div>
+      <div class="nesting-wrapper subitem dropped" data-url="<%= sort_admin_menu_menu_items_path(@menu) if @menu.present? %>">
+        <%= f.fields_for :menu_items, @menu.menu_items.where(parent_item_id: f.object.id).sort_by(&:position) do |menu_subitems_form| %>
+          <% [menu_subitems_form.object].flatten.each do |menu_subitems_form_data| %>
+            <%= render menu_items_partial(menu_subitems_form_data), f: menu_subitems_form %>
+          <% end if menu_subitems_form.object %>
+        <% end %>
+      </div>
     </div>
   <% end %>
 <% end %>
