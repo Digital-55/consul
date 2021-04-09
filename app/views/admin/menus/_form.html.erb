@@ -43,25 +43,25 @@
 
     <% if @menu.persisted? %>
       <div class="row">
+        <%= link_to_add_association t("admin.menus.menu_items.add_url"), f, :menu_items,
+                                                        class: 'button hollow',
+                                                        partial: 'menu_item_fields',
+                                                        'data-association-insertion-node': '#menu-items-list',
+                                                        'data-association-insertion-method': 'append' %>
+
+        <%= link_to_add_association t("admin.menus.menu_items.add_page"), f, :menu_items,
+                                                        class: 'button hollow',
+                                                        partial: 'menu_item_fields_page_link',
+                                                        'data-association-insertion-node': '#menu-items-list',
+                                                        'data-association-insertion-method': 'append' %>
+
         <div class="small-12 medium-12 column end nesting-wrapper" id="menu-items-list" data-url="<%= sort_admin_menu_menu_items_path(@menu) if @menu.present? %>">
           <%= f.fields_for :menu_items, @menu.menu_items.where(parent_item_id: 0).sort_by(&:position) do |menu_items_form| %>
             <% [menu_items_form.object].flatten.each do |menu_items_form_data| %>
               <%= render menu_items_partial(menu_items_form_data), f: menu_items_form %>
             <% end %>
           <% end %>
-
         </div>
-        <%= link_to_add_association t("admin.menus.menu_items.add_url"), f, :menu_items,
-                                                        class: 'button hollow',
-                                                        partial: 'menu_item_fields',
-                                                        'data-association-insertion-node': '#menu-items-list',
-                                                        'data-association-insertion-method': 'prepend' %>
-
-        <%= link_to_add_association t("admin.menus.menu_items.add_page"), f, :menu_items,
-                                                        class: 'button hollow',
-                                                        partial: 'menu_item_fields_page_link',
-                                                        'data-association-insertion-node': '#menu-items-list',
-                                                        'data-association-insertion-method': 'prepend' %>
       </div>
     <% end %>
   </div>
