@@ -28,12 +28,12 @@
         </div>
       </div>
       <div class="nesting-wrapper subitem dropped" data-url="<%= sort_admin_menu_menu_items_path(@menu) if @menu.present? %>">
-          <%= f.fields_for :menu_items, @menu.menu_items.where(parent_item_id: f.object.id).sort_by(&:position) do |menu_subitems_form| %>
-            <% [menu_subitems_form.object].flatten.each do |menu_subitems_form_data| %>
-              <%= render menu_items_partial(menu_subitems_form_data), f: menu_subitems_form %>
-            <% end %>
+        <%= f.fields_for :menu_items, @menu.menu_items.where(parent_item_id: f.object.id).sort_by(&:position) do |menu_subitems_form| %>
+          <% [menu_subitems_form.object].flatten.each do |menu_subitems_form_data| %>
+            <%= render menu_items_partial(menu_subitems_form_data), f: menu_subitems_form %>
           <% end %>
-        </div>
+        <% end %>
+      </div>
     </div>
   <% end %>
 <% end %>
