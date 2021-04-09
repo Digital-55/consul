@@ -4,4 +4,6 @@ class MenuItem < ApplicationRecord
   accepts_nested_attributes_for :menu_items, allow_destroy: true, reject_if: :all_blank
 
   validates :title, presence: true
+
+  scope :enabled, -> { where(disabled: false) }
 end

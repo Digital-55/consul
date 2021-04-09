@@ -55,11 +55,11 @@ module MenusHelper
   end
 
   def main_menu_items(main_menu)
-    main_menu&.menu_items.where(parent_item_id: 0).sort_by(&:position)
+    main_menu&.menu_items.enabled.where(parent_item_id: 0).sort_by(&:position)
   end
 
   def children_menu_items(menu, menu_item_id)
-    menu&.menu_items.where(parent_item_id: menu_item_id)
+    menu&.menu_items.enabled.where(parent_item_id: menu_item_id)
   end
 
   def menu_item_link(menu_item)
