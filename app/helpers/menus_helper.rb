@@ -43,7 +43,7 @@ module MenusHelper
 
   def menu_items_partial(form_data)
     return 'menu_item_fields_page_link' if form_data.item_type == "page_link"
-    return 'menu_item_fields' if form_data.item_type == "url"
+    return 'menu_item_fields_url' if form_data.item_type == "url"
   end
 
   def main_header_menu
