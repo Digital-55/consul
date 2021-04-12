@@ -56,7 +56,7 @@
                                                         'data-association-insertion-method': 'append' %>
 
         <div class="small-12 medium-12 column end nesting-wrapper" id="menu-items-list" data-url="<%= sort_admin_menu_menu_items_path(@menu) if @menu.present? %>">
-          <%= f.fields_for :menu_items, @menu.menu_items.where(parent_item_id: 0).sort_by(&:position) do |menu_items_form| %>
+          <%= f.fields_for :menu_items, parent_admin_menu_items(@menu, 0) do |menu_items_form| %>
             <% [menu_items_form.object].flatten.each do |menu_items_form_data| %>
               <%= render menu_items_partial(menu_items_form_data), f: menu_items_form %>
             <% end %>
