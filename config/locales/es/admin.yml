@@ -314,7 +314,7 @@ es:
         title: Título
         published: Estado
         section: Sección
-        date: Fecha
+        date: Fecha actualización
       menu_items:
         add: Añadir ítems
         add_url: Añadir ítems de enlace
