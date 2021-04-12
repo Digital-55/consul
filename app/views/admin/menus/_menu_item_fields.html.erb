@@ -22,17 +22,19 @@
         <div class="small-12 medium-5 column">
           <%= f.text_field :url, class: 'menu-item-url' %>
         </div>
-        <div class="small-12 medium-3 column">
-          <%= f.check_box :target_blank, label: false, class: 'menu-item-target_blank' %>
-          <%= f.label :target_blank, t("admin.menus.menu_items.target_blank") %>
-        </div>
-        <div class="small-12 medium-3 column">
-          <%= f.check_box :disabled, label: false, class: 'menu-item-disabled' %>
-          <%= f.label :disabled, t("admin.menus.menu_items.disabled") %>
+        <div class="check-options">
+          <div class="small-12 medium-3 column">
+            <%= f.check_box :target_blank, label: false, class: 'menu-item-target_blank' %>
+            <%= f.label :target_blank, t("admin.menus.menu_items.target_blank") %>
+          </div>
+          <div class="small-12 medium-3 column">
+            <%= f.check_box :disabled, label: false, class: 'menu-item-disabled' %>
+            <%= f.label :disabled, t("admin.menus.menu_items.disabled") %>
+          </div>
         </div>
       </div>
       <div class="nesting-wrapper subitem dropped" data-url="<%= sort_admin_menu_menu_items_path(@menu) if @menu.present? %>">
-        <%= f.fields_for :menu_items, @menu.menu_items.where(parent_item_id: f.object.id).sort_by(&:position) do |menu_subitems_form| %>
+        <%= f.fields_for :menu_items, parent_admin_menu_items(@menu, f.object.id) do |menu_subitems_form| %>
           <% [menu_subitems_form.object].flatten.each do |menu_subitems_form_data| %>
             <%= render menu_items_partial(menu_subitems_form_data), f: menu_subitems_form %>
           <% end %>

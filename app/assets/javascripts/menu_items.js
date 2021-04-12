@@ -1,17 +1,25 @@
 $(document).on('page:change', function(){  
-  $('#menu-items-list').sortable({
-    cursor: "move",
-    opacity: 0.7,
-    connectWith: '.nesting-wrapper',
-    placeholder: 'ui-state-hover',
-    update: function(e, ui) {
-      $.ajax({
-        url: $(this).data("url"),
-        type: "PATCH",
-        data: $(this).sortable('serialize'),
-      });
-    }
-  })
+  // $('#menu-items-list').sortable({
+  //   cursor: "move",
+  //   opacity: 0.7,
+  //   connectWith: '.nesting-wrapper',
+  //   placeholder: 'ui-state-hover',
+  //   update: function(e, ui) {
+  //     $.ajax({
+  //       url: $(this).data("url"),
+  //       type: "PATCH",
+  //       data: $(this).sortable('serialize')
+  //     });
+  //   },
+  //     start: function( e, ui ) {
+  //       $('.nesting-wrapper').addClass('subitem');
+  //       $('.nesting-wrapper.subitem.dropped').removeClass('dropped');
+  //     },
+  //     stop: function( e, ui ) {
+  //       $('.nesting-wrapper.subitem').addClass('dropped')
+  //       $('.nesting-wrapper').addClass('subitem')
+  //     }
+  // })
 
   $('.nesting-wrapper').sortable({
     cursor: "move",
@@ -22,7 +30,7 @@ $(document).on('page:change', function(){
       $.ajax({
         url: $(this).data("url"),
         type: "PATCH",
-        data: $(this).sortable('serialize') + '&parent_item_id=' + getParentItem(this)
+        data: $(this).sortable('serialize') + '&parent_item_id=' + getParentItem(e.target)
       });
     },
     start: function( e, ui ) {
@@ -35,39 +43,38 @@ $(document).on('page:change', function(){
     }
   })
 
-  function getParentItem(data) {
-    if($(data)[0].getAttribute('id') !== "menu-items-list") {
-      return $(data)[0].closest('.card.nested-fields').attributes['id'].value.split("_").pop()
-    } else {
-      return 0
+  function getParentItem(event_target) {
+    if(event_target.id !== "menu-items-list") {
+      return event_target.parentElement.getAttribute('id').split('_').pop()
     }
   }
 
   $('#menu-items-list').on('change', function(e) {
-    var menuItem = getMenuItem(e.target);
-    if (!!menuItem) {
+    var eventTargetMenuItem = getMenuItem(e.target);
+    var $menuItem = $(this).find(eventTargetMenuItem)
+    if (!!eventTargetMenuItem) {
       var urlArray = window.location.href.split("/");
       var menuId = urlArray.find(e => Number.isInteger(parseInt(e)));
-      var itemField = getItemField(menuItem.classList);
+      var itemField = getItemField(eventTargetMenuItem.classList);
       var itemType, url, page_link;
-      var link =  menuItem.children[1].children[3].children[1].value;
+      var link = getItemLink($menuItem)
       if (["title", "url", "page_link", "target_blank"].includes(itemField)) {
-        var title = menuItem.children[1].children[2].children[1].value;
-        if(menuItem.classList.value.includes("url")) {
+        var title = $menuItem.find('input.menu-item-title').val()
+        if(eventTargetMenuItem.classList.value.includes("url")) {
           itemType = "url"
           url = link
           page_link = ''
         };
-        if(menuItem.classList.value.includes("page_link")) {
+        if(eventTargetMenuItem.classList.value.includes("page_link")) {
           itemType = "page_link"
           url = ''
           page_link = link
         };
-        var parentItemId = menuItem.parentElement.parentElement.id.split("_").pop() || 0;
-        var targetBlank = menuItem.children[1].children[4].children[1]['checked'];
-        var disabled = menuItem.children[1].children[5].children[1]['checked'];
+        var parentItemId = getParentItemId($menuItem)
+        var targetBlank = $menuItem.find('input.menu-item-target_blank')[0]['checked']
+        var disabled = $menuItem.find('input.menu-item-disabled')[0]['checked']
         if (title.length > 0) {
-          if (menuItem.id == "new_menu_item") {
+          if (eventTargetMenuItem.id == "new_menu_item") {
             $.ajax({
               url: "/admin/menus/" + menuId + "/menu_items",
               type: "POST",
@@ -82,8 +89,8 @@ $(document).on('page:change', function(){
             });
           };
 
-          if (menuItem.id.includes('menu_item_')) {
-            var itemId = menuItem.id.split('_').pop();
+          if (eventTargetMenuItem.id.includes('menu_item_')) {
+            var itemId = eventTargetMenuItem.id.split('_').pop();
             $.ajax({
               url: "/admin/menus/" + menuId + "/menu_items/" + itemId,
               type: "PUT",
@@ -105,8 +112,8 @@ $(document).on('page:change', function(){
   $('.remove_fields.existing').click(function(e) {
     var urlArray = window.location.href.split("/");
     var menuId = urlArray.find(e => Number.isInteger(parseInt(e)));
-    var menuItem = getMenuItem(e.target);
-    var itemId = menuItem.id.split('_').pop();
+    var eventTargetMenuItem = getMenuItem(e.target);
+    var itemId = eventTargetMenuItem.id.split('_').pop();
     $.ajax({
       url: "/admin/menus/" + menuId + "/menu_items/" + itemId,
       type: "DELETE"
@@ -133,5 +140,21 @@ $(document).on('page:change', function(){
     };
   }
 
+  function getItemLink(menuItem) {
+    if (menuItem.find('input.menu-item-url').first().length > 0 ) {
+      return menuItem.find('input.menu-item-url').first().val()
+    }
+    if (menuItem.find('select.menu-item-page_link').first().length > 0) {
+      return menuItem.find('select.menu-item-page_link').first().val()
+    }
+  }
+
+  function getParentItemId(menuItem) {
+    if (menuItem.parents('[id*="menu_item_"]').first().length > 0 ) {
+      return menuItem.parents('[id*="menu_item_"]').first().attr('id').split("_").pop() || 0
+    } else {
+      return 0
+    }
+  }
 
 });

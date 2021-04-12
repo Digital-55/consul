@@ -58,6 +58,10 @@ module MenusHelper
     main_menu&.menu_items.enabled.where(parent_item_id: 0).sort_by(&:position)
   end
 
+  def parent_admin_menu_items(menu, parent_id)
+    menu.menu_items.where(parent_item_id: parent_id).sort_by(&:position)
+  end
+
   def children_menu_items(menu, menu_item_id)
     menu&.menu_items.enabled.where(parent_item_id: menu_item_id)
   end
