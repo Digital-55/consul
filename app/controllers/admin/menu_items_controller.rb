@@ -17,8 +17,11 @@ class Admin::MenuItemsController < Admin::BaseController
   end
 
   def update
-    @menu_item.update(menu_item_params)
-    render json: {menu_item: @menu_item}
+    if @menu_item.update(menu_item_params)
+      render json: {menu_item: @menu_item}
+    else
+      render json: { errors: @menu_item.errors.messages, menu_item: @menu_item }
+    end
   end
 
   def destroy
