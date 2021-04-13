@@ -85,6 +85,7 @@ $(document).on('page:change', function(){
                 var id = itemData['id']
                 $('#new_menu_item h5').first().text(title)
                 $('#new_menu_item').attr('id', "menu_item_" + id)
+                // location.reload();
               }
             });
           };
@@ -96,10 +97,23 @@ $(document).on('page:change', function(){
               type: "PUT",
               data: {'title': title, 'url': url, 'page_link': page_link, 'parent_item_id': parentItemId, 'item_type': itemType, 'target_blank': targetBlank, 'disabled': disabled },
               success: function(data){
-                var itemData = data['menu_item']
-                var title = itemData['title']
-                var id = itemData['id']
-                $("#menu_item_" + id + " h5.menu-item-tag").first().text(title)
+                if (data.errors) {
+                  console.log(data.errors)
+                  var errorField = Object.keys(data.errors)[0];
+                  var menuItemSelector = '#menu_item_' + data.menu_item.id;
+                  var $menuItem = $(menuItemSelector);
+                  var fieldSelector = '.menu-item-' + errorField
+                  var $itemField = $menuItem.find(fieldSelector).first()
+                  $itemField.addClass('wrap-field-error')
+                } else {
+                  var itemData = data['menu_item']
+                  var title = itemData['title']
+                  var id = itemData['id']
+                  $("#menu_item_" + id + " h5.menu-item-tag").first().text(title)
+                  var menuItemSelector = '#menu_item_' + itemData.id;
+                  var $menuItem = $(menuItemSelector);
+                  $menuItem.find('.wrap-field-error').removeClass('wrap-field-error')
+                }
               }
             });
           };
