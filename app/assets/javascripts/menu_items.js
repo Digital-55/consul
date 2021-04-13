@@ -146,7 +146,9 @@ $(document).on('page:change', function(){
     }
   }
 
-  // Activates 'cocoon:after-insert' to allow sorting menu-items
-  $('.button.add_fields').click()
-  $('.remove_fields.dynamic').click()
+  // Activates 'cocoon:after-insert' to allow sorting existing menu-items
+  if($('.nested-fields').length > 0) {
+    $('.button.add_fields').click()
+    $('.remove_fields.dynamic').click()
+  }
 });
