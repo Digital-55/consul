@@ -16,6 +16,12 @@ $(document).on('page:change', function(){
       start: function( e, ui ) {
         $('.nesting-wrapper').addClass('subitem');
         $('.nesting-wrapper.subitem.dropped').removeClass('dropped');
+        // Avoids nesting more than two levels deep
+        $('.nested-fields').each(function() {
+          if($(this).parents('.nested-fields').length > 0){
+            $(this).find('.nesting-wrapper.subitem').addClass('dropped')
+          }
+        });
       },
       stop: function( e, ui ) {
         $('.nesting-wrapper.subitem').addClass('dropped')
