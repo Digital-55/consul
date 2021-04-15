@@ -139,6 +139,10 @@
               <%= link_to t("admin.menu.menus"), admin_menus_path %>
             </li>
 
+            <li <%= "class=is-active" if controller_name == "custom_pages" %>>
+              <%= link_to t("admin.menu.custom_pages"), admin_custom_pages_path %>
+            </li>
+
             <li <%= "class=is-active" if menu_pages? || controller_name == "pages" %>>
               <%= link_to t("admin.menu.site_customization.pages"), admin_site_customization_pages_path %>
             </li>

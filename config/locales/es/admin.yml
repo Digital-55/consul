@@ -284,6 +284,19 @@ es:
         undefined: Sin definir
         user_groups: "Grupos"
       search_unfeasible: Buscar inviables
+    custom_pages:
+      index:
+        create: Nueva página
+        delete: Eliminar página
+        edit: Editar página
+        filters:
+          all: Todas
+          published: Publicada
+          draft: Borrador
+        published: Estado
+        slug: Slug
+        title: Título
+        updated_at: Última actualización
     menus:
       create:
         notice: ¡Menú creado con éxito!
@@ -853,6 +866,7 @@ es:
       activity: Actividad de moderadores
       admin: Menú de administración
       banner: Gestionar banners
+      custom_pages: Páginas personalizadas
       proposals: Propuestas
       proposals_topics: Temas de propuestas
       budgets: Presupuestos participativos

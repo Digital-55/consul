@@ -111,6 +111,8 @@ namespace :admin do
     end
   end
 
+  resources :custom_pages
+
   resources :comments, only: :index do
     member do
       put :restore
