@@ -729,6 +729,14 @@ ActiveRecord::Schema.define(version: 20210624085951) do
     t.index ["user_id"], name: "index_consultants_on_user_id", using: :btree
   end
 
+  create_table "custom_pages", force: :cascade do |t|
+    t.string   "title"
+    t.string   "slug"
+    t.boolean  "published"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "dashboard_actions", force: :cascade do |t|
     t.string   "title",                     limit: 80
     t.text     "description"
