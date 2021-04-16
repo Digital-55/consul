@@ -30,6 +30,15 @@ class Admin::CustomPagesController < Admin::BaseController
     end
   end
 
+  def destroy
+    if @custom_page.destroy
+      flash[:notice] = t("admin.custom_pages.destroy.success")
+    else
+      flash[:notice] = t("admin.custom_pages.destroy.error")
+    end
+    redirect_to admin_custom_pages_path
+  end
+
   private
 
   def custom_page_params
