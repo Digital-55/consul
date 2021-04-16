@@ -285,9 +285,11 @@ es:
         user_groups: "Grupos"
       search_unfeasible: Buscar inviables
     custom_pages:
+      create:
+        notice: ¡Página personalizada creada con éxito!
+      edit:
+        editing: Editar página personalizada
       custom_page:
-        create:
-            notice: ¡Página personalizada creado con éxito!
         creating: Crear página personalizada
         custom_page_items: Módulos
         published: Estado
