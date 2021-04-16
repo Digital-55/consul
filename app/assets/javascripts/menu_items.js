@@ -41,7 +41,7 @@ $(document).on('page:change', function(){
     var $menuItem = $(eventTargetMenuItem)
     if (!!eventTargetMenuItem) {
       var urlArray = window.location.href.split("/");
-      var menuId = urlArray.find(e => Number.isInteger(parseInt(e)));
+      var menuId = urlArray.map(Number).filter(Number)[0].toString()
       var itemField = getItemField(eventTargetMenuItem.classList);
       var itemType, url, page_link;
       var link = getItemLink($menuItem)
