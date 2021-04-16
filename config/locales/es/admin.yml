@@ -287,6 +287,10 @@ es:
     custom_pages:
       create:
         notice: ¡Página personalizada creada con éxito!
+      destroy:
+        alert_notice: "Esta acción eliminará la página personalizada y todos sus módulos."
+        success: ¡Página personalizadda eliminada con éxito!
+        error: Hubo algún error al intentar eliminar la página personalizada. Inténtalo de nuevo.
       edit:
         editing: Editar página personalizada
       custom_page:
