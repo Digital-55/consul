@@ -285,6 +285,14 @@ es:
         user_groups: "Grupos"
       search_unfeasible: Buscar inviables
     custom_pages:
+      custom_page:
+        create:
+            notice: ¡Página personalizada creado con éxito!
+        creating: Crear página personalizada
+        custom_page_items: Módulos
+        published: Estado
+        slug: Slug
+        title: Título
       index:
         create: Nueva página
         delete: Eliminar página
@@ -866,7 +874,7 @@ es:
       activity: Actividad de moderadores
       admin: Menú de administración
       banner: Gestionar banners
-      custom_pages: Páginas personalizadas
+      custom_pages: Páginas personalizadas (WIP)
       proposals: Propuestas
       proposals_topics: Temas de propuestas
       budgets: Presupuestos participativos
