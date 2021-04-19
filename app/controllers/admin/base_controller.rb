@@ -4,6 +4,7 @@ class Admin::BaseController < ApplicationController
   before_action :double_verified
   skip_authorization_check
   before_action :verify_administrator
+  
 
   private
 

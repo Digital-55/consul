@@ -46,6 +46,10 @@ class WelcomeController < ApplicationController
 
   end
 
+  def generic_search
+
+  end
+
   private
 
   def set_user_recommendations
