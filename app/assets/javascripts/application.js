@@ -262,3 +262,9 @@ function changeShowFields(element, field) {
   }
 }
 
+function changeButton(element){
+  $("#importbtn").each(function(){
+    $(this).attr("disabled", false);
+  });
+}
+

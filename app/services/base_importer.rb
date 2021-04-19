@@ -5,6 +5,7 @@ require 'csv_converters'
 
     OPTIONS = {
       headers: true,
+      encoding:'iso-8859-1:utf-8',
       header_converters: [:transliterate, :symbol],
       converters: [:all, :blank_to_nil],
       col_sep: ?;
@@ -18,6 +19,9 @@ require 'csv_converters'
       CSV.foreach(@path_to_file, OPTIONS.merge(options)) do |row|
         block.call(row)
       end
+    rescue => e
+      puts "========= ERROR #{e}"
+      block.call(nil)
     end
 
     def import!
