@@ -103,7 +103,10 @@ $(document).on('page:change', function(){
         }
       }
     };
+    removeItem();
+  })
 
+  function removeItem() {
     $('a.remove_fields').click(function(e) {
       var urlArray = window.location.href.split("/");
       var menuId = urlArray.find(e => Number.isInteger(parseInt(e)));
@@ -114,8 +117,7 @@ $(document).on('page:change', function(){
         type: "DELETE"
       });
     })
-
-  })
+  }
 
   function getMenuItem(event_target) {
     var newMenuItem = event_target.closest('#new_menu_item');
@@ -154,6 +156,7 @@ $(document).on('page:change', function(){
     }
   }
 
+  removeItem();
   // Activates 'cocoon:after-insert' to allow sorting existing menu-items
   if($('.nested-fields').length > 0) {
     $('.button.add_fields').click()
