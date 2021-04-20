@@ -12,4 +12,9 @@ module CustomPagesHelper
     value == true ? "<strong>#{key}</strong>".html_safe : key
   end
 
+  def custom_page_module_partial(form_data)
+    return 'subtitle_module' if form_data.type == "Subtitle"
+    return 'claim_module' if form_data.type == "Claim"
+  end
+
 end

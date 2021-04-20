@@ -111,7 +111,15 @@ namespace :admin do
     end
   end
 
-  resources :custom_pages
+  resources :custom_pages do
+    resources :custom_page_modules do
+      collection do
+        patch :sort
+      end
+    end
+    resources :subtitles, controller: :custom_page_modules, type: 'Subtitle'
+    resources :claims, controller: :custom_page_modules, type: 'Claim'
+  end
 
   resources :comments, only: :index do
     member do

@@ -40,7 +40,27 @@
     </div>
 
     <hr>
+    <% if @custom_page.persisted? %>
+      <div class="row">
+        <%= link_to_add_association t("admin.custom_pages.custom_page_modules.add_subtitle"), f, :subtitles,
+                                                        class: 'button hollow',
+                                                        partial: 'subtitle_module',
+                                                        'data-association-insertion-node': '#custom-page-modules-list',
+                                                        'data-association-insertion-method': 'prepend' %>
 
+        <%= link_to_add_association t("admin.custom_pages.custom_page_modules.add_claim"), f, :claims,
+                                                        class: 'button hollow',
+                                                        partial: 'claim_module',
+                                                        'data-association-insertion-node': '#custom-page-modules-list',
+                                                        'data-association-insertion-method': 'prepend' %>
+
+        <div class="small-12 medium-12 column end nesting-wrapper" id="custom-page-modules-list" data-url="<% sort_admin_custom_page_custom_page_modules_path(@custom_page) if @custom_page.present? %>">
+          <%= f.fields_for :custom_page_modules, @custom_page.custom_page_modules do |custom_page_module_form| %>
+            <%= render custom_page_module_partial(custom_page_module_form.object), f: custom_page_module_form %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
     
   </div>
 <% end %>

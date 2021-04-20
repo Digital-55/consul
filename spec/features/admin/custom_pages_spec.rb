@@ -34,7 +34,7 @@ describe "Admin custom pages management" do
       expect(page).to have_content("There is 1 custom page")
     end
 
-    scenario "Draft custom page is not as public page" do
+    scenario "Draft custom page is not a public page" do
       visit("/#{@custom_page.slug}")
       expect(status_code).to eq(404)
     end
