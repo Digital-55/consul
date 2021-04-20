@@ -12,6 +12,7 @@ class Sg::Setting < ApplicationRecord
 
     scope :search_settings, -> { where(setting_type: "search") }
     scope :order_settings, -> { where(setting_type: "order") }
+    scope :active, -> { where("active = true AND title is not null") }
 
     validates :title, :setting_type, presence: true
 end

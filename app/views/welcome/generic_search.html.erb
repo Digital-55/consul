@@ -1,0 +1,29 @@
+<% if @search_terms %>
+  <div class="highlight no-margin-top padding margin-bottom">
+    <div class="row">
+      <div class="small-12 column">
+        
+          <h2><%= t("shared.search_results") %></h2>
+          <p>
+            <%#= page_entries_info @actuations %>
+            <%= t("debates.index.search_results_html", count: 0, search_term: @resultado) %>
+          </p>
+        
+      </div>
+    </div>
+  </div>
+<%end%>
+<%= render "orders" %>
+<%# if @actuations.any? %>
+  <%#= render "orders", type: @type %>
+  <main>
+    <div class="row">
+      <div id="actuations" class="actuations-list small-12 column">
+        <div id="actuations-list" style="margin-top: 2em">
+          <%#= render partial: "sures/actuation", collection: @actuations %>
+          <%#= paginate @actuations %>        
+        </div>
+      </div>
+    </div>
+  </main>
+<%# end %>

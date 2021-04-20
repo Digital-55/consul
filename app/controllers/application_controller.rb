@@ -43,7 +43,7 @@ class ApplicationController < ActionController::Base
       
 
       if aux_layout.to_s == "application"
-        @sures_searchs_settings = Sures::SearchSetting.search_settings.order(id: :asc)
+        @generic_searchs_settings = Sg::Setting.search_settings.active.order(id: :asc) 
         @search_terms = nil
       end     
     end
