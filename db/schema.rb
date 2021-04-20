@@ -729,6 +729,16 @@ ActiveRecord::Schema.define(version: 20210624085951) do
     t.index ["user_id"], name: "index_consultants_on_user_id", using: :btree
   end
 
+  create_table "custom_page_modules", force: :cascade do |t|
+    t.integer  "custom_page_id"
+    t.string   "type"
+    t.string   "subtitle"
+    t.string   "claim"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["type", "custom_page_id"], name: "index_custom_page_modules_on_type_and_custom_page_id", using: :btree
+  end
+
   create_table "custom_pages", force: :cascade do |t|
     t.string   "title"
     t.string   "slug"
