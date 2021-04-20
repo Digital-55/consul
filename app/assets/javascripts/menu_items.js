@@ -36,7 +36,7 @@ $(document).on('page:change', function(){
     }
   });
 
-  $(this).on('change', function(e) {
+  $('.nesting-wrapper').on('change', function(e) {
     var eventTargetMenuItem = getMenuItem(e.target);
     var $menuItem = $(eventTargetMenuItem)
     if (!!eventTargetMenuItem) {
@@ -62,6 +62,7 @@ $(document).on('page:change', function(){
         var disabled = $menuItem.find('input.menu-item-disabled')[0]['checked']
         if (title.length > 0) {
           if (eventTargetMenuItem.id == "new_menu_item") {
+            // debugger;
             $.ajax({
               url: "/admin/menus/" + menuId + "/menu_items",
               type: "POST",
@@ -102,17 +103,18 @@ $(document).on('page:change', function(){
         }
       }
     };
-  })
 
-  $('.remove_fields.existing').click(function(e) {
-    var urlArray = window.location.href.split("/");
-    var menuId = urlArray.find(e => Number.isInteger(parseInt(e)));
-    var eventTargetMenuItem = getMenuItem(e.target);
-    var itemId = eventTargetMenuItem.id.split('_').pop();
-    $.ajax({
-      url: "/admin/menus/" + menuId + "/menu_items/" + itemId,
-      type: "DELETE"
-    });
+    $('a.remove_fields').click(function(e) {
+      var urlArray = window.location.href.split("/");
+      var menuId = urlArray.find(e => Number.isInteger(parseInt(e)));
+      var eventTargetMenuItem = getMenuItem(e.target);
+      var itemId = eventTargetMenuItem.id.split('_').pop();
+      $.ajax({
+        url: "/admin/menus/" + menuId + "/menu_items/" + itemId,
+        type: "DELETE"
+      });
+    })
+
   })
 
   function getMenuItem(event_target) {
@@ -146,7 +148,7 @@ $(document).on('page:change', function(){
 
   function getParentItemId(menuItem) {
     if (menuItem.parents('[id*="menu_item_"]').first().length > 0 ) {
-      return menuItem.parents('[id*="menu_item_"]').first().attr('id').split("_").pop() || 0
+      return menuItem.parents('[id*="menu_item_"]').first().attr('id').split("_").pop()
     } else {
       return 0
     }
