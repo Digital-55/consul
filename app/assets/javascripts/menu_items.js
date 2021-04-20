@@ -109,7 +109,7 @@ $(document).on('page:change', function(){
   function removeItem() {
     $('a.remove_fields').click(function(e) {
       var urlArray = window.location.href.split("/");
-      var menuId = urlArray.find(e => Number.isInteger(parseInt(e)));
+      var menuId = urlArray.map(Number).filter(Number)[0].toString()
       var eventTargetMenuItem = getMenuItem(e.target);
       var itemId = eventTargetMenuItem.id.split('_').pop();
       $.ajax({
