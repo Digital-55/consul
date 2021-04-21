@@ -3,6 +3,7 @@ class CreateCustomPageModules < ActiveRecord::Migration[5.0]
     create_table :custom_page_modules do |t|
       t.integer :custom_page_id
       t.string :type
+      t.integer :position, default: 0
       t.string :subtitle
       t.string :claim
 

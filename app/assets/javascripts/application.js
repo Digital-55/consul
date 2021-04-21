@@ -91,6 +91,7 @@
 //= require sg.js
 //= require parbudget
 //= require menu_items.js
+//= require custom_page_modules.js
 
 var initialize_modules = function() {
   App.Answers.initialize();
