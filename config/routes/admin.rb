@@ -119,6 +119,7 @@ namespace :admin do
     end
     resources :subtitles, controller: :custom_page_modules, type: 'Subtitle'
     resources :claims, controller: :custom_page_modules, type: 'Claim'
+    resources :rich_texts, controller: :custom_page_modules, type: 'RichText'
   end
 
   resources :comments, only: :index do

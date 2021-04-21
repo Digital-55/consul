@@ -15,6 +15,7 @@ module CustomPagesHelper
   def custom_page_module_partial(form_data)
     return 'subtitle_module' if form_data.type == "Subtitle"
     return 'claim_module' if form_data.type == "Claim"
+    return 'rich_text_module' if form_data.type == "RichText"
   end
 
   def module_id(object)

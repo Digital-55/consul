@@ -499,10 +499,12 @@ ActiveRecord::Schema.define(version: 20210420102437) do
     t.integer  "custom_page_id"
     t.string   "type"
     t.integer  "position",       default: 0
+    t.boolean  "disabled",       default: false
     t.string   "subtitle"
     t.string   "claim"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.text     "rich_text"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.index ["type", "custom_page_id"], name: "index_custom_page_modules_on_type_and_custom_page_id", using: :btree
   end
 

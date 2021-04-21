@@ -4,8 +4,10 @@ class CreateCustomPageModules < ActiveRecord::Migration[5.0]
       t.integer :custom_page_id
       t.string :type
       t.integer :position, default: 0
+      t.boolean :disabled, default: false
       t.string :subtitle
       t.string :claim
+      t.text :rich_text
 
       t.timestamps
     end

@@ -289,9 +289,11 @@ es:
         notice: ¡Página personalizada creada con éxito!
       custom_page_modules:
         add_claim: Añadir claim
+        add_rich_text: Añadir texto
         add_subtitle: Añadir subtítulo
         subtitle_module:
           claim: Claim
+          rich_text: Texto
           subtitle: Subtítulo
       destroy:
         alert_notice: "Esta acción eliminará la página personalizada y todos sus módulos."
