@@ -10,6 +10,18 @@ $(document).on('page:change', function(){
         type: "PATCH",
         data: $(this).sortable('serialize')
       });
+    },
+    start: function (event, ui) {
+      var id_textarea = ui.item.find(".ckeditor textarea").attr('id');
+      if(id_textarea) {
+        CKEDITOR.instances[id_textarea].destroy();
+      }
+    },
+    stop: function (event, ui) {
+      var id_textarea = ui.item.find(".ckeditor textarea").attr('id');
+      if(id_textarea) {
+        CKEDITOR.replace(id_textarea);
+      }
     }
   });
 });
