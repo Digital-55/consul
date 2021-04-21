@@ -17,4 +17,12 @@ module CustomPagesHelper
     return 'claim_module' if form_data.type == "Claim"
   end
 
+  def module_id(object)
+    if object.new_record?
+      "new_custom_page_module"
+    else
+      "custom_page_module_#{object.id}"
+    end
+  end
+
 end

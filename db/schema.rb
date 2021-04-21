@@ -498,10 +498,11 @@ ActiveRecord::Schema.define(version: 20210420102437) do
   create_table "custom_page_modules", force: :cascade do |t|
     t.integer  "custom_page_id"
     t.string   "type"
+    t.integer  "position",       default: 0
     t.string   "subtitle"
     t.string   "claim"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.index ["type", "custom_page_id"], name: "index_custom_page_modules_on_type_and_custom_page_id", using: :btree
   end
 

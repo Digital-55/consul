@@ -89,6 +89,7 @@
 //= require login_form
 //= require starrr.js
 //= require menu_items.js
+//= require custom_page_modules.js
 
 var initialize_modules = function() {
   App.Answers.initialize();
