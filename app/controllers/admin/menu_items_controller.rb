@@ -12,8 +12,12 @@ class Admin::MenuItemsController < Admin::BaseController
   end
 
   def create
-    @menu_item = MenuItem.create(menu_item_params)
-    render json: {menu_item: @menu_item}
+    @menu_item = MenuItem.new(menu_item_params)
+    if @menu_item.save
+      render json: {menu_item: @menu_item}
+    else
+      render json: { errors: @menu_item.errors.messages, menu_item: @menu_item }
+    end
   end
 
   def update

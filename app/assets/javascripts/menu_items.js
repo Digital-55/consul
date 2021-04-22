@@ -69,10 +69,19 @@ $(document).on('page:change', function(){
               data: {'title': title, 'url': url, 'page_link': page_link, 'parent_item_id': parentItemId, 'item_type': itemType, 'target_blank': targetBlank, 'disabled': disabled },
               item: $menuItem,
               success: function(data){
-                var $newItem = this.item
-                var itemData = data['menu_item']
-                $newItem.find('.menu-item-tag').first().text(itemData['title'])
-                $newItem.attr('id', "menu_item_" + itemData['id'])
+                if (data.errors) {
+                  var errorField = Object.keys(data.errors)[0];
+                  var menuItemSelector = '#new_menu_item';
+                  var $menuItem = $(menuItemSelector);
+                  var fieldSelector = '.menu-item-' + errorField
+                  var $itemField = $menuItem.find(fieldSelector).first()
+                  $itemField.addClass('wrap-field-error')
+                } else {
+                  var $newItem = this.item
+                  var itemData = data['menu_item']
+                  $newItem.find('.menu-item-tag').first().text(itemData['title'])
+                  $newItem.attr('id', "menu_item_" + itemData['id'])
+                }
               }
             });
           };
