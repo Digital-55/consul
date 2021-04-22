@@ -8,9 +8,15 @@
     </div>
   </div>
   <div class="card-section">
-    <div class="small-12 medium-8 column">
+    <div class="small-12 medium-10 column">
       <%= f.label :claim, t("admin.custom_pages.custom_page_modules.subtitle_module.claim") %>
       <%= f.text_field :claim, label: false, class: 'claim-module-text' %>
+    </div>
+    <div class="check-options">
+      <div class="small-12 medium-2 column">
+        <%= f.check_box :disabled, label: false, class: 'custom_page_module-disabled' %>
+        <%= f.label :disabled, t("admin.custom_pages.custom_page_modules.disabled") %>
+      </div>
     </div>
   </div>
 </div>
