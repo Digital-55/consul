@@ -33,11 +33,6 @@
       </div>
 
     </div>
-      <div class="row">
-      <div class="actions small-12 medium-3 column">
-        <%= f.submit(class: "button expanded", value: t("admin.menus.edit.form.submit_button")) %>
-      </div>
-    </div>
 
     <hr>
     <% if @custom_page.persisted? %>
@@ -67,6 +62,12 @@
         </div>
       </div>
     <% end %>
+
+    <div class="row">
+      <div class="actions small-12 medium-3 column">
+        <%= f.submit(class: "button expanded", value: t("admin.menus.edit.form.submit_button")) %>
+      </div>
+    </div>
     
   </div>
 <% end %>
