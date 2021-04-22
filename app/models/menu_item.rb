@@ -14,7 +14,7 @@ class MenuItem < ApplicationRecord
   end
 
   def title_valid?
-    !!title.match(/\A[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ]*\z/)
+    !!title.match(/^[[:alpha:]\s]*$/u)
   end
 
   def url_format
