@@ -291,6 +291,7 @@ es:
         add_claim: Añadir claim
         add_rich_text: Añadir texto
         add_subtitle: Añadir subtítulo
+        disabled: Desactivado
         subtitle_module:
           claim: Claim
           rich_text: Texto
@@ -301,6 +302,7 @@ es:
         error: Hubo algún error al intentar eliminar la página personalizada. Inténtalo de nuevo.
       edit:
         editing: Editar página personalizada
+        notice: ¡Página personalizada actualizada con éxito!
       custom_page:
         creating: Crear página personalizada
         custom_page_items: Módulos
