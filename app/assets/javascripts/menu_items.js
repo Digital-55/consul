@@ -14,11 +14,12 @@ $(document).on('page:change', function(){
         });
       },
       start: function( e, ui ) {
+        $sortedItem = ui.item;
         $('.nesting-wrapper').addClass('subitem');
         $('.nesting-wrapper.subitem.dropped').removeClass('dropped');
         // Avoids nesting more than two levels deep
         $('.nested-fields').each(function() {
-          if($(this).parents('.nested-fields').length > 0){
+          if($(this).parents('.nested-fields').length > 0 || $sortedItem.find('.nested-fields').length > 0){
             $(this).find('.nesting-wrapper.subitem').addClass('dropped')
           }
         });
@@ -79,7 +80,12 @@ $(document).on('page:change', function(){
                 } else {
                   var $newItem = this.item
                   var itemData = data['menu_item']
-                  $newItem.find('.menu-item-tag').first().text(itemData['title'])
+                  var $newItemTitle = $newItem.find('.menu-item-tag').first()
+                  $newItemTitle.text(itemData['title'] + ' (Guardando...)')
+                  setTimeout(
+                    function(){
+                      $newItemTitle.text(itemData['title'])
+                    }, 500)
                   $newItem.attr('id', "menu_item_" + itemData['id'])
                 }
               }
@@ -103,7 +109,12 @@ $(document).on('page:change', function(){
                 } else {
                   var itemData = data['menu_item']
                   var menuItemSelector = "#menu_item_" + itemData['id']
-                  $(menuItemSelector + " h5.menu-item-tag").first().text(itemData['title'])
+                  var $menuItemTitle = $(menuItemSelector + " h5.menu-item-tag").first()
+                  $menuItemTitle.text(itemData['title'] + ' (Actualizando...)')
+                  setTimeout(
+                    function(){
+                      $menuItemTitle.text(itemData['title'])
+                    }, 500)
                   $(menuItemSelector).find('.wrap-field-error').removeClass('wrap-field-error')
                 }
               }
