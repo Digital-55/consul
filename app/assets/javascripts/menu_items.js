@@ -37,7 +37,7 @@ $(document).on('page:change', function(){
     }
   });
 
-  $('.nesting-wrapper').on('change', function(e) {
+  $('.nesting-wrapper.nested').on('change', function(e, ui) {
     var eventTargetMenuItem = getMenuItem(e.target);
     var $menuItem = $(eventTargetMenuItem)
     if (!!eventTargetMenuItem) {
@@ -63,7 +63,6 @@ $(document).on('page:change', function(){
         var disabled = $menuItem.find('input.menu-item-disabled')[0]['checked']
         if (title.length > 0) {
           if (eventTargetMenuItem.id == "new_menu_item") {
-            // debugger;
             $.ajax({
               url: "/admin/menus/" + menuId + "/menu_items",
               type: "POST",
