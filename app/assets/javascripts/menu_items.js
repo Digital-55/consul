@@ -79,7 +79,12 @@ $(document).on('page:change', function(){
                 } else {
                   var $newItem = this.item
                   var itemData = data['menu_item']
-                  $newItem.find('.menu-item-tag').first().text(itemData['title'])
+                  var $newItemTitle = $newItem.find('.menu-item-tag').first()
+                  $newItemTitle.text(itemData['title'] + ' (Guardando...)')
+                  setTimeout(
+                    function(){
+                      $newItemTitle.text(itemData['title'])
+                    }, 500)
                   $newItem.attr('id', "menu_item_" + itemData['id'])
                 }
               }
@@ -103,7 +108,12 @@ $(document).on('page:change', function(){
                 } else {
                   var itemData = data['menu_item']
                   var menuItemSelector = "#menu_item_" + itemData['id']
-                  $(menuItemSelector + " h5.menu-item-tag").first().text(itemData['title'])
+                  var $menuItemTitle = $(menuItemSelector + " h5.menu-item-tag").first()
+                  $menuItemTitle.text(itemData['title'] + ' (Actualizando...)')
+                  setTimeout(
+                    function(){
+                      $menuItemTitle.text(itemData['title'])
+                    }, 500)
                   $(menuItemSelector).find('.wrap-field-error').removeClass('wrap-field-error')
                 }
               }
