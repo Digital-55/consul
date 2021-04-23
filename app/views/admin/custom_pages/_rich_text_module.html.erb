@@ -12,7 +12,7 @@
       <%= f.cktext_area :rich_text,
                         id: "rich_text_area_#{f.object.id}",
                         label: t("admin.custom_pages.custom_page_modules.subtitle_module.rich_text"),
-                        maxlength: RichText::TEXT_MAX_LENGTH,
+                        maxlength: RichTextModule::TEXT_MAX_LENGTH,
                         ckeditor: { language: I18n.locale, toolbar: 'admin' } %>
     </div>
     <div class="check-options">
