@@ -117,9 +117,9 @@ namespace :admin do
         patch :sort
       end
     end
-    resources :subtitles, controller: :custom_page_modules, type: 'Subtitle'
-    resources :claims, controller: :custom_page_modules, type: 'Claim'
-    resources :rich_texts, controller: :custom_page_modules, type: 'RichText'
+    resources :subtitles, controller: :custom_page_modules, type: 'SubtitleModule'
+    resources :claims, controller: :custom_page_modules, type: 'ClaimModule'
+    resources :rich_texts, controller: :custom_page_modules, type: 'RichTextModule'
   end
 
   resources :comments, only: :index do
