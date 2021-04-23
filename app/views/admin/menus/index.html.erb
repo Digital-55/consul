@@ -36,6 +36,7 @@
               <%= link_to t("admin.menus.index.delete"), admin_menu_path(menu),
                           method: :delete,
                           data: {confirm: t("admin.menus.destroy.alert_notice")},
+                          disabled: menu.published,
                           class: "button hollow alert expanded" %>
             </div>
           </td>
