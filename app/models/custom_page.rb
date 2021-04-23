@@ -8,7 +8,7 @@ class CustomPage < ApplicationRecord
   accepts_nested_attributes_for :claims, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :rich_texts, allow_destroy: true, reject_if: :all_blank
 
-  validates :slug, uniqueness: true
+  validates :slug, uniqueness: true, format: { with: /\A[a-z0-9-]+$\z/i }
   scope :published, -> { where(published: true) }
   scope :draft, -> { where(published:false) }
   scope :sorted, -> { order(updated_at: :desc) }
