@@ -43,10 +43,11 @@ class Admin::CustomPagesController < Admin::BaseController
 
   def custom_page_params
     params.require(:custom_page).permit(:title, :slug, :published,
-                                                        custom_page_modules_attributes: [:id, :type, :position, :subtitle, :claim, :rich_text, :disabled, :_destroy],
+                                                        custom_page_modules_attributes: [:id, :type, :position, :subtitle, :claim, :rich_text, :youtube_url, :disabled, :_destroy],
                                                         subtitles_attributes: [:type, :position, :subtitle, :disabled, :_destroy],
                                                         claims_attributes: [:type, :position, :claim, :disabled, :_destroy],
                                                         rich_texts_attributes: [:type, :position, :rich_text, :disabled, :_destroy],
+                                                        youtubes_attributes: [:type, :position, :youtube_url, :disabled, :_destroy],
                                                       )
   end
 

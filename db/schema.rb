@@ -737,6 +737,7 @@ ActiveRecord::Schema.define(version: 20210624085951) do
     t.string   "subtitle"
     t.string   "claim"
     t.text     "rich_text"
+    t.string   "youtube_url"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.index ["type", "custom_page_id"], name: "index_custom_page_modules_on_type_and_custom_page_id", using: :btree

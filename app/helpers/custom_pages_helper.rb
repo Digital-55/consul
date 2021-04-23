@@ -16,6 +16,7 @@ module CustomPagesHelper
     return 'subtitle_module' if form_data.type == "SubtitleModule"
     return 'claim_module' if form_data.type == "ClaimModule"
     return 'rich_text_module' if form_data.type == "RichTextModule"
+    return 'youtube_module' if form_data.type == "YoutubeModule"
   end
 
   def module_id(object)
