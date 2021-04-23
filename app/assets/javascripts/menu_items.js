@@ -14,11 +14,12 @@ $(document).on('page:change', function(){
         });
       },
       start: function( e, ui ) {
+        $sortedItem = ui.item;
         $('.nesting-wrapper').addClass('subitem');
         $('.nesting-wrapper.subitem.dropped').removeClass('dropped');
         // Avoids nesting more than two levels deep
         $('.nested-fields').each(function() {
-          if($(this).parents('.nested-fields').length > 0){
+          if($(this).parents('.nested-fields').length > 0 || $sortedItem.find('.nested-fields').length > 0){
             $(this).find('.nesting-wrapper.subitem').addClass('dropped')
           }
         });
