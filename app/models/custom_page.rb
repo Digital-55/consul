@@ -3,10 +3,12 @@ class CustomPage < ApplicationRecord
   has_many :subtitles, class_name: 'SubtitleModule'
   has_many :claims, class_name: 'ClaimModule'
   has_many :rich_texts, class_name: 'RichTextModule'
+  has_many :youtubes, class_name: 'YoutubeModule'
   accepts_nested_attributes_for :custom_page_modules, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :subtitles, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :claims, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :rich_texts, allow_destroy: true, reject_if: :all_blank
+  accepts_nested_attributes_for :youtubes, allow_destroy: true, reject_if: :all_blank
 
   validates :slug, uniqueness: true, format: { with: /\A[a-z0-9-]+$\z/i }
   scope :published, -> { where(published: true) }

@@ -120,6 +120,7 @@ namespace :admin do
     resources :subtitles, controller: :custom_page_modules, type: 'SubtitleModule'
     resources :claims, controller: :custom_page_modules, type: 'ClaimModule'
     resources :rich_texts, controller: :custom_page_modules, type: 'RichTextModule'
+    resources :youtubes, controller: :custom_page_modules, type: 'YoutubeModule'
   end
 
   resources :comments, only: :index do

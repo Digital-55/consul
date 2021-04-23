@@ -291,11 +291,13 @@ es:
         add_claim: Añadir claim
         add_rich_text: Añadir texto
         add_subtitle: Añadir subtítulo
+        add_youtube: Añadir vídeo YouTube
         disabled: Desactivado
         subtitle_module:
           claim: Claim
           rich_text: Texto
           subtitle: Subtítulo
+          youtube: URL de YouTube
       destroy:
         alert_notice: "Esta acción eliminará la página personalizada y todos sus módulos."
         success: ¡Página personalizadda eliminada con éxito!
