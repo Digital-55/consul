@@ -311,12 +311,13 @@ es:
         title: Título
       index:
         create: Nueva página
-        delete: Eliminar página
-        edit: Editar página
+        delete: Eliminar
+        edit: Editar
         filters:
           all: Todas
           published: Publicada
           draft: Borrador
+        preview: Ver
         published: Estado
         slug: Slug
         title: Título

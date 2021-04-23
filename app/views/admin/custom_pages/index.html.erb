@@ -28,15 +28,20 @@
           <td><%= retrieve_options_key(publish_options, custom_page.try(:published)) %></td>
           <td><%= custom_page.try(:updated_at).strftime("%Y-%m-%d %H:%M") %></td>
           <td>
-            <div class="small-12 medium-6 column">
+            <div class="small-12 medium-4 column">
               <%= link_to t("admin.custom_pages.index.edit"), edit_admin_custom_page_path(custom_page),
                           class: "button hollow expanded" %>
             </div>
-            <div class="small-12 medium-6 column">
+            <div class="small-12 medium-4 column">
               <%= link_to t("admin.custom_pages.index.delete"), admin_custom_page_path(custom_page),
                           method: :delete,
                           data: {confirm: t("admin.menus.destroy.alert_notice")},
                           class: "button hollow alert expanded" %>
+            </div>
+            <div class="small-12 medium-4 column">
+              <%= link_to t("admin.custom_pages.index.preview"), custom_page_path(custom_page.slug),
+                          target: '_blank',
+                          class: "button hollow warning expanded" %>
             </div>
           </td>
         </tr>
