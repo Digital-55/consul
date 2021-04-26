@@ -31,10 +31,11 @@
                           placeholder: t("admin.custom_pages.custom_page.slug"),
                           id: "slug" %>
       </div>
-
     </div>
-
     <hr>
+
+    <h4 class="inline-block"><%= t("admin.custom_pages.custom_page.index") %></h4>
+
     <% if @custom_page.persisted? %>
       <div class="row">
         <%= link_to_add_association t("admin.custom_pages.custom_page_modules.add_subtitle"), f, :subtitles,
