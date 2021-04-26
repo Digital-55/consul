@@ -308,6 +308,7 @@ es:
       custom_page:
         creating: Crear página personalizada
         custom_page_items: Módulos
+        index: Módulos de página
         published: Estado
         slug: Slug
         title: Título
