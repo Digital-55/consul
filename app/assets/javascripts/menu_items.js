@@ -59,6 +59,7 @@ $(document).on('page:change', function(){
           page_link = link
         };
         var parentItemId = getParentItemId($menuItem)
+        var position = $menuItem.index()
         var targetBlank = $menuItem.find('input.menu-item-target_blank')[0]['checked']
         var disabled = $menuItem.find('input.menu-item-disabled')[0]['checked']
         if (title.length > 0) {
@@ -66,7 +67,7 @@ $(document).on('page:change', function(){
             $.ajax({
               url: "/admin/menus/" + menuId + "/menu_items",
               type: "POST",
-              data: {'title': title, 'url': url, 'page_link': page_link, 'parent_item_id': parentItemId, 'item_type': itemType, 'target_blank': targetBlank, 'disabled': disabled },
+              data: {'title': title, 'url': url, 'page_link': page_link, 'parent_item_id': parentItemId, 'position': position, 'item_type': itemType, 'target_blank': targetBlank, 'disabled': disabled },
               item: $menuItem,
               success: function(data){
                 if (data.errors) {
