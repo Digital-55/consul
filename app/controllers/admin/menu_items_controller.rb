@@ -13,8 +13,7 @@ class Admin::MenuItemsController < Admin::BaseController
   end
 
   def create
-    @menu_item = MenuItem.new
-    @menu_item.attributes = menu_item_params.reject{|k,v| !@menu_item.attributes.keys.member?(k.to_s) } # children_item_ids is not a menu_item attribute
+    @menu_item = MenuItem.new(menu_item_params.except(:children_item_ids)) # children_item_ids is not a menu_item attribute
     if @menu_item.save
       render json: {menu_item: @menu_item}
     else
