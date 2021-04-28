@@ -181,7 +181,9 @@ $(document).on('page:change', function(){
     var childrenIds = [];
     menuItem.find('.nested-fields').each(function () {
       var childrenId = this.id.split('_').pop();
-      childrenIds.push(childrenId);
+      if (parseInt(childrenId)) {
+        childrenIds.push(childrenId);
+      }
     })
     return childrenIds;
   }
