@@ -1,6 +1,7 @@
 class Admin::MenuItemsController < Admin::BaseController
   before_action :set_menu, only: [:sort]
   before_action :set_menu_item, only: [:update, :destroy]
+  after_filter :update_children_parent, only: [:create]
 
   def sort
     if params[:menu_item].present?
@@ -12,7 +13,8 @@ class Admin::MenuItemsController < Admin::BaseController
   end
 
   def create
-    @menu_item = MenuItem.new(menu_item_params)
+    @menu_item = MenuItem.new
+    @menu_item.attributes = menu_item_params.reject{|k,v| !@menu_item.attributes.keys.member?(k.to_s) } # children_item_ids is not a menu_item attribute
     if @menu_item.save
       render json: {menu_item: @menu_item}
     else
@@ -45,6 +47,15 @@ class Admin::MenuItemsController < Admin::BaseController
   end
 
   def menu_item_params
-    params.permit(:id, :title, :url, :position, :page_link, :item_type, :target_blank, :parent_item_id, :menu_id, :editable, :disabled)
+    params.permit(:id, :title, :url, :position, :page_link, :item_type, :target_blank, :parent_item_id, :menu_id, :editable, :disabled, children_item_ids: [],)
+  end
+
+  def update_children_parent
+    if menu_item_params[:children_item_ids].present?
+      menu_item_params[:children_item_ids].each do |child_id|
+        child_item = MenuItem.find child_id
+        child_item.update(parent_item_id: @menu_item.id)
+      end
+    end
   end
 end

@@ -62,12 +62,13 @@ $(document).on('page:change', function(){
         var position = $menuItem.index()
         var targetBlank = $menuItem.find('input.menu-item-target_blank')[0]['checked']
         var disabled = $menuItem.find('input.menu-item-disabled')[0]['checked']
+        var childrenItemIds = getChildrenItemId($menuItem)
         if (title.length > 0) {
           if (eventTargetMenuItem.id == "new_menu_item") {
             $.ajax({
               url: "/admin/menus/" + menuId + "/menu_items",
               type: "POST",
-              data: {'title': title, 'url': url, 'page_link': page_link, 'parent_item_id': parentItemId, 'position': position, 'item_type': itemType, 'target_blank': targetBlank, 'disabled': disabled },
+              data: {'title': title, 'url': url, 'page_link': page_link, 'parent_item_id': parentItemId, 'children_item_ids': childrenItemIds, 'position': position, 'item_type': itemType, 'target_blank': targetBlank, 'disabled': disabled },
               item: $menuItem,
               success: function(data){
                 if (data.errors) {
@@ -175,6 +176,16 @@ $(document).on('page:change', function(){
       return 0
     }
   }
+
+  function getChildrenItemId(menuItem) {
+    var childrenIds = [];
+    menuItem.find('.nested-fields').each(function () {
+      var childrenId = this.id.split('_').pop();
+      childrenIds.push(childrenId);
+    })
+    return childrenIds;
+  }
+
 
   removeItem();
   // Activates 'cocoon:after-insert' to allow sorting existing menu-items
