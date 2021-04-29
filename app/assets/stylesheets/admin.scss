@@ -1268,9 +1268,9 @@ code {
   }
 }
 
-// 12. Menu manager
+// 12. Menu manager / Custom Pages Manager
 // ----------------
-#new_menu_item {
+#new_menu_item, #new_custom_page_module {
   border: 2px dashed #cacaca;
   .card-divider {
     color: #8a8a8a;
@@ -1278,6 +1278,9 @@ code {
   }
   label {
     color: #8a8a8a;
+  }
+  .delete {
+    color: #cf2a0e8c;
   }
 }
 

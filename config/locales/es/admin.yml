@@ -284,6 +284,53 @@ es:
         undefined: Sin definir
         user_groups: "Grupos"
       search_unfeasible: Buscar inviables
+    custom_pages:
+      create:
+        notice: ¡Página personalizada creada con éxito!
+      custom_page_modules:
+        add_claim: Añadir claim
+        add_cta: Añadir CTA
+        add_rich_text: Añadir texto
+        add_subtitle: Añadir subtítulo
+        add_youtube: Añadir vídeo YouTube
+        cta_module:
+          cta: Call to Action
+          cta_text: Texto Call to Action
+          cta_button: Texto botón Call to Action
+          cta_link: Enlace botón Call to Action
+        disabled: Desactivado
+        subtitle_module:
+          claim: Claim
+          rich_text: Texto
+          subtitle: Subtítulo
+          youtube: URL de YouTube
+      destroy:
+        alert_notice: "Esta acción eliminará la página personalizada y todos sus módulos."
+        success: ¡Página personalizadda eliminada con éxito!
+        error: Hubo algún error al intentar eliminar la página personalizada. Inténtalo de nuevo.
+      edit:
+        editing: Editar página personalizada
+        notice: ¡Página personalizada actualizada con éxito!
+      custom_page:
+        creating: Crear página personalizada
+        custom_page_items: Módulos
+        index: Módulos de página
+        published: Estado
+        slug: Slug
+        title: Título
+      index:
+        create: Nueva página
+        delete: Eliminar
+        edit: Editar
+        filters:
+          all: Todas
+          published: Publicada
+          draft: Borrador
+        preview: Ver
+        published: Estado
+        slug: Slug
+        title: Título
+        updated_at: Última actualización
     menus:
       create:
         notice: ¡Menú creado con éxito!
@@ -853,6 +900,7 @@ es:
       activity: Actividad de moderadores
       admin: Menú de administración
       banner: Gestionar banners
+      custom_pages: Páginas personalizadas (WIP)
       proposals: Propuestas
       proposals_topics: Temas de propuestas
       budgets: Presupuestos participativos

@@ -1,0 +1,30 @@
+<div class="card nested-fields cta-module" id="<%= module_id(f.object) %>">
+  <div class="card-divider">
+    <span class="icon-bars"></span><h5 class="small-6 column menu-item-tag"><%= t("admin.custom_pages.custom_page_modules.cta_module.cta") %></h5>
+    <div class="small-6 column text-right">
+      <%= link_to_remove_association f do %>
+        <span class="icon-x delete"></span>
+      <% end %>
+    </div>
+  </div>
+  <div class="card-section">
+    <div class="small-12 medium-10 column">
+      <%= f.label :cta_text, t("admin.custom_pages.custom_page_modules.cta_module.cta_text") %>
+      <%= f.text_field :cta_text, label: false, class: 'cta-module-text' %>
+    </div>
+    <div class="small-12 medium-5 column">
+      <%= f.label :cta_button, t("admin.custom_pages.custom_page_modules.cta_module.cta_button") %>
+      <%= f.text_field :cta_button, label: false, class: 'cta-module-button' %>
+    </div>
+    <div class="small-12 medium-5 column">
+      <%= f.label :cta_link, t("admin.custom_pages.custom_page_modules.cta_module.cta_link") %>
+      <%= f.text_field :cta_link, label: false, class: 'cta-module-link' %>
+    </div>
+    <div class="check-options">
+      <div class="small-12 medium-2 column">
+        <%= f.check_box :disabled, label: false, class: 'custom_page_module-disabled' %>
+        <%= f.label :disabled, t("admin.custom_pages.custom_page_modules.disabled") %>
+      </div>
+    </div>
+  </div>
+</div>

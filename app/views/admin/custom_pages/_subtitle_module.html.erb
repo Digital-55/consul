@@ -1,0 +1,22 @@
+<div class="card nested-fields subtitle-module" id="<%= module_id(f.object) %>">
+  <div class="card-divider">
+    <span class="icon-bars"></span><h5 class="small-6 column menu-item-tag"><%= t("admin.custom_pages.custom_page_modules.subtitle_module.subtitle") %></h5>
+    <div class="small-6 column text-right">
+      <%= link_to_remove_association f do %>
+        <span class="icon-x delete"></span>
+      <% end %>
+    </div>
+  </div>
+  <div class="card-section">
+    <div class="small-12 medium-10 column">
+      <%= f.label :subtitle, t("admin.custom_pages.custom_page_modules.subtitle_module.subtitle") %>
+      <%= f.text_field :subtitle, label: false, class: 'subtitle-module-text' %>
+    </div>
+    <div class="check-options">
+      <div class="small-12 medium-2 column">
+        <%= f.check_box :disabled, label: false, class: 'custom_page_module-disabled' %>
+        <%= f.label :disabled, t("admin.custom_pages.custom_page_modules.disabled") %>
+      </div>
+    </div>
+  </div>
+</div>

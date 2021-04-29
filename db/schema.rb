@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210322113315) do
+ActiveRecord::Schema.define(version: 20210420102437) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -493,6 +493,31 @@ ActiveRecord::Schema.define(version: 20210322113315) do
   create_table "consultants", force: :cascade do |t|
     t.integer "user_id"
     t.index ["user_id"], name: "index_consultants_on_user_id", using: :btree
+  end
+
+  create_table "custom_page_modules", force: :cascade do |t|
+    t.integer  "custom_page_id"
+    t.string   "type"
+    t.integer  "position",       default: 0
+    t.boolean  "disabled",       default: false
+    t.string   "subtitle"
+    t.string   "claim"
+    t.text     "rich_text"
+    t.string   "youtube_url"
+    t.string   "cta_text"
+    t.string   "cta_button"
+    t.string   "cta_link"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.index ["type", "custom_page_id"], name: "index_custom_page_modules_on_type_and_custom_page_id", using: :btree
+  end
+
+  create_table "custom_pages", force: :cascade do |t|
+    t.string   "title"
+    t.string   "slug"
+    t.boolean  "published"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "dashboard_actions", force: :cascade do |t|
