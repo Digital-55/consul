@@ -12,7 +12,6 @@ class Admin::CustomPagesController < Admin::BaseController
   end
 
   def create
-    byebug
     @custom_page = CustomPage.new(custom_page_params)
     if @custom_page.save
       redirect_to edit_admin_custom_page_path(@custom_page), notice: t("admin.custom_pages.create.notice")
