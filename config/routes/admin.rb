@@ -103,6 +103,14 @@ namespace :admin do
     collection { get :search }
   end
 
+  resources :menus do
+    resources :menu_items do
+      collection do
+        patch :sort
+      end
+    end
+  end
+
   resources :comments, only: :index do
     member do
       put :restore

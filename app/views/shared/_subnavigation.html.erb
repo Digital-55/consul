@@ -1,6 +1,6 @@
 <div class="small-12 medium-9 column">
-  <ul>
-    <%= raw content_block("subnavigation_left", I18n.locale) %>
+  <ul class="dropdown menu">
+    <% raw content_block("subnavigation_left", I18n.locale) %>
     <li>
       <%= layout_menu_link_to t("layouts.header.inicio"),
                               root_path,

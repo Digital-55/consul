@@ -1267,3 +1267,46 @@ code {
     }
   }
 }
+
+// 12. Menu manager
+// ----------------
+#new_menu_item {
+  border: 2px dashed #cacaca;
+  .card-divider {
+    color: #8a8a8a;
+    background-color: #f5f5f5;
+  }
+  label {
+    color: #8a8a8a;
+  }
+}
+
+.menu-fields {
+  margin-bottom: 15px;
+}
+
+.nesting-wrapper {
+  min-height: 90px;
+  .subitem {
+    padding-left: 100px;
+    padding-right: 15px;
+  }
+  .dropped {
+    min-height: 0px;
+  }
+}
+
+.ui-state-hover {
+  background: #f1f1f1;
+  border: 2px dashed $border;
+  height: 50px;
+  margin-bottom: 7px;
+}
+
+.check-options {
+  padding-top: 20px;;
+}
+
+.wrap-field-error {
+  border: 1px solid red;
+}

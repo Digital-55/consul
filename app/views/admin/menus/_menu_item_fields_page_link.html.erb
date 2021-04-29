@@ -1,0 +1,48 @@
+<%# f.object = f.object.is_a?(Array) ? f.object : [f.object] %>
+<% f.object = [f.object].flatten %>
+<% if f.object.present? %>
+  <% f.object.each do |object| %>
+    <% f.object = object %>
+    <div class="card nested-fields page_link" id="<%= dom_id(f.object) %>">
+      <div class="card-divider">
+        <span class="icon-bars"></span><h5 class="small-6 column menu-item-tag"><%= f.object.title || t("admin.menus.menu_items.new") %></h5>
+        <div class="small-6 column text-right">
+          <%= link_to_remove_association f do %>
+            <span class="icon-x delete"></span>
+          <% end %>
+        </div>
+      </div>
+      <div class="card-section">
+        <%= f.hidden_field :parent_item_id %>
+        <%= f.hidden_field :item_type, value: 'page_link' %>
+        <div class="small-12 medium-4 column">
+          <%= f.label :title, t("admin.menus.menu_items.title") %>
+          <%= f.text_field :title, label: false, class: 'menu-item-title', disabled: !f.object.editable %>
+        </div>
+        <div class="small-12 medium-5 column">
+          <%= f.label :page_link, t("admin.menus.menu_items.page_link") %>
+          <%= f.select :page_link, {}, {label: false}, {class: 'menu-item-page_link', disabled: !f.object.editable} do %>
+            <%= options_for_select(page_link_options, (f.object.page_link || t("admin.menus.menu_items.page_link_select"))) %>
+          <% end %>
+        </div>
+        <div class="check-options">
+          <div class="small-12 medium-3 column">
+            <%= f.check_box :target_blank, label: false, class: 'menu-item-target_blank', disabled: !f.object.editable %>
+            <%= f.label :target_blank, t("admin.menus.menu_items.target_blank") %>
+          </div>
+          <div class="small-12 medium-3 column">
+            <%= f.check_box :disabled, label: false, class: 'menu-item-disabled', disabled: !f.object.editable %>
+            <%= f.label :disabled, t("admin.menus.menu_items.disabled") %>
+          </div>
+        </div>
+      </div>
+      <div class="nesting-wrapper subitem dropped" data-url="<%= sort_admin_menu_menu_items_path(@menu) if @menu.present? %>">
+        <%= f.fields_for :menu_items, parent_admin_menu_items(@menu, f.object.id) do |menu_subitems_form| %>
+          <% [menu_subitems_form.object].flatten.each do |menu_subitems_form_data| %>
+            <%= render menu_items_partial(menu_subitems_form_data), f: menu_subitems_form %>
+          <% end if menu_subitems_form.object %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
