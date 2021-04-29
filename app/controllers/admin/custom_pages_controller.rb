@@ -12,6 +12,7 @@ class Admin::CustomPagesController < Admin::BaseController
   end
 
   def create
+    byebug
     @custom_page = CustomPage.new(custom_page_params)
     if @custom_page.save
       redirect_to edit_admin_custom_page_path(@custom_page), notice: t("admin.custom_pages.create.notice")
@@ -43,12 +44,19 @@ class Admin::CustomPagesController < Admin::BaseController
 
   def custom_page_params
     params.require(:custom_page).permit(:title, :slug, :published,
-                                                        custom_page_modules_attributes: [:id, :type, :position, :subtitle, :claim, :rich_text, :youtube_url, :disabled, :_destroy],
-                                                        subtitles_attributes: [:type, :position, :subtitle, :disabled, :_destroy],
-                                                        claims_attributes: [:type, :position, :claim, :disabled, :_destroy],
-                                                        rich_texts_attributes: [:type, :position, :rich_text, :disabled, :_destroy],
-                                                        youtubes_attributes: [:type, :position, :youtube_url, :disabled, :_destroy],
-                                                      )
+                                        custom_page_modules_attributes: [:id, :type, :position,
+                                                                          :subtitle,
+                                                                          :claim,
+                                                                          :rich_text,
+                                                                          :youtube_url,
+                                                                          :cta_text, :cta_button, :cta_link,
+                                                                          :disabled, :_destroy],
+                                        subtitles_attributes: [:type, :position, :subtitle, :disabled, :_destroy],
+                                        claims_attributes: [:type, :position, :claim, :disabled, :_destroy],
+                                        rich_texts_attributes: [:type, :position, :rich_text, :disabled, :_destroy],
+                                        youtubes_attributes: [:type, :position, :youtube_url, :disabled, :_destroy],
+                                        ctas_attributes: [:type, :position, :cta_text, :cta_button, :cta_link, :disabled, :_destroy],
+                                      )
   end
 
   def set_custom_page

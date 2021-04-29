@@ -121,6 +121,7 @@ namespace :admin do
     resources :claims, controller: :custom_page_modules, type: 'ClaimModule'
     resources :rich_texts, controller: :custom_page_modules, type: 'RichTextModule'
     resources :youtubes, controller: :custom_page_modules, type: 'YoutubeModule'
+    resources :ctas, controller: :custom_page_modules, type: 'CTAModule'
   end
 
   resources :comments, only: :index do

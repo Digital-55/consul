@@ -4,4 +4,5 @@ class CustomPageModule < ApplicationRecord
   scope :claim, -> { where(type: 'ClaimModule') }
   scope :rich_text, -> { where(type: 'RichTextModule') }
   scope :youtube, -> { where(type: 'YoutubeModule') }
+  scope :cta, -> { where(type: 'CTAModule') }
 end

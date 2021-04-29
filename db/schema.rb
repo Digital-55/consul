@@ -504,6 +504,9 @@ ActiveRecord::Schema.define(version: 20210420102437) do
     t.string   "claim"
     t.text     "rich_text"
     t.string   "youtube_url"
+    t.string   "cta_text"
+    t.string   "cta_button"
+    t.string   "cta_link"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.index ["type", "custom_page_id"], name: "index_custom_page_modules_on_type_and_custom_page_id", using: :btree

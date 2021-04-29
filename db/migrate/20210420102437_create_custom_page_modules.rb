@@ -9,6 +9,9 @@ class CreateCustomPageModules < ActiveRecord::Migration[5.0]
       t.string :claim
       t.text :rich_text
       t.string :youtube_url
+      t.string :cta_text
+      t.string :cta_button
+      t.string :cta_link
 
       t.timestamps
     end
