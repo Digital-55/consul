@@ -18,6 +18,7 @@ module CustomPagesHelper
     return 'rich_text_module' if form_data.type == "RichTextModule"
     return 'youtube_module' if form_data.type == "YoutubeModule"
     return 'cta_module' if form_data.type == "CTAModule"
+    return 'js_snippet_module' if form_data.type == "JSSnippetModule"
   end
 
   def module_id(object)

@@ -12,6 +12,8 @@ class CreateCustomPageModules < ActiveRecord::Migration[5.0]
       t.string :cta_text
       t.string :cta_button
       t.string :cta_link
+      t.text :js_snippet
+
 
       t.timestamps
     end
