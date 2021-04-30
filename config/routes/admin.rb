@@ -103,6 +103,27 @@ namespace :admin do
     collection { get :search }
   end
 
+  resources :menus do
+    resources :menu_items do
+      collection do
+        patch :sort
+      end
+    end
+  end
+
+  resources :custom_pages do
+    resources :custom_page_modules do
+      collection do
+        patch :sort
+      end
+    end
+    resources :subtitles, controller: :custom_page_modules, type: 'SubtitleModule'
+    resources :claims, controller: :custom_page_modules, type: 'ClaimModule'
+    resources :rich_texts, controller: :custom_page_modules, type: 'RichTextModule'
+    resources :youtubes, controller: :custom_page_modules, type: 'YoutubeModule'
+    resources :ctas, controller: :custom_page_modules, type: 'CTAModule'
+  end
+
   resources :comments, only: :index do
     member do
       put :restore

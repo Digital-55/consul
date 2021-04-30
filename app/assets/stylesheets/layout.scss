@@ -630,6 +630,35 @@ header {
 }
 
 .dropdown.menu > li {
+  a {
+    padding: 0.7rem;
+  }
+
+  ul {
+    background: none;
+    padding-right: rem-calc(15);
+  }
+
+  .menu {
+
+    &.is-dropdown-submenu {
+      background: #fff;
+      margin: 0;
+      margin-top: rem-calc(-12);
+      padding: 0;
+      z-index: 9;
+    }
+
+    .is-submenu-item {
+      display: block;
+      height: auto;
+      margin-bottom: 0;
+
+      a {
+        color: #000;
+      }
+    }
+  }
 
   &.is-dropdown-submenu-parent > a::after {
     border-color: #000 transparent transparent;
@@ -686,7 +715,7 @@ header {
     li {
       @include breakpoint(medium) {
         display: inline-block;
-        margin-right: rem-calc(20);
+        // margin-right: rem-calc(20);
       }
     }
   }
@@ -857,6 +886,10 @@ footer {
   border-top: 1px solid $text-light;
   font-size: $small-font-size;
   padding-top: $line-height / 2;
+
+  a {
+    text-decoration: underline;
+  }
 }
 
 // 04. Tags

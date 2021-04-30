@@ -284,6 +284,104 @@ es:
         undefined: Sin definir
         user_groups: "Grupos"
       search_unfeasible: Buscar inviables
+    custom_pages:
+      create:
+        notice: ¡Página personalizada creada con éxito!
+      custom_page_modules:
+        add_claim: Añadir claim
+        add_cta: Añadir CTA
+        add_rich_text: Añadir texto
+        add_subtitle: Añadir subtítulo
+        add_youtube: Añadir vídeo YouTube
+        cta_module:
+          cta: Call to Action
+          cta_text: Texto Call to Action
+          cta_button: Texto botón Call to Action
+          cta_link: Enlace botón Call to Action
+        disabled: Desactivado
+        subtitle_module:
+          claim: Claim
+          rich_text: Texto
+          subtitle: Subtítulo
+          youtube: URL de YouTube
+      destroy:
+        alert_notice: "Esta acción eliminará la página personalizada y todos sus módulos."
+        success: ¡Página personalizadda eliminada con éxito!
+        error: Hubo algún error al intentar eliminar la página personalizada. Inténtalo de nuevo.
+      edit:
+        editing: Editar página personalizada
+        notice: ¡Página personalizada actualizada con éxito!
+      custom_page:
+        creating: Crear página personalizada
+        custom_page_items: Módulos
+        index: Módulos de página
+        published: Estado
+        slug: Slug
+        title: Título
+      index:
+        create: Nueva página
+        delete: Eliminar
+        edit: Editar
+        filters:
+          all: Todas
+          published: Publicada
+          draft: Borrador
+        preview: Ver
+        published: Estado
+        slug: Slug
+        title: Título
+        updated_at: Última actualización
+    menus:
+      create:
+        notice: ¡Menú creado con éxito!
+      destroy:
+        alert_notice: "Esta acción eliminará el menú y todos sus ítems."
+        success: ¡Menú eliminado con éxito!
+        error: Hubo algún error al intentar eliminar el menú. Inténtalo de nuevo.
+      edit:
+        editing: Editar menú
+        form:
+          submit_button: Guardar cambios
+        notice: ¡Menú actualizado con éxito!
+      index:
+        create: Crear un menú
+        delete: Eliminar menú
+        edit: Editar menú
+        filters:
+          all: Todos
+          header: Cabecera
+          footer: Pie de página
+        title: Menús
+      errors:
+        form:
+          error:
+            one: "error impidió guardar el menú"
+            other: "errores impidieron guardar el menú."
+      menu:
+        title: Título
+        published: Estado
+        section: Sección
+        date: Fecha actualización
+      menu_items:
+        add: Añadir ítems
+        add_url: Añadir ítems de enlace
+        add_page: Añadir ítems de página
+        disabled: Desactivado
+        index: Ítems de menú
+        new: Nuevo ítem
+        no_target: Abrir en misma pestaña
+        page_link: Enlace de página
+        page_link_select: Selecciona página
+        target: Objetivo
+        target_blank: Nueva pestaña
+        title: Título
+      new:
+        creating: Crear menú
+        draft: Borrador
+        published: Publicado
+        footer: Pie de página
+        header: Cabecera
+        section_select: Selecciona sección
     milestones:
       index:
         table_id: "ID"
@@ -802,6 +900,7 @@ es:
       activity: Actividad de moderadores
       admin: Menú de administración
       banner: Gestionar banners
+      custom_pages: Páginas personalizadas (WIP)
       proposals: Propuestas
       proposals_topics: Temas de propuestas
       budgets: Presupuestos participativos
@@ -820,6 +919,8 @@ es:
       consultants: Consultores
       editors: Editores
       managers: Gestores
+      menus: Menús
+      menus_manager: Gestor de menús
       moderators: Moderadores
       messaging_users: Mensajes a usuarios
       newsletters: Newsletters

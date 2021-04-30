@@ -56,7 +56,11 @@
       <div id="navigation_bar" class="subnavigation expanded">
         <div class="row">
           <div class="hide-for-small-only">
-            <%= render "shared/subnavigation" %>
+            <% if main_header_menu %>
+              <%= render "shared/dynamic_subnavigation" %>
+            <% else %>
+              <%= render "shared/subnavigation" %>
+            <%end%>
           </div>
           <div class="small-12 medium-3 column">
             <%= yield :header_addon %>
