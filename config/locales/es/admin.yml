@@ -290,6 +290,7 @@ es:
       custom_page_modules:
         add_claim: Añadir claim
         add_cta: Añadir CTA
+        add_js_snippet: Añadir Javascript
         add_rich_text: Añadir texto
         add_subtitle: Añadir subtítulo
         add_youtube: Añadir vídeo YouTube
@@ -301,6 +302,7 @@ es:
         disabled: Desactivado
         subtitle_module:
           claim: Claim
+          js_snippet: Código Javascript
           rich_text: Texto
           subtitle: Subtítulo
           youtube: URL de YouTube

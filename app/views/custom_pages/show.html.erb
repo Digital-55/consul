@@ -1,3 +1,9 @@
 <div class="row margin-top">
   <h2><%= @custom_page.title %></h2>
 </div>
+
+<script language="javascript" type="text/javascript">
+  <% @custom_page.js_snippets.each do |snippet| %>
+    eval( <%= snippet.js_snippet.gsub(";", "").html_safe %> )
+  <% end %>
+</script>
