@@ -4,10 +4,13 @@
       <div class="small-12 column">
         
           <h2><%= t("shared.search_results") %></h2>
+          <% @resultado.each do |r|%>
           <p>
             <%#= page_entries_info @actuations %>
-            <%= t("debates.index.search_results_html", count: 0, search_term: @resultado) %>
+            <%=r[:count]%> encontrado en <b>"<%=r[:field]%>"</b> con valor <b>"<%=r[:search]%>"</b> en la lista de <b>"<%=r[:tabla]%>"</b>
+            <%#= t("debates.index.search_results_html", count: 0, search_term: @resultado) %>
           </p>
+          <%end%>
         
       </div>
     </div>

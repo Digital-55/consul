@@ -5,7 +5,7 @@
                 <% if params[:type_order].to_s=="all" || params[:type_order].blank?%>
                     <h2>Todos</h2>
                 <%else%>
-                    <%= link_to "Todos", buscador_general_path(type_order: "all") %>
+                    <%= link_to "Todos", buscador_general_path({type_order: "all"}.merge!(params.except(:type_order))) %>
                 <%end%>
             </li>
             <% if !@orders_generic.blank?%>
@@ -14,7 +14,7 @@
                         <% if params[:type_order].to_s==filter.title.parameterize.underscore.to_s %>
                             <h2><%=filter.title%></h2>
                         <%else%>  
-                            <%= link_to filter.title, buscador_general_path(type_order: filter.title.parameterize.underscore.to_s) %>
+                            <%= link_to filter.title, buscador_general_path({type_order: filter.title.parameterize.underscore.to_s}.merge!(params.except(:type_order))) %>
                         <%end%>
                     </li>
                 <%end%>
