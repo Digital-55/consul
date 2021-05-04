@@ -19,7 +19,7 @@
                                 <div class="actuation-content">
                                     <h3><%= link_to item, sures_path %></h3>
                                     <div class="actuation-description">
-                                    <p><%#= markdown(actuation.proposal_objective).html_safe %></p>
+                                    <p><%=item.try(:created_at)%><%#= markdown(actuation.proposal_objective).html_safe %></p>
                                     <div class="truncate"></div>
                                     </div>
                                 </div>
