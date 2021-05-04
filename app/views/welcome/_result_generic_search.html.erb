@@ -1,0 +1,23 @@
+<div class="highlight no-margin-top padding margin-bottom">
+    <div class="row">
+      <div class="small-12 column">        
+          <h2><%= t("shared.search_results") %></h2>
+          <%if @resultado.blank?%>
+            <%=t('sgs.no_result_find')%>
+          <%else%>
+            <% @resultado.each do |r|%>
+            <p>
+              <%
+                fields = ""
+                search = ""
+                r[:search].each do |rs|
+                  fields = fields + (fields.blank? ? rs[:field] : "/#{rs[:field]}") 
+                  search = search + (search.blank? ? rs[:search] : "/#{rs[:search]}") 
+                end%>
+              <%=t("shared.sgs_result", count: r[:count], table: r[:tabla], fields: fields, search: search).html_safe%>         
+            </p>
+            <%end%>    
+          <%end%>       
+      </div>
+    </div>
+</div>

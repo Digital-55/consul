@@ -3,18 +3,18 @@
         <ul class="menu simple clear" id="filter-subnav">
             <li class="<%="is-active" if params[:type_order].to_s=="all" || params[:type_order].blank?%>">
                 <% if params[:type_order].to_s=="all" || params[:type_order].blank?%>
-                    <h2>Todos</h2>
+                    <h2><%=t('sgs.all_category')%></h2>
                 <%else%>
-                    <%= link_to "Todos", buscador_general_path({type_order: "all"}.merge!(params.except(:type_order))) %>
+                    <%= link_to t('sgs.all_category'), buscador_general_path({type_order: "all"}.merge!(params.except(:type_order))), remote: true %>
                 <%end%>
             </li>
-            <% if !@orders_generic.blank?%>
-                <%  @orders_generic .each do |filter| %>
+            <% if !@orders_settings.blank?%>
+                <%  @orders_settings .each do |filter| %>
                     <li class="<%="is-active" if params[:type_order].to_s==filter.title.parameterize.underscore.to_s%>">
                         <% if params[:type_order].to_s==filter.title.parameterize.underscore.to_s %>
                             <h2><%=filter.title%></h2>
                         <%else%>  
-                            <%= link_to filter.title, buscador_general_path({type_order: filter.title.parameterize.underscore.to_s}.merge!(params.except(:type_order))) %>
+                            <%= link_to filter.title, buscador_general_path({type_order: filter.title.parameterize.underscore.to_s}.merge!(params.except(:type_order))), remote: true %>
                         <%end%>
                     </li>
                 <%end%>

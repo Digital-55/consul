@@ -1,7 +1,10 @@
 class WelcomeController < ApplicationController
+  respond_to :html, :js
   skip_authorization_check
   before_action :set_user_recommendations, only: :index, if: :current_user
   before_action :authenticate_user!, only: :welcome
+
+ 
 
   layout "devise", only: [:welcome, :verification]
 
@@ -32,8 +35,6 @@ class WelcomeController < ApplicationController
     @embed_domain = Rails.application.secrets.embed_domain
     @videoId = Setting.find_by(key: "youtube_connect").value
     @playlistId = Setting.find_by(key: "youtube_playlist_connect").value
-
-
   end
 
   def eventos
@@ -42,70 +43,23 @@ class WelcomeController < ApplicationController
     @embed_domain = Rails.application.secrets.embed_domain
     @videoId = Setting.find_by(key: "eventos_youtube_connect").value
     @playlistId = Setting.find_by(key: "eventos_youtube_playlist_connect").value
-
-
   end
 
   def generic_search
-    @orders_generic = Sg::Setting.order_settings.active.order(id: :asc)
+    @orders_settings = Sg::Setting.order_settings.active.order(id: :asc)
     @search_settings = Sg::Setting.search_settings.active.order(id: :asc)
-    get_parametrizer(params)
-    
-
-    # if aux_active
-    #   #@actuations = Sures::Actuation.joins(:translations).all
-    #   @resultado =  @resultado + (@resultado.blank? ? parametrize[:search] : "/#{parametrize[:search]}")
-    #   if !parametrize[:search].blank?
-    #       @actuations = @actuations.where("translate(UPPER(cast(proposal_title as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast(? as varchar)), 'ÁÉÍÓÚ', 'AEIOU') OR
-    #           translate(UPPER(cast(proposal_objective as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast(? as varchar)), 'ÁÉÍÓÚ', 'AEIOU') OR
-    #           translate(UPPER(cast(territorial_scope as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast(? as varchar)), 'ÁÉÍÓÚ', 'AEIOU') OR
-    #           translate(UPPER(cast(location_performance as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast(? as varchar)), 'ÁÉÍÓÚ', 'AEIOU') OR
-    #           translate(UPPER(cast(technical_visibility as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast(? as varchar)), 'ÁÉÍÓÚ', 'AEIOU') OR
-    #           translate(UPPER(cast(actions_taken as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast(? as varchar)), 'ÁÉÍÓÚ', 'AEIOU') OR
-    #           translate(UPPER(cast(other as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast(? as varchar)), 'ÁÉÍÓÚ', 'AEIOU') OR
-    #           translate(UPPER(cast(tracking as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast(? as varchar)), 'ÁÉÍÓÚ', 'AEIOU')",
-    #           "%#{parametrize[:search]}%", "%#{parametrize[:search]}%", "%#{parametrize[:search]}%",
-    #           "%#{parametrize[:search]}%", "%#{parametrize[:search]}%", "%#{parametrize[:search]}%",
-    #           "%#{parametrize[:search]}%", "%#{parametrize[:search]}%"
-    #       )
-    #   end
-
-    #   if !parametrize[:show_fields].blank? && parametrize[:show_fields].to_s != "true"
-    #       aux_fields.each do |f|
-    #           if !parametrize[f.to_sym].blank? && f.to_s != "search"
-    #               aux_field_search = @sures_searchs_settings.select {|x| x.title.parameterize.underscore.to_s == f.to_s }[0]
-    #               if !aux_field_search.blank?
-    #                   parse_data_json(aux_field_search.data).each do |k,v| 
-    #                       if v.to_s == parametrize[f.to_sym].to_s
-    #                           @resultado =  @resultado + (@resultado.blank? ? k : "/#{k}")
-    #                           break
-    #                       end
-    #                   end
-                      
-    #                   @actuations = @actuations.where("translate(UPPER(cast(#{aux_field_search.field} as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast(? as varchar)), 'ÁÉÍÓÚ', 'AEIOU')", "%#{parametrize[f.to_sym]}%")
-    #               end
-    #           end
-    #       end
-    #   end
-
-    #   aux_order = "updated_at desc"
-    #   if  @sures_orders_filter.blank?
-    #       @type = ""
-    #   elsif !params[:type].blank?
-    #       aux = @sures_orders_filter.select {|order| order.title.parameterize.underscore == params[:type] }.first
-    #       aux_order = "#{aux.field} #{aux.rules.split(';').length > 1 ? aux.rules.split(';')[1] : aux.rules }"
-    #       @type = params[:type]
-    #   else
-    #       aux = @sures_orders_filter.select {|order| order.rules.to_s.include?('default') }.first
-    #       if aux.blank?
-    #           aux = @sures_orders_filter.first
-    #       end
-    #       aux_order = "#{aux.field} #{aux.rules.split(';').length > 1 ? aux.rules.split(';')[1] : aux.rules }"
-    #       @type = aux.title.parameterize.underscore
-    #   end
-    #   @actuations = @actuations.order(aux_order)
-    #   @actuations = @actuations.page(params[:page])
-    # end
+    @search_generic = Sg::Generic.search_type.first
+    @order_generic = Sg::Generic.order_type.first
+    get_parametrizer_list(params)
+    get_orders(params)
+  rescue
+    @orders_settings = []
+    @search_settings = []
+    @search_generic = nil
+    @order_generic = nil
+    @search_terms = false
+    @resultado = []
+    @listados = []
   end
 
   private
@@ -115,63 +69,97 @@ class WelcomeController < ApplicationController
     @recommended_proposals = Proposal.recommendations(current_user).sort_by_recommendations.limit(3)
   end
 
-  def get_parametrizer(parametrize)
-    aux_active = false
+  def get_parametrizer_list(parametrize)
+    @search_terms = false
     @resultado = []
+    @listados = []
+    sg_orders = @order_generic.try(:sg_table_orders)
+    search_data_aux_gen = []
 
+    # Se mapean los titulos a simbolos parametrizables y se añade el buscador genérico #
     aux_fields = @generic_searchs_settings.map {|f| f.title.parameterize.underscore.to_s }
     aux_fields.push('search')
 
+    # Recorremos el listado mapeado #
     aux_fields.each do |f|
-        if !parametrize[f.to_sym].blank?
-          aux_active = true
-          search_aux = f.to_s=="search" ? Sg::Generic.search_type.first : @search_settings.select {|x| x.title.parameterize.underscore.to_s == f.to_s }[0]
-          sg_selects = search_aux.try(:sg_selects)
-          sg_tables = search_aux.try(:sg_table_fields)
-          tables_aux = ""
-          tables_array = []
+      #Comprobamos si existe el campo #
+      if !parametrize[f.to_sym].blank?
+        # Si existe con datos indicamos que hay datos de búsqueda #
+        @search_terms = true
 
-          if !sg_tables.blank?
-            sg_tables.each {|t| tables_array.push(t.table_name)}
-
-            tables_array.uniq.each {|a| tables_aux = tables_aux + (tables_aux.blank? ? a.singularize.classify.constantize.model_name.human : " / #{a.singularize.classify.constantize.model_name.human}")}                      
-          end
-
-         
-
+        #Cargamos el dato de preferencia generico (search) o avanzado (el resto) #
+        search_aux = f.to_s=="search" ? @search_generic : @search_settings.select {|x| x.title.parameterize.underscore.to_s == f.to_s }[0]
         
-          search_data_aux = parametrize[f.to_sym]
-          if !search_aux.try(:data_type).blank? 
-            case search_aux.try(:data_type).to_s
-            when "select"
-              search_data_aux = sg_selects.select {|x| x.value.to_s == parametrize[f.to_sym].to_s }[0].try(:key)
-            when "checkbox"
-              search_data_aux = parametrize[f.to_sym].to_s == "true" ? "Sí" : "No"
+        # Precarga de listados a usar tanto en la obtención de resultados como en el filtrado #
+        sg_selects = search_aux.try(:sg_selects)
+        sg_tables = search_aux.try(:sg_table_fields)
+        
+        tables_aux = ""
+        tables_array = []
+
+        if !sg_tables.blank?
+          sg_tables.each do |t| 
+            model = t.table_name.singularize.classify.constantize
+            list = @listados.select {|l| l[:model].model_name.to_s == model.model_name.to_s}
+            model_list = !@listados.blank? && !list.blank? ? list[0][:list_base] : ""
+            model_list = model_list + "#{" OR " if !model_list.blank?} translate(UPPER(cast(#{t.field_name} as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[f.to_sym]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')"
+
+            if list.blank?
+              @listados.push({model: model, list_base: model_list, list: nil, order: sg_orders.blank? ? 0 : sg_orders.select {|o| o.table_name== model.model_name.to_s}.try(:order).to_i })
+            elsif !@listados.select {|l| l[:model].model_name.to_s == model.model_name.to_s}.blank?
+              @listados.select {|l| l[:model].model_name.to_s == model.model_name.to_s}[0][:list_base] = model_list
             end
-          end 
-          
-          @resultado.push({tabla: tables_aux, search: search_data_aux, field: (f.to_s=="search" ? "Barra de búsqueda general" : search_aux.try(:title)), count: 0, id: f.to_sym})           
+          end
         end
+
+        search_data_aux = parametrize[f.to_sym]
+        if !search_aux.try(:data_type).blank? 
+          case search_aux.try(:data_type).to_s
+          when "select"
+            search_data_aux = sg_selects.select {|x| x.value.to_s == parametrize[f.to_sym].to_s }[0].try(:key)
+          when "checkbox"
+            search_data_aux = parametrize[f.to_sym].to_s == "true" ? "Sí" : "No"
+          end
+        end 
+
+        search_data_aux_gen.push({search: search_data_aux, field: (f.to_s=="search" ? "Barra de búsqueda general" : search_aux.try(:title))})
+      end
     end
 
-    @search_terms = aux_active
-    # @resultado =  @resultado + (@resultado.blank? ? parametrize[:search] : "/#{parametrize[:search]}")
-
-    # if !parametrize[:show_fields].blank? && parametrize[:show_fields].to_s != "true"
-    #   aux_fields.each do |f|
-    #     if !parametrize[f.to_sym].blank? && f.to_s != "search"
-    #       aux_field_search = @generic_searchs_settings.select {|x| x.title.parameterize.underscore.to_s == f.to_s }[0]
-    #       if !aux_field_search.blank?
-    #         parse_data_json(aux_field_search.data).each do |k,v| 
-    #           if v.to_s == parametrize[f.to_sym].to_s
-    #             @resultado =  @resultado + (@resultado.blank? ? k : "/#{k}")
-    #             break
-    #           end
-    #         end
-    #       end
-    #     end
-    #   end
-    # end
+    if !@listados.blank?
+      @listados = @listados.sort_by {|l| l[:order]} 
+      @listados.each do |l|
+        l[:list] = l[:model].where(l[:list_base])
+        @resultado.push({tabla: l[:model].model_name.human, search: search_data_aux_gen, count: l[:list].blank? ? 0 : l[:list].count})  
+        l[:list] = l[:list].page(parametrize[:"page_#{l[:model].model_name.to_s.parameterize.underscore}"]).per(5)         
+      end
+    end
   end
 
+  def get_orders(parametrize)
+    return if parametrize[:type_order].blank? || parametrize[:type_order].to_s == "all"
+    aux_resultado = []
+    aux_listados = []
+
+    @orders_settings.where(title: parametrize[:type_order]).each do |order|
+      table_fields = order.try(:sg_table_fields)
+      table_fields.each do |t| 
+        exist = @listados.select {|l| l[:model].model_name.to_s == t.table_name.to_s}
+        resultado = @resultado.select {|l| l[:tabla].to_s == t.table_name.singularize.classify.constantize.model_name.human.to_s}
+
+        if !exist.blank?
+          if order.data_type.to_s == "asc"
+            exist[:list] = exist[:list].sort_by {|es| es.try(t.field_name.to_sym)}
+          else
+            exist[:list] = exist[:list].sort_by {|es| es.try(t.field_name.to_sym)}.inverse
+          end
+          aux_listados.push(exist)
+          aux_resultado.push(resultado)
+        end
+      end
+    end
+
+    @listados = aux_listados
+    @resultado = aux_resultado
+  end
 end

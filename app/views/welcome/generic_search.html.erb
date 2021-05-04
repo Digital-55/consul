@@ -1,32 +1,17 @@
 <% if @search_terms %>
-  <div class="highlight no-margin-top padding margin-bottom">
-    <div class="row">
-      <div class="small-12 column">
-        
-          <h2><%= t("shared.search_results") %></h2>
-          <% @resultado.each do |r|%>
-          <p>
-            <%#= page_entries_info @actuations %>
-            <%=r[:count]%> encontrado en <b>"<%=r[:field]%>"</b> con valor <b>"<%=r[:search]%>"</b> en la lista de <b>"<%=r[:tabla]%>"</b>
-            <%#= t("debates.index.search_results_html", count: 0, search_term: @resultado) %>
-          </p>
-          <%end%>
-        
+  <div id="result_generic_search">
+    <%= render partial: "result_generic_search" %>
+  </div>
+<%end%>
+<div id="orders">
+  <%= render "orders" %>
+</div>
+<main>
+  <div class="row">
+    <div id="actuations" class="actuations-list small-12 column">
+      <div id="actuations_list" style="margin-top: 2em">
+        <%= render partial: "elements_search" %>
       </div>
     </div>
   </div>
-<%end%>
-<%= render "orders" %>
-<%# if @actuations.any? %>
-  <%#= render "orders", type: @type %>
-  <main>
-    <div class="row">
-      <div id="actuations" class="actuations-list small-12 column">
-        <div id="actuations-list" style="margin-top: 2em">
-          <%#= render partial: "sures/actuation", collection: @actuations %>
-          <%#= paginate @actuations %>        
-        </div>
-      </div>
-    </div>
-  </main>
-<%# end %>
+</main>

@@ -734,7 +734,12 @@ es:
       proposal_page: "la página de la propuesta"
     show:
       back: "Volver a mi contenido"
+  sgs:
+    all_category: "Todos"
+    no_result_find: "No se han encontrado elementos en la pestaña actual"
+    no_element_list: "No hay elementos en el listado"
   shared:
+    sgs_result: "%{count} resultados del apartado <b>\"%{table}\"</b> con los parámetros <b>\"%{fields}\"</b> y valores respectivos <b>\"%{search}\"</b>"
     edit: 'Editar'
     save: 'Guardar'
     delete: Borrar
