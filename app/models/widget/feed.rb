@@ -4,7 +4,7 @@ class Widget::Feed < ApplicationRecord
   KINDS = %w(proposals debates processes topics)
 
   def active?
-    setting.value.present?
+    setting&.value.present?
   end
 
   def setting
@@ -35,9 +35,9 @@ class Widget::Feed < ApplicationRecord
     Proposal.where(comunity_hide: true).each do |p|
       communities.push(p.community_id)
     end
-    
+
     Topic.where("topics.community_id IN (?)",communities).sort_by_hot_score.limit(limit)
-  end 
+  end
 
   def processes
     Legislation::Process.open.published.order("created_at DESC").limit(limit)

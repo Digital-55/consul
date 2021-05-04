@@ -280,13 +280,13 @@ class User < ApplicationRecord
     high = IPAddr.new("10.90.255.255")
     ip_eq= false
     (low..high).each do |ip|
-      if ip.to_s==current_ip.to_s
+      if ip.to_s == current_ip.to_s
         ip_eq = true
         break
       end
     end
-    ip_eq = true if "127.0.0.1"==current_ip.to_s
-    
+    ip_eq = true if "127.0.0.1" == current_ip.to_s
+
     !ip_eq
   end
 
@@ -480,7 +480,7 @@ class User < ApplicationRecord
 
   def exceeded_failed_login_attempts?
     failed_attempts >= Setting["captcha.max_failed_login_attempts"].to_i
-  end  
+  end
 
   private
 
