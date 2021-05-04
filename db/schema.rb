@@ -598,6 +598,7 @@ ActiveRecord::Schema.define(version: 20210315135956) do
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.string   "census_code"
+    t.string   "code_district"
   end
 
   create_table "geozones_legislation_processes", force: :cascade do |t|
