@@ -42,17 +42,16 @@ class Poll::Question::Answer < ApplicationRecord
   # Hardcoded Stuff for Madrid 11 Polls where there are only 2 Questions per Poll
   # FIXME: Implement the "Blank Answers" feature at Consul
   def total_votes
-<<<<<<< HEAD
-    total = if title == "En blanco"
-              web_voters = Poll::Voter.where(poll: question.poll, origin: "web").count
-              first_answer = Poll::Answer.where(answer: question.question_answers.where(given_order: 1).first.title, question: question).count
-              second_answer = Poll::Answer.where(answer: question.question_answers.where(given_order: 2).first.title, question: question).count
-              web_voters - first_answer - second_answer - Poll::Stats.new(question.poll).total_web_white
-            else
-              Poll::Answer.where(question_id: question, answer: title).count
-            end
-    total + ::Poll::PartialResult.where(question: question).where(answer: title).sum(:amount)
-=======
+    # total = if title == "En blanco"
+    #           web_voters = Poll::Voter.where(poll: question.poll, origin: "web").count
+    #           first_answer = Poll::Answer.where(answer: question.question_answers.where(given_order: 1).first.title, question: question).count
+    #           second_answer = Poll::Answer.where(answer: question.question_answers.where(given_order: 2).first.title, question: question).count
+    #           web_voters - first_answer - second_answer - Poll::Stats.new(question.poll).total_web_white
+    #         else
+    #           Poll::Answer.where(question_id: question, answer: title).count
+    #         end
+    # total + ::Poll::PartialResult.where(question: question).where(answer: title).sum(:amount)
+
     if !question.votation_type.present?
       Poll::Answer.where(question_id: question, answer: title).count +
         ::Poll::PartialResult.where(question: question).where(answer: title).sum(:amount)
@@ -81,15 +80,12 @@ class Poll::Question::Answer < ApplicationRecord
 
   def most_voted?
     most_voted
->>>>>>> 7c9c50f4c... Add Model changes to work with votation_types
   end
 
   def total_votes_percentage
     question.answers_total_votes.zero? ? 0 : (total_votes * 100.0) / question.answers_total_votes
   end
 
-<<<<<<< HEAD
-=======
   def set_most_voted
     if question.enum_type.nil?
       for_only_votes
@@ -124,5 +120,4 @@ class Poll::Question::Answer < ApplicationRecord
       update(most_voted: is_most_voted)
     end
 
->>>>>>> 7c9c50f4c... Add Model changes to work with votation_types
 end
