@@ -290,6 +290,7 @@ es:
       custom_page_modules:
         add_claim: Añadir claim
         add_cta: Añadir CTA
+        add_custom_image: Añadir Imagen
         add_js_snippet: Añadir Javascript
         add_rich_text: Añadir texto
         add_subtitle: Añadir subtítulo
@@ -300,8 +301,9 @@ es:
           cta_button: Texto botón Call to Action
           cta_link: Enlace botón Call to Action
         disabled: Desactivado
-        subtitle_module:
+        custom_page_module:
           claim: Claim
+          custom_image: Imagen Personalizada
           js_snippet: Código Javascript
           rich_text: Texto
           subtitle: Subtítulo
