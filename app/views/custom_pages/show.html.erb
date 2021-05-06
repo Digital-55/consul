@@ -1,4 +1,4 @@
 <div class="row margin-top">
   <h2><%= @custom_page.title %></h2>
 </div>
-<div id="<%=dom_id(@custom_page)%>" class="js_snippets hidden" data-url="<%= @custom_page.custom_page_modules.map(&:js_snippet).compact %>"></div>
+<div id="<%=dom_id(@custom_page)%>" class="js_snippets hidden" data-snippets="<%= @custom_page.custom_page_modules.map(&:js_snippet).compact %>"></div>
