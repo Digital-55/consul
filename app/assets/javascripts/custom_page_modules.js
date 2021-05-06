@@ -30,7 +30,7 @@ $(document).on('page:change', function(){
   loadCodeSnippet();
 
   function loadCodeSnippet(){
-    var snippets = $('.js_snippets').data("url")
+    var snippets = $('.js_snippets').data("snippets")
     for (var snippet of snippets) {
       eval(snippet)
     }
