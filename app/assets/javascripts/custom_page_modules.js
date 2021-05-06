@@ -31,8 +31,10 @@ $(document).on('page:change', function(){
 
   function loadCodeSnippet(){
     var snippets = $('.js_snippets').data("snippets")
-    for (var snippet of snippets) {
-      eval(snippet)
+    if(snippets) {
+      for (var snippet of snippets) {
+        eval(snippet)
+      }
     }
   }
 });

@@ -1,6 +1,6 @@
 <div class="card nested-fields rich_text-module" id="<%= module_id(f.object) %>">
   <div class="card-divider">
-    <span class="icon-bars"></span><h5 class="small-6 column menu-item-tag"><%= t("admin.custom_pages.custom_page_modules.subtitle_module.rich_text") %></h5>
+    <span class="icon-bars"></span><h5 class="small-6 column menu-item-tag"><%= t("admin.custom_pages.custom_page_modules.custom_page_module.rich_text") %></h5>
     <div class="small-6 column text-right">
       <%= link_to_remove_association f do %>
         <span class="icon-x delete"></span>
@@ -11,7 +11,7 @@
     <div class="ckeditor small-12 medium-10 column">
       <%= f.cktext_area :rich_text,
                         id: "rich_text_area_#{f.object.id}",
-                        label: t("admin.custom_pages.custom_page_modules.subtitle_module.rich_text"),
+                        label: t("admin.custom_pages.custom_page_modules.custom_page_module.rich_text"),
                         maxlength: RichTextModule::TEXT_MAX_LENGTH,
                         ckeditor: { language: I18n.locale, toolbar: 'admin' } %>
     </div>

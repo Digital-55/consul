@@ -5,6 +5,7 @@ class Admin::CustomPageModulesController < Admin::BaseController
     params[:custom_page_module].each_with_index do |id, index|
       @custom_page.custom_page_modules.where(id: id).update_all(position: index + 1 )
     end
+    head :ok
   end
 
   private

@@ -19,6 +19,7 @@ module CustomPagesHelper
     return 'youtube_module' if form_data.type == "YoutubeModule"
     return 'cta_module' if form_data.type == "CTAModule"
     return 'js_snippet_module' if form_data.type == "JSSnippetModule"
+    return 'custom_image_module' if form_data.type == "CustomImageModule"
   end
 
   def module_id(object)

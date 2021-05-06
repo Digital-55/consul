@@ -13,7 +13,7 @@ class CreateCustomPageModules < ActiveRecord::Migration[5.0]
       t.string :cta_button
       t.string :cta_link
       t.text :js_snippet
-
+      t.attachment :custom_image
 
       t.timestamps
     end

@@ -50,6 +50,7 @@ class Admin::CustomPagesController < Admin::BaseController
                                                                           :youtube_url,
                                                                           :cta_text, :cta_button, :cta_link,
                                                                           :js_snippet,
+                                                                          :custom_image,
                                                                           :disabled, :_destroy],
                                         subtitles_attributes: [:type, :position, :subtitle, :disabled, :_destroy],
                                         claims_attributes: [:type, :position, :claim, :disabled, :_destroy],
@@ -57,6 +58,7 @@ class Admin::CustomPagesController < Admin::BaseController
                                         youtubes_attributes: [:type, :position, :youtube_url, :disabled, :_destroy],
                                         ctas_attributes: [:type, :position, :cta_text, :cta_button, :cta_link, :disabled, :_destroy],
                                         js_snippets_attributes: [:type, :position, :js_snippet, :disabled, :_destroy],
+                                        custom_images_attributes: [:type, :position, :custom_image, :disabled, :_destroy]
                                       )
   end
 
