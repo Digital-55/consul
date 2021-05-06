@@ -8,9 +8,18 @@
     </div>
   </div>
   <div class="card-section">
-    <div class="small-12 medium-10 column">
+    <div class="small-12 medium-7 column">
       <%= f.label :youtube_url, t("admin.custom_pages.custom_page_modules.custom_page_module.youtube") %>
       <%= f.text_field :youtube_url, label: false, class: 'claim-module-text' %>
+    </div>
+    <div class="small-12 medium-3 column">
+      <% if f.object.persisted? %>
+        <div>
+          <%= link_to f.object.youtube_url do %>
+            <%= image_tag youtube_thumbnail(f.object.youtube_url) %>
+          <% end %>
+        </div>
+      <% end %>
     </div>
     <div class="check-options">
       <div class="small-12 medium-2 column">
