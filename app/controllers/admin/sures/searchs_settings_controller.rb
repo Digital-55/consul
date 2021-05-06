@@ -30,9 +30,9 @@ class Admin::Sures::SearchsSettingsController < Admin::BaseController
         params.each {|s,v| s.to_s.include?("data_key_#{aux_id}") ? aux_count = aux_count + 1 : ''  } 
         if aux_count > 0
           (0..aux_count-1).each do |n|
-            #if !params["data_key_#{aux_id}_#{n}".to_sym].blank?
+            if !params["data_key_#{aux_id}_#{n}".to_sym].blank?
               aux_data.merge!({"#{params["data_key_#{aux_id}_#{n}".to_sym]}": params["data_value_#{aux_id}_#{n}".to_sym]})
-            #end
+            end
           end
         end
 

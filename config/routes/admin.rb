@@ -165,7 +165,7 @@ namespace :admin do
   resources :editors, only: [:index, :new, :create, :destroy] do
     get :search, on: :collection
   end
-  #resources :users, only: [:index, :show, :destroy, :hide]
+  resources :users, only: [:index, :show, :destroy, :hide]
 
   scope module: :poll do
     resources :polls do
