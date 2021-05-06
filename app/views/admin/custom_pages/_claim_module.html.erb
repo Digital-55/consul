@@ -1,6 +1,6 @@
 <div class="card nested-fields claim-module" id="<%= module_id(f.object) %>">
   <div class="card-divider">
-    <span class="icon-bars"></span><h5 class="small-6 column menu-item-tag"><%= t("admin.custom_pages.custom_page_modules.subtitle_module.claim") %></h5>
+    <span class="icon-bars"></span><h5 class="small-6 column menu-item-tag"><%= t("admin.custom_pages.custom_page_modules.custom_page_module.claim") %></h5>
     <div class="small-6 column text-right">
       <%= link_to_remove_association f do %>
         <span class="icon-x delete"></span>
@@ -9,7 +9,7 @@
   </div>
   <div class="card-section">
     <div class="small-12 medium-10 column">
-      <%= f.label :claim, t("admin.custom_pages.custom_page_modules.subtitle_module.claim") %>
+      <%= f.label :claim, t("admin.custom_pages.custom_page_modules.custom_page_module.claim") %>
       <%= f.text_field :claim, label: false, class: 'claim-module-text' %>
     </div>
     <div class="check-options">

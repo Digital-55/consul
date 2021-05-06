@@ -498,8 +498,8 @@ ActiveRecord::Schema.define(version: 20210420102437) do
   create_table "custom_page_modules", force: :cascade do |t|
     t.integer  "custom_page_id"
     t.string   "type"
-    t.integer  "position",       default: 0
-    t.boolean  "disabled",       default: false
+    t.integer  "position",                  default: 0
+    t.boolean  "disabled",                  default: false
     t.string   "subtitle"
     t.string   "claim"
     t.text     "rich_text"
@@ -508,8 +508,12 @@ ActiveRecord::Schema.define(version: 20210420102437) do
     t.string   "cta_button"
     t.string   "cta_link"
     t.text     "js_snippet"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.string   "custom_image_file_name"
+    t.string   "custom_image_content_type"
+    t.integer  "custom_image_file_size"
+    t.datetime "custom_image_updated_at"
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.index ["type", "custom_page_id"], name: "index_custom_page_modules_on_type_and_custom_page_id", using: :btree
   end
 
