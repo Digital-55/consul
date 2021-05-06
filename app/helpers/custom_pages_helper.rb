@@ -29,4 +29,8 @@ module CustomPagesHelper
     end
   end
 
+  def enabled_snippets
+    @custom_page.custom_page_modules.enabled.map(&:js_snippet).compact
+  end
+
 end

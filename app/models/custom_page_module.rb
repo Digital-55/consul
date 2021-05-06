@@ -5,4 +5,5 @@ class CustomPageModule < ApplicationRecord
   scope :rich_text, -> { where(type: 'RichTextModule') }
   scope :youtube, -> { where(type: 'YoutubeModule') }
   scope :cta, -> { where(type: 'CTAModule') }
+  scope :enabled, -> { where(disabled: false)}
 end
