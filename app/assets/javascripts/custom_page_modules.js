@@ -28,13 +28,21 @@ $(document).on('page:change', function(){
   });
 
   loadCodeSnippet();
+  toggleCustomPageModuleCardSection();
+});
 
-  function loadCodeSnippet(){
-    var snippets = $('.js_snippets').data("snippets")
-    if(snippets) {
-      for (var snippet of snippets) {
-        eval(snippet)
-      }
+function loadCodeSnippet(){
+  var snippets = $('.js_snippets').data("snippets")
+  if(snippets) {
+    for (var snippet of snippets) {
+      eval(snippet)
     }
   }
-});
+}
+
+function toggleCustomPageModuleCardSection() {
+  $('#custom-page-modules-list .card-section').hide()
+  $('#custom-page-modules-list .card-divider').on('click', function(){
+    $(this).siblings('.card-section').slideToggle()
+  })
+}

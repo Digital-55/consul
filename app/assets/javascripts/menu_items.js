@@ -127,68 +127,7 @@ $(document).on('page:change', function(){
     removeItem();
   })
 
-  function removeItem() {
-    $('a.remove_fields').click(function(e) {
-      var urlArray = window.location.href.split("/");
-      var menuId = urlArray.map(Number).filter(Number)[0].toString()
-      var eventTargetMenuItem = getMenuItem(e.target);
-      var itemId = eventTargetMenuItem.id.split('_').pop();
-      $.ajax({
-        url: "/admin/menus/" + menuId + "/menu_items/" + itemId,
-        type: "DELETE"
-      });
-    })
-  }
-
-  function getMenuItem(event_target) {
-    var newMenuItem = event_target.closest('#new_menu_item');
-    var persistedMenuItem = event_target.closest('[id*="menu_item_"]');
-    if (!!newMenuItem) {
-      return newMenuItem;
-    };
-    if (!!persistedMenuItem) {
-      return persistedMenuItem;
-    };
-  }
-
-  function getItemField(itemClasses) {
-    if(itemClasses.value.includes("url")) {
-      return "url";
-    };
-    if(itemClasses.value.includes("page_link")) {
-      return "page_link";
-    };
-  }
-
-  function getItemLink(menuItem) {
-    if (menuItem.find('input.menu-item-url').first().length > 0 ) {
-      return menuItem.find('input.menu-item-url').first().val()
-    }
-    if (menuItem.find('select.menu-item-page_link').first().length > 0) {
-      return menuItem.find('select.menu-item-page_link').first().val()
-    }
-  }
-
-  function getParentItemId(menuItem) {
-    if (menuItem.parents('[id*="menu_item_"]').first().length > 0 ) {
-      return menuItem.parents('[id*="menu_item_"]').first().attr('id').split("_").pop()
-    } else {
-      return 0
-    }
-  }
-
-  function getChildrenItemId(menuItem) {
-    var childrenIds = [];
-    menuItem.find('.nested-fields').each(function () {
-      var childrenId = this.id.split('_').pop();
-      if (parseInt(childrenId)) {
-        childrenIds.push(childrenId);
-      }
-    })
-    return childrenIds;
-  }
-
-
+  toggleMenuItemCardSection();
   removeItem();
   // Activates 'cocoon:after-insert' to allow sorting existing menu-items
   if($('.nested-fields').length > 0) {
@@ -196,3 +135,74 @@ $(document).on('page:change', function(){
     $('.remove_fields.dynamic').click()
   }
 });
+
+function removeItem() {
+  $('a.remove_fields').click(function(e) {
+    var urlArray = window.location.href.split("/");
+    var menuId = urlArray.map(Number).filter(Number)[0].toString()
+    var eventTargetMenuItem = getMenuItem(e.target);
+    var itemId = eventTargetMenuItem.id.split('_').pop();
+    $.ajax({
+      url: "/admin/menus/" + menuId + "/menu_items/" + itemId,
+      type: "DELETE"
+    });
+  })
+}
+
+function getMenuItem(event_target) {
+  var newMenuItem = event_target.closest('#new_menu_item');
+  var persistedMenuItem = event_target.closest('[id*="menu_item_"]');
+  if (!!newMenuItem) {
+    return newMenuItem;
+  };
+  if (!!persistedMenuItem) {
+    return persistedMenuItem;
+  };
+}
+
+function getItemField(itemClasses) {
+  if(itemClasses.value.includes("url")) {
+    return "url";
+  };
+  if(itemClasses.value.includes("page_link")) {
+    return "page_link";
+  };
+}
+
+function getItemLink(menuItem) {
+  if (menuItem.find('input.menu-item-url').first().length > 0 ) {
+    return menuItem.find('input.menu-item-url').first().val()
+  }
+  if (menuItem.find('select.menu-item-page_link').first().length > 0) {
+    return menuItem.find('select.menu-item-page_link').first().val()
+  }
+}
+
+function getParentItemId(menuItem) {
+  if (menuItem.parents('[id*="menu_item_"]').first().length > 0 ) {
+    return menuItem.parents('[id*="menu_item_"]').first().attr('id').split("_").pop()
+  } else {
+    return 0
+  }
+}
+
+function getChildrenItemId(menuItem) {
+  var childrenIds = [];
+  menuItem.find('.nested-fields').each(function () {
+    var childrenId = this.id.split('_').pop();
+    if (parseInt(childrenId)) {
+      childrenIds.push(childrenId);
+    }
+  })
+  return childrenIds;
+}
+
+
+
+
+function toggleMenuItemCardSection() {
+  $('#menu-items-list .card-section').hide()
+  $('#menu-items-list .card-divider').on('click', function(){
+    $(this).siblings('.card-section').slideToggle()
+  })
+}
