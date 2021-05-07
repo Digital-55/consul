@@ -6,6 +6,7 @@
             <%=t('sgs.no_result_find')%>
           <%else%>
             <% @resultado.each do |r|%>
+            <%if r[:count].to_i > 0%>
             <p>
               <%
                 fields = ""
@@ -16,6 +17,7 @@
                 end%>
               <%=t("shared.sgs_result", count: r[:count], table: r[:tabla], fields: fields, search: search).html_safe%>         
             </p>
+            <%end%>
             <%end%>    
           <%end%>       
       </div>

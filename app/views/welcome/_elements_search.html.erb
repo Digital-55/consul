@@ -6,29 +6,31 @@
     </div>
 <%else%>
     <% @listados.each do |l| %>
-        <div class="row">
-            <div class="small-12 columns">
-                <h3><%=l[:model].model_name.human%>:</h3>
-                <%= page_entries_info l[:list] %>
-                <% l[:list].each do |item|%>
-                    <div id="<%= dom_id(item) %>" class="actuation clear" data-type="actuation">
-                        <div class="panel">
-                            <div class="icon-successful"></div>
-                            <div class="icon-human-rights"></div>
-                            <div class="row">
-                                <div class="actuation-content">
-                                    <h3><%= link_to item, sures_path %></h3>
-                                    <div class="actuation-description">
-                                    <p><%=item.try(:created_at)%><%#= markdown(actuation.proposal_objective).html_safe %></p>
-                                    <div class="truncate"></div>
+        <% if !l[:list].blank? && l[:list].count >0%>
+            <div class="row">
+                <div class="small-12 columns">
+                    <h3><%=l[:model].model_name.human%>:</h3>
+                    <%= page_entries_info l[:list] %>
+                    <% l[:list].each do |item|%>
+                        <div id="<%= dom_id(item) %>" class="actuation clear" data-type="actuation">
+                            <div class="panel">
+                                <div class="icon-successful"></div>
+                                <div class="icon-human-rights"></div>
+                                <div class="row">
+                                    <div class="actuation-content">
+                                        <h3><%= link_to item, sures_path %></h3>
+                                        <div class="actuation-description">
+                                        <p><%=item.try(:created_at)%><%#= markdown(actuation.proposal_objective).html_safe %></p>
+                                        <div class="truncate"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                <%end%>
-                <%= paginate l[:list], remote: true, param_name: :"page_#{l[:model].model_name.to_s.parameterize.underscore}" %> 
+                    <%end%>
+                    <%= paginate l[:list], remote: true, param_name: :"page_#{l[:model].model_name.to_s.parameterize.underscore}" %> 
+                </div>
             </div>
-        </div>
+        <%end%>
     <%end%>
 <%end%>
