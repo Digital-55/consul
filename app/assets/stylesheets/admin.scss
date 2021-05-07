@@ -1283,16 +1283,21 @@ code {
     color: #cf2a0e8c;
   }
 }
+.nested-fields {
+  .url, .page_link {
+    margin-top: 1rem;
+  }
+}
 
 .menu-fields {
-  margin-bottom: 15px;
+  margin-bottom: 1rem;
 }
 
 .nesting-wrapper {
   min-height: 90px;
   .subitem {
     padding-left: 100px;
-    padding-right: 15px;
+    padding-right: 1rem;
   }
   .dropped {
     min-height: 0px;
@@ -1302,7 +1307,8 @@ code {
 .ui-state-hover {
   background: #f1f1f1;
   border: 2px dashed $border;
-  height: 50px;
+  height: 60px;
+  margin-top: 1rem;
   margin-bottom: 7px;
 }
 
