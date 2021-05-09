@@ -11,7 +11,7 @@
                 <div class="small-12 columns">
                     <h3><%=l[:model].model_name.human%>:</h3>
                     <%= page_entries_info l[:list] %>
-                    <% l[:list].each do |item|%>
+                    <% l[:list].each_with_index do |item, index|%>
                         <%if l[:model].model_name.to_s == "Debate"%>
                             <%=render partial: "debates/debate", debate: item%>
                         <%elsif l[:model].model_name.to_s == "Proposal"%>
@@ -27,10 +27,10 @@
                                     <div class="icon-human-rights"></div>
                                     <div class="row">
                                         <div class="actuation-content">
-                                            <h3><%= link_to item, sures_path %></h3>
+                                            <h3><%= link_to l[:model].model_name.human + " #{index + 1}", sures_path %></h3>
                                             <div class="actuation-description">
                                             <p><%=item.try(:created_at)%><%#= markdown(actuation.proposal_objective).html_safe %></p>
-                                            <div class="truncate"></div>
+                                          
                                             </div>
                                         </div>
                                     </div>
