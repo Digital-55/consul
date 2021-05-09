@@ -12,21 +12,31 @@
                     <h3><%=l[:model].model_name.human%>:</h3>
                     <%= page_entries_info l[:list] %>
                     <% l[:list].each do |item|%>
-                        <div id="<%= dom_id(item) %>" class="actuation clear" data-type="actuation">
-                            <div class="panel">
-                                <div class="icon-successful"></div>
-                                <div class="icon-human-rights"></div>
-                                <div class="row">
-                                    <div class="actuation-content">
-                                        <h3><%= link_to item, sures_path %></h3>
-                                        <div class="actuation-description">
-                                        <p><%=item.try(:created_at)%><%#= markdown(actuation.proposal_objective).html_safe %></p>
-                                        <div class="truncate"></div>
+                        <%if l[:model].model_name.to_s == "Debate"%>
+                            <%=render partial: "debates/debate", debate: item%>
+                        <%elsif l[:model].model_name.to_s == "Proposal"%>
+                            <%=render partial: "proposals/proposal", proposal: item%>
+                        <%elsif l[:model].model_name.to_s == "Legislation::Process"%>
+                            <%=render partial: "legislation/processes/process", process: item%>
+                        <%elsif l[:model].model_name.to_s == "Legislation::Proposal"%>                        
+                            <%=render partial: "legislation/proposals/votes", proposal: item%>
+                        <%else%>
+                            <div id="<%= dom_id(item) %>" class="actuation clear" data-type="actuation">
+                                <div class="panel">
+                                    <div class="icon-successful"></div>
+                                    <div class="icon-human-rights"></div>
+                                    <div class="row">
+                                        <div class="actuation-content">
+                                            <h3><%= link_to item, sures_path %></h3>
+                                            <div class="actuation-description">
+                                            <p><%=item.try(:created_at)%><%#= markdown(actuation.proposal_objective).html_safe %></p>
+                                            <div class="truncate"></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        <%end%>
                     <%end%>
                     <%= paginate l[:list], remote: true, param_name: :"page_#{l[:model].model_name.to_s.parameterize.underscore}" %> 
                 </div>
