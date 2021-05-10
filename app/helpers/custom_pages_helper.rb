@@ -20,6 +20,7 @@ module CustomPagesHelper
     return 'cta_module' if form_data.type == "CTAModule"
     return 'js_snippet_module' if form_data.type == "JSSnippetModule"
     return 'custom_image_module' if form_data.type == "CustomImageModule"
+    return 'promotional_module' if form_data.type == "PromotionalModule"
   end
 
   def module_id(object)

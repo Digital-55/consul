@@ -1,4 +1,5 @@
 $(document).on('page:change', function(){
+
   $('#custom-page-modules-list').sortable({
     axis: 'y',
     cursor: "move",
