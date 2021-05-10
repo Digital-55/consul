@@ -1,5 +1,4 @@
-<%begin%>
- <% unless actuation.blank? %>
+<% unless actuation.blank? %>
 <div id="<%= dom_id(actuation) %>" class="actuation clear" data-type="actuation">
   <div class="panel">
     <div class="icon-successful"></div>
@@ -14,7 +13,8 @@
         </div>
       </div>
 
-      <%begin%>
+      <%
+=begin%>
  <% if show_actuation_votes? %>
         <div id="<%= dom_id(actuation) %>_votes"
              class="small-12 medium-3 column supports-container"
@@ -39,10 +39,10 @@
           <% end %>
         </div>
       <% end %> 
-<%end%>
+<%
+=end%>
 
     </div>
   </div>
 </div>
-<%end%> 
 <%end%>

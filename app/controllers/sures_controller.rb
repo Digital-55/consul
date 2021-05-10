@@ -53,6 +53,10 @@ class SuresController < SuresBaseController
                 )
             end
 
+            if !parametrize[:distrito].blank?
+                @actuations = @actuations.where("geozone_id IN (?)", parametrize[:distrito])
+            end
+
             if !parametrize[:show_fields].blank? && parametrize[:show_fields].to_s != "true"
                 aux_fields.each do |f|
                     if !parametrize[f.to_sym].blank? && f.to_s != "search"
@@ -60,7 +64,7 @@ class SuresController < SuresBaseController
                         if !aux_field_search.blank?
                             parse_data_json(aux_field_search.data).each do |k,v| 
                                 if v.to_s == parametrize[f.to_sym].to_s
-                                    @resultado =  @resultado + (@resultado.blank? ? k : "/#{k}")
+                                    @resultado =  @resultado + (@resultado.blank? ? k.to_s : "/#{k.to_s}")
                                     break
                                 end
                             end

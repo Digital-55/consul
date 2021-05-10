@@ -30,13 +30,13 @@
                     <div class="small-12 large-4 column end">
                         <%= label_tag search.title.parameterize.underscore.to_sym, search.title %>
                         <% if search.data_type == 'select'%>
-                            <%# if search.title == "Distrito" %>
-                                <%#= select_tag search.title.parameterize.underscore.to_sym, options_for_select(parse_data_json(search.data).map {|k,v| [(k.to_s == "Toda la ciudad" ? "SURES" : k),v]}, params[search.title.parameterize.underscore.to_sym]),
+                            <% if search.title == "Distrito" %>
+                                <%= select_tag search.title.parameterize.underscore.to_sym, options_for_select(parse_data_json(search.data).map {|k,v| [(k.to_s == "Toda la ciudad" ? "SURES" : k),v]}, params[search.title.parameterize.underscore.to_sym]),
                                 multiple: true, id: "sures_search_select", include_blank: "" %>
-                            <%# else %>
+                            <% else %>
                                 <%= select_tag search.title.parameterize.underscore.to_sym, options_for_select(parse_data_json(search.data).map {|k,v| [k,v]}, params[search.title.parameterize.underscore.to_sym]),
                                 include_blank: "" %>
-                            <%# end %>
+                            <% end %>
                         <%else%>
                             <%= text_field_tag search.title.parameterize.underscore.to_sym, params[search.title.parameterize.underscore.to_sym] %>
                         <%end%>
