@@ -10,6 +10,8 @@ module Sluggable
 
     def self.find_by_slug_or_id!(slug_or_id)
       find_by_slug(slug_or_id) || find(slug_or_id)
+    rescue
+      find(slug_or_id)
     end
   end
 
