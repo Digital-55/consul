@@ -1,6 +1,6 @@
 <div class="card nested-fields promotional-module" id="<%= module_id(f.object) %>">
   <div class="card-divider">
-    <span class="icon-bars"></span><h5 class="small-6 column menu-item-tag"><%= t("admin.custom_pages.custom_page_modules.custom_page_module.promotional") %></h5>
+    <span class="icon-bars"><span class="icon-arrow-down"></span></span><h5 class="small-6 column menu-item-tag"><%= t("admin.custom_pages.custom_page_modules.custom_page_module.promotional") %></h5>
     <div class="small-6 column text-right">
       <%= link_to_remove_association f do %>
         <span class="icon-x delete"></span>
@@ -19,13 +19,7 @@
           <%= f.label :promo_title_one, t("admin.custom_pages.custom_page_modules.custom_page_module.promo.promo_title_one") %>
           <%= f.text_field :promo_title_one, label: false, class: 'promo-module-title-one' %>
         </div>
-        <div class="check-options">
-          <div class="small-12 medium-2 column">
-            <%= f.check_box :disabled, label: false, class: 'custom_page_module-disabled' %>
-            <%= f.label :disabled, t("admin.custom_pages.custom_page_modules.disabled") %>
-          </div>
-        </div>
-        <div class="small-12 medium-9 column">
+        <div class="small-12 medium-8 column">
           <%= f.label :promo_image_one, t("admin.custom_pages.custom_page_modules.custom_page_module.promo.promo_image_one") %>
           <%= f.file_field :promo_image_one, label: false, class: 'promo_image_one-module-file' %>
         </div>
@@ -56,13 +50,7 @@
           <%= f.label :promo_title_two, t("admin.custom_pages.custom_page_modules.custom_page_module.promo.promo_title_two") %>
           <%= f.text_field :promo_title_two, label: false, class: 'promo-module-title-two' %>
         </div>
-        <div class="check-options">
-          <div class="small-12 medium-2 column">
-            <%= f.check_box :disabled, label: false, class: 'custom_page_module-disabled' %>
-            <%= f.label :disabled, t("admin.custom_pages.custom_page_modules.disabled") %>
-          </div>
-        </div>
-        <div class="small-12 medium-9 column">
+        <div class="small-12 medium-8 column">
           <%= f.label :promo_image_two, t("admin.custom_pages.custom_page_modules.custom_page_module.promo.promo_image_two") %>
           <%= f.file_field :promo_image_two, label: false, class: 'promo_image_two-module-file' %>
         </div>
@@ -93,13 +81,7 @@
           <%= f.label :promo_title_three, t("admin.custom_pages.custom_page_modules.custom_page_module.promo.promo_title_three") %>
           <%= f.text_field :promo_title_three, label: false, class: 'promo-module-title-three' %>
         </div>
-        <div class="check-options">
-          <div class="small-12 medium-2 column">
-            <%= f.check_box :disabled, label: false, class: 'custom_page_module-disabled' %>
-            <%= f.label :disabled, t("admin.custom_pages.custom_page_modules.disabled") %>
-          </div>
-        </div>
-        <div class="small-12 medium-9 column">
+        <div class="small-12 medium-8 column">
           <%= f.label :promo_image_three, t("admin.custom_pages.custom_page_modules.custom_page_module.promo.promo_image_three") %>
           <%= f.file_field :promo_image_three, label: false, class: 'promo_image_three-module-file' %>
         </div>
@@ -123,6 +105,12 @@
         <div class="small-12 medium-12 column">
           <%= f.label :promo_link_three, t("admin.custom_pages.custom_page_modules.custom_page_module.promo.promo_link_three") %>
           <%= f.text_field :promo_link_three, label: false, class: 'promo-module-link-three' %>
+        </div>
+      </div>
+      <div class="check-options">
+        <div class="small-12 medium-2 column">
+          <%= f.check_box :disabled, label: false, class: 'custom_page_module-disabled' %>
+          <%= f.label :disabled, t("admin.custom_pages.custom_page_modules.disabled") %>
         </div>
       </div>
     </div>

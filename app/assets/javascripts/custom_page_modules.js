@@ -45,5 +45,7 @@ function toggleCustomPageModuleCardSection() {
   $('#custom-page-modules-list .card-section').hide()
   $('#custom-page-modules-list .card-divider').on('click', function(){
     $(this).siblings('.card-section').slideToggle()
+    var $arrow = $(this).find('.icon-arrow-down');
+    $arrow.toggleClass('icon-arrow-up icon-arrow-top');
   })
 }
