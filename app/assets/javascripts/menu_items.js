@@ -197,12 +197,11 @@ function getChildrenItemId(menuItem) {
   return childrenIds;
 }
 
-
-
-
 function toggleMenuItemCardSection() {
-  $('#menu-items-list .card-section').hide()
+  $('#menu-items-list .card-section').hide();
   $('#menu-items-list .card-divider').on('click', function(){
-    $(this).siblings('.card-section').slideToggle()
+    $(this).siblings('.card-section').slideToggle();
+    var $arrow = $(this).find('.icon-arrow-down');
+    $arrow.toggleClass('icon-arrow-up icon-arrow-top');
   })
 }
