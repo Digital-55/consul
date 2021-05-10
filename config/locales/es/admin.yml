@@ -288,14 +288,15 @@ es:
       create:
         notice: ¡Página personalizada creada con éxito!
       custom_page_modules:
-        add_claim: Añadir claim
-        add_cta: Añadir CTA
-        add_custom_image: Añadir Imagen
-        add_js_snippet: Añadir Javascript
-        add_promotional: Añadir promocionales
-        add_rich_text: Añadir texto
-        add_subtitle: Añadir subtítulo
-        add_youtube: Añadir vídeo YouTube
+        add_claim: Claim
+        add_cta: CTA
+        add_custom_image: Imagen
+        add_js_snippet: Javascript
+        add_module: Añadir Módulo
+        add_promotional: Promocionales
+        add_rich_text: Texto
+        add_subtitle: Subtítulo
+        add_youtube: YouTube
         cta_module:
           cta: Call to Action
           cta_text: Texto Call to Action

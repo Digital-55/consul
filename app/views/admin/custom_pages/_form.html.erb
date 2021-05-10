@@ -38,53 +38,66 @@
 
     <% if @custom_page.persisted? %>
       <div class="row">
-        <%= link_to_add_association t("admin.custom_pages.custom_page_modules.add_subtitle"), f, :subtitles,
-                                                        class: 'button hollow',
-                                                        partial: 'subtitle_module',
-                                                        'data-association-insertion-node': '#custom-page-modules-list',
-                                                        'data-association-insertion-method': 'prepend' %>
+        <div class="tiny reveal" id="add_modules" data-reveal>
+          <h4 class="inline-block"><%= t("admin.custom_pages.custom_page_modules.add_module") %></h4>
+          <div class="row grid-x grid-padding-x small-up-2 medium-up-4 large-up-6">
 
-        <%= link_to_add_association t("admin.custom_pages.custom_page_modules.add_claim"), f, :claims,
-                                                        class: 'button hollow',
-                                                        partial: 'claim_module',
-                                                        'data-association-insertion-node': '#custom-page-modules-list',
-                                                        'data-association-insertion-method': 'prepend' %>
+            <%= link_to_add_association t("admin.custom_pages.custom_page_modules.add_subtitle"), f, :subtitles,
+                                                            class: 'icon-plus-square button hollow cell',
+                                                            partial: 'subtitle_module',
+                                                            'data-association-insertion-node': '#custom-page-modules-list',
+                                                            'data-association-insertion-method': 'prepend' %>
 
-        <%= link_to_add_association t("admin.custom_pages.custom_page_modules.add_rich_text"), f, :rich_texts,
-                                                        class: 'button hollow',
-                                                        partial: 'rich_text_module',
-                                                        'data-association-insertion-node': '#custom-page-modules-list',
-                                                        'data-association-insertion-method': 'prepend' %>
+            <%= link_to_add_association t("admin.custom_pages.custom_page_modules.add_claim"), f, :claims,
+                                                            class: 'icon-plus-square button hollow cell',
+                                                            partial: 'claim_module',
+                                                            'data-association-insertion-node': '#custom-page-modules-list',
+                                                            'data-association-insertion-method': 'prepend' %>
 
-        <%= link_to_add_association t("admin.custom_pages.custom_page_modules.add_youtube"), f, :youtubes,
-                                                        class: 'button hollow',
-                                                        partial: 'youtube_module',
-                                                        'data-association-insertion-node': '#custom-page-modules-list',
-                                                        'data-association-insertion-method': 'prepend' %>
+            <%= link_to_add_association t("admin.custom_pages.custom_page_modules.add_rich_text"), f, :rich_texts,
+                                                            class: 'icon-plus-square button hollow cell',
+                                                            partial: 'rich_text_module',
+                                                            'data-association-insertion-node': '#custom-page-modules-list',
+                                                            'data-association-insertion-method': 'prepend' %>
 
-        <%= link_to_add_association t("admin.custom_pages.custom_page_modules.add_cta"), f, :ctas,
-                                                        class: 'button hollow',
-                                                        partial: 'cta_module',
-                                                        'data-association-insertion-node': '#custom-page-modules-list',
-                                                        'data-association-insertion-method': 'prepend' %>
+            <%= link_to_add_association t("admin.custom_pages.custom_page_modules.add_youtube"), f, :youtubes,
+                                                            class: 'icon-plus-square button hollow cell',
+                                                            partial: 'youtube_module',
+                                                            'data-association-insertion-node': '#custom-page-modules-list',
+                                                            'data-association-insertion-method': 'prepend' %>
 
-        <%= link_to_add_association t("admin.custom_pages.custom_page_modules.add_js_snippet"), f, :js_snippets,
-                                                        class: 'button hollow',
-                                                        partial: 'js_snippet_module',
-                                                        'data-association-insertion-node': '#custom-page-modules-list',
-                                                        'data-association-insertion-method': 'prepend' %>
+            <%= link_to_add_association t("admin.custom_pages.custom_page_modules.add_cta"), f, :ctas,
+                                                            class: 'icon-plus-square button hollow cell',
+                                                            partial: 'cta_module',
+                                                            'data-association-insertion-node': '#custom-page-modules-list',
+                                                            'data-association-insertion-method': 'prepend' %>
 
-        <%= link_to_add_association t("admin.custom_pages.custom_page_modules.add_custom_image"), f, :custom_images,
-                                                        class: 'button hollow',
-                                                        partial: 'custom_image_module',
-                                                        'data-association-insertion-node': '#custom-page-modules-list',
-                                                        'data-association-insertion-method': 'prepend' %>
+            <%= link_to_add_association t("admin.custom_pages.custom_page_modules.add_custom_image"), f, :custom_images,
+                                                            class: 'icon-plus-square button hollow cell',
+                                                            partial: 'custom_image_module',
+                                                            'data-association-insertion-node': '#custom-page-modules-list',
+                                                            'data-association-insertion-method': 'prepend' %>
 
-        <%= link_to_add_association t("admin.custom_pages.custom_page_modules.add_promotional"), f, :promotionals,
-                                                        class: 'button hollow',
-                                                        partial: 'promotional_module',
-                                                        'data-association-insertion-node': '#custom-page-modules-list',
-                                                        'data-association-insertion-method': 'prepend' %>
+            <%= link_to_add_association t("admin.custom_pages.custom_page_modules.add_promotional"), f, :promotionals,
+                                                            class: 'icon-plus-square button hollow cell',
+                                                            partial: 'promotional_module',
+                                                            'data-association-insertion-node': '#custom-page-modules-list',
+                                                            'data-association-insertion-method': 'prepend' %>
+
+            <%= link_to_add_association t("admin.custom_pages.custom_page_modules.add_js_snippet"), f, :js_snippets,
+                                                            class: 'icon-plus-square button hollow cell',
+                                                            partial: 'js_snippet_module',
+                                                            'data-association-insertion-node': '#custom-page-modules-list',
+                                                            'data-association-insertion-method': 'prepend' %>
+
+            <button class="close-button" data-close aria-label="Close reveal" type="button">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </div>
+        <div id='add_modules_button'>
+          <%= link_to t("admin.custom_pages.custom_page_modules.add_module"), '#', class: 'icon-plus-square button hollow', 'data-open': 'add_modules' %>
+        </div>
 
         <div class="small-12 medium-12 column end nesting-wrapper" id="custom-page-modules-list" data-url="<%= sort_admin_custom_page_custom_page_modules_path(@custom_page) if @custom_page.present? %>">
           <%= f.fields_for :custom_page_modules, @custom_page.custom_page_modules.sort_by(&:position) do |custom_page_module_form| %>

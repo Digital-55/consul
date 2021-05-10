@@ -1323,3 +1323,9 @@ code {
 .js_snippet-module textarea {
   font-family: monospace;
 }
+
+#add_modules_button a.icon-plus-square::before,
+#add_modules a.icon-plus-square::before {
+  float: left;
+  padding-right: 0.5rem;
+}
