@@ -51,6 +51,9 @@ class Admin::CustomPagesController < Admin::BaseController
                                                                           :cta_text, :cta_button, :cta_link,
                                                                           :js_snippet,
                                                                           :custom_image,
+                                                                          :promo_title_one, :promo_description_one, :promo_image_one, :promo_link_one,
+                                                                          :promo_title_two, :promo_description_two, :promo_image_two, :promo_link_two,
+                                                                          :promo_title_three, :promo_description_three, :promo_image_three, :promo_link_three,
                                                                           :disabled, :_destroy],
                                         subtitles_attributes: [:type, :position, :subtitle, :disabled, :_destroy],
                                         claims_attributes: [:type, :position, :claim, :disabled, :_destroy],
@@ -58,7 +61,12 @@ class Admin::CustomPagesController < Admin::BaseController
                                         youtubes_attributes: [:type, :position, :youtube_url, :disabled, :_destroy],
                                         ctas_attributes: [:type, :position, :cta_text, :cta_button, :cta_link, :disabled, :_destroy],
                                         js_snippets_attributes: [:type, :position, :js_snippet, :disabled, :_destroy],
-                                        custom_images_attributes: [:type, :position, :custom_image, :disabled, :_destroy]
+                                        custom_images_attributes: [:type, :position, :custom_image, :disabled, :_destroy],
+                                        promotionals_attributes: [:type, :position,
+                                                                  :promo_title_one, :promo_description_one, :promo_image_one, :promo_link_one,
+                                                                  :promo_title_two, :promo_description_two, :promo_image_two, :promo_link_two,
+                                                                  :promo_title_three, :promo_description_three, :promo_image_three, :promo_link_three,
+                                                                  :disabled, :_destroy]
                                       )
   end
 

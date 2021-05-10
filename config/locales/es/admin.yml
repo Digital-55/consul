@@ -292,6 +292,7 @@ es:
         add_cta: Añadir CTA
         add_custom_image: Añadir Imagen
         add_js_snippet: Añadir Javascript
+        add_promotional: Añadir promocionales
         add_rich_text: Añadir texto
         add_subtitle: Añadir subtítulo
         add_youtube: Añadir vídeo YouTube
@@ -305,6 +306,23 @@ es:
           claim: Claim
           custom_image: Imagen Personalizada
           js_snippet: Código Javascript
+          promo:
+            promo_title_one: Título 1
+            promo_title_two: Título 2
+            promo_title_three: Título 3
+            promo_description_one: Descripción 1
+            promo_description_two: Descripción 2
+            promo_description_three: Descripción 3
+            promo_image_one: Imagen 1
+            promo_image_two: Imagen 2
+            promo_image_three: Imagen 3
+            promo_link_one: Enlace 1
+            promo_link_two: Enlace 2
+            promo_link_three: Enlace 3
+          promotional: Promocional
+          promotional_one: Promocional 1
+          promotional_two: Promocional 2
+          promotional_three: Promocional 3
           rich_text: Texto
           subtitle: Subtítulo
           youtube: URL de YouTube

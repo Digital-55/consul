@@ -498,8 +498,8 @@ ActiveRecord::Schema.define(version: 20210420102437) do
   create_table "custom_page_modules", force: :cascade do |t|
     t.integer  "custom_page_id"
     t.string   "type"
-    t.integer  "position",                  default: 0
-    t.boolean  "disabled",                  default: false
+    t.integer  "position",                       default: 0
+    t.boolean  "disabled",                       default: false
     t.string   "subtitle"
     t.string   "claim"
     t.text     "rich_text"
@@ -512,8 +512,29 @@ ActiveRecord::Schema.define(version: 20210420102437) do
     t.string   "custom_image_content_type"
     t.integer  "custom_image_file_size"
     t.datetime "custom_image_updated_at"
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
+    t.string   "promo_title_one"
+    t.text     "promo_description_one"
+    t.string   "promo_image_one_file_name"
+    t.string   "promo_image_one_content_type"
+    t.integer  "promo_image_one_file_size"
+    t.datetime "promo_image_one_updated_at"
+    t.string   "promo_link_one"
+    t.string   "promo_title_two"
+    t.text     "promo_description_two"
+    t.string   "promo_image_two_file_name"
+    t.string   "promo_image_two_content_type"
+    t.integer  "promo_image_two_file_size"
+    t.datetime "promo_image_two_updated_at"
+    t.string   "promo_link_two"
+    t.string   "promo_title_three"
+    t.text     "promo_description_three"
+    t.string   "promo_image_three_file_name"
+    t.string   "promo_image_three_content_type"
+    t.integer  "promo_image_three_file_size"
+    t.datetime "promo_image_three_updated_at"
+    t.string   "promo_link_three"
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
     t.index ["type", "custom_page_id"], name: "index_custom_page_modules_on_type_and_custom_page_id", using: :btree
   end
 
