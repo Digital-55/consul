@@ -68,7 +68,17 @@ $(document).on('page:change', function(){
             $.ajax({
               url: "/admin/menus/" + menuId + "/menu_items",
               type: "POST",
-              data: {'title': title, 'url': url, 'page_link': page_link, 'parent_item_id': parentItemId, 'children_item_ids': childrenItemIds, 'position': position, 'item_type': itemType, 'target_blank': targetBlank, 'disabled': disabled },
+              data: {
+                      'title': title,
+                      'url': url,
+                      'page_link': page_link,
+                      'parent_item_id': parentItemId,
+                      'children_item_ids': childrenItemIds,
+                      'position': position,
+                      'item_type': itemType,
+                      'target_blank': targetBlank,
+                      'disabled': disabled
+                    },
               item: $menuItem,
               success: function(data){
                 if (data.errors) {
@@ -98,7 +108,15 @@ $(document).on('page:change', function(){
             $.ajax({
               url: "/admin/menus/" + menuId + "/menu_items/" + itemId,
               type: "PUT",
-              data: {'title': title, 'url': url, 'page_link': page_link, 'parent_item_id': parentItemId, 'item_type': itemType, 'target_blank': targetBlank, 'disabled': disabled },
+              data: {
+                      'title': title,
+                      'url': url,
+                      'page_link': page_link,
+                      'parent_item_id': parentItemId,
+                      'item_type': itemType,
+                      'target_blank': targetBlank,
+                      'disabled': disabled
+                    },
               success: function(data){
                 if (data.errors) {
                   var errorField = Object.keys(data.errors)[0];
