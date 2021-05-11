@@ -1,4 +1,15 @@
-<div class="row margin-top">
-  <h2><%= @custom_page.title %></h2>
+<% provide :title do %>
+  <%= @custom_page.title %> - <%= t("application.title") %>
+<% end %>
+
+<div class="custom-page">
+  <div class="row margin-top">
+    <h1><%= @custom_page.title %></h1>
+  </div>
+  <% custom_page_module_renders(@custom_page).each do |custom_page_module_render| %>
+      <div class="row margin-top">
+        <%= custom_page_module_render %>
+      </div>
+  <% end %>
+  <div id="<%=dom_id(@custom_page)%>" class="js_snippets hidden" data-snippets="<%= enabled_snippets %>"></div>
 </div>
-<div id="<%=dom_id(@custom_page)%>" class="js_snippets hidden" data-snippets="<%= enabled_snippets %>"></div>

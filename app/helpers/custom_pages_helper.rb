@@ -12,17 +12,6 @@ module CustomPagesHelper
     value == true ? "<strong>#{key}</strong>".html_safe : key
   end
 
-  def custom_page_module_partial(form_data)
-    return 'subtitle_module' if form_data.type == "SubtitleModule"
-    return 'claim_module' if form_data.type == "ClaimModule"
-    return 'rich_text_module' if form_data.type == "RichTextModule"
-    return 'youtube_module' if form_data.type == "YoutubeModule"
-    return 'cta_module' if form_data.type == "CTAModule"
-    return 'js_snippet_module' if form_data.type == "JSSnippetModule"
-    return 'custom_image_module' if form_data.type == "CustomImageModule"
-    return 'promotional_module' if form_data.type == "PromotionalModule"
-  end
-
   def module_id(object)
     if object.new_record?
       "new_custom_page_module"
@@ -47,6 +36,18 @@ module CustomPagesHelper
     else
       nil
     end
+  end
+
+  def custom_page_module_renders(custom_page)
+    renders = []
+    custom_page.custom_page_modules.enabled.sort_by(&:position).each do |custom_page_module|
+      renders << render_module(custom_page_module)
+    end
+    renders.compact
+  end
+
+  def render_module(custom_page_module)
+    render partial: custom_page_module.type.underscore, locals: {custom_page_module: custom_page_module} rescue nil
   end
 
 end
