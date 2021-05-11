@@ -1,0 +1,40 @@
+<div class="<%= custom_page_module.type.underscore.dasherize %>">
+  <div class="small-12 medium-12 column">
+    <div class="row medium-unstack">
+      <%= link_to custom_page_module.promo_link_one do %>
+        <div class="column medium-4">
+          <div class="card">
+            <%= image_tag custom_page_module.promo_image_one.url(:content) %>
+            <div class="card-section">
+              <h4><%= custom_page_module.promo_title_one %></h4>
+              <%= custom_page_module.promo_description_one.html_safe %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <%= link_to custom_page_module.promo_link_two do %>
+        <div class="column medium-4">
+          <div class="card">
+            <%= image_tag custom_page_module.promo_image_two.url(:content) %>
+            <div class="card-section">
+              <h4><%= custom_page_module.promo_title_two %></h4>
+              <%= custom_page_module.promo_description_two.html_safe %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <%= link_to custom_page_module.promo_link_three do %>
+        <div class="column medium-4">
+          <div class="card">
+            <%= image_tag custom_page_module.promo_image_three.url(:content) %>
+            <div class="card-section">
+              <h4><%= custom_page_module.promo_title_three %></h4>
+              <%= custom_page_module.promo_description_three.html_safe %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+  </div>
+</div>
