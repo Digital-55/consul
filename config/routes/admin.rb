@@ -37,6 +37,8 @@ namespace :admin do
     end
   end
 
+  resources :event_agends
+
   resources :proposals, only: [:index, :show, :update] do
     member { patch :toggle_selection }
     resources :milestones, controller: "proposal_milestones"
@@ -250,6 +252,7 @@ namespace :admin do
   namespace :legislation do
     resources :processes do
       resources :questions do
+        #post :destroy_question_option, on: :member
         get :other_answers, on: :collection
         get :range_answers, on: :collection
         get :number_answers, on: :collection
