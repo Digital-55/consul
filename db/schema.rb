@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210504061852) do
+ActiveRecord::Schema.define(version: 20210511081034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -553,6 +553,15 @@ ActiveRecord::Schema.define(version: 20210504061852) do
   create_table "editors", force: :cascade do |t|
     t.integer "user_id"
     t.index ["user_id"], name: "index_editors_on_user_id", using: :btree
+  end
+
+  create_table "event_agends", force: :cascade do |t|
+    t.date     "date_at"
+    t.string   "hour_at"
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "hour_to"
   end
 
   create_table "failed_census_calls", force: :cascade do |t|
@@ -1745,7 +1754,7 @@ ActiveRecord::Schema.define(version: 20210504061852) do
     t.date     "access_key_generated_at"
     t.integer  "access_key_tried",                          default: 0
     t.date     "date_hide"
-    t.string   "name"
+    t.string   "first_name"
     t.string   "last_name"
     t.string   "last_name_alt"
     t.integer  "adress_id"
