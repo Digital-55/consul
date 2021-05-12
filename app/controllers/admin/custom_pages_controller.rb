@@ -39,6 +39,12 @@ class Admin::CustomPagesController < Admin::BaseController
     redirect_to admin_custom_pages_path
   end
 
+
+  def draft_preview
+    @custom_page = CustomPage.find(params[:custom_page_id])
+    render :draft_preview if @custom_page.present?
+  end
+
   private
 
   def custom_page_params

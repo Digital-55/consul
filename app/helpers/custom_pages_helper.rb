@@ -47,7 +47,7 @@ module CustomPagesHelper
   end
 
   def render_module(custom_page_module)
-    render partial: custom_page_module.type.underscore, locals: {custom_page_module: custom_page_module} rescue nil
+    render partial: "/custom_pages/#{custom_page_module.type.underscore}", locals: {custom_page_module: custom_page_module} rescue nil
   end
 
 end

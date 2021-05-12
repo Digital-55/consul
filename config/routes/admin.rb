@@ -175,6 +175,7 @@ namespace :admin do
   end
 
   resources :custom_pages do
+    get :draft_preview
     resources :custom_page_modules do
       collection do
         patch :sort
