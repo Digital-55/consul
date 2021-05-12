@@ -134,7 +134,7 @@ class ImportUser < BaseImporter
     end
 
     def build_user(row)
-      user = User.new(username: row[:usuario], email: row[:email], name: row[:nombre], last_name: row[:primer_apellido], 
+      user = User.new(username: row[:usuario], email: row[:email], first_name: row[:nombre], last_name: row[:primer_apellido], 
         last_name_alt: row[:segundo_apellido], phone_number: row[:telefono], document_number: row[:documento], 
         date_of_birth: row[:fecha_nacimiento], terms_of_service: "1", residence_verified_at: Time.current, 
         verified_at: Time.current)
