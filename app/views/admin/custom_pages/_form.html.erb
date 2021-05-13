@@ -95,8 +95,13 @@
             </button>
           </div>
         </div>
-        <div id='add_modules_button'>
-          <%= link_to t("admin.custom_pages.custom_page_modules.add_module"), '#', class: 'icon-plus-square button hollow', 'data-open': 'add_modules' %>
+        <div class="clearfix">
+          <div id='add_modules_button' class="float-left">
+            <%= link_to t("admin.custom_pages.custom_page_modules.add_module"), '#', class: 'icon-plus-square button hollow', 'data-open': 'add_modules' %>
+          </div>
+          <div id='toggle_collapse_button' class="float-right">
+            <%= link_to '', '#', class: 'icon-expand button' %>
+          </div>
         </div>
 
         <div class="small-12 medium-12 column end nesting-wrapper" id="custom-page-modules-list" data-url="<%= sort_admin_custom_page_custom_page_modules_path(@custom_page) if @custom_page.present? %>">
