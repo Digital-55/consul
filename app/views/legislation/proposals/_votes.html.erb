@@ -1,6 +1,6 @@
 <% voted_classes = css_classes_for_vote(@legislation_proposal_votes, proposal) %>
 <div class="votes">
-  <% if @process.proposals_phase.open? %>
+  <% if @process.try(:proposals_phase).try(:open?) %>
     <div class="in-favor inline-block">
       <% if user_signed_in? %>
         <%= link_to vote_legislation_process_proposal_path(process_id: proposal.process, id: proposal, value: "yes"),

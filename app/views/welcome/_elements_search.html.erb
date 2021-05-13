@@ -13,13 +13,13 @@
                     <%= page_entries_info l[:list] %>
                     <% l[:list].each_with_index do |item, index|%>
                         <%if l[:model].model_name.to_s == "Debate"%>
-                            <%=render partial: "debates/debate", debate: item%>
+                            <%=render partial: "debates/debate", :locals =>{ debate: item}%>
                         <%elsif l[:model].model_name.to_s == "Proposal"%>
-                            <%=render partial: "proposals/proposal", proposal: item%>
+                            <%=render partial: "proposals/proposal", :locals =>{proposal: item}%>
                         <%elsif l[:model].model_name.to_s == "Legislation::Process"%>
-                            <%=render partial: "legislation/processes/process", process: item%>
+                            <%=render partial: "legislation/processes/process", :locals =>{process: item}%>
                         <%elsif l[:model].model_name.to_s == "Legislation::Proposal"%>                        
-                            <%=render partial: "legislation/proposals/votes", proposal: item%>
+                            <%=render partial: "legislation/proposals/proposal", :locals =>{proposal: item}%>
                         <%else%>
                             <div id="<%= dom_id(item) %>" class="actuation clear" data-type="actuation">
                                 <div class="panel">
@@ -29,8 +29,11 @@
                                         <div class="actuation-content">
                                             <h3><%= link_to l[:model].model_name.human + " #{index + 1}", sures_path %></h3>
                                             <div class="actuation-description">
-                                            <p><%=item.try(:created_at)%><%#= markdown(actuation.proposal_objective).html_safe %></p>
-                                          
+                                                <% l[:table_field].each do |r|%>
+                                                    <p>
+                                                        <strong><%=l[:model].human_attribute_name(r.to_sym)%>:</strong><%= markdown(item.try(r.to_sym).to_s).html_safe %>       
+                                                    </p>
+                                                <%end%>
                                             </div>
                                         </div>
                                     </div>

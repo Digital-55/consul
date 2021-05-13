@@ -27,7 +27,7 @@ module VotesHelper
   end
 
   def css_classes_for_vote(votes, votable)
-    case votes[votable.id]
+    case votes[votable.try(:id)]
     when true
       {in_favor: "voted", against: "no-voted"}
     when false
@@ -35,10 +35,13 @@ module VotesHelper
     else
       {in_favor: "", against: ""}
     end
+  rescue
+    {in_favor: "", against: ""}
   end
 
   def voted_for?(votes, votable)
-    votes[votable.id]
+    votes[votable.try(:id)]
+  rescue
   end
 
 end

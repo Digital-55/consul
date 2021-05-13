@@ -135,8 +135,6 @@ class WelcomeController < ApplicationController
         sg_selects = search_aux.try(:sg_selects)
         sg_tables = search_aux.try(:sg_table_fields)
         
-        tables_aux = ""
-        tables_array = []
 
         if !sg_tables.blank?
           sg_tables.each do |t| 
@@ -146,9 +144,10 @@ class WelcomeController < ApplicationController
             model_list = model_list + "#{" OR " if !model_list.blank?} translate(UPPER(cast(#{t.field_name} as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[f.to_sym]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')"
 
             if list.blank?
-              @listados.push({model: model, list_base: model_list, list: nil, order: sg_orders.blank? ? 0 : sg_orders.select {|o| o.table_name== model.model_name.to_s}.try(:order).to_i })
+              @listados.push({model: model, table_field: [t.field_name], list_base: model_list, list: nil, order: sg_orders.blank? ? 0 : sg_orders.select {|o| o.table_name== model.model_name.to_s}.try(:order).to_i })
             elsif !@listados.select {|l| l[:model].model_name.to_s == model.model_name.to_s}.blank?
               @listados.select {|l| l[:model].model_name.to_s == model.model_name.to_s}[0][:list_base] = model_list
+              @listados.select {|l| l[:model].model_name.to_s == model.model_name.to_s}[0][:table_field].push(t.field_name)
             end
           end
         end
