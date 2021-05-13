@@ -1,6 +1,9 @@
 <% provide :title do %>
   <%= @custom_page.title %> - <%= t("application.title") %>
 <% end %>
+<% content_for :canonical do %>
+  <%= render "shared/canonical", href: custom_page_url(@custom_page.slug) %>
+<% end %>
 
 <div class="custom-page">
   <div class="row margin-top">

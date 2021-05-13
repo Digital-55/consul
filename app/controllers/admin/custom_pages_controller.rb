@@ -24,7 +24,7 @@ class Admin::CustomPagesController < Admin::BaseController
 
   def update
     if @custom_page.update(custom_page_params)
-      redirect_to admin_custom_pages_path, notice: t("admin.custom_pages.edit.notice")
+      redirect_to edit_admin_custom_page_path(@custom_page), notice: t("admin.custom_pages.edit.notice")
     else
       render :edit
     end
