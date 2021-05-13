@@ -74,17 +74,6 @@ class WelcomeController < ApplicationController
     @event_agends = nil
   end
 
-  private
-
-  def get_key_youtube
-    @key = Rails.application.secrets.yt_api_key
-    @key_x = Rails.application.secrets.yt_api_key_x
-    @embed_domain = Rails.application.secrets.embed_domain
-  rescue
-    @key= ""
-    @key_x=""
-    @embed_domain = ""
-
   def generic_search
     @orders_settings = Sg::Setting.order_settings.active.order(id: :asc)
     @search_settings = Sg::Setting.search_settings.active.order(id: :asc)
@@ -102,6 +91,20 @@ class WelcomeController < ApplicationController
     @listados = []
   end
 
+
+  private
+
+  def get_key_youtube
+    @key = Rails.application.secrets.yt_api_key
+    @key_x = Rails.application.secrets.yt_api_key_x
+    @embed_domain = Rails.application.secrets.embed_domain
+  rescue
+    @key= ""
+    @key_x=""
+    @embed_domain = ""
+  end
+
+ 
   def set_user_recommendations
     @recommended_debates = Debate.recommendations(current_user).sort_by_recommendations.limit(3)
     @recommended_proposals = Proposal.recommendations(current_user).sort_by_recommendations.limit(3)

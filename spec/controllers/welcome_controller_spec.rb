@@ -15,33 +15,30 @@ describe WelcomeController do
       get :generic_search, params: {search: "n"}
       expect(response.status).to be(200)
     end
+  end
+  describe "agend_admin" do
+    it "init page agend admin" do
+
+      get :agend_admin
+      expect(response.status).to eq(200)
+    end
+  end
+  describe "eventos" do
+    it "init page agend admin" do
+      get :eventos
+      expect(response.status).to eq(200)
+
+    end
 
     
   end
+
+  describe "encuentrosconexpertos" do
+    it "init page agend admin" do
+      get :encuentrosconexpertos
+      expect(response.status).to eq(200)
+    end
+  end
+
 end
-    describe "agend_admin" do
-    end
-        end
-          expect(response.status).to eq(200)
-          
-    
-        it "init page agend admin" do
-          get :encuentrosconexpertos
-    describe "encuentrosconexpertos" do
-
-    end
-        end
-          expect(response.status).to eq(200)
-          
-          get :eventos
-        it "init page agend admin" do
-    describe "eventos" do
-    end
-    
-
-        end
-          expect(response.status).to eq(200)
-          
-          get :agend_admin
-    
-        it "init page agend admin" do
+         
