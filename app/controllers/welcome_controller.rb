@@ -3,6 +3,7 @@ class WelcomeController < ApplicationController
   skip_authorization_check
   before_action :set_user_recommendations, only: :index, if: :current_user
   before_action :authenticate_user!, only: :welcome
+  before_action :get_key_youtube, only: [:encuentrosconexpertos, :eventos, :agend_admin]
 
  
 
@@ -30,20 +31,59 @@ class WelcomeController < ApplicationController
   end
 
   def encuentrosconexpertos
-    @key = Rails.application.secrets.yt_api_key
-    @key_x = Rails.application.secrets.yt_api_key_x
-    @embed_domain = Rails.application.secrets.embed_domain
-    @videoId = Setting.find_by(key: "youtube_connect").value
-    @playlistId = Setting.find_by(key: "youtube_playlist_connect").value
+    begin
+      @videoId = Setting.find_by(key: "youtube_connect").value
+    rescue
+      @videoId = ""
+    end
+    begin
+      @playlistId = Setting.find_by(key: "youtube_playlist_connect").value
+    rescue
+      @playlistId = ""
+    end
   end
 
   def eventos
+    begin
+      @videoId = Setting.find_by(key: "eventos_youtube_connect").value
+    rescue
+      @videoId = ""
+    end
+    begin
+      @playlistId = Setting.find_by(key: "eventos_youtube_playlist_connect").value
+    rescue
+      @playlistId = ""
+    end
+  end
+
+  def agend_admin
+    begin
+      @videoId =  Setting.find_by(key: "agend_youtube_connect").value
+    rescue
+      @videoId = ""
+    end
+    begin 
+      @playlistId = Setting.find_by(key: "agend_youtube_playlist_connect").value
+    rescue
+      @playlistId = ""
+    end
+    @event_agends = EventAgend.all.order(date_at: :asc).group_by(&:date_at)
+  rescue
+    @videoId = ""
+    @playlistId = ""
+    @event_agends = nil
+  end
+
+  private
+
+  def get_key_youtube
     @key = Rails.application.secrets.yt_api_key
     @key_x = Rails.application.secrets.yt_api_key_x
     @embed_domain = Rails.application.secrets.embed_domain
-    @videoId = Setting.find_by(key: "eventos_youtube_connect").value
-    @playlistId = Setting.find_by(key: "eventos_youtube_playlist_connect").value
-  end
+  rescue
+    @key= ""
+    @key_x=""
+    @embed_domain = ""
 
   def generic_search
     @orders_settings = Sg::Setting.order_settings.active.order(id: :asc)
@@ -61,8 +101,6 @@ class WelcomeController < ApplicationController
     @resultado = []
     @listados = []
   end
-
-  private
 
   def set_user_recommendations
     @recommended_debates = Debate.recommendations(current_user).sort_by_recommendations.limit(3)

@@ -2,13 +2,13 @@
     <h3 style="font-weight:0!important"><%= t("management.users.adress") %></h3>
     <%= f.fields_for :adress, (f.object.adress.presence || f.object.build_adress) do |f_adress|  %>
             <div class="small-12 medium-2 column">
-                <%= f_adress.text_field :road_type,
+                <%= f_adress.text_field :road_type, value: !f_adress.object.road_type.blank? ? f_adress.object.road_type.encode("Windows-1252").force_encoding("UTF-8") : '',
                     label: t("management.users.new.adress.road_type"),
                     placeholder: t("management.users.new.adress.road_type"),
                     include_blank: :true   %>
             </div>
             <div class="small-12 medium-6 column">
-                <%= f_adress.text_field :road_name,
+                <%= f_adress.text_field :road_name, value: !f_adress.object.road_name.blank? ? f_adress.object.road_name.encode("Windows-1252").force_encoding("UTF-8") : '',
                 label: t("management.users.new.adress.road_name"),
                 placeholder: t("management.users.new.adress.road_name")  %>
             </div>

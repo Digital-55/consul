@@ -19,3 +19,29 @@ describe WelcomeController do
     
   end
 end
+    describe "agend_admin" do
+    end
+        end
+          expect(response.status).to eq(200)
+          
+    
+        it "init page agend admin" do
+          get :encuentrosconexpertos
+    describe "encuentrosconexpertos" do
+
+    end
+        end
+          expect(response.status).to eq(200)
+          
+          get :eventos
+        it "init page agend admin" do
+    describe "eventos" do
+    end
+    
+
+        end
+          expect(response.status).to eq(200)
+          
+          get :agend_admin
+    
+        it "init page agend admin" do

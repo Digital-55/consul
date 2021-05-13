@@ -44,7 +44,7 @@ class Management::UsersController < Management::BaseController
   private
 
     def user_params
-      params.require(:user).permit(:document_type, :document_number, :username, :email, :gender, :date_of_birth, :name, 
+      params.require(:user).permit(:document_type, :document_number, :username, :email, :gender, :date_of_birth, :first_name, 
         :last_name, :last_name_alt, :phone_number, :profiles_id,
         adress_attributes: [:road_type, :road_name, :road_number, :floor, :gate, :door, :district, :borought, :postal_code])
     end
