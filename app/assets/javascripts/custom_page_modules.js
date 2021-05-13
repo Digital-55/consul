@@ -61,19 +61,18 @@ function toggleCustomPageModuleCardSection() {
 function toggleAllCustomPageModuleCardSection() {
   $('#toggle_collapse_button').on('click', function(){
     $(this).toggleClass('toggle-open');
+    $(this).find('.icon-arrow-down').toggleClass('icon-arrow-down icon-arrow-top');
     var cardSections = $('#custom-page-modules-list .card-section')
     for(var cardSection of cardSections) {
       var $arrow = $(cardSection).siblings('.card-divider')
       if($(this).hasClass('toggle-open')){
+        $(this).find('.icon-arrow-down').toggleClass('icon-arrow-down icon-arrow-top');
         cardSections.show();
         $arrow.find('.icon-arrow-down').toggleClass('icon-arrow-down icon-arrow-top');
-        // $arrow.find('.icon-arrow-down').addClass('icon-arrow-top')
-        // $arrow.find('.icon-arrow-down').removeClass('icon-arrow-down')
       } else {
+        $(this).find('.icon-arrow-top').toggleClass('icon-arrow-top icon-arrow-down');
         cardSections.hide();
         $arrow.find('.icon-arrow-top').toggleClass('icon-arrow-top icon-arrow-down');
-        // $arrow.find('.icon-arrow-top').addClass('icon-arrow-down')
-        // $arrow.find('.icon-arrow-top').removeClass('icon-arrow-top')
       }
     }
   })
