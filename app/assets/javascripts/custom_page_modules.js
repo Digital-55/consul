@@ -30,6 +30,7 @@ $(document).on('page:change', function(){
 
   loadCodeSnippet();
   toggleCustomPageModuleCardSection();
+  toggleAllCustomPageModuleCardSection();
 });
 
 function loadCodeSnippet(){
@@ -44,8 +45,14 @@ function loadCodeSnippet(){
 function toggleCustomPageModuleCardSection() {
   $('#custom-page-modules-list .card-section').hide()
   $('#custom-page-modules-list .card-divider').on('click', function(){
-    $(this).siblings('.card-section').slideToggle()
+    $(this).siblings('.card-section').slideToggle();
     var $arrow = $(this).find('.icon-arrow-down');
     $arrow.toggleClass('icon-arrow-up icon-arrow-top');
+  })
+}
+
+function toggleAllCustomPageModuleCardSection() {
+  $('#toggle_collapse_button').on('click', function(){
+    $('#custom-page-modules-list .card-section').slideToggle();
   })
 }
