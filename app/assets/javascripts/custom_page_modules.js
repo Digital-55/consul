@@ -46,13 +46,39 @@ function toggleCustomPageModuleCardSection() {
   $('#custom-page-modules-list .card-section').hide()
   $('#custom-page-modules-list .card-divider').on('click', function(){
     $(this).siblings('.card-section').slideToggle();
-    var $arrow = $(this).find('.icon-arrow-down');
-    $arrow.toggleClass('icon-arrow-up icon-arrow-top');
+    var $arrowDown = $(this).find('.icon-arrow-down');
+    if($arrowDown.length) {
+      $arrowDown.toggleClass('icon-arrow-down icon-arrow-top');
+    } else {
+      var $arrowTop = $(this).find('.icon-arrow-top');
+      if($arrowTop.length){
+        $arrowTop.toggleClass('icon-arrow-top icon-arrow-down');
+      }
+    }
   })
 }
 
 function toggleAllCustomPageModuleCardSection() {
   $('#toggle_collapse_button').on('click', function(){
-    $('#custom-page-modules-list .card-section').slideToggle();
+    $(this).toggleClass('toggle-open');
+    var cardSections = $('#custom-page-modules-list .card-section')
+    for(var cardSection of cardSections) {
+      var $arrow = $(cardSection).siblings('.card-divider')
+      if($(this).hasClass('toggle-open')){
+        cardSections.show();
+        $arrow.find('.icon-arrow-down').toggleClass('icon-arrow-down icon-arrow-top');
+        // $arrow.find('.icon-arrow-down').addClass('icon-arrow-top')
+        // $arrow.find('.icon-arrow-down').removeClass('icon-arrow-down')
+      } else {
+        cardSections.hide();
+        $arrow.find('.icon-arrow-top').toggleClass('icon-arrow-top icon-arrow-down');
+        // $arrow.find('.icon-arrow-top').addClass('icon-arrow-down')
+        // $arrow.find('.icon-arrow-top').removeClass('icon-arrow-top')
+      }
+    }
   })
 }
+
+// $("#myElement").parents(":css(display=none)").show();
+
+// https://stackoverflow.com/questions/178325/how-do-i-check-if-an-element-is-hidden-in-jquery?rq=1
