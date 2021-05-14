@@ -75,6 +75,7 @@ function toggleAllCustomPageModuleCardSection() {
         $arrow.find('.icon-arrow-top').toggleClass('icon-arrow-top icon-arrow-down');
       }
     }
+    return false;
   })
 }
 
