@@ -78,7 +78,3 @@ function toggleAllCustomPageModuleCardSection() {
     return false;
   })
 }
-
-// $("#myElement").parents(":css(display=none)").show();
-
-// https://stackoverflow.com/questions/178325/how-do-i-check-if-an-element-is-hidden-in-jquery?rq=1
