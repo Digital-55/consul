@@ -156,7 +156,8 @@ $(document).on('page:change', function(){
 });
 
 function removeItem() {
-  $('a.remove_fields').click(function(e) {
+  $('#menu-items-list a.remove_fields').click(function(e) {
+    debugger;
     var urlArray = window.location.href.split("/");
     var menuId = urlArray.map(Number).filter(Number)[0].toString()
     var eventTargetMenuItem = getMenuItem(e.target);
