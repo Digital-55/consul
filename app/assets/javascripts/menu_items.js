@@ -146,6 +146,7 @@ $(document).on('page:change', function(){
   })
 
   toggleMenuItemCardSection();
+  toggleAllMenuItemCardSection();
   removeItem();
   // Activates 'cocoon:after-insert' to allow sorting existing menu-items
   if($('.nested-fields').length > 0) {
@@ -219,7 +220,36 @@ function toggleMenuItemCardSection() {
   $('#menu-items-list .card-section').hide();
   $('#menu-items-list .card-divider').on('click', function(){
     $(this).siblings('.card-section').slideToggle();
-    var $arrow = $(this).find('.icon-arrow-down');
-    $arrow.toggleClass('icon-arrow-up icon-arrow-top');
+    var $arrowDown = $(this).find('.icon-arrow-down');
+    if($arrowDown.length) {
+      $arrowDown.toggleClass('icon-arrow-down icon-arrow-top');
+    } else {
+      var $arrowTop = $(this).find('.icon-arrow-top');
+      if($arrowTop.length){
+        $arrowTop.toggleClass('icon-arrow-top icon-arrow-down');
+      }
+    }
+  })
+}
+
+function toggleAllMenuItemCardSection(e) {
+  $('#toggle_menu_collapse_button').on('click', function(){
+    $(this).toggleClass('toggle-open');
+    $(this).find('.icon-arrow-down').toggleClass('icon-arrow-down icon-arrow-top');
+    var cardSections = $('#menu-items-list .card-section')
+    for(var cardSection of cardSections) {
+      var $arrow = $(cardSection).siblings('.card-divider')
+      // debugger;
+      if($(this).hasClass('toggle-open')){
+        $(this).find('.icon-arrow-down').toggleClass('icon-arrow-down icon-arrow-top');
+        cardSections.show('slow', 'swing');
+        $arrow.find('.icon-arrow-down').toggleClass('icon-arrow-down icon-arrow-top');
+      } else {
+        $(this).find('.icon-arrow-top').toggleClass('icon-arrow-top icon-arrow-down');
+        cardSections.hide('slow', 'swing');
+        $arrow.find('.icon-arrow-top').toggleClass('icon-arrow-top icon-arrow-down');
+      }
+    }
+    return false;
   })
 }

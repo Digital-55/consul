@@ -59,7 +59,7 @@ function toggleCustomPageModuleCardSection() {
 }
 
 function toggleAllCustomPageModuleCardSection() {
-  $('#toggle_collapse_button').on('click', function(){
+  $('#toggle_modules_collapse_button').on('click', function(){
     $(this).toggleClass('toggle-open');
     $(this).find('.icon-arrow-down').toggleClass('icon-arrow-down icon-arrow-top');
     var cardSections = $('#custom-page-modules-list .card-section')
@@ -67,11 +67,11 @@ function toggleAllCustomPageModuleCardSection() {
       var $arrow = $(cardSection).siblings('.card-divider')
       if($(this).hasClass('toggle-open')){
         $(this).find('.icon-arrow-down').toggleClass('icon-arrow-down icon-arrow-top');
-        cardSections.show();
+        cardSections.show('slow', 'swing');
         $arrow.find('.icon-arrow-down').toggleClass('icon-arrow-down icon-arrow-top');
       } else {
         $(this).find('.icon-arrow-top').toggleClass('icon-arrow-top icon-arrow-down');
-        cardSections.hide();
+        cardSections.hide('slow', 'swing');
         $arrow.find('.icon-arrow-top').toggleClass('icon-arrow-top icon-arrow-down');
       }
     }
