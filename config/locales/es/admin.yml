@@ -287,6 +287,7 @@ es:
     custom_pages:
       create:
         notice: ¡Página personalizada creada con éxito!
+      custom_pages_manager: Gestor de páginas personalizadas
       custom_page_modules:
         add_claim: Claim
         add_cta: CTA
@@ -306,6 +307,7 @@ es:
         custom_page_module:
           claim: Claim
           custom_image: Imagen Personalizada
+          custom_image_alt: Texto Alternativo
           js_snippet: Código Javascript
           promo:
             promo_title_one: Título 1
@@ -335,9 +337,13 @@ es:
         editing: Editar página personalizada
         notice: ¡Página personalizada actualizada con éxito!
       custom_page:
+        canonical: URL canónica
         creating: Crear página personalizada
         custom_page_items: Módulos
         index: Módulos de página
+        meta_description: Meta-descripción (aprox. 160 caracteres)
+        meta_keywords: Palabras clave separadas por "comas"
+        meta_title: Meta-título (aprox. 70 caracteres)
         published: Estado
         slug: Slug
         title: Título

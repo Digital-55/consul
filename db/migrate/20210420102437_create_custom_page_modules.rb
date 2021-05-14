@@ -14,6 +14,7 @@ class CreateCustomPageModules < ActiveRecord::Migration[5.0]
       t.string :cta_link
       t.text :js_snippet
       t.attachment :custom_image
+      t.text :custom_image_alt
       t.string :promo_title_one
       t.text :promo_description_one
       t.attachment :promo_image_one

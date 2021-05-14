@@ -48,7 +48,7 @@ class Admin::CustomPagesController < Admin::BaseController
   private
 
   def custom_page_params
-    params.require(:custom_page).permit(:title, :slug, :published,
+    params.require(:custom_page).permit(:title, :slug, :published, :meta_title, :meta_description, :meta_keywords, :canonical,
                                         custom_page_modules_attributes: [:id, :type, :position,
                                                                           :subtitle,
                                                                           :claim,
@@ -56,7 +56,7 @@ class Admin::CustomPagesController < Admin::BaseController
                                                                           :youtube_url,
                                                                           :cta_text, :cta_button, :cta_link,
                                                                           :js_snippet,
-                                                                          :custom_image,
+                                                                          :custom_image, :custom_image_alt,
                                                                           :promo_title_one, :promo_description_one, :promo_image_one, :promo_link_one,
                                                                           :promo_title_two, :promo_description_two, :promo_image_two, :promo_link_two,
                                                                           :promo_title_three, :promo_description_three, :promo_image_three, :promo_link_three,
@@ -67,7 +67,7 @@ class Admin::CustomPagesController < Admin::BaseController
                                         youtubes_attributes: [:type, :position, :youtube_url, :disabled, :_destroy],
                                         ctas_attributes: [:type, :position, :cta_text, :cta_button, :cta_link, :disabled, :_destroy],
                                         js_snippets_attributes: [:type, :position, :js_snippet, :disabled, :_destroy],
-                                        custom_images_attributes: [:type, :position, :custom_image, :disabled, :_destroy],
+                                        custom_images_attributes: [:type, :position, :custom_image, :custom_image_alt, :disabled, :_destroy],
                                         promotionals_attributes: [:type, :position,
                                                                   :promo_title_one, :promo_description_one, :promo_image_one, :promo_link_one,
                                                                   :promo_title_two, :promo_description_two, :promo_image_two, :promo_link_two,

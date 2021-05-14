@@ -1,9 +1,11 @@
 <% provide :title do %>
-  <%= @custom_page.title %> - <%= t("application.title") %>
+  <%= @custom_page.meta_title.present? ? @custom_page.meta_title : @custom_page.title %> - <%= t("application.title") %>
 <% end %>
+<% provide :meta_description, @custom_page.meta_description if @custom_page.meta_description %>
+<% provide :meta_keywords, @custom_page.meta_keywords if @custom_page.meta_keywords%>
 <% content_for :canonical do %>
   <%= render "shared/canonical", href: custom_page_url(@custom_page.slug) %>
-<% end %>
+<% end if @custom_page.canonical %>
 
 <div class="custom-page">
   <div class="row margin-top">

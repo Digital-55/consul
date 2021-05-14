@@ -31,12 +31,39 @@
                           placeholder: t("admin.custom_pages.custom_page.slug"),
                           id: "slug" %>
       </div>
+      <div class="small-12 medium-10 column">
+        <%= f.label :meta_title, t("admin.custom_pages.custom_page.meta_title") %>
+        <%= f.text_field :meta_title,
+                          label: false,
+                          placeholder: t("admin.custom_pages.custom_page.meta_title"),
+                          id: "meta-title" %>
+      </div>
+      <div class="small-12 medium-10 column">
+        <%= f.label :meta_description, t("admin.custom_pages.custom_page.meta_description") %>
+        <%= f.text_field :meta_description,
+                          label: false,
+                          placeholder: t("admin.custom_pages.custom_page.meta_description"),
+                          id: "meta-description" %>
+      </div>
+      <div class="small-12 medium-10 column">
+        <%= f.label :meta_keywords, t("admin.custom_pages.custom_page.meta_keywords") %>
+        <%= f.text_field :meta_keywords,
+                          label: false,
+                          placeholder: t("admin.custom_pages.custom_page.meta_keywords"),
+                          id: "meta-keywords" %>
+      </div>
+      <div class="canonical-options">
+        <div class="small-12 medium-2 column">
+          <%= f.check_box :canonical, label: false, class: 'custom_page_module-canonical' %>
+          <%= f.label :canonical, t("admin.custom_pages.custom_page_modules.canonical") %>
+        </div>
+      </div>
     </div>
     <hr>
 
-    <h4 class="inline-block"><%= t("admin.custom_pages.custom_page.index") %></h4>
 
     <% if @custom_page.persisted? %>
+      <h4 class="inline-block"><%= t("admin.custom_pages.custom_page.index") %></h4>
       <div class="row">
         <div class="tiny reveal" id="add_modules" data-reveal>
           <h4 class="inline-block"><%= t("admin.custom_pages.custom_page_modules.add_module") %></h4>

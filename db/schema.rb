@@ -512,6 +512,7 @@ ActiveRecord::Schema.define(version: 20210420102437) do
     t.string   "custom_image_content_type"
     t.integer  "custom_image_file_size"
     t.datetime "custom_image_updated_at"
+    t.text     "custom_image_alt"
     t.string   "promo_title_one"
     t.text     "promo_description_one"
     t.string   "promo_image_one_file_name"
@@ -541,9 +542,13 @@ ActiveRecord::Schema.define(version: 20210420102437) do
   create_table "custom_pages", force: :cascade do |t|
     t.string   "title"
     t.string   "slug"
+    t.string   "meta_title"
+    t.string   "meta_description"
+    t.string   "meta_keywords"
+    t.boolean  "canonical"
     t.boolean  "published"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "dashboard_actions", force: :cascade do |t|
