@@ -5,7 +5,7 @@
         </div>
     </div>
 <%else%>
-    <% @listados.each do |l| %>
+    <% @listados.sort_by {|x| x[:order]}.each do |l| %>
         <% if !l[:list].blank? && l[:list].count >0%>
             <div class="row">
                 <div class="small-12 columns">
@@ -27,7 +27,7 @@
                                     <div class="icon-human-rights"></div>
                                     <div class="row">
                                         <div class="actuation-content">
-                                            <h3><%= link_to l[:model].model_name.human + " #{index + 1}", sures_path %></h3>
+                                            <h3><%= l[:model].model_name.human + " #{index + 1}" %></h3>
                                             <div class="actuation-description">
                                                 <% l[:table_field].each do |r|%>
                                                     <p>

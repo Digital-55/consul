@@ -81,14 +81,14 @@ class WelcomeController < ApplicationController
     @order_generic = Sg::Generic.order_type.first
     get_parametrizer_list(params)
     get_orders(params)
-  rescue
-    @orders_settings = []
-    @search_settings = []
-    @search_generic = nil
-    @order_generic = nil
-    @search_terms = false
-    @resultado = []
-    @listados = []
+  # rescue
+  #   @orders_settings = []
+  #   @search_settings = []
+  #   @search_generic = nil
+  #   @order_generic = nil
+  #   @search_terms = false
+  #   @resultado = []
+  #   @listados = []
   end
 
 
@@ -142,16 +142,24 @@ class WelcomeController < ApplicationController
             list = @listados.select {|l| l[:model].model_name.to_s == model.model_name.to_s}
             model_list = !@listados.blank? && !list.blank? ? list[0][:list_base] : ""
             model_list = model_list + "#{" OR " if !model_list.blank?} translate(UPPER(cast(#{t.field_name} as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[f.to_sym]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')"
-
+            
             if list.blank?
-              @listados.push({model: model, table_field: [t.field_name], list_base: model_list, list: nil, order: sg_orders.blank? ? 0 : sg_orders.select {|o| o.table_name== model.model_name.to_s}.try(:order).to_i })
+              order = 0
+              sg_orders.each do |o|
+                if o.table_name.to_s== model.model_name.to_s
+                  order = o.order
+                  break
+                end
+              end
+              
+              @listados.push({model: model, table_field: [t.field_name], list_base: model_list, list: nil, order: order})
             elsif !@listados.select {|l| l[:model].model_name.to_s == model.model_name.to_s}.blank?
               @listados.select {|l| l[:model].model_name.to_s == model.model_name.to_s}[0][:list_base] = model_list
               @listados.select {|l| l[:model].model_name.to_s == model.model_name.to_s}[0][:table_field].push(t.field_name)
             end
           end
         end
-
+        
         search_data_aux = parametrize[f.to_sym]
         if !search_aux.try(:data_type).blank? 
           case search_aux.try(:data_type).to_s
@@ -170,6 +178,7 @@ class WelcomeController < ApplicationController
       @listados = @listados.sort_by {|l| l[:order]} 
       @listados.each do |l|
         l[:list] = l[:model].where(l[:list_base])
+        set_votable(l)
         @resultado.push({tabla: l[:model].model_name.human, search: search_data_aux_gen, count: l[:list].blank? ? 0 : l[:list].count})  
         l[:list] = l[:list].page(parametrize[:"page_#{l[:model].model_name.to_s.parameterize.underscore}"]).per(5)         
       end
@@ -201,5 +210,24 @@ class WelcomeController < ApplicationController
 
     @listados = aux_listados
     @resultado = aux_resultado
+  end
+
+  def set_votable(lista)
+    begin
+      set_debate_votes(lista[:list])
+    rescue
+    end
+    begin
+      set_proposal_votes(lista[:list])
+    rescue
+    end
+    begin
+      set_topic_votes(lista[:list])
+    rescue
+    end   
+    begin
+      @legislation_proposal_votes = current_user ? current_user.legislation_proposal_votes(lista[:list]) : {}
+    rescue      
+    end          
   end
 end
