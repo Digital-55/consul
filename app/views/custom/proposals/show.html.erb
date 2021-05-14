@@ -16,7 +16,8 @@
           @proposal,
           @proposal.author,
           Flag.flagged?(current_user, @proposal),
-          @proposal_votes] do %>
+          @proposal_votes,
+          map_related_proposals_coordinates(@proposal).hash] do %>
   <div class="proposal-show">
     <div id="<%= dom_id(@proposal) unless @proposal.blank? %>" class="row">
       <div class="small-12 medium-9 column">

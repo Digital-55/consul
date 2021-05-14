@@ -77,7 +77,7 @@ module MapLocationsHelper
   end
 
   def map_related_proposals_coordinates(proposal)
-    related_proposals = proposal.related_proposals.published.not_retired.not_archived.joins(:map_location)
+    related_proposals = proposal.related_proposals.published.not_retired.not_archived.joins(:map_location).order(:created_at)
 
     related_proposals.map do |related_proposal|
       related_proposal.map_location.json_data.merge({ url: proposal_path(related_proposal), title: related_proposal.title })
