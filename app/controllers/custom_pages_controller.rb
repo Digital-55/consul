@@ -4,9 +4,13 @@ class CustomPagesController < ApplicationController
   feature_flag :help_page, if: lambda { params[:id] == "help/index" }
 
   def show
-    @custom_page = CustomPage.published.find_by(slug: params[:slug])
+    @custom_page = CustomPage.find_by(slug: params[:slug])
     if @custom_page.present?
-      render :show and return
+      if @custom_page.published?
+        render :show and return
+      else
+        redirect_to admin_custom_page_draft_preview_path(@custom_page) and return
+      end
     end
 
     @static_custom_page = SiteCustomization::Page.published.find_by(slug: params[:slug])

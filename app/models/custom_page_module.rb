@@ -6,5 +6,6 @@ class CustomPageModule < ApplicationRecord
   scope :youtube, -> { where(type: 'YoutubeModule') }
   scope :cta, -> { where(type: 'CTAModule') }
   scope :custom_image, -> { where(type: 'CustomImageModule') }
+  scope :promotional, -> { where(type: 'PromotionalModule') }
   scope :enabled, -> { where(disabled: false)}
 end

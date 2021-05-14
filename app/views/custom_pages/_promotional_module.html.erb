@@ -1,0 +1,19 @@
+<div class="<%= custom_page_module.type.underscore.dasherize %>">
+  <div class="small-12 medium-12 column">
+    <div class="row medium-unstack">
+      <% %w[one two three].each do |promo_number| %>
+        <%= link_to custom_page_module.send("promo_link_#{promo_number}") do %>
+          <div class="column medium-4">
+            <div class="card">
+              <%= image_tag custom_page_module.send("promo_image_#{promo_number}").url(:content) %>
+              <div class="card-section">
+                <h4><%= custom_page_module.send("promo_title_#{promo_number}") %></h4>
+                <%= custom_page_module.send("promo_description_#{promo_number}").html_safe %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

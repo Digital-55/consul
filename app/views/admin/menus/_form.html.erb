@@ -54,6 +54,9 @@
                                                         partial: 'menu_item_fields_page_link',
                                                         'data-association-insertion-node': '#menu-items-list',
                                                         'data-association-insertion-method': 'prepend' %>
+        <div id='toggle_menu_collapse_button' class="float-right">
+          <%= link_to '', '#', class: 'icon-arrow-down button secondary hollow small' %>
+        </div>
 
         <div class="small-12 medium-12 column end nesting-wrapper nested" id="menu-items-list" data-url="<%= sort_admin_menu_menu_items_path(@menu) if @menu.present? %>">
           <%= f.fields_for :menu_items, parent_admin_menu_items(@menu, 0) do |menu_items_form| %>

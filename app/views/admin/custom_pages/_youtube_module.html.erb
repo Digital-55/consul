@@ -1,16 +1,26 @@
 <div class="card nested-fields youtube-module" id="<%= module_id(f.object) %>">
   <div class="card-divider">
-    <span class="icon-bars"></span><h5 class="small-6 column menu-item-tag"><%= t("admin.custom_pages.custom_page_modules.custom_page_module.youtube") %></h5>
+    <span class="icon-bars"><%= "<span class='icon-arrow-down'></span>".html_safe if f.object.persisted? %></span>
+    <h5 class="small-6 column menu-item-tag"><%= t("admin.custom_pages.custom_page_modules.custom_page_module.youtube") %></h5>
     <div class="small-6 column text-right">
       <%= link_to_remove_association f do %>
-        <span class="icon-x delete"></span>
+        <span class="icon-x delete float-right"></span>
       <% end %>
     </div>
   </div>
   <div class="card-section">
-    <div class="small-12 medium-10 column">
+    <div class="small-12 medium-7 column">
       <%= f.label :youtube_url, t("admin.custom_pages.custom_page_modules.custom_page_module.youtube") %>
       <%= f.text_field :youtube_url, label: false, class: 'claim-module-text' %>
+    </div>
+    <div class="small-12 medium-3 column">
+      <% if f.object.persisted? %>
+        <div>
+          <%= link_to f.object.youtube_url do %>
+            <%= image_tag youtube_thumbnail(f.object.youtube_url) %>
+          <% end %>
+        </div>
+      <% end %>
     </div>
     <div class="check-options">
       <div class="small-12 medium-2 column">

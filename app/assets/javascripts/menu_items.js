@@ -68,7 +68,17 @@ $(document).on('page:change', function(){
             $.ajax({
               url: "/admin/menus/" + menuId + "/menu_items",
               type: "POST",
-              data: {'title': title, 'url': url, 'page_link': page_link, 'parent_item_id': parentItemId, 'children_item_ids': childrenItemIds, 'position': position, 'item_type': itemType, 'target_blank': targetBlank, 'disabled': disabled },
+              data: {
+                      'title': title,
+                      'url': url,
+                      'page_link': page_link,
+                      'parent_item_id': parentItemId,
+                      'children_item_ids': childrenItemIds,
+                      'position': position,
+                      'item_type': itemType,
+                      'target_blank': targetBlank,
+                      'disabled': disabled
+                    },
               item: $menuItem,
               success: function(data){
                 if (data.errors) {
@@ -98,7 +108,15 @@ $(document).on('page:change', function(){
             $.ajax({
               url: "/admin/menus/" + menuId + "/menu_items/" + itemId,
               type: "PUT",
-              data: {'title': title, 'url': url, 'page_link': page_link, 'parent_item_id': parentItemId, 'item_type': itemType, 'target_blank': targetBlank, 'disabled': disabled },
+              data: {
+                      'title': title,
+                      'url': url,
+                      'page_link': page_link,
+                      'parent_item_id': parentItemId,
+                      'item_type': itemType,
+                      'target_blank': targetBlank,
+                      'disabled': disabled
+                    },
               success: function(data){
                 if (data.errors) {
                   var errorField = Object.keys(data.errors)[0];
@@ -127,68 +145,8 @@ $(document).on('page:change', function(){
     removeItem();
   })
 
-  function removeItem() {
-    $('a.remove_fields').click(function(e) {
-      var urlArray = window.location.href.split("/");
-      var menuId = urlArray.map(Number).filter(Number)[0].toString()
-      var eventTargetMenuItem = getMenuItem(e.target);
-      var itemId = eventTargetMenuItem.id.split('_').pop();
-      $.ajax({
-        url: "/admin/menus/" + menuId + "/menu_items/" + itemId,
-        type: "DELETE"
-      });
-    })
-  }
-
-  function getMenuItem(event_target) {
-    var newMenuItem = event_target.closest('#new_menu_item');
-    var persistedMenuItem = event_target.closest('[id*="menu_item_"]');
-    if (!!newMenuItem) {
-      return newMenuItem;
-    };
-    if (!!persistedMenuItem) {
-      return persistedMenuItem;
-    };
-  }
-
-  function getItemField(itemClasses) {
-    if(itemClasses.value.includes("url")) {
-      return "url";
-    };
-    if(itemClasses.value.includes("page_link")) {
-      return "page_link";
-    };
-  }
-
-  function getItemLink(menuItem) {
-    if (menuItem.find('input.menu-item-url').first().length > 0 ) {
-      return menuItem.find('input.menu-item-url').first().val()
-    }
-    if (menuItem.find('select.menu-item-page_link').first().length > 0) {
-      return menuItem.find('select.menu-item-page_link').first().val()
-    }
-  }
-
-  function getParentItemId(menuItem) {
-    if (menuItem.parents('[id*="menu_item_"]').first().length > 0 ) {
-      return menuItem.parents('[id*="menu_item_"]').first().attr('id').split("_").pop()
-    } else {
-      return 0
-    }
-  }
-
-  function getChildrenItemId(menuItem) {
-    var childrenIds = [];
-    menuItem.find('.nested-fields').each(function () {
-      var childrenId = this.id.split('_').pop();
-      if (parseInt(childrenId)) {
-        childrenIds.push(childrenId);
-      }
-    })
-    return childrenIds;
-  }
-
-
+  toggleMenuItemCardSection();
+  toggleAllMenuItemCardSection();
   removeItem();
   // Activates 'cocoon:after-insert' to allow sorting existing menu-items
   if($('.nested-fields').length > 0) {
@@ -196,3 +154,102 @@ $(document).on('page:change', function(){
     $('.remove_fields.dynamic').click()
   }
 });
+
+function removeItem() {
+  $('#menu-items-list a.remove_fields').click(function(e) {
+    var urlArray = window.location.href.split("/");
+    var menuId = urlArray.map(Number).filter(Number)[0].toString()
+    var eventTargetMenuItem = getMenuItem(e.target);
+    var itemId = eventTargetMenuItem.id.split('_').pop();
+    $.ajax({
+      url: "/admin/menus/" + menuId + "/menu_items/" + itemId,
+      type: "DELETE"
+    });
+  })
+}
+
+function getMenuItem(event_target) {
+  var newMenuItem = event_target.closest('#new_menu_item');
+  var persistedMenuItem = event_target.closest('[id*="menu_item_"]');
+  if (!!newMenuItem) {
+    return newMenuItem;
+  };
+  if (!!persistedMenuItem) {
+    return persistedMenuItem;
+  };
+}
+
+function getItemField(itemClasses) {
+  if(itemClasses.value.includes("url")) {
+    return "url";
+  };
+  if(itemClasses.value.includes("page_link")) {
+    return "page_link";
+  };
+}
+
+function getItemLink(menuItem) {
+  if (menuItem.find('input.menu-item-url').first().length > 0 ) {
+    return menuItem.find('input.menu-item-url').first().val()
+  }
+  if (menuItem.find('select.menu-item-page_link').first().length > 0) {
+    return menuItem.find('select.menu-item-page_link').first().val()
+  }
+}
+
+function getParentItemId(menuItem) {
+  if (menuItem.parents('[id*="menu_item_"]').first().length > 0 ) {
+    return menuItem.parents('[id*="menu_item_"]').first().attr('id').split("_").pop()
+  } else {
+    return 0
+  }
+}
+
+function getChildrenItemId(menuItem) {
+  var childrenIds = [];
+  menuItem.find('.nested-fields').each(function () {
+    var childrenId = this.id.split('_').pop();
+    if (parseInt(childrenId)) {
+      childrenIds.push(childrenId);
+    }
+  })
+  return childrenIds;
+}
+
+function toggleMenuItemCardSection() {
+  $('#menu-items-list .card-section').hide();
+  $('#menu-items-list .card-divider').on('click', function(){
+    $(this).siblings('.card-section').slideToggle();
+    var $arrowDown = $(this).find('.icon-arrow-down');
+    if($arrowDown.length) {
+      $arrowDown.toggleClass('icon-arrow-down icon-arrow-top');
+    } else {
+      var $arrowTop = $(this).find('.icon-arrow-top');
+      if($arrowTop.length){
+        $arrowTop.toggleClass('icon-arrow-top icon-arrow-down');
+      }
+    }
+  })
+}
+
+function toggleAllMenuItemCardSection(e) {
+  $('#toggle_menu_collapse_button').on('click', function(){
+    $(this).toggleClass('toggle-open');
+    $(this).find('.icon-arrow-down').toggleClass('icon-arrow-down icon-arrow-top');
+    var cardSections = $('#menu-items-list .card-section')
+    for(var cardSection of cardSections) {
+      var $arrow = $(cardSection).siblings('.card-divider')
+      // debugger;
+      if($(this).hasClass('toggle-open')){
+        $(this).find('.icon-arrow-down').toggleClass('icon-arrow-down icon-arrow-top');
+        cardSections.show('slow', 'swing');
+        $arrow.find('.icon-arrow-down').toggleClass('icon-arrow-down icon-arrow-top');
+      } else {
+        $(this).find('.icon-arrow-top').toggleClass('icon-arrow-top icon-arrow-down');
+        cardSections.hide('slow', 'swing');
+        $arrow.find('.icon-arrow-top').toggleClass('icon-arrow-top icon-arrow-down');
+      }
+    }
+    return false;
+  })
+}

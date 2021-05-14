@@ -1,9 +1,10 @@
 <div class="card nested-fields custom_image-module" id="<%= module_id(f.object) %>">
   <div class="card-divider">
-    <span class="icon-bars"></span><h5 class="small-6 column menu-item-tag"><%= t("admin.custom_pages.custom_page_modules.custom_page_module.custom_image") %></h5>
+    <span class="icon-bars"><%= "<span class='icon-arrow-down'></span>".html_safe if f.object.persisted? %></span>
+    <h5 class="small-6 column menu-item-tag"><%= t("admin.custom_pages.custom_page_modules.custom_page_module.custom_image") %></h5>
     <div class="small-6 column text-right">
       <%= link_to_remove_association f do %>
-        <span class="icon-x delete"></span>
+        <span class="icon-x delete float-right"></span>
       <% end %>
     </div>
   </div>
@@ -27,6 +28,10 @@
         <%= f.check_box :disabled, label: false, class: 'custom_page_module-disabled' %>
         <%= f.label :disabled, t("admin.custom_pages.custom_page_modules.disabled") %>
       </div>
+    </div>
+    <div class="small-12 medium-12 column">
+      <%= f.label :custom_image_alt, t("admin.custom_pages.custom_page_modules.custom_page_module.custom_image_alt") %>
+      <%= f.text_field :custom_image_alt, label: false, class: 'custom_image-module-text' %>
     </div>
   </div>
 </div>

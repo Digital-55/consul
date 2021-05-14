@@ -287,14 +287,17 @@ es:
     custom_pages:
       create:
         notice: ¡Página personalizada creada con éxito!
+      custom_pages_manager: Gestor de páginas personalizadas
       custom_page_modules:
-        add_claim: Añadir claim
-        add_cta: Añadir CTA
-        add_custom_image: Añadir Imagen
-        add_js_snippet: Añadir Javascript
-        add_rich_text: Añadir texto
-        add_subtitle: Añadir subtítulo
-        add_youtube: Añadir vídeo YouTube
+        add_claim: Claim
+        add_cta: CTA
+        add_custom_image: Imagen
+        add_js_snippet: Javascript
+        add_module: Añadir Módulo
+        add_promotional: Promocionales
+        add_rich_text: Texto
+        add_subtitle: Subtítulo
+        add_youtube: YouTube
         cta_module:
           cta: Call to Action
           cta_text: Texto Call to Action
@@ -304,7 +307,25 @@ es:
         custom_page_module:
           claim: Claim
           custom_image: Imagen Personalizada
+          custom_image_alt: Texto Alternativo
           js_snippet: Código Javascript
+          promo:
+            promo_title_one: Título 1
+            promo_title_two: Título 2
+            promo_title_three: Título 3
+            promo_description_one: Descripción 1
+            promo_description_two: Descripción 2
+            promo_description_three: Descripción 3
+            promo_image_one: Imagen 1
+            promo_image_two: Imagen 2
+            promo_image_three: Imagen 3
+            promo_link_one: Enlace 1
+            promo_link_two: Enlace 2
+            promo_link_three: Enlace 3
+          promotional: Promocional
+          promotional_one: Promocional 1
+          promotional_two: Promocional 2
+          promotional_three: Promocional 3
           rich_text: Texto
           subtitle: Subtítulo
           youtube: URL de YouTube
@@ -316,9 +337,13 @@ es:
         editing: Editar página personalizada
         notice: ¡Página personalizada actualizada con éxito!
       custom_page:
+        canonical: URL canónica
         creating: Crear página personalizada
         custom_page_items: Módulos
         index: Módulos de página
+        meta_description: Meta-descripción (aprox. 160 caracteres)
+        meta_keywords: Palabras clave separadas por "comas"
+        meta_title: Meta-título (aprox. 70 caracteres)
         published: Estado
         slug: Slug
         title: Título

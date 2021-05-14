@@ -5,10 +5,10 @@
     <% f.object = object %>
     <div class="card nested-fields page_link" id="<%= dom_id(f.object) %>">
       <div class="card-divider">
-        <span class="icon-bars"></span><h5 class="small-6 column menu-item-tag"><%= f.object.title || t("admin.menus.menu_items.new") %></h5>
+        <span class="icon-bars"><%= "<span class='icon-arrow-down'></span>".html_safe if f.object.persisted? %></span><h5 class="small-6 column menu-item-tag"><%= f.object.title || t("admin.menus.menu_items.new") %></h5>
         <div class="small-6 column text-right">
           <%= link_to_remove_association f do %>
-            <span class="icon-x delete"></span>
+            <span class="icon-x delete float-right"></span>
           <% end %>
         </div>
       </div>
