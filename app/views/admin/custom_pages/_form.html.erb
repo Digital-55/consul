@@ -132,7 +132,7 @@
         </div>
 
         <div class="small-12 medium-12 column end nesting-wrapper" id="custom-page-modules-list" data-url="<%= sort_admin_custom_page_custom_page_modules_path(@custom_page) if @custom_page.present? %>">
-          <%= f.fields_for :custom_page_modules, @custom_page.custom_page_modules.sort_by(&:position) do |custom_page_module_form| %>
+          <%= f.fields_for :custom_page_modules, @custom_page.custom_page_modules.sorted do |custom_page_module_form| %>
             <%= render custom_page_module_form.object.type.underscore, f: custom_page_module_form %>
           <% end %>
         </div>

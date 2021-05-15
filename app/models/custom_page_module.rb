@@ -8,4 +8,5 @@ class CustomPageModule < ApplicationRecord
   scope :custom_image, -> { where(type: 'CustomImageModule') }
   scope :promotional, -> { where(type: 'PromotionalModule') }
   scope :enabled, -> { where(disabled: false)}
+  scope :sorted, -> { order(position: :asc, updated_at: :desc) }
 end

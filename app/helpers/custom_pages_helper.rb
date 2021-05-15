@@ -40,7 +40,7 @@ module CustomPagesHelper
 
   def custom_page_module_renders(custom_page)
     renders = []
-    custom_page.custom_page_modules.enabled.sort_by(&:position).each do |custom_page_module|
+    custom_page.custom_page_modules.enabled.sorted.each do |custom_page_module|
       renders << render_module(custom_page_module)
     end
     renders.compact
