@@ -32,6 +32,8 @@ $(document).on('page:change', function(){
   toggleCustomPageModuleCardSection();
   toggleAllCustomPageModuleCardSection();
   toggleCustomPageMetaTags();
+  avoidScrollTopOnReveal();
+  closeRevealAfterAddModule();
 });
 
 function loadCodeSnippet(){
@@ -86,5 +88,17 @@ function toggleCustomPageMetaTags() {
     $('#custom_page-meta_tags').slideToggle();
     $('#custom_page-toggle_meta_tags a').toggleClass('icon-arrow-down icon-arrow-top');
     return false;
+  })
+}
+
+function avoidScrollTopOnReveal(){
+  $('#add_modules_button').on('click', function(e){
+    e.preventDefault();
+  })
+}
+
+function closeRevealAfterAddModule(){
+  $('a.add_fields').on('click', function(){
+    $('.reveal .close-button').click()
   })
 }
