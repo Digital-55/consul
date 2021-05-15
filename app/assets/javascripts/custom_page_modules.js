@@ -85,5 +85,6 @@ function toggleCustomPageMetaTags() {
   $('.custom_page-fields .icon-arrow-down').on('click', function(){
     $('#custom_page-meta_tags').slideToggle();
     $('#custom_page-toggle_meta_tags a').toggleClass('icon-arrow-down icon-arrow-top');
+    return false;
   })
 }
