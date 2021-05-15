@@ -31,31 +31,38 @@
                           placeholder: t("admin.custom_pages.custom_page.slug"),
                           id: "slug" %>
       </div>
-      <div class="small-12 medium-10 column">
-        <%= f.label :meta_title, t("admin.custom_pages.custom_page.meta_title") %>
-        <%= f.text_field :meta_title,
-                          label: false,
-                          placeholder: t("admin.custom_pages.custom_page.meta_title"),
-                          id: "meta-title" %>
+      <div id='custom_page-toggle_meta_tags'>
+        <div>
+          <%= link_to t("admin.custom_pages.custom_page.meta_tags"), '#', class: 'clear button secondary hollow icon-arrow-down ' %>
+        </div>
       </div>
-      <div class="small-12 medium-10 column">
-        <%= f.label :meta_description, t("admin.custom_pages.custom_page.meta_description") %>
-        <%= f.text_field :meta_description,
-                          label: false,
-                          placeholder: t("admin.custom_pages.custom_page.meta_description"),
-                          id: "meta-description" %>
-      </div>
-      <div class="small-12 medium-10 column">
-        <%= f.label :meta_keywords, t("admin.custom_pages.custom_page.meta_keywords") %>
-        <%= f.text_field :meta_keywords,
-                          label: false,
-                          placeholder: t("admin.custom_pages.custom_page.meta_keywords"),
-                          id: "meta-keywords" %>
-      </div>
-      <div class="canonical-options">
-        <div class="small-12 medium-2 column">
-          <%= f.check_box :canonical, label: false, class: 'custom_page_module-canonical' %>
-          <%= f.label :canonical, t("admin.custom_pages.custom_page_modules.canonical") %>
+      <div id="custom_page-meta_tags">
+        <div class="small-12 medium-10 column">
+          <%= f.label :meta_title, t("admin.custom_pages.custom_page.meta_title") %>
+          <%= f.text_field :meta_title,
+                            label: false,
+                            placeholder: t("admin.custom_pages.custom_page.meta_title"),
+                            id: "meta-title" %>
+        </div>
+        <div class="small-12 medium-10 column">
+          <%= f.label :meta_description, t("admin.custom_pages.custom_page.meta_description") %>
+          <%= f.text_field :meta_description,
+                            label: false,
+                            placeholder: t("admin.custom_pages.custom_page.meta_description"),
+                            id: "meta-description" %>
+        </div>
+        <div class="small-12 medium-10 column">
+          <%= f.label :meta_keywords, t("admin.custom_pages.custom_page.meta_keywords") %>
+          <%= f.text_field :meta_keywords,
+                            label: false,
+                            placeholder: t("admin.custom_pages.custom_page.meta_keywords"),
+                            id: "meta-keywords" %>
+        </div>
+        <div class="canonical-options">
+          <div class="small-12 medium-2 column">
+            <%= f.check_box :canonical, label: false, class: 'custom_page_module-canonical' %>
+            <%= f.label :canonical, t("admin.custom_pages.custom_page_modules.canonical") %>
+          </div>
         </div>
       </div>
     </div>
@@ -132,7 +139,7 @@
         </div>
 
         <div class="small-12 medium-12 column end nesting-wrapper" id="custom-page-modules-list" data-url="<%= sort_admin_custom_page_custom_page_modules_path(@custom_page) if @custom_page.present? %>">
-          <%= f.fields_for :custom_page_modules, @custom_page.custom_page_modules.sort_by(&:position) do |custom_page_module_form| %>
+          <%= f.fields_for :custom_page_modules, @custom_page.custom_page_modules.sorted do |custom_page_module_form| %>
             <%= render custom_page_module_form.object.type.underscore, f: custom_page_module_form %>
           <% end %>
         </div>

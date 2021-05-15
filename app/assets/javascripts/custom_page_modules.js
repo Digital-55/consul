@@ -31,6 +31,9 @@ $(document).on('page:change', function(){
   loadCodeSnippet();
   toggleCustomPageModuleCardSection();
   toggleAllCustomPageModuleCardSection();
+  toggleCustomPageMetaTags();
+  avoidScrollTopOnReveal();
+  closeRevealAfterAddModule();
 });
 
 function loadCodeSnippet(){
@@ -76,5 +79,26 @@ function toggleAllCustomPageModuleCardSection() {
       }
     }
     return false;
+  })
+}
+
+function toggleCustomPageMetaTags() {
+  $('#custom_page-meta_tags').hide();
+  $('.custom_page-fields .icon-arrow-down').on('click', function(){
+    $('#custom_page-meta_tags').slideToggle();
+    $('#custom_page-toggle_meta_tags a').toggleClass('icon-arrow-down icon-arrow-top');
+    return false;
+  })
+}
+
+function avoidScrollTopOnReveal(){
+  $('#add_modules_button').on('click', function(e){
+    e.preventDefault();
+  })
+}
+
+function closeRevealAfterAddModule(){
+  $('a.add_fields').on('click', function(){
+    $('.reveal .close-button').click()
   })
 }

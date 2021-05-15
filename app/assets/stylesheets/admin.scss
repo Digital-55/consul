@@ -1333,3 +1333,7 @@ code {
   float: left;
   padding-right: 0.5rem;
 }
+
+body.is-reveal-open {
+  overflow: auto;
+}

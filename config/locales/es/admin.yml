@@ -343,6 +343,7 @@ es:
         index: Módulos de página
         meta_description: Meta-descripción (aprox. 160 caracteres)
         meta_keywords: Palabras clave separadas por "comas"
+        meta_tags: Meta Etiquetas
         meta_title: Meta-título (aprox. 70 caracteres)
         published: Estado
         slug: Slug
