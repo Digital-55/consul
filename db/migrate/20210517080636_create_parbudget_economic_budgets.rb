@@ -11,7 +11,7 @@ class CreateParbudgetEconomicBudgets < ActiveRecord::Migration[5.0]
       t.string :element_pep
       t.string :financing
       t.string :type_contract
-      t.belongs_to :project, index: true, foreign_key: true
+      t.belongs_to :parbudget_project, index: true, foreign_key: true
       t.timestamps null: false
     end
   end

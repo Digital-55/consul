@@ -5,7 +5,7 @@ class CreateParbudgetResponsibles < ActiveRecord::Migration[5.0]
       t.string :phone
       t.string :email
       t.string :position
-      t.belongs_to :center, index: true, foreign_key: true
+     # t.belongs_to :parbudget_center, index: true, foreign_key: true
       t.timestamps null: false
     end
   end

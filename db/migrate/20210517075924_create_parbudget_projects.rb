@@ -4,7 +4,7 @@ class CreateParbudgetProjects < ActiveRecord::Migration[5.0]
       t.string :denomination
       t.integer :code
       t.integer :year
-      t.belongs_to :ambit, index: true, foreign_key: true
+      #t.belongs_to :parbudget_ambit, index: true, foreign_key: true
       t.integer :votes
       t.integer :cost
       t.string :author
@@ -13,10 +13,10 @@ class CreateParbudgetProjects < ActiveRecord::Migration[5.0]
       t.string :association
       t.string :url
       t.text :descriptive_memory
-      t.belongs_to :topic, index: true, foreign_key: true
+      #t.belongs_to :parbudget_topic, index: true, foreign_key: true
       t.string :entity_association
-      t.belongs_to :responsible, index: true, foreign_key: true
-      t.belongs_to :local_forum, index: true, foreign_key: true
+      #t.belongs_to :parbudget_responsible, index: true, foreign_key: true
+      #t.belongs_to :parbudget_local_forum, index: true, foreign_key: true
       t.boolean :plate_proceeds
       t.boolean :license_plate
       t.string :plate_installed

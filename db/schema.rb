@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210511081034) do
+ActiveRecord::Schema.define(version: 20210517165908) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1037,6 +1037,174 @@ ActiveRecord::Schema.define(version: 20210511081034) do
     t.index ["user_id"], name: "index_organizations_on_user_id", using: :btree
   end
 
+  create_table "parbudget_ambits", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.integer  "code",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "parbudget_assistants", force: :cascade do |t|
+    t.string   "full_name",            null: false
+    t.integer  "parbudget_meeting_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.index ["parbudget_meeting_id"], name: "index_parbudget_assistants_on_parbudget_meeting_id", using: :btree
+  end
+
+  create_table "parbudget_centers", force: :cascade do |t|
+    t.string   "denomination"
+    t.string   "code"
+    t.string   "code_section"
+    t.string   "code_program"
+    t.string   "responsible"
+    t.string   "government_area"
+    t.string   "general_direction"
+    t.integer  "parbudget_project_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.index ["parbudget_project_id"], name: "index_parbudget_centers_on_parbudget_project_id", using: :btree
+  end
+
+  create_table "parbudget_economic_budgets", force: :cascade do |t|
+    t.integer  "year"
+    t.decimal  "import"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.string   "count_managing_body"
+    t.string   "count_functional"
+    t.string   "economic"
+    t.string   "element_pep"
+    t.string   "financing"
+    t.string   "type_contract"
+    t.integer  "parbudget_project_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.index ["parbudget_project_id"], name: "index_parbudget_economic_budgets_on_parbudget_project_id", using: :btree
+  end
+
+  create_table "parbudget_links", force: :cascade do |t|
+    t.string   "url",                  null: false
+    t.integer  "parbudget_project_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.index ["parbudget_project_id"], name: "index_parbudget_links_on_parbudget_project_id", using: :btree
+  end
+
+  create_table "parbudget_medias", force: :cascade do |t|
+    t.text     "text_document"
+    t.string   "title"
+    t.integer  "parbudget_project_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.index ["parbudget_project_id"], name: "index_parbudget_medias_on_parbudget_project_id", using: :btree
+  end
+
+  create_table "parbudget_meetings", force: :cascade do |t|
+    t.text     "reason"
+    t.string   "who_requests"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "parbudget_projects", force: :cascade do |t|
+    t.string   "denomination"
+    t.integer  "code"
+    t.integer  "year"
+    t.integer  "votes"
+    t.integer  "cost"
+    t.string   "author"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "association"
+    t.string   "url"
+    t.text     "descriptive_memory"
+    t.string   "entity_association"
+    t.boolean  "plate_proceeds"
+    t.boolean  "license_plate"
+    t.string   "plate_installed"
+    t.boolean  "assumes_dgpc"
+    t.integer  "code_old"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "parbudget_ambit_id"
+    t.integer  "parbudget_topic_id"
+    t.integer  "parbudget_responsible_id"
+    t.integer  "parbudget_local_forum_id"
+    t.index ["parbudget_ambit_id"], name: "index_parbudget_projects_on_parbudget_ambit_id", using: :btree
+    t.index ["parbudget_local_forum_id"], name: "index_parbudget_projects_on_parbudget_local_forum_id", using: :btree
+    t.index ["parbudget_responsible_id"], name: "index_parbudget_projects_on_parbudget_responsible_id", using: :btree
+    t.index ["parbudget_topic_id"], name: "index_parbudget_projects_on_parbudget_topic_id", using: :btree
+  end
+
+  create_table "parbudget_responsibles", force: :cascade do |t|
+    t.string   "full_name"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "position"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "parbudget_center_id"
+    t.index ["parbudget_center_id"], name: "index_parbudget_responsibles_on_parbudget_center_id", using: :btree
+  end
+
+  create_table "parbudget_topics", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "parbudget_track_exts", force: :cascade do |t|
+    t.integer  "parbudget_tracking_external_id"
+    t.integer  "parbudget_tracking_id"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.index ["parbudget_tracking_external_id"], name: "index_parbudget_track_exts_on_parbudget_tracking_external_id", using: :btree
+    t.index ["parbudget_tracking_id"], name: "index_parbudget_track_exts_on_parbudget_tracking_id", using: :btree
+  end
+
+  create_table "parbudget_track_ints", force: :cascade do |t|
+    t.integer  "parbudget_tracking_internal_id"
+    t.integer  "parbudget_tracking_id"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.index ["parbudget_tracking_id"], name: "index_parbudget_track_ints_on_parbudget_tracking_id", using: :btree
+    t.index ["parbudget_tracking_internal_id"], name: "index_parbudget_track_ints_on_parbudget_tracking_internal_id", using: :btree
+  end
+
+  create_table "parbudget_tracking_externals", force: :cascade do |t|
+    t.string   "code"
+    t.string   "status"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.text     "status_description"
+  end
+
+  create_table "parbudget_tracking_internals", force: :cascade do |t|
+    t.text     "observations"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.boolean  "file_send",    default: false
+    t.boolean  "file_recived", default: false
+    t.boolean  "file_edited",  default: false
+  end
+
+  create_table "parbudget_trackings", force: :cascade do |t|
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.integer  "parbudget_project_id"
+    t.index ["parbudget_project_id"], name: "index_parbudget_trackings_on_parbudget_project_id", using: :btree
+  end
+
+  create_table "parbudget_trackings_meetings", force: :cascade do |t|
+    t.integer  "parbudget_meeting_id"
+    t.integer  "parbudget_tracking_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.index ["parbudget_meeting_id"], name: "index_parbudget_trackings_meetings_on_parbudget_meeting_id", using: :btree
+    t.index ["parbudget_tracking_id"], name: "index_parbudget_trackings_meetings_on_parbudget_tracking_id", using: :btree
+  end
+
   create_table "poll_answers", force: :cascade do |t|
     t.integer  "question_id"
     t.integer  "author_id"
@@ -1998,6 +2166,22 @@ ActiveRecord::Schema.define(version: 20210511081034) do
   add_foreign_key "moderators", "users"
   add_foreign_key "notifications", "users"
   add_foreign_key "organizations", "users"
+  add_foreign_key "parbudget_assistants", "parbudget_meetings"
+  add_foreign_key "parbudget_centers", "parbudget_projects"
+  add_foreign_key "parbudget_economic_budgets", "parbudget_projects"
+  add_foreign_key "parbudget_links", "parbudget_projects"
+  add_foreign_key "parbudget_medias", "parbudget_projects"
+  add_foreign_key "parbudget_projects", "parbudget_ambits"
+  add_foreign_key "parbudget_projects", "parbudget_responsibles"
+  add_foreign_key "parbudget_projects", "parbudget_topics"
+  add_foreign_key "parbudget_responsibles", "parbudget_centers"
+  add_foreign_key "parbudget_track_exts", "parbudget_tracking_externals"
+  add_foreign_key "parbudget_track_exts", "parbudget_trackings"
+  add_foreign_key "parbudget_track_ints", "parbudget_tracking_internals"
+  add_foreign_key "parbudget_track_ints", "parbudget_trackings"
+  add_foreign_key "parbudget_trackings", "parbudget_projects"
+  add_foreign_key "parbudget_trackings_meetings", "parbudget_meetings"
+  add_foreign_key "parbudget_trackings_meetings", "parbudget_trackings"
   add_foreign_key "poll_answers", "poll_questions", column: "question_id"
   add_foreign_key "poll_booth_assignments", "polls"
   add_foreign_key "poll_final_recounts", "poll_booth_assignments", column: "booth_assignment_id"

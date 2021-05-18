@@ -8,7 +8,7 @@ class CreateParbudgetCenters < ActiveRecord::Migration[5.0]
       t.string :responsible
       t.string :government_area
       t.string :general_direction
-      t.belongs_to :project, index: true, foreign_key: true
+      t.belongs_to :parbudget_project, index: true, foreign_key: true
       t.timestamps null: false
     end
   end
