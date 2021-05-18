@@ -1,0 +1,17 @@
+<%=form_tag do %>
+    <div class="small-12 column">
+        <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+            <legend>Filtros</legend>
+            <div class="row">
+                <div class="small-12 medium-6 column">
+                    <%=label_tag :search_tema, t('admin.sures.searchs_settings.form.data_type')%>
+                    <%= text_field_tag :search_tema %>
+                </div>
+            </div>
+            <div class="float-right">
+                <%= submit_tag "Limpiar búsqueda", class: "button" %>
+                <%= submit_tag "Buscar", class: "button" %>
+            </div>
+        </fieldset>
+    </div>
+<% end%>

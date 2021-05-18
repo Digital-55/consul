@@ -84,6 +84,14 @@ module AdminHelper
     ["actions", "administrator_tasks"].include?(controller_name)
   end
 
+  def menu_parbudget?   
+    controller.class.parent.to_s == "Admin::Parbudget"
+  end
+
+  def menu_parbudget_maintence?
+    ["ambits", "topics", "centers", "projects", "responsibles", "meetings"].include?(controller_name) && controller.class.parent.to_s == "Admin::Parbudget"
+  end
+
   def moderated_texts_section?
     controller_name == "moderated_texts" || moderated_texts_import_section?
   end

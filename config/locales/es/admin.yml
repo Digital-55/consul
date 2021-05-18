@@ -829,6 +829,24 @@ es:
           proposal: Propuesta
           legislation/proposal: Proceso
     menu:
+      parbudget: "Presupuestos participativos"
+      parbudget_maintance: "Mantenimiento"
+      parbudget_tracking: "Seguimientos de proyecto"
+      parbudget_audits: "Auditorías" 
+      parbudget_tabs:
+        ambits: Ámbitos
+        new_ambits: "Nuevo ámbito"
+        centers: Centros gestores
+        new_centers: Nuevo centro gestor
+        projects: Proyectos
+        new_projects: Nuevo proyecto
+        responsibles: Responsables
+        new_responsibles: Nuevo responsable
+        meetings: Reuniones
+        new_meetings: Nueva reunión
+        topics: Temas
+        new_topics: Nuevo tema
+        csv_exporter: Exportar CSV
       activity: Actividad de moderadores
       admin: Menú de administración
       banner: Gestionar banners

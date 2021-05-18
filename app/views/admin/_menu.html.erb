@@ -327,5 +327,22 @@
       </ul>
     </li>
     <%end%>
+    <li class="section-title">
+      <a href="#">
+        <span class="icon-edit"></span>
+        <strong><%= t("admin.menu.parbudget") %></strong>
+      </a>
+      <ul <%= "class=is-active" if menu_parbudget? %>>
+       <li <%= "class=is-active" if controller_name == "parbudget" %>>
+          <%= link_to t("admin.menu.parbudget_tracking"), admin_parbudget_ambits_path %>
+        </li>
+        <li <%= "class=is-active" if  menu_parbudget_maintence? %>>
+          <%= link_to t("admin.menu.parbudget_maintance"), admin_parbudget_ambits_path %>
+        </li>
+        <li <%= "class=is-active" if controller_name == "parbudget" %>>
+          <%= link_to t("admin.menu.parbudget_audits"), admin_parbudget_ambits_path  %>
+        </li>
+      </ul>
+    </li>
   </ul>
 </div>

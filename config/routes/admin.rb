@@ -16,6 +16,15 @@ namespace :admin do
     resources :customize_cards
   end
 
+  namespace :parbudget do
+    resources :ambits
+    resources :topics
+    resources :centers
+    resources :projects
+    resources :responsibles
+    resources :meetings
+  end
+
   resources :hidden_users, only: [:index, :show] do
     member do
       put :restore
