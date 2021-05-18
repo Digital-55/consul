@@ -21,7 +21,8 @@ module MenusHelper
       key = "#{key} (/#{value})"
       hash[key] = value
     end
-    hash.merge(default_link_options)
+    hash.reverse_merge(default_link_options)
+        .merge(custom_page_options)
   end
 
   def default_link_options
@@ -34,6 +35,15 @@ module MenusHelper
       "Presupuestos Participativos (/presupuestos)" => 'presupuestos',
       "Ayuda (/mas-informacion)" => 'mas-informacion'
     }
+  end
+
+  def custom_page_options
+    hash = {}
+    CustomPage.pluck(:title, :slug).each do |key, value|
+      key = "#{key} (/#{value})"
+      hash[key] = value
+    end
+    hash
   end
 
   def retrieve_options_key(hash, value)
