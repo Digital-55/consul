@@ -25,7 +25,7 @@ class Admin::MenusController < Admin::BaseController
 
   def update
     if @menu.update(menu_params)
-      redirect_to admin_menus_path, notice: t("admin.menus.edit.notice")
+      redirect_to edit_admin_menu_path(@menu), notice: t("admin.menus.edit.notice")
     else
       render :edit
     end
