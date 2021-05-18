@@ -50,7 +50,7 @@
                     <%if !@sures_searchs_settings.find_by(title: "Distrito", active: true).blank? %>
                         <div class="small-12 large-4 column end">
                             <%= label_tag @sures_searchs_settings.find_by(title: "Distrito").title.parameterize.underscore.to_sym, @sures_searchs_settings.find_by(title: "Distrito").title %>
-                            <%= select_tag @sures_searchs_settings.find_by(title: "Distrito").title.parameterize.underscore.to_sym, options_for_select(parse_data_json(@sures_searchs_settings.find_by(title: "Distrito").data).map {|k,v| [(k.to_s == "Toda la ciudad" ? "SURES" : k),v]}, params[@sures_searchs_settings.find_by(title: "Distrito").title.parameterize.underscore.to_sym]),
+                            <%= select_tag @sures_searchs_settings.find_by(title: "Distrito").title.parameterize.underscore.to_sym, options_for_select(@districts, params[@sures_searchs_settings.find_by(title: "Distrito").title.parameterize.underscore.to_sym]),
                                         multiple: true, id: "sures_search_select" %>
                         </div>
                     <%end%>

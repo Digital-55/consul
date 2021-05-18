@@ -1,5 +1,5 @@
 <h2><%= t("admin.editors.index.title") %></h2>
-
+<%= render "shared/profiles_filter_subnav", i18n_namespace: "admin.users" %>
 
 <div id="editors">
   <% if @editors.any? %>

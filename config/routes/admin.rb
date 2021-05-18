@@ -56,6 +56,8 @@ namespace :admin do
     get :hide, on: :member
   end
 
+  resources :profiles
+
   resources :moderated_texts
   namespace :moderated_texts do
     resources :imports, only: [:new, :create]

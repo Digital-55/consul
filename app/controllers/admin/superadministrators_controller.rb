@@ -1,5 +1,7 @@
 class Admin::SuperadministratorsController < Admin::BaseController
   load_and_authorize_resource
+  has_filters %w[users superadministrators administrators sures_administrators section_administrators 
+                  organizations officials moderators valuators managers consultants editors]
 
   def index
     @super_administrators = Superadministrator.all.page(params[:page])

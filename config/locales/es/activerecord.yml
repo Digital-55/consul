@@ -403,6 +403,7 @@ es:
         actions_taken: "Actualizaciones a realizar"
         updated_at: "Fecha de actualización"
         created_at: "Fecha de creación"
+        project: "Proyecto"
       sures/actuation/translation:
         other: Otro
         proposal_title: Propuesta
@@ -411,6 +412,7 @@ es:
         location_performance: "Ubicación de la actuación"
         technical_visibility: "Viabilidad técnica"
         actions_taken: "Actualizaciones a realizar"
+        project: "Proyecto"
       admin_notification/translation:
         title: Título
         body: Texto

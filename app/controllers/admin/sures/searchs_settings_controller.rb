@@ -14,11 +14,13 @@ class Admin::Sures::SearchsSettingsController < Admin::BaseController
 
   def create
     error = 0
-    params.each do |x,y| 
+    aux_data_status = {}
+    params.each do |x,y|    
       
       if x.to_s.include?('title_') 
         aux_id = x.split('title_')[1]
         aux_data = {}
+        aux_data_status = {}
         aux_count = 0
 
         searchs_setting = ::Sures::SearchSetting.find_by(id: aux_id.to_i)
@@ -27,16 +29,22 @@ class Admin::Sures::SearchsSettingsController < Admin::BaseController
         parametrize[:resource] = searchs_setting.resource
         parametrize[:data_type] = params["data_type_#{aux_id}".to_sym]
 
-        params.each {|s,v| s.to_s.include?("data_key_#{aux_id}") ? aux_count = aux_count + 1 : ''  } 
+        params.each {|s,v| s.to_s.include?("data_key_#{aux_id}") ? aux_count = aux_count + 1 : ''  }
         if aux_count > 0
           (0..aux_count-1).each do |n|
             if !params["data_key_#{aux_id}_#{n}".to_sym].blank?
               aux_data.merge!({"#{params["data_key_#{aux_id}_#{n}".to_sym]}": params["data_value_#{aux_id}_#{n}".to_sym]})
+              if !params["data_status_#{aux_id}_#{n}".to_sym].blank?
+                aux_data_status.merge!({"#{params["data_value_#{aux_id}_#{n}".to_sym]}": true})
+              else
+                aux_data_status.merge!({"#{params["data_value_#{aux_id}_#{n}".to_sym]}": false})
+              end
             end
           end
         end
 
         parametrize[:data] = aux_data.to_json
+        parametrize[:data_status] = aux_data_status.to_json
         parametrize[:field] = params["field_#{aux_id}".to_sym]
         parametrize[:rules] = params["rules_#{aux_id}".to_sym]
         parametrize[:active] = !params["active_#{aux_id}".to_sym].blank?
@@ -47,7 +55,7 @@ class Admin::Sures::SearchsSettingsController < Admin::BaseController
         end
       end
     end
-    
+
     if error > 0
       redirect_to admin_sures_searchs_settings_path, error: I18n.t("admin.sures.searchs_settings.form.error")
     else

@@ -40,7 +40,7 @@
                   <%= check_box_tag "active_#{s.id}".to_sym, s.active, s.active %>
                 </div>              
               </div>
-              <div class="row">    
+              <div class="row">
                 <%if s.data_type == 'order' %>            
                   <div class="small-12 medium-6 column end">
                     <%=label_tag "rules_#{s.id}".to_sym, t('admin.sures.searchs_settings.form.rules')%>
@@ -52,23 +52,36 @@
                     <%=label_tag "data_#{s.id}".to_sym, t('admin.sures.searchs_settings.form.data')%>
                     <% if !s.data.blank?%>
                       <div class="row">
-                        <div class="small-6 column">
+                        <div class="small-5 column">
                           <%=label_tag t('admin.sures.searchs_settings.form.key')%>
                         </div>
-                        <div class="small-6 column">
+                        <div class="small-5 column end">
                           <%=label_tag t('admin.sures.searchs_settings.form.value')%>
                         </div>
+                        <%if !s.data_status.blank? %>
+                        <div class="small-2 column end">
+                          <%=label_tag t('admin.sures.searchs_settings.form.active')%>
+                        </div>
+                        <%end%>
                       </div>
+                      
                       <% parse_data_json(s.data).each_with_index do |k, i|%>
                         <div class="row">
-                          <div class="small-6 column">
+                          <div class='small-5 column'>
                             <%= text_field_tag "data_key_#{s.id}_#{i}".to_sym, k[0]%>
                           </div>
-                          <div class="small-6  column">
+                          <div class='small-5 column end'>
                             <%= text_field_tag "data_value_#{s.id}_#{i}".to_sym, k[1]%>
                           </div>
-                        </div>
+                          <%if !s.data_status.blank? %>
+                            <% parse_data_json(s.data_status)[k[1].to_s.to_sym]%>
+                              <div class="small-2 column end">
+                                <%= check_box_tag "data_status_#{s.id}_#{i}".to_sym, k[1] , parse_data_json(s.data_status)[k[1].to_s.to_sym].to_s == "true" %>
+                              </div>
+                          <%end%>
                       <%end%>
+                      
+                      </div>
                     <%end%>
                   </div>
                 <%end%>

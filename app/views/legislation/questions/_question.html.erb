@@ -2,10 +2,16 @@
   <div class="debate-type">
     <%= t(".debate") %> <span class="icon-debates" aria-hidden="true"></span>
   </div>
+  
   <div class="debate-title">
     <h4><%= link_to simple_format(strip_links markdown(question.title.html_safe)), legislation_process_question_path(question.process, question) %></h4>
   </div>
+  
   <div class="debate-meta">
+  <%if Legislation::QuestionOption.where(legislation_question_id: question).blank? %>
     <span class="icon-comments" aria-hidden="true"></span> <span class="debate-comments"><%= link_to t(".comments", count: question.comments.count), legislation_process_question_path(question.process, question) %></span> · <span class="debate-date"><%= format_date question.process.debate_start_date %></span>
+  <%else%>
+    <%= t(".answers", count: Legislation::Answer.where(legislation_question_id: question).count) %> · <span class="debate-date"><%= format_date question.process.debate_start_date %></span>
   </div>
+  <%end%>
 </div>

@@ -113,6 +113,10 @@ es:
           zero: Sin comentarios
           one: "%{count} comentario"
           other: "%{count} comentarios"
+        answers:
+          zero: Sin respuestas
+          one: "%{count} respuesta"
+          other: "%{count} respuestas"
         debate: Debate
       show:
         value_other: Otra respuesta

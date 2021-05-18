@@ -68,25 +68,53 @@
   
   
   <div class="small-12 medium-6 column clear end">
-    <%= f.check_box :check_anno, onchange: "uniqueCheck($(this),'checkbox-actuation');",  class: "checkbox-actuation" %>
+    <%= f.check_box :check_anno, onchange: "uniqueCheck($(this),'checkbox-actuation');hideMultiYears($('#nested_question_options'),$('#simple_year'));",  class: "checkbox-actuation" %>
   </div>
 
   <div class="small-12 medium-6 column clear end">
-    <%= f.check_box :check_multianno,onchange: "uniqueCheck($(this),'checkbox-actuation');" ,  class: "checkbox-actuation" %>
+    <%= f.check_box :check_multianno,onchange: "uniqueCheck($(this),'checkbox-actuation');showMultiYears($('#nested_question_options'),$('#simple_year'));" ,  class: "checkbox-actuation" %>
   </div>
 
-  <div class="small-12  column" >
+  <div id="simple_year" class="small-12  column" >
     <%= f.text_field :annos %>
   </div>
+  <div>
+  <div id="nested_question_options" class="column end">
+    <%= f.fields_for :actuations_multi_years do |ff| %>
+      <%= render "actuations_multi_year_fields", f: ff %>
+    <% end %>
 
+    <div class="js-add-fields-container">
+      <%= link_to_add_association t("admin.legislation.questions.form.add_option"),
+                                  f, :actuations_multi_years, class: "button hollow"  %> 
+    </div>
+  </div>
+
+  <script>
+    if ('<%=f.object.check_anno%>' == 'true') {
+      $('#simple_year').show();
+      $('#nested_question_options').hide();
+    } else {
+      $('#simple_year').hide();
+      $('#nested_question_options').show();
+    }
+  </script>
+ 
   <div class="small-12  column">
     <%= f.text_field :tracking %>
   </div>
 
-  
+  <div class="small-12  column">
+    <%= f.text_field :project %>
+  </div>
 
   <div class="small-12 medium-3 column end">
-    <%= f.select :borought, options_for_select(@boroughts, @actuation[:borought]) %>
+    <%= f.select :geozones, options_for_select(@districts, @actuation[:geozones]),
+                            {}, { :multiple => true, :size => 22 } %>
+  </div>
+  
+  <div class="small-12 medium-3 column end">
+    <%= f.select :borought, options_for_select(@boroughts, @actuation[:borought]), include_blank: true %>
   </div>
  
   <div class="small-12 medium-3 column clear end">

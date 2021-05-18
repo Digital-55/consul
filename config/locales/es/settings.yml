@@ -93,6 +93,8 @@ es:
     proposal_notification_minimum_interval_in_days_description: "El número de días en los que un usuario puede enviar una notificación a todos los que apoyan su propuesta"
     direct_message_max_per_day: "Mensajes directos máximos por día"
     direct_message_max_per_day_description: "Número de mensajes directos máximos que un usuario puede enviar por día"
+    actuations_pagination_limit: Límite para la paginación de actuaciones
+    actuations_pagination_limit_description: Valor que establece el número de actuaciones mostradas por página, por defecto su valor será de 50, si se establece un valor no válido, se aplicará el valor por defecto.
     proposals:
       successful_proposal_id: Propuesta exitosa
       successful_proposal_id_description: Esta propuesta se utiliza como referencia de una propuesta exitosa en número de apoyos y se mostrará en el gráfico del panel de control

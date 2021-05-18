@@ -905,6 +905,9 @@ es:
       dashboard_actions: Recursos y acciones
       moderated_texts: Texto para moderación automática
       auto_moderated_content: Contenido moderado automáticamente
+    superadministrators:
+      index:
+        title: Super Administradores
     super_administrators:
       index:
         title: Super Administradores
@@ -1513,6 +1516,7 @@ es:
         make_official: Convertir en cargo público
         title: 'Cargos Públicos: Búsqueda de usuarios'
         no_results: No se han encontrado cargos públicos.
+      filter: Cargos Públicos
     organizations:
       index:
         filter: Filtro
@@ -1541,6 +1545,7 @@ es:
       search:
         title: Buscar Organizaciones
         no_results: No se han encontrado organizaciones.
+      filter: Organizaciones
     proposals:
       index:
         title: Propuestas
@@ -1787,6 +1792,7 @@ es:
         no_deleted: No se ha podido eliminar el usuario correctamente
       new:
         title: Nuevo usuario
+      filter: Usuarios
     verifications:
       index:
         phone_not_given: No ha dado su teléfono

@@ -1,4 +1,5 @@
 <h2><%= t("admin.organizations.index.title") %></h2>
+<%= render "shared/profiles_filter_subnav" %>
 
 <div class="small-12 medium-6">
   <%= form_for(Organization.new, url: search_admin_organizations_path, method: :get) do |f| %>
@@ -11,7 +12,7 @@
     </div>
   <% end %>
 </div>
-
+<%if controller_name == "organizations" %><% @valid_filters = %w[pending all verified rejected] %><%end%>
 <%= render "shared/filter_subnav", i18n_namespace: "admin.organizations.index" %>
 
 <% if @organizations.any? %>

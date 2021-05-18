@@ -1,0 +1,13 @@
+<ul class="menu simple clear" id="filter-subnav">
+  <%if controller_name == "organizations" %>
+    <% @valid_filters = %w[users superadministrators administrators sures_administrators section_administrators 
+                  organizations officials moderators valuators managers consultants editors] %>
+  <%end%>
+  <% @valid_filters.each do |filter| %>
+    <% if controller_name == filter %>
+      <li class="is-active"><h2><%= t("admin.#{filter}.index.title") %></h2></li>
+    <% else %>
+      <li><%= link_to t("admin.#{filter}.index.title"), filter == "organizations" ? admin_organizations_path : filter %></li>
+    <% end %>
+  <% end %>
+</ul>

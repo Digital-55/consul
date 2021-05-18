@@ -1,5 +1,10 @@
 class Sures::Actuation < ApplicationRecord
-    belongs_to :geozone
+
+    has_many :actuations_multi_years, -> { order(:id) }, class_name: "ActuationsMultiYear", foreign_key: "sures_actuations_id",
+                        dependent: :destroy, inverse_of: :sures_actuations
+    accepts_nested_attributes_for :actuations_multi_years, reject_if: proc { |attributes| attributes.all? { |k, v| v.blank? } }, allow_destroy: true
+
+    has_many :adress
 
     scope :study, -> { where(status: "study") }
     scope :tramit, -> { where(status: "tramit") }
@@ -19,7 +24,6 @@ class Sures::Actuation < ApplicationRecord
 
     validates :proposal_title, presence: true
     validates :status, presence: true
-    validates :borought, presence: true
     validate :valid_annos
 
 

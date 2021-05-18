@@ -67,6 +67,7 @@ module Abilities
       can [:search, :show, :edit, :update, :create, :index, :destroy, :summary], ::Valuator
       can [:search, :create, :index, :destroy], ::Manager
       can [:search, :index, :new, :destroy, :update_padron, :edit, :update], ::User
+      can :manage, Profile
 
       can :manage, Dashboard::Action
       can :manage, EventAgend

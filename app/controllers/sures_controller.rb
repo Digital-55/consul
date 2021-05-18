@@ -1,6 +1,7 @@
 class SuresController < SuresBaseController
     include Admin::SuresHelper
     
+    before_action :load_districts, only: [:index,:search,:actuation]
     def index
         @cards = Sures::CustomizeCard.body
     end
@@ -10,8 +11,7 @@ class SuresController < SuresBaseController
         @actuations = []
         @sures_searchs_settings = Sures::SearchSetting.search_settings.order(id: :asc)
         @sures_orders_filter = Sures::SearchSetting.order_settings.order(id: :asc)
-       
-       
+
         run_search(params)
     end
 
@@ -53,8 +53,26 @@ class SuresController < SuresBaseController
                 )
             end
 
-            if !parametrize[:distrito].blank?
-                @actuations = @actuations.where("geozone_id IN (?)", parametrize[:distrito])
+            if !parametrize[:distrito].blank? && parametrize[:distrito].include?(23)
+                actuations_geozones = []
+                # parametrize[:distrito].each do |d|
+                    
+                     @actuations.each do |a|
+                        parametrize[:distrito].map {|z| actuations_geozones << a.id if a.geozones.include?(z)}
+                #         valid = false
+                #         a.geozones {|g| valid == true if parametrize[:distrito].include?(g.to_s)}
+                #         actuations_geozones << a.id
+                    end
+
+                # end
+                # puts actuations_geozones
+                # xxxx
+                @actuations = @actuations.where("sures_actuations.id IN (?)", actuations_geozones)
+            end
+            
+
+            if !parametrize[:proyecto].blank?
+                @actuations = @actuations.where("project like '%#{parametrize[:proyecto]}%'")
             end
 
             if !parametrize[:show_fields].blank? && parametrize[:show_fields].to_s != "true"
@@ -91,7 +109,22 @@ class SuresController < SuresBaseController
                 @type = aux.title.parameterize.underscore
             end
             @actuations = @actuations.order(aux_order)
-            @actuations = @actuations.page(params[:page])
+            paginate = 50
+            if !Setting.find_by(key: 'actuations_pagination_limit').value.blank? && Setting.find_by(key: 'actuations_pagination_limit').value.to_i != 0
+                paginate = Setting.find_by(key: 'actuations_pagination_limit').value.to_i
+            end
+
+            @actuations = @actuations.page(params[:page]).per(paginate)
         end
+    end
+    def load_districts
+        @districts = {}
+        disabled = []
+        data = Sures::SearchSetting.find_by(title: "Distrito").data
+        data_status = Sures::SearchSetting.find_by(title: "Distrito").data_status
+        
+        parse_data_json(data_status).map {|k,v| disabled << k.to_s if v == false}
+        parse_data_json(data).map {|k,v| @districts = @districts.merge!({k=>v}) if disabled.include?(v.to_s) == false}
+        @districts
     end
 end
