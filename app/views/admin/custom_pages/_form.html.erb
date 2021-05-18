@@ -133,8 +133,16 @@
           <div id='add_modules_button' class="float-left">
             <%= link_to t("admin.custom_pages.custom_page_modules.add_module"), '#', class: 'icon-plus-square button hollow', 'data-open': 'add_modules' %>
           </div>
-          <div id='toggle_modules_collapse_button' class="float-right">
-            <%= link_to '', '#', class: 'icon-arrow-down button secondary hollow small' %>
+          <div class="float-right">
+            <div class="float-left">
+                <%= link_to '', custom_page_path(@custom_page.slug),
+                                                                    target: '_blank',
+                                                                    title: t("admin.custom_pages.index.preview"),
+                                                                    class: "icon-eye button secondary hollow small" %>
+            </div>
+            <div id='toggle_modules_collapse_button' class="float-right">
+              <%= link_to '', '#', class: 'icon-arrow-down button secondary hollow small' %>
+            </div>
           </div>
         </div>
 
