@@ -45,9 +45,9 @@ namespace :search_settings do
       "#{I18n.t("admin.sures.actuations.actuation.financing_ifs")}": "ifs",
       "#{I18n.t("admin.sures.actuations.actuation.financing_other")}": "other"
     }.to_s.to_json, resource: "Sures::Actuation", field: "financig_performance", rules: nil, data_status: strategic.to_json)
-    Sures::SearchSetting.find_or_create_by(title: 'Proyecto', data_type: 'text', data: nil, resource: "Sures::Actuation", field: "actions_taken", rules: nil)
-    Sures::SearchSetting.find_or_create_by(title: 'Actuación', data_type: 'text', data: nil, resource: "Sures::Actuation", field: "actions_taken", rules: nil)
-    Sures::SearchSetting.find_or_create_by(title: 'Distrito', data_type: 'select', data: districts.to_s.to_json, resource: "Sures::Actuation", field: "geozone_id", rules: nil, data_status: districts_status.to_json)
+    Sures::SearchSetting.find_or_create_by(title: 'Proyecto', data_type: 'text', data: '{}', resource: "Sures::Actuation", field: "project", rules: nil)
+    Sures::SearchSetting.find_or_create_by(title: 'Actuación', data_type: 'text', data: '{}', resource: "Sures::Actuation", field: "actions_taken", rules: nil)
+    Sures::SearchSetting.find_or_create_by(title: 'Distrito', data_type: 'select', data: districts.to_s.to_json, resource: "Sures::Actuation", field: "geozones", rules: nil, data_status: districts_status.to_json)
     #Sures::SearchSetting.find_or_create_by(title: 'Barrio', data_type: 'select', data: boroughts.to_s.to_json, resource: "Sures::Actuation", field: "borought", rules: nil)
     Sures::SearchSetting.find_or_create_by(title: 'Estado de ejecución de la actuación', data_type: 'select', data: {
       "#{I18n.t("admin.sures.actuations.actuation.status_study")}": "study",

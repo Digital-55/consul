@@ -1,12 +1,12 @@
-<div class="row" id="multi-years-values">
+<div class="row">
   <div class="small-12 medium-3 column end" >
-    <%= f.text_field :annos %>
+    <%= f.text_field :annos, id: "multi-years-annos" %>
   </div>
   <div class="small-12 medium-3 column end" >
-    <%= f.text_field :values %>
+    <%= f.text_field :values, id: "multi-years-values" %>
   </div>
   <div class="small-12 medium-3 column end">
-    <%= link_to_remove_association f, class: "delete" do %>
+    <%= link_to_remove_association f, class: "delete", onclick: "hideAnnos($('multi-years-annos'), $('multi-years-values'))" do %>
         <%= t("dashboard.polls.question_fields.remove_question") %>
       <% end %>
   </div>

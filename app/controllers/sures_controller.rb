@@ -52,47 +52,52 @@ class SuresController < SuresBaseController
                     "%#{parametrize[:search]}%", "%#{parametrize[:search]}%"
                 )
             end
-
-            if !parametrize[:distrito].blank? && parametrize[:distrito].include?(23)
-                actuations_geozones = []
-                # parametrize[:distrito].each do |d|
-                    
-                     @actuations.each do |a|
-                        parametrize[:distrito].map {|z| actuations_geozones << a.id if a.geozones.include?(z)}
-                #         valid = false
-                #         a.geozones {|g| valid == true if parametrize[:distrito].include?(g.to_s)}
-                #         actuations_geozones << a.id
-                    end
-
-                # end
-                # puts actuations_geozones
-                # xxxx
-                @actuations = @actuations.where("sures_actuations.id IN (?)", actuations_geozones)
-            end
-            
-
-            if !parametrize[:proyecto].blank?
-                @actuations = @actuations.where("project like '%#{parametrize[:proyecto]}%'")
-            end
-
+            puts "========================================="
+            puts parametrize
+            puts "========================================="
+            {"utf8"=>"✓", "search"=>"", "show_fields"=>"true", "estrategia"=>"", "proyecto"=>"proyecto", "actuacion"=>"", "estado_de_ejecucion_de_la_actuacion"=>"", "controller"=>"sures", "action"=>"search"}
+            {"utf8"=>"✓", "search"=>"", "show_fields"=>"true", "estrategia"=>"", "proyecto"=>"", "actuacion"=>"", "estado_de_ejecucion_de_la_actuacion"=>"", "distrito"=>["23"], "controller"=>"sures", "action"=>"search"}
             if !parametrize[:show_fields].blank? && parametrize[:show_fields].to_s != "true"
                 aux_fields.each do |f|
+                    puts f
+                    puts "-----------------------------"
                     if !parametrize[f.to_sym].blank? && f.to_s != "search"
                         aux_field_search = @sures_searchs_settings.select {|x| x.title.parameterize.underscore.to_s == f.to_s }[0]
+                        puts "========================================"
+                        puts aux_field_search
+                        puts "========================================"
+                        
                         if !aux_field_search.blank?
-                            parse_data_json(aux_field_search.data).each do |k,v| 
+                            puts "============================"
+                            parse_data_json(aux_field_search.data).each do |k,v|
+                                puts v
                                 if v.to_s == parametrize[f.to_sym].to_s
                                     @resultado =  @resultado + (@resultado.blank? ? k.to_s : "/#{k.to_s}")
                                     break
                                 end
                             end
+                            puts "============================"
                             
                             @actuations = @actuations.where("translate(UPPER(cast(#{aux_field_search.field} as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast(? as varchar)), 'ÁÉÍÓÚ', 'AEIOU')", "%#{parametrize[f.to_sym]}%")
                         end
                     end
                 end
             end
+#######################
+            # if !parametrize[:distrito].blank? && !parametrize[:distrito].to_s.include?('23')
+            #     actuations_geozones = []
+            #     @actuations.each do |a|
+            #         if parametrize[:distrito].size == 1
+            #             actuations_geozones << a.id if a.geozones.include?(parametrize[:distrito].to_s)
+            #         else
+            #             parametrize[:distrito].map {|z| actuations_geozones << a.id if a.geozones.include?(z)}
+            #         end
+            #     end
+            #     @actuations = @actuations.where("sures_actuations.id IN (?)", actuations_geozones)
+            # end            
 
+            # @actuations = @actuations.where("project like '%#{parametrize[:proyecto]}%'") if !parametrize[:proyecto].blank?
+####################
             aux_order = "updated_at desc"
             if  @sures_orders_filter.blank?
                 @type = ""
@@ -117,6 +122,7 @@ class SuresController < SuresBaseController
             @actuations = @actuations.page(params[:page]).per(paginate)
         end
     end
+
     def load_districts
         @districts = {}
         disabled = []

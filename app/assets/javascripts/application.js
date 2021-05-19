@@ -273,6 +273,11 @@ function hideMultiYears(multi,simple) {
   simple.show();
 }
 
+function hideAnnos(element1,element2) {
+  element1.hide();
+  element2.hide();
+}
+
 function changeShowFields(element, field) {
   if (element.css("display") == "none") {
     field.attr('value',false);
