@@ -34,6 +34,7 @@ $(document).on('page:change', function(){
   toggleCustomPageMetaTags();
   avoidScrollTopOnReveal();
   closeRevealAfterAddModule();
+  slugAutoFill();
 });
 
 function loadCodeSnippet(){
@@ -101,4 +102,23 @@ function closeRevealAfterAddModule(){
   $('a.add_fields').on('click', function(){
     $('.reveal .close-button').click()
   })
+}
+
+function slugAutoFill(){
+  if($('.custom_page-fields #slug').text().length == 0) {
+    $('.custom_page-fields #title').one('blur', function(){
+      var title = this.value;
+      var str = title.replace(/^\s+|\s+$/g, '').toLowerCase();
+      var from = "ãàáäâẽèéëêìíïîõòóöôùúüûñç·/_,:;";
+      var to   = "aaaaaeeeeeiiiiooooouuuunc------";
+      for (var i=0, l=from.length ; i<l ; i++) {
+        str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+      }
+      str = str.replace(/[^a-z0-9 -]/g, '')
+                .replace(/\s+/g, '-')
+                .replace(/-+/g, '-');
+
+      $('#slug').val(str);
+    })
+  }
 }
