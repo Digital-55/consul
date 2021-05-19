@@ -1,21 +1,21 @@
 <%=form_tag do %>
     <div class="small-12 column">
         <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
-            <legend>Filtros</legend>
+            <legend><%=t("admin.menu.parbudget_tabs.legend_filter")%></legend>
             <div class="row">
                 <div class="small-12 medium-3 column">
-                    <%=label_tag :search_code, t('admin.sures.searchs_settings.form.data_type')%>
+                    <%=label_tag :search_code, t('admin.parbudget.ambit.search_code')%>
                     <%= text_field_tag :search_code %>
                 </div>
                 
                 <div class="small-12 medium-3 column end">
-                    <%=label_tag :search_ambit, t('admin.sures.searchs_settings.form.field')%>
+                    <%=label_tag :search_ambit, t('admin.parbudget.ambit.search_ambit')%>
                     <%= text_field_tag :search_ambit %>
                 </div>  
             </div>
             <div class="float-right">
-                <%= submit_tag "Limpiar búsqueda", class: "button" %>
-                <%= submit_tag "Buscar", class: "button" %>
+                <%= link_to t("admin.menu.parbudget_tabs.button_clean"), admin_parbudget_ambits_path, class: "button secondary" %>
+                <%= submit_tag t("admin.menu.parbudget_tabs.button_find"), class: "button" %>
             </div>
         </fieldset>
     </div>

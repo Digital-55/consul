@@ -1,3 +1,36 @@
 <%= render partial: "admin/parbudget/tabs"%>
 <%= render partial: "admin/parbudget/buttons", locals: {path: new_admin_parbudget_ambit_path, button_title: t("admin.menu.parbudget_tabs.new_ambits")}%>
 <%= render partial: "filters"%>
+<% if @ambits.any? %>
+  <h3><%= page_entries_info @ambits %></h3>
+
+  <table class="stack">
+    <thead>
+      <tr>
+        <th><%= t("admin.legislation.processes.process.title") %></th>
+        <th><%= t("admin.legislation.processes.process.status") %></th>
+        <th><%= t("admin.actions.actions") %></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @ambits.each do |ambit| %>
+        <tr id="<%= dom_id(ambit) %>">
+          <td></td>
+          <td></td>
+          <td>
+            <%= link_to t("admin.legislation.processes.index.delete"), admin_legislation_process_path(process),
+                        method: :delete,
+                        class: "button hollow alert expanded" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= paginate @ambits %>
+<% else %>
+  <div class="callout primary">
+    <%= page_entries_info @ambits %>
+  </div>
+<% end %>

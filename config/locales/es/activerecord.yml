@@ -7,6 +7,24 @@ es:
     budget_link_enabled: "Mostrar enlace de presupuestos del Ayuntamiento"
   activerecord:
     models:
+      parbudget/ambit:
+        one: "Ámbito"
+        other: "Ámbitos"
+      parbudget/center:
+        one: "Centro gestor"
+        other: "Centros gestores"
+      parbudget/project:
+        one: "Proyecto"
+        other: "Proyectos"
+      parbudget/responsible:
+        one: "Responsable"
+        other: "Responsables"
+      parbudget/meeting:
+        one: "Reunión"
+        other: "Reuniones"
+      parbudget/topic:
+        one: "Tema"
+        other: "Temas"
       event_agend:
         one: "Evento de agenda"
         other: "Eventos de agenda"
@@ -155,6 +173,90 @@ es:
         one: Texto para moderación automática
         other: Textos para moderación automática
     attributes:
+      parbudget/ambit:
+        name: "Ámbito"
+        code: "Código"
+        created_at: "Fecha de creación"
+        updated_at: "Fecha de modificación"
+      parbudget/center:
+        denomination: Denominación
+        code: "Código de centor"
+        code_section: Código sección
+        code_program: Código programa
+        responsible: Responsable
+        government_area: Área de gobierno
+        general_direction: Dirección general
+        project: Proyecto
+        project_id: Proyecto
+        created_at: "Fecha de creación"
+        updated_at: "Fecha de modificación"
+      parbudget/project:
+        created_at: "Fecha de creación"
+        updated_at: "Fecha de modificación"
+      parbudget/responsible:
+        full_name:
+        phone:
+        email:
+        position:
+        center:
+        center_id:
+        created_at: "Fecha de creación"
+        updated_at: "Fecha de modificación"
+      parbudget/medias:
+        text_document:
+        title:
+        project:
+        project_id:
+        created_at: "Fecha de creación"
+        updated_at: "Fecha de modificación"
+      parbudget/link:
+        url:
+        project:
+        project_id:
+        created_at: "Fecha de creación"
+        updated_at: "Fecha de modificación"
+      parbudget/economic_budget:
+        url:
+        project:
+        project_id:
+        created_at: "Fecha de creación"
+        updated_at: "Fecha de modificación"
+      parbudget/tracking:
+        project:
+        project_id:
+        created_at: "Fecha de creación"
+        updated_at: "Fecha de modificación"
+      parbudget/meeting:
+        date: "Fecha de la reunión"
+        who_request: "Convocante"
+        reason: "Asunto"
+        created_at: "Fecha de creación"
+        updated_at: "Fecha de modificación"
+      parbudget/assistant:
+        full_name: "Nombre del asistente"
+        meeting: "Reunión"
+        meeting_id: "Reunión"
+        created_at: "Fecha de creación"
+        updated_at: "Fecha de modificación"
+      parbudget/tracking_internal:
+        date: "Fecha"
+        observations: "Observaciones"
+        file_send: "Ficha enviada"
+        file_recived: "Ficha recibida"
+        file_edited: "Ficha modificada"
+        created_at: "Fecha de creación"
+        updated_at: "Fecha de modificación"
+      parbudget/tracking_external:
+        date: "Fecha"
+        code: ""
+        status: "Estado"
+        status_description: "Descripción del estado"
+        created_at: "Fecha de creación"
+        updated_at: "Fecha de modificación"
+      parbudget/topic:
+        name: Tema
+        created_at: "Fecha de creación"
+        updated_at: "Fecha de modificación"
       event_agend:
         date_at: "Fecha"
         hour_at: "Hora de comienzo"

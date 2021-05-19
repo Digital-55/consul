@@ -2,7 +2,9 @@
 path ||= "#"
 button_title ||= "" 
 %>
-<div class="float-right">
-    <%= link_to t("admin.menu.parbudget_tabs.csv_exporter"), current_path_with_query_params(params), class: "button " %>
-    <%= link_to button_title, path, class: "button " %>
+<div class="small-12 column">
+    <div class="float-right">
+        <%= link_to t("admin.menu.parbudget_tabs.csv_exporter"), current_path_with_query_params(params), class: "button " %>
+        <%= link_to button_title, path, class: "button " %>
+    </div>
 </div>

@@ -705,6 +705,36 @@ es:
       milestones:
         index:
           title: Seguimiento
+    parbudget:
+      ambit:
+        search_code: Código
+        search_ambit: Ámbito
+      center:
+        search_center_code: Código centro
+        search_section_code: Código sección
+        search_program_code: "Código programa"
+        search_denomination: "Denominación"
+        search_responsible: "Responsable"
+        search_project: "Proyecto"
+      project:
+        search_identificator: "Identificador"
+        search_title: "Título"
+        search_year_to: "Año desde"
+        search_year_end: "Año hasta"
+        search_memory: "Memoria"
+        search_status: "Estado"
+        search_center: "Centro gestor"
+      responsible:
+        search_responsible: "Responsable"
+        search_phone: "Teléfono"
+        search_email: "Correo electrónico"
+        search_position: "Cargo"
+        search_center: "Centro"
+      meeting:
+        search_date_start: "Fecha desde"
+        search_date_end: "Fecha hasta"
+      topic:
+        search_topic: "Tema"
     sures:
       actuations:
         create:
@@ -847,6 +877,9 @@ es:
         topics: Temas
         new_topics: Nuevo tema
         csv_exporter: Exportar CSV
+        legend_filter: Filtros
+        button_clean: Limpiar búsqueda
+        button_find: Buscar
       activity: Actividad de moderadores
       admin: Menú de administración
       banner: Gestionar banners
