@@ -1,0 +1,42 @@
+<%if !@sg_generic.blank?%>
+    <div class="small-12 column">
+        <fieldset class="sg_fieldset">
+            <legend><%= @sg_generic.try(:title)%></legend>
+            <%=form_tag create_generic_admin_sgs_path, method: :post, remote: true do %>
+                <%=hidden_field_tag :type, @type.to_s%>
+                <%=hidden_field_tag :generic, true%>
+                <div class="row">
+                    <div class="small-12 medium-3 column">
+                        <%= select_tag "generic_table_name".to_sym, options_for_select(get_tables), onchange: "getFieldNames($('#generic_table_name option:selected'),'#generic_field_name_change')" %>
+                    </div>
+                    <div id="generic_field_name_change">
+                        <div class="small-12 medium-3 column">
+                            <%= select_tag "generic_field_name".to_sym, options_for_select(get_fields_by_table(params[:select_table_generic])) %>
+                        </div>
+                     </div>
+                    <div class="small-12 medium-3 column end">
+                        <%= submit_tag t('admin.sg.form.add'), class: "button" %>
+                    </div>
+                </div>
+            <%end%>
+
+            <div id="results_searchs">
+                <%= render partial: "results_generic" %>
+            </div>
+        </fieldset>
+    </div>
+<%else%>
+    <%=t('admin.sg.no_search_generic')%>
+<%end%>
+ <div class="small-12 column">
+    <fieldset class="sg_fieldset">
+        <legend><%= t('admin.sg.title_avanced')%></legend>
+        <div id="results_changes">
+            <%= render partial: "results_avanced" %>
+        </div>
+        <div class="small-12 column text-right">
+            <%= link_to t('admin.sg.form.add'),  generate_setting_admin_sgs_path(type: @type), remote: true, class: "button"%>
+        </div>
+    </fieldset>
+</div>
+

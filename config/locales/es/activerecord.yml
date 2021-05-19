@@ -1,4 +1,10 @@
 es:
+  direct_upload:
+    one: "Carga directa"
+    other: "Cargas directas"
+  import_user:
+    one: "Importación de usuario"
+    other: "Importaciones de usuarios"
   attributes:
     results_enabled: "Mostrar resultados"
     stats_enabled: "Mostrar estadísticas"
@@ -7,24 +13,69 @@ es:
     budget_link_enabled: "Mostrar enlace de presupuestos del Ayuntamiento"
   activerecord:
     models:
+      sg/generic:
+        one: "General genérico"
+        other: "Generales genéricos"
+      sg/select:
+        one: "Campo selección"
+        other: "Campos selecciones"
+      sg/setting:
+        one: "Campo configuración"
+        other: "Campos configuraciones"
+      sg/table_field:
+        one: "Tabla de datos"
+        other: "Tablas de datos"
+      sg/table_order:
+        one: "Tabla de ordenación"
+        other: "Tablas de ordenación"
       event_agend:
         one: "Evento de agenda"
         other: "Eventos de agenda"
       sures/actuation:
-        one: "actuación"
-        other: "actuaciones"
+        one: "Actuación"
+        other: "Actuaciones"
       activity:
-        one: "actividad"
-        other: "actividades"
+        one: "Actividad"
+        other: "Actividades"
+      budget_poll:
+        one: "Encuesta presupuestaria"
+        other: "Encuestas presupuestarias"
       budget:
         one: "Presupuesto participativo"
         other: "Presupuestos participativos"
+      budget/valuator_assignment:
+        one: "Asignación de tasa de presupuesto"
+        other: "Asignaciones de tasa de presupuesto"
+      budget/valuator_group_assignment:
+        one: "Asignación grupal de tasa de presupuesto"
+        other: "Asignaciones grupales de tasa de presupuesto"
+      budget/ballot:
+        one: "Votación de presupuesto"
+        other: "Votaciones de presupuesto"
+      budget/content_block:
+        one: "Bloque de contenido de presupuesto"
+        other: "Bloques de contenidos de presupuesto"
+      budget/group:
+        one: "Grupo de presupuesto"
+        other: "Grupos de presupuestos"
+      budget/heading:
+        one: "Cabecera de presupuesto"
+        otehr: "Cabeceras de presupuestos"
+      budget/ballot/line:
+        one: "Línea de votación de presupuesto"
+        other: "Líneas de votaciones de presupuesto"
+      budget/phase:
+        one: "Fase presupuestaria"
+        other: "Fases presupuestarias"
+      budget/reclassified_vote:
+        one: "Reclasificación de votos presupuestarios"
+        other: "Reclasificaciones de votos presupuestarios"
       budget/investment:
         one: "Proyecto de gasto"
         other: "Proyectos de gasto"
       milestone:
-        one: "hito"
-        other: "hitos"
+        one: "Hito"
+        other: "Hitos"
       milestone/status:
         one: "Estado de seguimiento"
         other: "Estados de seguimiento"
@@ -52,6 +103,27 @@ es:
       administrator:
         one: "Administrador"
         other: "Administradores"
+      active_poll:
+        one: "Encuesta activa"
+        other: "Encuestas activas"
+      admin_notification:
+        one: "Notificación de administrador"
+        other: "Notificaciones de administrador"
+      administrator_task:
+        one: "Tarea de administrador"
+        other: "Tareas de administrador"
+      adress:
+        one: "Dirección"
+        other: "Direcciones"
+      answer:
+        one: "Respuesta"
+        other: "Respuestas"
+      application_record:
+        one: "Recurso de la aplicación"
+        other: "Recursos de la aplicación"
+      campaign:
+        one: "Campaña"
+        other: "Campañas"
       sures_administrator:
         one: "Administrador de Sures"
         other: "Administradores de Sures"
@@ -73,6 +145,96 @@ es:
       manager:
         one: "Gestor"
         other: "Gestores"
+      verified_user:
+        one: "Verificación de usuario"
+        other: "Verificaciones de usuarios"
+      community:
+        one: "Comunidad"
+        other: "Comunidades"
+      visit:
+        one: "Visita"
+        other: "Visitas"
+      direct_message:
+        one: "Mensaje directo"
+        other: "Mensajes directos"
+      direct_upload:
+        one: "Carga directa"
+        other: "Cargas directas"
+      failed_census_call:
+        one: "Llamada de censo fallida"
+        other: "Llamadas de censo fallidas"
+      web_section:
+        one: "Sección web"
+        other: "Secciones web"
+      flag:
+        one: "Bandera"
+        other: "Banderas"
+      follow:
+        one: "Seguimiento"
+        other: "Seguimientos"
+      geozone:
+        one: "Geozona"
+        other: "Geozonas"
+      tagging:
+        one: "Etiquetado"
+        other: "Etiquetados"
+      i18n_content:
+        one: "Contenido en idioma"
+        other: "Contenidos en idiomas"
+      i18n_content_translation:
+        one: "Contenido en idioma traducido"
+        other: "Contenidos en idiomas traducidos"
+      identity:
+        one: "Identidad"
+        other: "Identidades"
+      image:
+        one: "Imagen"
+        other: "Imágenes"
+      import_user:
+        one: "Importación de usuario"
+        other: "Importaciones de usuarios"
+      local_census_record:
+        one: "Registro del censo local"
+        other: "Registros del censo local"
+      lock:
+        one: "Bloqueo"
+        other: "Bloqueos"
+      map_location:
+        one: "Ubicación del mapa"
+        other: "Ubicaciones del mapa"
+      moderated_content:
+        one: "Contenido moderado"
+        other: "Contenidos moderados"
+      notification:
+        one: "Notificación"
+        other: "Notificaciones"
+      profile:
+        one: "Perfil"
+        other: "Perfiles"
+      redeemable_code:
+        one: "Código canjeable"
+        other: "Códigos canjeables"
+      related_content:
+        one: "Contenido relacionado"
+        other: "Contenidos relacionados"
+      report:
+        one: "Reporte"
+        other: "Reportes"
+      setting:
+        one: "Configuración"
+        other: "Configuraciones"
+      signature:
+        one: "Firma"
+        other: "Firmas"
+      signature_sheet:
+        one: "Hoja de firma"
+        other: "Hojas de firmas"
+      stat:
+        one: "Estadística"
+        other: "Estadísticas"
+      stats_version:
+        one: "Versión de estadísticas"
+        other: "Versiones de estadísticas"
       newsletter:
         one: "Newsletter"
         other: "Newsletters"
@@ -82,18 +244,63 @@ es:
       organization:
         one: "Organización"
         other: "Organizaciones"
+      poll/officer_assignment:
+        one: "Asignación oficial de votación"
+        other: "Asignaciones oficiales de votación"
+      poll/shift:
+        one: "Turno de encuesta"
+        other: "Turnos de encuestas"
+      poll/answer:
+        one: "Respuesta de la encuesta"
+        other: "Respuestas de las encuestas"
+      poll/question/answer:
+        one: "Respuesta de la pregunta de la encuesta"
+        other: "Respuestas de las preguntas de la encuesta"
+      poll/question/answer/video:
+        one: "Video de la respuesta de la pregunta de la encuesta"
+        other: "Videos de las respuestas de la pregunta de la encuesta"
+      poll/voter:
+        one: "Votante de la encuesta"
+        other: "Votantes de la encuesta"
+      poll/ballot:
+        one: "Votación electoral"
+        other: "Votaciones electorales"
+      poll/booth_assignment:
+        one: "Asignación de cabina de votación"
+        other: "Asignaciones de cabinas de votación"
+      poll/final_recount:
+        one: "Recuento final de la encuesta"
+        other: "Recuentos finales de la encuesta"
+      poll/letter_officer_log:
+        one: "Registro oficial de la carta de votación"
+        other: "Registros oficiales de la carga de votación"
+      poll/nvote:
+        one: "Numero de votos de la encuesta"
+        other: "Numeros de votos de la encuesta"
+      poll/partial_result:
+        one: "Resultado parcial de la encuesta"
+        other: "Resultados parciales de la encuesta"
+      poll/question:
+        one: "Pregunta de la encuesta"
+        other: "Preguntas de la encuesta"
+      poll/recount:
+        one: "Recuento de la encuesta"
+        other: "Recuentos de la encuesta"
       poll/booth:
-        one: "urna"
-        other: "urnas"
+        one: "Urna"
+        other: "Urnas"
       poll/officer:
-        one: "presidente de mesa"
-        other: "presidentes de mesa"
+        one: "Presidente de mesa"
+        other: "Presidentes de mesa"
       poll/ballot_sheet:
         one: Papeleta de votación
         other: Papeletas de votación
       proposal:
         one: "Propuesta ciudadana"
         other: "Propuestas ciudadanas"
+      related_content_score:
+        one: "Puntuación de contenido relacionado"
+        other: "Puntuaciones de contenidos relacionados"
       site_customization/page:
         one: Página
         other: Páginas
@@ -106,6 +313,21 @@ es:
       document:
         one: Documento
         other: Documentos
+      legislation/other_proposal:
+        one: "Otra propuesta"
+        other: "Otras propuestas"
+      legislation/draf_version:
+        one: "Versión de borrador legislativo"
+        other: "Versiones de borrador legislativo" 
+      legislation/answer:
+        one: "Respuesta legislativa"
+        other: "Respuestas legislativas"
+      legislation/question:
+        one: "Pregunta legislativa"
+        other: "Preguntas legislativas"
+      legislation/question_option:
+        one: "Opción de pregunta legislativa"
+        other: "Opciones de pregunta legislativa"
       legislation/process:
         one: "Proceso"
         other: "Procesos"
@@ -142,6 +364,9 @@ es:
       proposal_notification:
         one: "Notificación de propuesta"
         other: "Notificaciones de propuestas"
+      dashboard/executed_action:
+        one: Acción ejecutada del panel de control de propuestas
+        other: Acciones ejecutadas del panel de control de propuestas
       dashboard/action:
         one: Acción del panel de control de propuestas
         other: Acciones del panel de control de propuestas
@@ -151,10 +376,445 @@ es:
       link:
         one: Enlace
         other: Enlaces
+      probe:
+        one: "Investigación"
+        other: "Investigaciones"
+      probe_option:
+        one: "Opción de investigación"
+        other: "Opciones de investigación"
+      probe_selection:
+        one: "Selección de investigación"
+        other: "Selecciones de investigación"
       moderated_text:
         one: Texto para moderación automática
         other: Textos para moderación automática
+      widget/card:
+        one: "Tarjeta widget"
+        other: "Tarjetas widget"
+      widget/feed:
+        one: "Feed widget"
+        other: "Feeds widget"
+      officing/residence:
+        one: "Residencia oficial"
+        other: "Residencias oficiales"
+      legislation/annotation:
+        one: "Anotación legislativa"
+        other: "Anotaciones legislativas"
     attributes:
+      probe_selection:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        probe_id: "Investigación"
+        probe_option_id: "Opción de investigación"
+        user_id: "Usuario"
+      probe_option:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        code: "Código"
+        name: "Nombre"
+        probe_id: "Investigación"
+        probe_selections_count: "Recuento de investigaciones seleccionadas"
+        debate_id: "Debate"
+        comments_count: "Recuento de comentarios"
+        topic_id: "Tema"
+      probe:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        codename: "Nombre clave"
+        selecting_allowed: "Permite seleccionar"
+      dashboard/executed_action:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        proposal_id: "Propuesta"
+        action_id: "Acción"
+        executed_at: "Fecha de ejecución"
+      proposal_notification:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        title: "Título"
+        body: "Cuerpo"
+        author_id: "Autor"
+        proposal_id: "Propuesta"
+        moderated: "Moderado"
+        hidden_at: "Fecha de ocultación"
+        ignored_at: "Fecha en la que se ignora"
+        confirmed_hide_at: "Fecha de confirmación de ocultación"
+      topic:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        title: "Título"
+        description: "Descripción"
+        author_id: "Autor"
+        comments_count: "Recuento de comentarios"
+        community_id: "Comunidad"
+        hidden_at: "Fecha de ocultación"
+        cached_votes_total: "Votos totales"
+        cached_votes_up: "Votos positivos"
+        cached_votes_down: "Votos negativos"
+        cached_votes_score: "Puntuación de votos"
+        hot_score: "Puntuación caliente"
+        confidence_score: "Puntuación confidencial"
+        flags_count: "Recuento de banderas"
+        ignored_flag_at: "Fecha de ignoración de bandera"
+        confirmed_hide_at: "Fecha de confirmación de ocultación"
+      legislation/answer:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        legislation_question_id: "Pregunta de legislación"
+        legislation_question_option_id: "Opción de pregunta de legislación"
+        user_id: "Usuario"
+        hidden_at: "Fecha de ocultación"
+        value_other: "Otro valor"
+        value_range: "Rango de valores"
+        value_number: "Valor numérico"
+      legislation/draf_version:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        legislation_process_id: "Proceso de legislativo"
+        status: "Estado"
+        final_version: "Versión final"
+        hidden_at: "Fecha de ocultación"
+        legislation_draft_version_id: "Versión de borrador legislativo"
+        locale: "Localización"
+        title: "Título"
+        changelog: "Registro de cambios"
+        body: "Cuerpo"
+        body_html: "Cuerpo en html"
+        toc_html: "TOC html"
+      related_content_score:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        user_id: "Usuario"
+        related_content_id: "Contenido relacionado"
+        value: "Valor"
+      poll/officer:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        user_id: "Usuario"
+        failed_census_calls_count: "Recuento de llamadas fallidas del censo"
+        letter_officer: "Carta oficial"
+      poll/recount:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        author_id: "Autor"
+        origin: "Origen"
+        date: "Fecha"
+        booth_assignment_id: "Asignación de mesa"
+        officer_assignment_id: "Turno"
+        officer_assignment_id_log: "Histórico del turno"
+        author_id_log: "Histórico del autor"
+        white_amount: "Cantidad en blanco"
+        white_amount_log: "Histórico de cantidad en blanco"
+        null_amount: "Cantidad nula"
+        null_amount_log: "Histórico de cantidad nula"
+        total_amount: "Cantidad total"
+        total_amount_log: "Histórico de cantidad total"
+      poll/partial_result:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        question_id: "Pregunta"
+        author_id: "Autor"
+        answer: "Respuesta"
+        amount: "Cantidad"
+        origin: "Origen"
+        date: "Fecha"
+        booth_assignment_id: "Asignación de mesa"
+        officer_assignment_id: "Turno"
+        amount_log: "Histórico de cantidad"
+        officer_assignment_id_log: "Histórico del turno"
+        author_id_log: "Histórico de autor"
+      poll/nvote:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        user_id: "Usuario"
+        poll_id: "Encuesta"
+        deleted_at: "Fecha de borrado"
+        nvotes_poll_id: "Número de votos de la encuesta"
+        voter_hash: "Hash del votante"
+        officer_assignment_id: "Turno"
+        booth_assignment_id: "Asignación de mesa"
+      poll/letter_officer_log:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        document_number: "Documento de identificación"
+        message: "Mensaje"
+        user_id: "Usuario"
+        postal_code: "Código postal"
+        census_name: "Nombre del censo"
+        census_postal_code: "Código postal del censo"
+      poll/booth_assignment:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        booth_id: "Puesto en mesa"
+        poll_id: "Encuesta"
+      poll/final_recount:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        booth_assignment_id: "Asignación de mesa"
+        officer_assignment_id: "Turno"
+        count: "Recuento"
+        count_log: "Histórico de recuento"
+        officer_assignment_id_log: "Histórico del turno"
+        date: "Fecha"
+        origin: "Origen"
+      poll/ballot:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        ballot_sheet_id: "Hoja de votos"
+        data: "Datos"
+        external_id: "Externo"
+      poll/answer:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        question_id: "Pregunta"
+        author_id: "Autor"
+        answer: "Respuesta"
+      poll/shift:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        booth_id: "Puesto en mesa"
+        officer_id: "Oficial"
+        date: "Fecha"
+        officer_name: "Nombre"
+        officer_email: "Correo electrónico"
+        task: "Tarea"
+      poll/officer_assignment:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        booth_assignment_id: "Asignación de mesa"
+        officer_id: "Oficial"
+        date: "Fecha"
+        final: "Final"
+        user_data_log: "Histórico de datos de usuario"
+      stats_version:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        process_type: "Tipo de proceso"
+        process_id: "ID Proceso"
+      stat:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        namespace: "Espacio de nombres"
+        group: "Grupo"
+        name: "Nombre"
+        value: "Valor"
+      report:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        stats: "Estadísticas"
+        results: "Resultados"
+        process_type: "Tipo de proceso"
+        process_id: "ID Proceso"
+        advanced_stats: "Estadísticas avanzadas"
+        executions: "Ejecuciones"
+      related_content:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        parent_relationable_type: "Tipo de ascendente relacionado"
+        parent_relationable_id: "ID Ascendente relacionado"
+        child_relationable_type: "Tipo de descendiente relacionado"
+        child_relationable_id: "ID Descendiente relacionado"
+        related_content_id: "Contenido relacionado"
+        hidden_at: "Fecha de ocultación"
+        related_content_scores_count: "Recuento de puntuaciones de contenido relacionado"
+        author_id: "Autor"
+      profile:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        name: "Nombre"
+        code: "Código"
+      lock:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        user_id: "Usuario"
+        tries: "Intentos"
+        locked_until: "Bloqueado hasta"
+      local_census_record:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        document_number: "Documento de identificación"
+        document_type: "Tipo de documento"
+        date_of_birth: "Fecha de nacimiento"
+        postal_code: "Código postal"
+      import_user:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+      identity:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        user_id: "Usuario"
+        provider: "Proveedor"
+        uid: "UID"
+      tagging:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        tag_id: "Etiqueta"
+        taggable_type: "Tipo de etiquetado"
+        taggable_id: "ID Etiquetado"
+        tagger_type: "Tipo etiquetador"
+        tagger_id: "ID Etiquetador"
+        context: "Contexto"
+      follow:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        user_id: "Usuario"
+        followable_type: "Tipo de seguimiento"
+        followable_id: "ID de tipo de seguimiento"
+      flag:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        user_id: "Usuario"
+        flaggable_type: "Tipo de bandera"
+        flaggable_id: "ID de tipo de bandera"
+      web_section:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        name: "Nombre"
+      failed_census_call:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        user_id: "Usuario"
+        document_number: "Documento de identificación"
+        document_type: "Tipo de documento"
+        date_of_birth: "Fecha de nacimiento"
+        postal_code: "Código postal"
+        district_code: "Código del distrito"
+        poll_officer_id: "Votante oficial"
+        year_of_birth: "Año de nacimiento"
+      direct_upload:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+      visit:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        visitor_id: "Visitante"
+        ip: "IP"
+        user_agent: "Usuario agente"
+        referrer: "Referencia"
+        landing_page: "Página de destino"
+        user_id: "Usuario"
+        referring_domain: "Dominio de referencia"
+        search_keyword: "Palabra clave de búsqueda"
+        browser: "Navegador"
+        os: "Sistema operativo"
+        device_type: "Tipo de dispositivo"
+        screen_height: "Altura de pantalla"
+        screen_width: "Anchura de pantalla"
+        country: "País"
+        region: "Región"
+        city: "Ciudad"
+        postal_code: "Código postal"
+        latitude: "Latitud"
+        longitude: "Longitud"
+        utm_source: "UTM Fuente"
+        utm_medium: "UTM Medio"
+        utm_term: "UTM Termino"
+        utm_content: "UTM Contenido"
+        utm_campaign: "UTM Campaña"
+        started_at: "Fecha de registro"
+      community:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+      verified_user:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        document_number: "Documento de identificación"
+        document_type: "Tipo de documento"
+        phone: "Teléfono"
+        email: "Correo electrónico"
+      section_administrator:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        user_id: "Usuario"
+      consultant:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        user_id: "Usuario"
+      editor:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        user_id: "Usuario"
+      valuator:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        user_id: "Usuario"
+        description: "Descripción"
+        budget_investments_count: "Recuento de presupuesto de inversión"
+        valuator_group_id: "Grupo"
+      valuator_group:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        name: "Nombre"
+        budget_investments_count: "Recuento de presupuesto de inversión"
+      manager:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        user_id: "Usuario"
+      campaign:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        name: "Nombre"
+        track_id: "Pista"
+      setting:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        key: "Clave"
+        value: "Valor"
+        permit_html_safe: "Permitir contenido en HTML"
+      sg/generic:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        title: "Título"
+        generic_type: "Tipo del apartado genérico"
+      sg/select:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        key: "Clave"
+        value: "Valor"
+        data: "Datos contenidos en el seleccionable por defecto"
+        sg_setting: "Campo avanzado de búsqueda"
+        sg_setting_id: "ID Campo avanzado de búsqueda"
+      sg/setting:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        title: "Título"
+        setting_type: "Tipo de campo/orden"
+        data_type: "Tipo de datos"
+        active: "Activo"
+      sg/table_field:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        table_name: "Nombre de la tabla"
+        field_name: "Campo de la tabla"
+        sgeneric: "Campo de configuración"
+        sgeneric_id: "Id campo de configuración"
+        sgeneric_type: "Tipo de campo de configuración"
+      sg/table_order:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        table_name: "Nombre de la tabla"
+        order: "Orden"
+        sg_generic: "Configuración genérica"
+        sg_generic_id: "ID Configuración genérica"
+      activity:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        action: "Acción"
+        actionable: "Accionable"
+        actionable_id: "Id del accionable"
+        actionable_type: "Tipo del accionable"
+        user: "Usuario"
+        user_id: "ID Usuario"
+      budget_poll:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        name: "Nombre"
+        email: "Correo electrónico"
+        preferred_subject: "Tema preferido"
+        collective: "Colectivo"
+        public_worker: "Trabajador público"
+        proposal_author: "Autor propuesto"
+        selected_proposal_author: "Autor propuesto seleccionado"
       event_agend:
         date_at: "Fecha"
         hour_at: "Hora de comienzo"
@@ -173,59 +833,360 @@ es:
         description_balloting: "Descripción durante la fase de votación"
         description_reviewing_ballots: "Descripción durante la fase de revisión de votos"
         description_finished: "Descripción cuando el presupuesto ha finalizado / Resultados"
+        slug: "Nombre enlazado"
+        description_drafting: "Descripción durante la fase de borrador"
+        description_publishing_prices: "Descripción durante la fase de publicación de precios"
+        description_informing: "Descripción durante la fase de información"
+        budget_link: "Enlace de presupuesto"
+        budget_link_enabled: "Enlace de presupuesto activado"
         phase: "Fase"
         currency_symbol: "Divisa"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        locale: "Localización"
+      budget/translation:
+        name: "Nombre"
+        url: "Enlace a presupuestos del Ayuntamiento"
+        description_accepting: "Descripción durante la fase de presentación de proyectos"
+        description_reviewing: "Descripción durante la fase de revisión interna"
+        description_selecting: "Descripción durante la fase de apoyos"
+        description_valuating: "Descripción durante la fase de evaluación"
+        description_balloting: "Descripción durante la fase de votación"
+        description_reviewing_ballots: "Descripción durante la fase de revisión de votos"
+        description_finished: "Descripción cuando el presupuesto ha finalizado / Resultados"
+        slug: "Nombre enlazado"
+        description_drafting: "Descripción durante la fase de borrador"
+        description_publishing_prices: "Descripción durante la fase de publicación de precios"
+        description_informing: "Descripción durante la fase de información"
+        budget_link: "Enlace de presupuesto"
+        budget_link_enabled: "Enlace de presupuesto activado"
+        phase: "Fase"
+        currency_symbol: "Divisa"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        locale: "Localización"
+      budget/valuator_assignment:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        valuator: "Tasador"
+        investment: "Inversión"
+        valuator_id: "ID Tasador"
+        investment_id: "ID Inversión"
+      budget/valuator_group_assignment:
+        valuator_group: "Grupo de tasación"
+        investment: "Inversión"
+        valuator_group_id: "ID Grupo de tasación"
+        investment_id: "ID Inversión"
+      budget/ballot:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        user: "Usuario"
+        user_id: "Id Usuario"
+        budget: "Presupuesto"
+        budget_id: "ID Presupuesto"
+        ballot_lines_count: "Número de votaciones que se han contado"
+        physical: "Físico"
+        poll_ballot: "Papel de votación"
+        poll_ballot_id: "ID Papel de votación"
+      budget/content_block:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        heading: "Cabecera"
+        heading_id: "ID Cabecera"
+        body: "Cuerpo"
+        locale: "Localización"
+      budget/group:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        locale: "Localización"
+        slug: "Nombre amigable"
+        max_votable_headings: "Máximo de votos en cabeceras"
+        max_supportable_headings: "Máximo de cabeceras admitidas"
+        budget: "Presupuesto"
+        budget_id: "ID Presupuesto"
+        name: "Nombre"
+      budget/group/translation:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        locale: "Localización"
+        slug: "Nombre amigable"
+        max_votable_headings: "Máximo de votos en cabeceras"
+        max_supportable_headings: "Máximo de cabeceras admitidas"
+        budget_group_id: "ID Grupo presupuestario"
+        budget_group: "Grupo presupuestario"
+        name: "Nombre"
+      budget/heading:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        budget_heading_id: "ID Partida presupuestaria"
+        budget_heading: "Partida presupuestaria"
+        locale: "Localización"
+        name: "Nombre"
+        group_id: "ID Grupo"
+        group: "Grupo"
+        price: "Precio"
+        slug: "Nombre amigable"
+        allow_custom_content: "Contenido personalizado permitido"
+        population: "Población"
+        latitude: "Latitud"
+        longitude: "Longitud"
+      budget/heading/translation:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        budget_heading_id: "ID Partida presupuestaria"
+        budget_heading: "Partida presupuestaria"
+        locale: "Localización"
+        name: "Nombre"
+        group_id: "ID Grupo"
+        group: "Grupo"
+        price: "Precio"
+        slug: "Nombre amigable"
+        allow_custom_content: "Contenido personalizado permitido"
+        population: "Población"
+        latitude: "Latitud"
+        longitude: "Longitud"
+      budget/ballot/line:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        ballot_id: "ID Votación"
+        ballot: "Votación"
+        investment_id: "ID Inversión"
+        investment: "Inversión"
+        budget_id: "ID Presupuesto"
+        budget: "Presupuesto"
+        group_id: "ID Grupo"
+        group: "Grupo"
+        heading_id: "ID Cabecera"
+        heading: "Cabecera"
+      budget/phase:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        budget_id: "ID Presupuesto"
+        budget: "Presupuesto"
+        next_phase_id: "ID Siguiente fase"
+        next_phase: "Siguiente fase"
+        kind: "Clase"
+        starts_at: "Fecha de inicio"
+        ends_at: "Fecha de fin"
+        enabled: "Activada"
+      vote:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        votable_type: "Tipo de voto"
+        votable_id: "ID Votable"
+        voter_type: "Tipo de votante"
+        voter_id: "Votante"
+        vote_flag: "Votado"
+        vote_scope: "Alcance de la votación"
+        vote_weight: "Peso del voto"
+        signature_id: "Firma"
+      budget/reclassified_vote:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        user_id: "ID Usuario"
+        user: "Usuario"
+        investment_id: "ID Inversión"
+        investment: "Inversión"
+        reason: "Razón"
       budget/investment:
         heading_id: "Partida presupuestaria"
         title: "Título"
         description: "Descripción"
         external_url: "Enlace a documentación adicional"
         administrator_id: "Administrador"
+        administrator: "Administrador"
         location: "Ubicación (opcional)"
         organization_name: "Si estás proponiendo en nombre de una organización o colectivo, o en nombre de más gente, escribe su nombre"
         image: "Imagen descriptiva del proyecto de gasto"
         image_title: "Título de la imagen"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        author_id: "ID Autor"
+        author: "Autor"  
+        price: "Precio"
+        feasibility: "Factibilidad"
+        price_explanation: "Explicación del precio"
+        unfeasibility_explanation: "Explicación de inviabilidad"
+        valuation_finished: "Validación de finalización"
+        valuator_assignments_count: "Validación de número de asignaciones"
+        price_first_year: "Precio del primer año"
+        duration: "Duración"
+        hidden_at: "Fecha de ocultación"
+        cached_votes_up: "Votos positivos cacheados"
+        comments_count: "Número de comentarios"
+        confidence_score: "Puntuación confidencial"
+        physical_votes: "Votos físicos"
+        tsv: "TSV"
+        heading: "Cabecera"
+        heading_id: "Cabecera"
+        responsible_name: "Nombre del responsable"
+        budget_id: "Presupuesto"
+        budget: "Presupuesto"
+        group_id: "Grupo"
+        group: "Grupo"
+        selected: "Seleccionado"
+        location: "Ubicación"
+        organization_name: "Nombre de la organización"
+        unfeasible_email_sent_at: "Envío de correo electrónico inviable"
+        label: "Etiqueta"
+        previous_heading_id: "Cabecera anterior"
+        previous_heading: "Cabecera anterior"
+        visible_to_valuators: "Visible para los tasadores"
+        ballot_lines_count: "Número de líneas de votación"
+        winner: "Ganador"
+        incompatible: "Incompatible"
+        community_id: "Comunidad"
+        comunity: "Comunidad"
+        valuator_group_assignments_count: "Recuento de asignaciones de tasadores en grupo"
+        confirmed_hide_at: "Fecha de confirmación oculta"
+        ignored_flag_at: "Fecha de ignorar bandera"
+        flags_count: "Recuento de banderas"
+        original_heading_id: "Cabecera original"
+        original_heading: "Cabecera original"
       geozone:
         name: Nombre
         external_code: "Código externo (opcional)"
         census_code: "Código del censo (opcional)"
         html_map_coordinates: "Coordenadas HTML <map> (opcional)"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"       
       milestone:
         status_id: "Estado actual (opcional)"
         title: "Título"
         description: "Descripción (opcional si hay un estado asignado)"
         publication_date: "Fecha de publicación"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        milestone: "Hito"
+        milestone_id: "Hito"
+        milestoneable_type: "Tipo adjunto al hito"
+        milestoneable_id: "ID adjunto al hito"
+        locale: "Localización"
       milestone/status:
         name: "Nombre"
         description: "Descripción (opcional)"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        hidden_at: "Fecha de ocultación"
       progress_bar:
         kind: "Tipo"
         title: "Título"
         percentage: "Progreso"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        progressable_type: "Tipo de progresión"
+        progressable_id: "ID de la progresión"
+        progress_bar_id: "Barra de progreso"
+        progress_bar: "Barra de progreso"
+        locale: "Localización"
       progress_bar/kind:
         primary: "Principal"
         secondary: "Secundaria"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       budget/heading:
         name: "Nombre de la partida"
         price: "Coste"
         population: "Población"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       comment:
         body: "Comentario"
         user: "Usuario"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        commentable_id: "ID Comentable"
+        commentable_type: "Tipo comentable"
+        subject: "Asunto"
+        user_id: "Usuario"
+        hidden_at: "Fecha de ocultación"
+        flags_count: "Recuento de banderas"
+        ignored_flag_at: "Fecha de ignoración de banderas"
+        moderator_id: "Moderador"
+        moderator: "Moderador"
+        administrator_id: "Administrador"
+        administrator: "Administrador"
+        cached_votes_total: "Total de votos"
+        cached_votes_up: "Total de votos positivos"
+        cached_votes_down: "Total de votos negativos"
+        confirmed_hide_at: "Fecha de confirmación de ocultación"
+        ancestry: "Antecesor"
+        confidence_score: "Puntuación confidencial"
+        valuation: "Validado"
       debate:
         author: "Autor"
+        author_id: "Autor"
         author_name: "Autor"
         description: "Opinión"
         terms_of_service: "Términos de servicio"
         title: "Título"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        visit_id: "Visita"
+        hidden_at: "Fecha de ocultación"
+        flags_count: "Recuento de banderas"
+        ignored_flag_at: "Fecha de ignoración de banderas"
+        cached_votes_total: "Votos totales"
+        cached_votes_up: "Votos positivos totales"
+        cached_votes_down: "Votos negativos totales"
+        comments_count: "Número de comentarios"
+        confirmed_hide_at: "Fecha de confirmación de ocultación"
+        cached_anonymous_votes_total: "Total de votos anónimos"
+        cached_votes_score: "Puntuación de votos"
+        hot_score: "Puntuación caliente"
+        confidence_score: "Puntuación confidencial"
+        geozone_id: "Geozona"
+        tsv: "TSV"
+        featured_at: "Fecha de destacada"
+        comment_kind: "Tipo de comentario"
+      tag:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        name: "Nombre"
+        taggings_count: "Recuento de etiquetas"
+        debates_count: "Recuento de debates"
+        proposals_count: "Recuento de propuestas"
+        kind: "Tipo"
+        budget/investments_count: "Recuento de inversión de presupuesto"
+        legislation/proposals_count: "Recuento de propuestas de legislación"
+        legislation/processes_count: "Recuento de procesos de legislación"
       proposal:
         author: "Autor"
+        author_id: "Autor"
         author_name: "Autor"
         title: "Título"
         question: "Pregunta"
         description: "Descripción"
         selected: "Marcar como seleccionada"
         terms_of_service: "Términos de servicio"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        hidden_at: "Fecha de ocultación"
+        flags_count: "Recuento de banderas"
+        ignored_flag_at: "Fecha de banderas ignoradas"
+        cached_votes_up: "Votos positivos"
+        comments_count: "Recuento de comentarios"
+        confirmed_hide_at: "Fecha de confirmación de ocultación"
+        hot_score: "Puntuación caliente"
+        confidence_score: "Puntuación confidencial"
+        responsible_name: "Nombre del responsable"
+        summary: "Sumario"
+        video_url: "URL del video"
+        tsv: "TSV"
+        geozone_id: "Geozona"
+        retired_at: "Fecha de retirada"
+        retired_reason: "Razón de retirada"
+        retired_explanation: "Explicación de retirada"
+        proceeding: "Procedimiento"
+        sub_proceeding: "Subprocedimiento"
+        community_id: "Comunidad"
+        published_at: "Fecha de publicación"
+        selected: "Seleccionado"
+        comunity_hide: "Ocultación de comunidad" 
+      redeemable_code:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        token: "Token"
       user:
         login: "Email o nombre de usuario"
         email: "Email"
@@ -237,9 +1198,95 @@ es:
         official_position: "Cargo público"
         official_level: "Nivel del cargo"
         redeemable_code: "Código de verificación por carta (opcional)"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        encrypted_password: "Contraseña encriptada"
+        reset_password_token: "Restauración de token"
+        reset_password_sent_at: "Fecha de restauración de token"
+        remember_created_at: "Fecha de recordatorio de creación"
+        sign_in_count: "Recuento de inicios de sesión"
+        current_sign_in_at: "Fecha del inicio de sesión actual"
+        last_sign_in_at: "Fecha de la última sesión"
+        current_sign_in_ip: "IP sesión actual"
+        last_sign_in_ip: "IP última sesión"
+        confirmation_token: "Confirmación de token"
+        confirmed_at: "Fecha de confirmación"
+        confirmation_sent_at: "Fecha de confirmación de envio"
+        unconfirmed_email: "Email no confirmado"
+        email_on_comment: "Email en comentario"
+        email_on_comment_reply: "Respuesta a comentario de email"
+        hidden_at: "Fecha de ocultación"
+        sms_confirmation_code: "SMS código de confirmación"        
+        document_number: "Documento de identificación"
+        document_type: "Tipo de documento"
+        residence_verified_at: "Fecha de verificación de residencia"
+        email_verification_token: "Token de verificación de email"
+        verified_at: "Fecha de verificación"
+        unconfirmed_phone: "Teléfono no confirmado"
+        confirmed_phone: "Teléfono confirmado"
+        letter_requested_at: "Fecha de respuesta a carta"
+        confirmed_hide_at: "Fecha de confirmación de ocultación"
+        letter_verification_code: "Código de verifiación de carta"
+        failed_census_calls_count: "Recuento de llamadas de censo fallidas"
+        level_two_verified_at: "Fecha de verificación de dos niveles"
+        erase_reason: "Razón de borrado"
+        erased_at: "Fecha de borrado"
+        public_activity: "Actividad pública"
+        newsletter: "Newsletter"
+        notifications_count: "Recuento de notificaciones"
+        registering_with_oauth: "Registro con OAUTH"
+        locale: "Localización"
+        oauth_email: "Email OAUTH"
+        geozone_id: "Geozona"       
+        gender: "Género"
+        date_of_birth: "Fecha de nacimiento"
+        email_on_proposal_notification: "Notificación de propuesta en email"
+        email_digest: "Resumen de correo electrónico"
+        email_on_direct_message: "Mensaje directo en email"
+        official_position_badge: "Insignia de posición oficial"
+        password_changed_at: "Fecha de cambio de contraseña"
+        created_from_signature: "Creado a partir de firma"
+        failed_email_digests_count: "Recuento de fallos de resumen de email"
+        officing_voter: "Votante oficiante"
+        former_users_data_log: "Registro de datos antiguos"
+        balloted_heading_id: "Encabezado de votación"
+        public_interests: "Intereses públicos"
+        recommended_debates: "Debates recomendados"
+        recommended_proposals: "Propuestas recomendadas"
+        newsletter_token: "Token de newsletter"
+        newsletter_token_used_at: "Fecha de uso de token newsletter"
+        failed_attempts: "Intentos fallidos"
+        locked_at: "Fecha de bloqueo"
+        access_key_generated: "Generación de clave de acceso"
+        access_key_inserted: "Insercción de clave de acceso"
+        access_key_generated_at: "Fecha de generación de clave de acceso"
+        access_key_tried: "Pruebas de clave de acceso"
+        date_hide: "Fecha de ocultación"
+        name: "Nombre"
+        last_name: "Primer apellido"
+        last_name_alt: "Segundo apellido"
+        adress_id: "Dirección"
+        profiles_id: "Perfil"
+      moderator:
+        user_id: "Usuario"
+      superadministrator:
+        user_id: "Usuario"
+      administrator:
+        user_id: "Usuario"
+      active_poll:
+        active_poll_id: "Encuesta activa"
+        locale: "Localización"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        description: "Descripción"
       organization:
         name: "Nombre de la organización"
         responsible_name: "Persona responsable del colectivo"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        user_id: "Usuario"
+        verified_at: "Fecha de verificación"
+        rejected_at: "Fecha de rechazo"
       poll:
         name: "Nombre"
         starts_at: "Fecha de apertura"
@@ -247,25 +1294,60 @@ es:
         geozone_restricted: "Restringida por zonas"
         summary: "Resumen"
         description: "Descripción"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"        
+        published: "Publicado"
+        nvotes_poll_id: "Número de votos de la encuesta"
+        comments_count: "Recuento de comentarios"
+        author_id: "Autor"
+        hidden_at: "Fecha de ocultación"
+        slug: "Nombre amigable"
+        results_enabled: "Resultados activos"
+        stats_enabled: "Estadísticas activas"
+        budget_id: "Presupuesto"
+        related_type: "Tipo de relación"
+        related_id: "ID de la relación"
       poll/translation:
         name: "Nombre"
         summary: "Resumen"
         description: "Descripción"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       poll/question:
         title: "Pregunta"
         summary: "Resumen"
         description: "Descripción"
         external_url: "Enlace a documentación adicional"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        proposal_id: "Propuesta"
+        poll_id: "Encuesta"
+        author_id: "Autor"
+        author_visible_name: "Nombre del autor visible"
+        comments_count: "Recuento de comentarios"
+        hidden_at: "Fecha de ocultación"
+        tsv: "TSV"
+        video_url: "URL del vídeo"
+        poll_question_id: "Pregunta de la encuesta"
+        locale: "Localización"  
       poll/question/translation:
         title: "Pregunta"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       poll/ballot_sheet:
         data: Datos de CSV
         poll_id: Votación
         officer_assignment_id: Turno
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       signature_sheet:
         signable_type: "Tipo de hoja de firmas"
         signable_id: "ID Propuesta ciudadana/Proyecto de gasto"
         document_numbers: "Números de documentos"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        processed: "Procesado"
+        author_id: "Autor"
       site_customization/page:
         content: Contenido
         created_at: Creada
@@ -277,26 +1359,53 @@ es:
         more_info_flag: Mostrar en la página de ayuda
         print_content_flag: Botón de imprimir contenido
         locale: Idioma
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       site_customization/page/translation:
         title: Título
         subtitle: Subtítulo
         content: Contenido
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       site_customization/image:
         name: Nombre
         image: Imagen
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       site_customization/content_block:
         name: Nombre
         locale: Idioma
         body: Contenido
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       banner:
         background_color: Color del fondo
         font_color: Color del texto
         subsection: Subsección
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+      address:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        users_id: "Usuario"
+        road_type: "Tipo de vía"
+        road_name: "Nombre de vía"
+        road_number: "Número de vía"
+        floor: "Planta"
+        door: "Puerta"
+        gate: "Puerta exterior"
+        district: "Distrito"
+        borought: "Barrio"
+        postal_code: "Código postal"
       legislation/category:
         name: Título
         tag: Etiqueta
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       legislation/proposal:
         type_other_proposal: Tipo de propuesta
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       legislation/other_proposal:
         title_proposal: Título del servicio
         text_description: Texto desarrollado del servicio
@@ -305,7 +1414,6 @@ es:
         justify_text_declaration_2: Acepto la declaración responsable
         type_other_proposal: Tipo de organización
         title: Datos de contacto
-        type_other_proposal: Tipo de propuesta
         name: Razón social (nombre)
         address: Dirección
         phone: Teléfono 
@@ -314,6 +1422,8 @@ es:
         citizen_entities: ¿Registrado como Entidad ciudadana?
         cif: CIF
         entity_type: Tipo de entidad
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       legislation/process:
         title: Título del proceso
         geozone_restricted: "Restringida por zonas"
@@ -334,56 +1444,159 @@ es:
         result_publication_date: Fecha de publicación del resultado final
         background_color: Color del fondo
         font_color: Color del texto
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       legislation/process/translation:
         title: Título del proceso
         summary: Resumen
         description: En qué consiste
         additional_info: Información adicional
         milestones_summary: Seguimiento del proceso
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       legislation/draft_version:
         title: Título de la versión
         body: Texto
         changelog: Cambios
         status: Estado
         final_version: Versión final
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       legislation/draft_version/translation:
         title: Título de la versión
         body: Texto
         changelog: Cambios
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       legislation/question:
         title: Título
         question_options: Respuestas
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        legislation_process_id: "Proceso legislativo"
+        answers_count: "Recuento de respuestas"
+        hidden_at: "Fecha de ocultación"
+        comments_count: "Recuento de comentarios"
+        author_id: "Autor"
+        multiple_answers: "Respuestas multiples"
+        legislation_question_id: "Pregunta de legislación"
+        locale: "Localización"
       legislation/question_option:
         value: Valor
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        legislation_question_id: "Proceso legislativo"
+        answers_count: "Recuento de respuestas"
+        hidden_at: "Fecha de ocultación"
+        is_range: "Es un rango"
+        range_first: "Primer termino del rango"
+        range_last: "Segundo termino del rango"
+        is_number: "Es un número"
+        legislation_question_option_id: "Opción de la pregunta de legislativa"
+        locale: "Localización"
+        value: "Valor"
+        other: "Otro"
       legislation/annotation:
         text: Comentario
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        quote: "Quota"
+        ranges: "Rangos"        
+        legislation_draft_version_id: "Borrador de versión legislativa"
+        author_id: "Autor"
+        hidden_at: "Fecha de ocultación"        
+        comments_count: "Recuento de comentarios"
+        range_start: "Comienzo de rango"
+        range_start_offset: "Comienzo exterior de rango"
+        range_end: "Fin de rango"
+        range_end_offset: "Fin exterior de rango"
+        context: "Contexto"
       document:
         title: Título
         attachment: Archivo adjunto
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        attachment_file_name: "Nombre del archivo"
+        attachment_content_type: "Tipo de contenido del archivo"
+        attachment_file_size: "Tamaño del archivo"
+        attachment_updated_at: "Fecha de actualización del archivo"
+        user_id: "Usuario"
+        documentable_type: "Tipo de asignación de documento"
+        documentable_id: "ID de asignación de documento"
+        admin: "Administrador"
+      answer:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        author_id: "Autor"
+        text: "Texto"
+        context: "Contexto"
       image:
         title: Título
         attachment: Archivo adjunto
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        imageable_type: "Tipo de asociación de imagen"
+        imageable_id: "Id de asociación de imagen"
+        attachment_file_name: "Nombre del archivo"
+        attachment_content_type: "Tipo de contenido del archivo"
+        attachment_file_size: "Tamaño del archivo"
+        attachment_updated_at: "Fecha de actualización del archivo"
+        user_id: "Usuario"
       poll/booth:
         physical: Tipo de urna
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        name: "Nombre"
+        location: "Localización"
       poll/question/answer:
         title: Respuesta
         description: Descripción
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        question_id: "Pregunta"
+        given_order: "Orden dada"
+        most_voted: "Más votado"
+        poll_question_answer_id: "Respuesta de la pregunta de la encuesta"
+        locale: "Localización"
       poll/question/answer/translation:
         title: Respuesta
         description: Descripción
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        question_id: "Pregunta"
+        given_order: "Orden dada"
+        most_voted: "Más votado"
+        poll_question_answer_id: "Respuesta de la pregunta de la encuesta"
+        locale: "Localización"
       poll/question/answer/video:
         title: Título
         url: Vídeo externo
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        answer_id: "Respuesta"
       newsletter:
         segment_recipient: Destinatarios
         subject: Asunto
         from: Enviado por
         body: Contenido del email
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"       
+        sent_at: "Fecha de envío"
+        hidden_at: "Fecha de ocultación"
       admin_notification:
         segment_recipient: Destinatarios
         title: Título
         link: Enlace
         body: Texto
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        recipients_count: "Recuento de recipientes"
+        sent_at: "Fecha de envío"
+        admin_notification_id: "Notificación de administrador"
+        locale: "Localización"
+      administrator_task:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       sures/actuation:
         borought: Barrio
         geozone: Distrito
@@ -411,9 +1624,13 @@ es:
         location_performance: "Ubicación de la actuación"
         technical_visibility: "Viabilidad técnica"
         actions_taken: "Actualizaciones a realizar"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       admin_notification/translation:
         title: Título
         body: Texto
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       widget/card:
         label: Etiqueta (opcional)
         title: Título (opcional)
@@ -424,11 +1641,19 @@ es:
         left: Izquierda
         right: Derecha
         columns: Número de columnas
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        header: "Cabecera"
+        site_customization_page_id: "Pagina personalizada"
+        widget_card_id: "Widget"
+        locale: "Localización"
       widget/card/translation:
         label: Etiqueta (opcional)
         title: Título (opcional)
         description: Descripción (opcional)
         link_text: Texto del enlace
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       sures/customize_card:
         label: Etiqueta (opcional)
         title: Título (opcional)
@@ -439,13 +1664,20 @@ es:
         left: Izquierda
         right: Derecha
         columns: Número de columnas
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       sures/customize_card/translation:
         label: Etiqueta (opcional)
         title: Título (opcional)
         description: Descripción (opcional)
         link_text: Texto del enlace
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       widget/feed:
         limit: Número de elementos
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        kind: "Tipo"
       dashboard/action:
         title: Título
         short_description: Descripción corta
@@ -457,14 +1689,85 @@ es:
         order: Puedes introducir la posición en la que se mostrará al usuario esta acción en la lista de acciones
         active: Activa
         action_type: Tipo
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        hidden_at: "Fecha de ocultación"
+        published_proposal: "Propuesta publicada"
       dashboard/administrator_task:
         source: Fuente
+        source_type: "Tipo de fuente"
+        source_id: "ID de fuente"
         user: Ejecutado por
+        user_id: "Ejecutado por"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        executed_at: "Fecha de ejecución"
       link:
         label: Título
         url: Enlace
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"       
+        linkable_type: "Tipo de enlazado"
+        linkable_id: "ID del enlazado"
       moderated_text:
         text: Texto
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+      moderated_content:
+        moderable_type: "Tipo de moderación"
+        moderated_text_id: "Texto moderado"
+        moderable_id: "ID de moderación"
+        confirmed_at: "Fecha de confirmación"
+        declined_at: "Fecha de rechazo"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+      direct_message:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        sender_id: "Remitente"
+        receiver_id: "Destinatario"
+        title: "Asunto"
+        body: "Cuerpo del mensaje"
+      map_location:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        latitude: "Latitud"
+        longitude: "Longitud"
+        zoom: "Zoom"
+        proposal_id: "Propuesta"
+        investment_id: "Inversión"
+      notification:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        user_id: "Usuario"
+        notifiable_type: "Tipo de notificación asociada"
+        notifiable_id: "Id de notificación asociada"
+        counter: "Total"
+        emailed_at: "Fecha de envío por email"
+        read_at: "Fecha de lectura"
+      signature:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        signature_sheet_id: "Hoja de firma"
+        user_id: "Usuario"
+        document_number: "Documento de identificación"
+        verified: "Verificado"
+      poll/voter:
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
+        document_number: "Documento de identificación"
+        document_type: "Tipo de documento"       
+        poll_id: "Encuesta"
+        booth_assignment_id: "Asignación de mesa"
+        age: "Edad"
+        gender;: "Genero"
+        geozone_id: "Geozona"
+        answer_id: "Respuesta"
+        officer_assignment_id: "Turno"
+        user_id: "Usuario"
+        origin: "Origen"
+        officer_id: "Oficial"
+        token: "Token"
     errors:
       models:
         user:

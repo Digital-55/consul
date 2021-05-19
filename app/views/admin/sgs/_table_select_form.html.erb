@@ -1,0 +1,46 @@
+<fieldset class="sg_fieldset">
+    <legend><%= t('admin.sg.form.title_select')%></legend>
+    <%=form_tag generate_table_select_admin_sg_path(setting.id), method: :post, remote: true do %>
+        <%=hidden_field_tag "#{setting.id}_id".to_sym, setting.id%>
+        <%=hidden_field_tag "#{setting.id}_type".to_sym, @type.to_s%>
+        <div class="row">
+            <div class="small-12 medium-3 column">
+                <%= text_field_tag "#{setting.id}_key".to_sym,nil, placeholder: t('admin.sg.form.key') %>
+            </div>
+            <div class="small-12 medium-3 column">
+                <%= text_field_tag "#{setting.id}_value".to_sym,nil,  placeholder: t('admin.sg.form.value') %>
+            </div> 
+            <div class="small-12 medium-3 column end">
+                <%= submit_tag t('admin.sg.form.add'), class: "button" %>
+            </div>
+        </div>
+    <%end%>   
+
+    <div class="row">
+        <div class="small-12 column">
+            <%if !setting.try(:sg_selects).blank?%>
+                <table>
+                    <thead>
+                        <tr>
+                            <%get_header_select.each do |header|%>
+                                <th><%=header%></th>
+                            <%end%>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%setting.try(:sg_selects).each do |tf|%>
+                            <tr>
+                                <td><%=tf.key%></td>
+                                <td><%=tf.value%></td>
+                                <td><%= link_to t('admin.sg.list.delete'),  delete_table_select_admin_sg_path(tf.id, type: @type), remote: true, class: "button alert", data: {confirm: t("admin.sg.avanced_list.delete_select_confirm")}%></td>
+                            </tr>
+                        <%end%>
+                    </tbody>
+                </table>
+            <%else%>
+                <%=t("admin.sg.list.no_data")%>
+            <%end%>                       
+        </div>
+    </div>
+</fieldset>

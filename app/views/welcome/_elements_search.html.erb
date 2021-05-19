@@ -1,0 +1,49 @@
+<%if @listados.blank?%>
+    <div class="row">
+        <div class="small-12 columns">
+            <%=t('sgs.no_element_list')%>
+        </div>
+    </div>
+<%else%>
+    <% @listados.sort_by {|x| x[:order]}.each do |l| %>
+        <% if !l[:list].blank? && l[:list].count >0%>
+            <div class="row">
+                <div class="small-12 columns">
+                    <h3><%=l[:model].model_name.human%>:</h3>
+                    <%= page_entries_info l[:list] %>
+                    <% l[:list].each_with_index do |item, index|%>
+                        <%if l[:model].model_name.to_s == "Debate"%>
+                            <%=render partial: "debates/debate", :locals =>{ debate: item}%>
+                        <%elsif l[:model].model_name.to_s == "Proposal"%>
+                            <%=render partial: "proposals/proposal", :locals =>{proposal: item}%>
+                        <%elsif l[:model].model_name.to_s == "Legislation::Process"%>
+                            <%=render partial: "legislation/processes/process", :locals =>{process: item}%>
+                        <%elsif l[:model].model_name.to_s == "Legislation::Proposal"%>                        
+                            <%=render partial: "legislation/proposals/proposal", :locals =>{proposal: item}%>
+                        <%else%>
+                            <div id="<%= dom_id(item) %>" class="actuation clear" data-type="actuation">
+                                <div class="panel">
+                                    <div class="icon-successful"></div>
+                                    <div class="icon-human-rights"></div>
+                                    <div class="row">
+                                        <div class="actuation-content">
+                                            <h3><%= l[:model].model_name.human + " #{index + 1}" %></h3>
+                                            <div class="actuation-description">
+                                                <% l[:table_field].each do |r|%>
+                                                    <p>
+                                                        <strong><%=l[:model].human_attribute_name(r.to_sym)%>:</strong><%= markdown(item.try(r.to_sym).to_s).html_safe %>       
+                                                    </p>
+                                                <%end%>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <%end%>
+                    <%end%>
+                    <%= paginate l[:list], remote: true, param_name: :"page_#{l[:model].model_name.to_s.parameterize.underscore}" %> 
+                </div>
+            </div>
+        <%end%>
+    <%end%>
+<%end%>

@@ -1,0 +1,37 @@
+<%if !@sg_settings.blank?%>
+    <%@sg_settings.each do |order|%>
+        <div class="small-12 column">
+            <fieldset class="sg_fieldset">
+            <legend id="<%=order.id%>_title_legend"><%= params[:legend_title] || order.title%></legend>
+                <%=form_tag update_setting_admin_sg_path(order.id), method: :post, remote: true do %>
+                    <%=hidden_field_tag "#{order.id}_type".to_sym, @type.to_s%>
+                    <%=hidden_field_tag "#{order.id}_generic".to_sym, false%>
+                    <div class="small-12 column text-right">
+                        <%= submit_tag t('admin.sg.list.update'),  class: "button"%>
+                        <%= link_to t('admin.sg.list.delete'),  delete_setting_admin_sg_path(order.id, type: @type), remote: true, class: "button alert", data: {confirm: t("admin.sg.avanced.delete_confirm")}%>
+                    </div>
+                    <div class="row">
+                        <div class="small-12 medium-6 column end">
+                            <%= text_field_tag "#{order.id}_title".to_sym, order.title ,placeholder: t('admin.sg.form.placeholder.title'), onkeyup: "changetitle($(this),'##{order.id}_title_legend')"%>
+                        </div>
+                        <div class="small-12 medium-3 column">
+                            <%= select_tag "#{order.id}_setting_type".to_sym, options_for_select(get_sg_search_rules, order.data_type) %>
+                        </div>
+                        <div class="small-12 medium-3 column end">
+                            <p>
+                                <%= check_box_tag "#{order.id}_active".to_sym, true, order.active || false %> <%= label_tag "#{order.id}_active".to_sym, t('admin.sg.form.active')%>
+                            </p>
+                        </div> 
+                    </div>
+                <%end%>
+                <%=render partial: "table_settings_form", locals: {setting: order}%>
+            </fieldset>
+        </div>
+    <%end%>
+<%else%>
+    <div class="row">
+        <div class="small-12 column end">
+            <p><%=t('admin.sg.no_order_settings')%></p>
+        </div>
+    </div>
+<%end%>

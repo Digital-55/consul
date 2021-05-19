@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
   before_action :track_email_campaign
   before_action :set_return_url
   before_action :set_fallbacks_to_all_available_locales
+  
 
   check_authorization unless: :devise_controller?
   self.responder = ApplicationResponder
@@ -22,8 +23,30 @@ class ApplicationController < ActionController::Base
   layout :set_layout
   respond_to :html
   helper_method :current_budget
+  before_action :load_generic_search
 
   private
+
+    def load_generic_search
+      aux_layout = ''
+      if devise_controller? && params[:landing]
+        aux_layout = "landing"
+      elsif devise_controller? && params[:controller].include?("sures")
+        aux_layout = "sures_register"
+      elsif params[:controller].include?("sures")
+        aux_layout = "sures"
+      elsif devise_controller?
+        aux_layout = "devise"
+      else
+        aux_layout = "application"
+      end
+      
+
+      if aux_layout.to_s == "application"
+        @generic_searchs_settings = Sg::Setting.search_settings.active.order(id: :asc) 
+        @search_terms = nil
+      end     
+    end
 
     def authenticate_http_basic
       authenticate_or_request_with_http_basic do |username, password|

@@ -1,0 +1,17 @@
+<% if @search_terms %>
+  <div id="result_generic_search">
+    <%= render partial: "result_generic_search" %>
+  </div>
+<%end%>
+<div id="orders">
+  <%= render "orders" %>
+</div>
+<main>
+  <div class="row">
+    <div id="actuations" class="actuations-list small-12 column">
+      <div id="actuations_list" style="margin-top: 2em">
+        <%= render partial: "elements_search" %>
+      </div>
+    </div>
+  </div>
+</main>

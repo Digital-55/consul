@@ -1,0 +1,59 @@
+<fieldset class="sg_fieldset">
+    <legend><%=t('admin.sg.list.title_table')%></legend>
+    <%=form_tag generate_table_setting_admin_sg_path(setting.id), method: :post, remote: true do %>
+        <%=hidden_field_tag "#{setting.id}_type".to_sym, @type.to_s%>
+        <div class="row">
+            <div class="small-12 medium-3 column">
+                <%= select_tag "#{setting.id}_table_name".to_sym, options_for_select(get_tables), onchange: "getFieldNames($('##{setting.id}_table_name option:selected'),'##{setting.id}_field_name_change')" %>
+            </div>
+            <div id="<%=setting.id%>_field_name_change">
+            <div class="small-12 medium-3 column">
+                <%= select_tag "#{setting.id}_field_name".to_sym, options_for_select(get_fields_by_table(params[:select_table_generic])) %>
+            </div> 
+            <div class="small-12 medium-3 column end">
+                <%= submit_tag t('admin.sg.form.add'), class: "button" %>
+            </div>
+        </div>
+    <%end%>
+
+    <div class="row">
+        <div class="small-12 column">
+            <%if !setting.try(:sg_table_fields).blank?%>
+                <table>
+                    <thead>
+                        <tr>
+                            <%get_header_tables_fields.each do |header|%>
+                                <th><%=header%></th>
+                            <%end%>
+                            
+                                <th><%=t('admin.sg.list.sugestion')%></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%setting.try(:sg_table_fields).each do |tf|%>
+                            <tr>
+                                <td><%="#{tf.table_name.singularize.classify.constantize.model_name.human} (#{tf.table_name.singularize.classify.constantize.model_name})"%></td>
+                                <td><%=tf.table_name.singularize.classify.constantize.human_attribute_name(tf.field_name)%> (<%=tf.field_name%>)</td>
+                                <td>
+                                    <%if setting.data_type.to_s == "select"%>
+                                        <%if !get_sg_select(tf.table_name, tf.field_name).blank?%>
+                                            <ul class="li_scroll">
+                                                <% get_sg_select(tf.table_name, tf.field_name).each do |s|%>
+                                                    <li>- <%=s%></li>
+                                                <%end%>
+                                            </ul>
+                                        <%end%>
+                                    <%end%>
+                                </td>
+                                <td><%= link_to t('admin.sg.list.delete'), delete_table_setting_admin_sg_path(tf.id, type: @type) ,remote: true,  class: "button alert", data: {confirm: t("admin.sg.avanced_list.delete_confirm")}%></td>
+                            </tr>
+                        <%end%>
+                    </tbody>
+                </table>
+            <%else%>
+                <%=t("admin.sg.list.no_data")%>
+            <%end%>                       
+        </div>
+    </div>
+</fieldset>
