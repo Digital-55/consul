@@ -588,7 +588,7 @@ DEPENDENCIES
   faker (~> 1.8.7)
   foundation-rails (~> 6.4.3.0)
   foundation_rails_helper (~> 2.0.0)
-  globalize (~> 5.2.0)
+  globalize (= 5.2.0)
   globalize-accessors (~> 0.2.1)
   graphiql-rails (~> 1.4.1)
   graphql (~> 1.7.8)

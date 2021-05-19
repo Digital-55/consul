@@ -135,6 +135,8 @@ module Budgets
 
       def load_investment
         @investment = @budget.investments.find(params["id"])
+      rescue
+        @investment = nil
       end
 
       def load_ballot

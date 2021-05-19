@@ -42,7 +42,7 @@ class Management::BaseController < ActionController::Base
         session[:locale] = params[:locale]
       end
 
-      session[:locale] ||= I18n.default_locale
+      session[:locale] ||= :es
 
       I18n.locale = session[:locale]
       Globalize.locale = I18n.locale

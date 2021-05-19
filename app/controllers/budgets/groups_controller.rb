@@ -19,6 +19,8 @@ module Budgets
 
     def load_group
       @group = @budget.groups.find_by_slug_or_id! params[:id]
+    rescue
+      @group = nil
     end
 
   end

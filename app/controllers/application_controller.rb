@@ -69,7 +69,7 @@ class ApplicationController < ActionController::Base
         session[:locale] = params[:locale]
       end
 
-      session[:locale] ||= I18n.default_locale
+      session[:locale] ||= :es
 
       locale = session[:locale]
 
