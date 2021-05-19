@@ -34,15 +34,16 @@ describe "Admin custom pages management" do
       expect(page).to have_content("There is 1 custom page")
     end
 
-    scenario "Draft custom page is not a public page" do
+    scenario "Draft custom page is an admin page" do
       visit("/#{@custom_page.slug}")
-      expect(status_code).to eq(404)
+      expect(page).to have_current_path(admin_custom_page_draft_preview_path(@custom_page))
     end
 
     scenario "Published custom page is displayed as public page" do
       @custom_page.update_column(:published, true)
       visit("/#{@custom_page.slug}")
       expect(page).to have_content(@custom_page.title)
+      expect(page).to have_current_path(custom_page_path(@custom_page.slug))
     end
 
   end
