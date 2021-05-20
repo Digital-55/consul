@@ -7,7 +7,7 @@
                 <%=hidden_field_tag :generic, true%>
                 <div class="row">
                     <div class="small-12 medium-3 column">
-                        <%= select_tag "generic_table_name".to_sym, options_for_select(get_tables), onchange: "getFieldNames($('#generic_table_name option:selected'),'#generic_field_name_change')" %>
+                        <%= select_tag "generic_name".to_sym, options_for_select(get_tables), onchange: "getFieldNames($('#generic_name option:selected'),'#generic_field_name_change')" %>
                     </div>
                     <div id="generic_field_name_change">
                         <div class="small-12 medium-3 column">

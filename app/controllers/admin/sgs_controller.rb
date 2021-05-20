@@ -24,7 +24,7 @@ class Admin::SgsController < Admin::BaseController
         if @type == 'search'
             sg_generic = ::Sg::Generic.search_settings
             param_permit = permit_generic_data_search(params)
-            sg_table_field = ::Sg::TableField.new(sgeneric: sg_generic, table_name: param_permit[:generic_table_name], field_name: param_permit[:generic_field_name] )
+            sg_table_field = ::Sg::TableField.new(sgeneric: sg_generic, table_name: param_permit[:generic_name], field_name: param_permit[:generic_field_name] )
 
             if sg_table_field.save
                 redirect_to admin_sgs_path(type: @type.to_s),  notice: I18n.t("admin.sg.form.notice_generic")
@@ -76,7 +76,7 @@ class Admin::SgsController < Admin::BaseController
 
     def generate_table_setting
         @type = params["#{params[:id]}_type".to_sym]
-        param_permit = {table_name: params["#{params[:id]}_table_name".to_sym], field_name: params["#{params[:id]}_field_name".to_sym]}
+        param_permit = {table_name: params["#{params[:id]}_name".to_sym], field_name: params["#{params[:id]}_field_name".to_sym]}
         sg_table_field = ::Sg::TableField.new(sgeneric: @sg_settings, table_name: param_permit[:table_name], field_name: param_permit[:field_name] )
 
         if sg_table_field.save
@@ -200,6 +200,6 @@ class Admin::SgsController < Admin::BaseController
     end
 
     def permit_data_field(parameters)
-        parameters.permit(:table_name, :field_name)
+        parameters.permit(:name, :field_name)
     end
 end

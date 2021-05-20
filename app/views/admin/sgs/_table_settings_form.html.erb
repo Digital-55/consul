@@ -4,7 +4,7 @@
         <%=hidden_field_tag "#{setting.id}_type".to_sym, @type.to_s%>
         <div class="row">
             <div class="small-12 medium-3 column">
-                <%= select_tag "#{setting.id}_table_name".to_sym, options_for_select(get_tables), onchange: "getFieldNames($('##{setting.id}_table_name option:selected'),'##{setting.id}_field_name_change')" %>
+                <%= select_tag "#{setting.id}_name".to_sym, options_for_select(get_tables), onchange: "getFieldNames($('##{setting.id}_name option:selected'),'##{setting.id}_field_name_change')" %>
             </div>
             <div id="<%=setting.id%>_field_name_change">
             <div class="small-12 medium-3 column">
