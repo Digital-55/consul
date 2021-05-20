@@ -1,9 +1,11 @@
 
-<div class="<%= custom_page_module.type.underscore.dasherize %>">
-  <div class="small-12 medium-8 column">
-    <h4><%= custom_page_module.cta_text %></h4>
-  </div>
-  <div class="small-12 medium-4 column">
-    <%= link_to custom_page_module.cta_button, custom_page_module.cta_link, class: 'button', target: '_blank' %>
+<div class="row cta-module-background">
+  <div class="<%= custom_page_module.type.underscore.dasherize %>">
+    <div class="small-12 medium-8 column">
+      <h4><%= custom_page_module.cta_text %></h4>
+    </div>
+    <div class="small-12 medium-4 column text-center">
+      <%= link_to custom_page_module.cta_button, custom_page_module.cta_link, class: 'button', target: '_blank' %>
+    </div>
   </div>
 </div>
