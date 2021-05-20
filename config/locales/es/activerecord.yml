@@ -191,39 +191,72 @@ es:
         created_at: "Fecha de creación"
         updated_at: "Fecha de modificación"
       parbudget/project:
+        code: "Identificador"
+        year: "Año"
+        ambit: "Ámbito"
+        ambit_id: "Ámbito"
+        votes: "Votos"
+        cost: "Coste"
+        author: "Autor"
+        email: "Correo electrónico"
+        phone: "Teléfono"
+        association: "En nombre de"
+        url: "URL"
+        denomination: "Título"
+        descriptive_memory: "Memoria descriptiva"
+        topic: "Tema"
+        topic_id: "Tema"
+        entity_association: "En nombre de"
+        responsible: "Responsable"
+        responsible_id: "Responsable"
+        local_forum_id: "Foro local"
+        plate_proceeds: "¿Procede placa?"
+        license_plate: "¿Autoriza placa?"
+        plate_installed: "¿Placa instalada?"
+        assumes_dgpc: "Asume DGPC"
+        code_old: Identificador antiguo
         created_at: "Fecha de creación"
         updated_at: "Fecha de modificación"
       parbudget/responsible:
-        full_name:
-        phone:
-        email:
-        position:
-        center:
-        center_id:
+        full_name: "Responsable"
+        phone: "Teléfono"
+        email: "Correo electrónico"
+        position: "Cargo"
+        center: "Centro"
+        center_id: "Centro"
         created_at: "Fecha de creación"
         updated_at: "Fecha de modificación"
       parbudget/medias:
-        text_document:
-        title:
-        project:
-        project_id:
+        text_document: "Descripción"
+        title: "Título"
+        project: "Proyecto"
+        project_id: "Proyecto"
         created_at: "Fecha de creación"
         updated_at: "Fecha de modificación"
       parbudget/link:
-        url:
-        project:
-        project_id:
+        url: "Enlace"
+        project: "Proyecto"
+        project_id: "Proyecto"
         created_at: "Fecha de creación"
         updated_at: "Fecha de modificación"
       parbudget/economic_budget:
-        url:
-        project:
-        project_id:
+        year: "Año"
+        import: "Importe"
+        start_date: "Fecha inicio"
+        end_date: "Fecha fin"
+        count_managing_body: "Nº Organo gestor"
+        count_funcional: "Nº Funcional"
+        economic: "Económico"
+        element_pep: "Elemento PEP"
+        financing: "Financiación"
+        type_contract: "Tipo contrato"
+        project: "Proyecto"
+        project_id: "Proyecto"
         created_at: "Fecha de creación"
         updated_at: "Fecha de modificación"
       parbudget/tracking:
-        project:
-        project_id:
+        project: "Proyecto"
+        project_id: "Proyecto"
         created_at: "Fecha de creación"
         updated_at: "Fecha de modificación"
       parbudget/meeting:
@@ -248,7 +281,7 @@ es:
         updated_at: "Fecha de modificación"
       parbudget/tracking_external:
         date: "Fecha"
-        code: ""
+        code: "Código tramitación"
         status: "Estado"
         status_description: "Descripción del estado"
         created_at: "Fecha de creación"
