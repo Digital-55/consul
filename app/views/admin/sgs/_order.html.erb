@@ -7,7 +7,7 @@
                 <%=hidden_field_tag :generic, true%>
                 <div class="row">
                     <div class="small-12 medium-3 column">
-                        <%= select_tag "generic_table_name".to_sym, options_for_select(get_tables) %>
+                        <%= select_tag "generic_name".to_sym, options_for_select(get_tables) %>
                     </div>
                     <div class="small-12 medium-3 column">
                         <%= number_field_tag "generic_order".to_sym, 0 %>

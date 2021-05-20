@@ -36,7 +36,7 @@ class Admin::SgsController < Admin::BaseController
             sg_generic = ::Sg::Generic.order_settings
             param_permit = permit_generic_data_order(params)
 
-            sg_order_field = ::Sg::TableOrder.new(sg_generic: sg_generic, table_name: param_permit[:generic_table_name], order: param_permit[:generic_order] )
+            sg_order_field = ::Sg::TableOrder.new(sg_generic: sg_generic, table_name: param_permit[:generic_name], order: param_permit[:generic_order] )
 
             if sg_order_field.save
                 redirect_to admin_sgs_path(type: @type.to_s), notice: I18n.t("admin.sg.form.notice_generic_order")
@@ -192,11 +192,11 @@ class Admin::SgsController < Admin::BaseController
     end
 
     def permit_generic_data_search(parameters)
-        parameters.permit(:generic_table_name, :generic_field_name)
+        parameters.permit(:generic_name, :generic_field_name)
     end
 
     def permit_generic_data_order(parameters)
-        parameters.permit(:generic_table_name, :generic_order)
+        parameters.permit(:generic_name, :generic_order)
     end
 
     def permit_data_field(parameters)
