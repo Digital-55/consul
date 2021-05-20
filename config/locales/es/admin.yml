@@ -962,6 +962,7 @@ es:
       title_avanced: Campos avanzados
       title_avanced_order: Orden avanzado
       no_search_settings: No hay campos avanzados del buscador general
+      no_order_settings: No hay campos de orden avanzado
       avanced:
         delete_confirm: "¿Estás seguro de eliminar el filtro avanzado del buscador general?"
       avanced_list:
