@@ -156,8 +156,9 @@
               <%= link_to t("admin.menu.site_customization.documents"),
                           admin_site_customization_documents_path %>
             </li>
-
-            
+             <li <%= "class=is-active" if menu_sg? %>>
+              <%= link_to t("admin.menu.sg"), admin_sgs_path %>
+            </li>
           </ul>
         </li>
       <%if !current_user.editor?%>

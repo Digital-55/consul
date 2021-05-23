@@ -21,7 +21,7 @@
     <div id="<%= dom_id(@proposal) unless @proposal.blank? %>" class="row">
       <div class="small-12 medium-9 column">
         <%unless params[:author_id].blank? %>
-          <%= back_link_to user_path(current_user) %>
+          <%= back_link_to user_path(current_user) if !current_user.blank? %>
           <div style="float:right">
             <%if @proposal.previous(params[:author_id]) %>
               <%= link_to proposal_path(@proposal.previous(params[:author_id]), author_id: params[:author_id]) do %>

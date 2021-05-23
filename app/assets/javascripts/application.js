@@ -88,6 +88,7 @@
 //= require settings
 //= require login_form
 //= require starrr.js
+//= require sg.js
 
 var initialize_modules = function() {
   App.Answers.initialize();
@@ -259,8 +260,6 @@ function changeShowFields(element, field) {
   } else {
     field.attr('value',true);
   }
-  console.log(element)
-  console.log(field)
 }
 
 function changeButton(element){

@@ -46,10 +46,14 @@ class Admin::BudgetGroupsController < Admin::BaseController
 
     def load_budget
       @budget = Budget.find_by_slug_or_id! params[:budget_id]
+    rescue
+      @budget = nil
     end
 
     def load_group
       @group = @budget.groups.find_by_slug_or_id! params[:id]
+    rescue
+      @group = nil
     end
 
     def groups_index

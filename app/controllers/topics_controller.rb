@@ -68,6 +68,8 @@ class TopicsController < ApplicationController
 
   def load_topic
     @topic = Topic.find(params[:id])
+  rescue
+    @topic = nil
   end
 
   def load_rank

@@ -1,0 +1,43 @@
+<%if !@sg_settings.blank?%>
+    <%@sg_settings.each do |search|%>
+        <div class="small-12 column">
+            <fieldset class="sg_fieldset">
+                <legend id="<%=search.id%>_title_legend"><%= params[:legend_title] || search.title%></legend>
+                <%=form_tag update_setting_admin_sg_path(search.id), method: :post, remote: true do %>
+                    <%=hidden_field_tag "#{search.id}_type".to_sym, @type.to_s%>
+                    <%=hidden_field_tag "#{search.id}_generic".to_sym, false%>
+                    <div class="small-12 column text-right">
+                        <%= submit_tag t('admin.sg.list.update'),  class: "button"%>
+                        <%= link_to t('admin.sg.list.delete'),  delete_setting_admin_sg_path(search.id, type: @type), remote: true, class: "button alert", data: {confirm: t("admin.sg.avanced.delete_confirm")}%>
+                    </div>
+                    <div class="row">
+                        <div class="small-12 medium-6 column end">
+                            <%= text_field_tag "#{search.id}_title".to_sym, search.title ,placeholder: t('admin.sg.form.placeholder.title'), onkeyup: "changetitle($(this),'##{search.id}_title_legend')"%>
+                        </div>
+                        <div class="small-12 medium-3 column">
+                            <%= select_tag "#{search.id}_setting_type".to_sym, options_for_select(get_sg_search_types_data, search.data_type), onchange: "showselected($('##{search.id}_setting_type option:selected'),'##{search.id}_selected_options')" %>
+                        </div>
+                        <div class="small-12 medium-3 column end">
+                            <p>
+                                <%= check_box_tag "#{search.id}_active".to_sym, true, search.active || false %> <%= label_tag "#{search.id}_active".to_sym, t('admin.sg.form.active')%>
+                            </p>
+                        </div> 
+                    </div>
+                <%end%>
+                <%=render partial: "table_settings_form", locals: {setting: search}%>
+                <div id="<%=search.id%>_selected_options">
+                    <%=render partial: "table_select_form", locals: {setting: search}%>
+                </div>
+                <script>
+                    showselected($('#<%=search.id%>_setting_type option:selected'),'#<%=search.id%>_selected_options');
+                </script>
+            </fieldset>
+        </div>
+    <%end%>
+<%else%>
+    <div class="row">
+        <div class="small-12 column end">
+            <p><%=t('admin.sg.no_search_settings')%></p>
+        </div>
+    </div>
+<%end%>
