@@ -1,7 +1,6 @@
-<%= link_to t("admin.menu.activity"), admin_activity_path, class: "button float-right" %>
-
 <h2 class="inline-block"><%= t("admin.moderators.index.title") %></h2>
-
+<%= render "shared/profiles_filter_subnav", i18n_namespace: "admin.users" %>
+<%= link_to t("admin.menu.activity"), admin_activity_path, class: "button float-right" %>
 <%= render "admin/shared/user_search", url: search_admin_moderators_path %>
 
 <div id="moderators">

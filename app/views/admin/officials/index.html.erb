@@ -1,6 +1,6 @@
 <h2><%= t("admin.officials.index.title") %></h2>
+<%= render "shared/profiles_filter_subnav" %>
 <p><%= t("admin.officials.index.help") %></p>
-
 <%= render "admin/shared/user_search", url: search_admin_officials_path %>
 
 <% if @officials.any? %>

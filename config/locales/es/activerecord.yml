@@ -1616,6 +1616,11 @@ es:
         actions_taken: "Actualizaciones a realizar"
         updated_at: "Fecha de actualización"
         created_at: "Fecha de creación"
+        project: "Proyecto"
+        geozones: "Distritos"
+      actuations_multi_year:
+        annos: Años
+        values: Financiación
       sures/actuation/translation:
         other: Otro
         proposal_title: Propuesta
@@ -1626,6 +1631,7 @@ es:
         actions_taken: "Actualizaciones a realizar"
         updated_at: "Fecha de actualización"
         created_at: "Fecha de creación"
+        project: "Proyecto"
       admin_notification/translation:
         title: Título
         body: Texto

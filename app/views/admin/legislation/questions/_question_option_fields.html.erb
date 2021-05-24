@@ -21,7 +21,7 @@
           </div>
           <div class="small-12 medium-4 column">
             <div class="row">
-              <label class="control radio is-active">            
+              <label class="control radio is-active">
                 <%= check_box_tag "normal_#{nome}",nil,(!translations_form.object.is_range && !translations_form.object.other && !translations_form.object.is_number), label: false, class: "checkbox-answer-#{nome}", 
                   onchange: "uniqueCheck($(this),'checkbox-answer-#{nome}'); showhideElement('value_#{nome}', ['ranges_#{nome}'])" %>
                 <span class="control-indicator"></span>
