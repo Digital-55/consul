@@ -348,6 +348,9 @@ es:
             promo_image_one: Imagen 1
             promo_image_two: Imagen 2
             promo_image_three: Imagen 3
+            promo_alt_image_one: Texto alternativo 1
+            promo_alt_image_two: Texto alternativo 2
+            promo_alt_image_three: Texto alternativo 3
             promo_link_one: Enlace 1
             promo_link_two: Enlace 2
             promo_link_three: Enlace 3
