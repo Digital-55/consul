@@ -13,9 +13,12 @@ class PromotionalModule < CustomPageModule
                     path: ":rails_root/public/system/promo_images/:id/:style_:basename.:extension",
                     styles: { content: "800>", thumb: "118x100#" }
 
-  # validates_attachment_presence :promo_image_one
-  # validates_attachment_presence :promo_image_two
-  # validates_attachment_presence :promo_image_three
+  validates :promo_title_one, presence: true
+  validates :promo_title_two, presence: true
+  validates :promo_title_three, presence: true
+  validates_attachment_presence :promo_image_one
+  validates_attachment_presence :promo_image_two
+  validates_attachment_presence :promo_image_three
   validates_attachment_size :promo_image_one, less_than: 2.megabytes
   validates_attachment_size :promo_image_two, less_than: 2.megabytes
   validates_attachment_size :promo_image_three, less_than: 2.megabytes
