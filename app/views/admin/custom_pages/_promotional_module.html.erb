@@ -34,6 +34,10 @@
             </small>
           <% end %>
         </div>
+        <div class="small-12 medium-10 column">
+          <%= f.label :promo_alt_image_one, t("admin.custom_pages.custom_page_modules.custom_page_module.promo.promo_alt_image_one") %>
+          <%= f.text_field :promo_alt_image_one, label: false, class: 'promo-module-alt-image-one' %>
+        </div>
         <div class="ckeditor small-12 medium-12 column">
           <%= f.cktext_area :promo_description_one,
                             id: "promo_description_one_#{f.object.id}",
@@ -65,6 +69,10 @@
             </small>
           <% end %>
         </div>
+        <div class="small-12 medium-10 column">
+          <%= f.label :promo_alt_image_two, t("admin.custom_pages.custom_page_modules.custom_page_module.promo.promo_alt_image_two") %>
+          <%= f.text_field :promo_alt_image_two, label: false, class: 'promo-module-alt-image-two' %>
+        </div>
         <div class="ckeditor small-12 medium-12 column">
           <%= f.cktext_area :promo_description_two,
                             id: "promo_description_two_#{f.object.id}",
@@ -95,6 +103,10 @@
               <%= f.object.promo_image_three.instance.promo_image_three_file_name %>
             </small>
           <% end %>
+        </div>
+        <div class="small-12 medium-10 column">
+          <%= f.label :promo_alt_image_three, t("admin.custom_pages.custom_page_modules.custom_page_module.promo.promo_alt_image_three") %>
+          <%= f.text_field :promo_alt_image_three, label: false, class: 'promo-module-alt-image-three' %>
         </div>
         <div class="ckeditor small-12 medium-12 column">
           <%= f.cktext_area :promo_description_three,

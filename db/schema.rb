@@ -519,6 +519,7 @@ ActiveRecord::Schema.define(version: 20210420102437) do
     t.string   "promo_image_one_content_type"
     t.integer  "promo_image_one_file_size"
     t.datetime "promo_image_one_updated_at"
+    t.string   "promo_alt_image_one"
     t.string   "promo_link_one"
     t.string   "promo_title_two"
     t.text     "promo_description_two"
@@ -526,6 +527,7 @@ ActiveRecord::Schema.define(version: 20210420102437) do
     t.string   "promo_image_two_content_type"
     t.integer  "promo_image_two_file_size"
     t.datetime "promo_image_two_updated_at"
+    t.string   "promo_alt_image_two"
     t.string   "promo_link_two"
     t.string   "promo_title_three"
     t.text     "promo_description_three"
@@ -533,6 +535,7 @@ ActiveRecord::Schema.define(version: 20210420102437) do
     t.string   "promo_image_three_content_type"
     t.integer  "promo_image_three_file_size"
     t.datetime "promo_image_three_updated_at"
+    t.string   "promo_alt_image_three"
     t.string   "promo_link_three"
     t.datetime "created_at",                                     null: false
     t.datetime "updated_at",                                     null: false
