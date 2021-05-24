@@ -101,7 +101,7 @@ CKEDITOR.editorConfig = function( config )
   ];
 
   config.toolbar_admin = config.toolbar_mini.concat([
-    { name: "insert", items: [ "Image", "Table" ] }
+    { name: "insert", items: [ "Image", "Table", "Source" ] }
   ]);
 
   config.toolbar_questions = [
