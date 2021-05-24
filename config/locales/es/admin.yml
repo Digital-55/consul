@@ -385,7 +385,7 @@ es:
           all: Todas
           published: Publicada
           draft: Borrador
-        preview: Ver
+        preview: Previsualizar
         published: Estado
         slug: Slug
         title: Título

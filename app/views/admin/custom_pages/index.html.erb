@@ -29,19 +29,22 @@
           <td><%= custom_page.try(:updated_at).strftime("%Y-%m-%d %H:%M") %></td>
           <td>
             <div class="small-12 medium-4 column">
-              <%= link_to t("admin.custom_pages.index.edit"), edit_admin_custom_page_path(custom_page),
-                          class: "button hollow expanded" %>
+              <%= link_to '', edit_admin_custom_page_path(custom_page),
+                          title: t("admin.custom_pages.index.edit"),
+                          class: "icon-edit button hollow expanded" %>
             </div>
             <div class="small-12 medium-4 column">
-              <%= link_to t("admin.custom_pages.index.delete"), admin_custom_page_path(custom_page),
-                          method: :delete,
-                          data: {confirm: t("admin.menus.destroy.alert_notice")},
-                          class: "button hollow alert expanded" %>
-            </div>
-            <div class="small-12 medium-4 column">
-              <%= link_to t("admin.custom_pages.index.preview"), custom_page_path(custom_page.slug),
+              <%= link_to '', custom_page_path(custom_page.slug),
                           target: '_blank',
-                          class: "button hollow warning expanded" %>
+                          title: t("admin.custom_pages.index.preview"),
+                          class: "icon-eye button hollow warning expanded" %>
+            </div>
+            <div class="small-12 medium-4 column">
+              <%= link_to '', admin_custom_page_path(custom_page),
+                          method: :delete,
+                          title: t("admin.custom_pages.index.delete"),
+                          data: {confirm: t("admin.menus.destroy.alert_notice")},
+                          class: "icon-x delete button hollow alert expanded" %>
             </div>
           </td>
         </tr>
