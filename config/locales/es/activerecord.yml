@@ -404,6 +404,10 @@ es:
         updated_at: "Fecha de actualización"
         created_at: "Fecha de creación"
         project: "Proyecto"
+        geozones: "Distritos"
+      actuations_multi_year:
+        annos: Años
+        values: Financiación
       sures/actuation/translation:
         other: Otro
         proposal_title: Propuesta

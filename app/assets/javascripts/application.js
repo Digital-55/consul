@@ -273,9 +273,8 @@ function hideMultiYears(multi,simple) {
   simple.show();
 }
 
-function hideAnnos(element1,element2) {
-  element1.hide();
-  element2.hide();
+function hideAnnos(element) {
+  document.getElementById(element).style.display = "none";
 }
 
 function changeShowFields(element, field) {
