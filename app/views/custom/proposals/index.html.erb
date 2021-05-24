@@ -3,7 +3,7 @@
 <% provide :tracking_page_number, "29" %>
 
 <% content_for :header_addon do %>
-  <%= render "shared/search_form",
+  <%#= render "shared/search_form",
              search_path: current_path_with_query_params(page: 1),
              i18n_namespace: "proposals.index.search_form" %>
 <% end %>
