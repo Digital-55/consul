@@ -1,5 +1,6 @@
 class Admin::CustomPagesController < Admin::BaseController
   before_action :set_custom_page, only: [:edit, :update, :destroy]
+  after_filter :set_published, only: [:create, :update]
 
   has_filters %w{all published draft}, only: :index
 
@@ -79,5 +80,17 @@ class Admin::CustomPagesController < Admin::BaseController
 
   def set_custom_page
     @custom_page = CustomPage.find(params[:id])
+  end
+
+  def set_published
+    parent_page = CustomPage.find_by(slug: @custom_page.parent_slug)
+    if parent_page && custom_page_params[:published] == "true"
+      parent_page.update(published: true)
+    end
+
+    children_pages = @custom_page.children_pages
+    if children_pages && custom_page_params[:published] == "false"
+      children_pages.published.update(published: false)
+    end
   end
 end
