@@ -7,6 +7,29 @@ module CustomPagesHelper
     }
   end
 
+  def set_hierarchy_page_class(custom_page)
+    title_class = ""
+    title_class += custom_page.children_pages.blank? ? " icon-arrow-right" : " icon-arrow-down"
+    title_class += " children-page" if custom_page.parent_slug.present?
+    title_class.html_safe
+  end
+
+  def parent_slug_options
+    slugs = ['']
+    CustomPage.parent_pages.pluck(:slug).each do |slug|
+      slugs << slug
+    end
+    slugs - [@custom_page.slug]
+  end
+
+  def custom_page_preview_path(custom_page)
+    if custom_page.parent_slug.present?
+      custom_page_url_path(custom_page.parent_slug, custom_page.slug)
+    else
+      custom_page_path(custom_page.slug)
+    end
+  end
+
   def retrieve_options_key(hash, value)
     key = hash.key(value)
     value == true ? "<strong>#{key}</strong>".html_safe : key

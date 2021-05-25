@@ -9,28 +9,42 @@
 
   <div class="row">
     <div class="row custom_page-fields">
-      <div class="small-12 medium-8 column">
-        <%= f.label :title, t("admin.custom_pages.custom_page.title") %>
-        <%= f.text_field :title,
-                          label: false,
-                          placeholder: t("admin.custom_pages.custom_page.title"),
-                          id: "title" %>
+      <div class="row">
+        <div class="small-12 medium-8 column">
+          <%= f.label :title, t("admin.custom_pages.custom_page.title") %>
+          <%= f.text_field :title,
+                            label: false,
+                            placeholder: t("admin.custom_pages.custom_page.title"),
+                            id: "title" %>
+        </div>
+
+        <div class="small-12 medium-4 column end">
+          <%= f.label :published, t("admin.custom_pages.custom_page.published") %>
+          <%= f.select :published, {}, label: false do %>
+            <%= options_for_select( publish_options, @custom_page.published) %>
+          <% end %>
+        </div>
       </div>
-      
-      <div class="small-12 medium-4 column end">
-        <%= f.label :published, t("admin.custom_pages.custom_page.published") %>
-        <%= f.select :published, {}, label: false do %>
-          <%= options_for_select( publish_options, @custom_page.published) %>
-        <% end %>
+
+      <div class="row">
+        <div class="small-12 medium-4 column">
+          <%= f.label :parent_slug, t("admin.custom_pages.custom_page.parent_slug") %>
+          <%= f.select :parent_slug, {}, label: false do %>
+            <%= options_for_select(parent_slug_options, @custom_page.parent_slug) %>
+          <% end %>
+        </div>
+        <div class="small-12 medium-1 column text-center path_slash">
+          <%= f.label '/' %>
+        </div>
+        <div class="small-12 medium-7 column end">
+          <%= f.label :slug, t("admin.custom_pages.custom_page.slug") %>
+          <%= f.text_field :slug,
+                            label: false,
+                            placeholder: t("admin.custom_pages.custom_page.slug"),
+                            id: "slug" %>
+        </div>
       </div>
-      
-      <div class="small-12 medium-12 column end">
-        <%= f.label :slug, t("admin.custom_pages.custom_page.slug") %>
-        <%= f.text_field :slug,
-                          label: false,
-                          placeholder: t("admin.custom_pages.custom_page.slug"),
-                          id: "slug" %>
-      </div>
+
       <div id='custom_page-toggle_meta_tags'>
         <div>
           <%= link_to t("admin.custom_pages.custom_page.meta_tags"), '#', class: 'clear button secondary hollow icon-arrow-down ' %>
@@ -135,7 +149,7 @@
           </div>
           <div class="float-right">
             <div class="float-left">
-                <%= link_to '', custom_page_path(@custom_page.slug),
+                <%= link_to '', custom_page_preview_path(@custom_page),
                                                                     target: '_blank',
                                                                     title: t("admin.custom_pages.index.preview"),
                                                                     class: "icon-eye button secondary hollow small" %>

@@ -32,6 +32,7 @@ class Admin::CustomPagesController < Admin::BaseController
 
   def destroy
     if @custom_page.destroy
+      @custom_page.children_pages.update(parent_slug: nil) if @custom_page.children_pages.present?
       flash[:notice] = t("admin.custom_pages.destroy.success")
     else
       flash[:notice] = t("admin.custom_pages.destroy.error")
@@ -48,7 +49,7 @@ class Admin::CustomPagesController < Admin::BaseController
   private
 
   def custom_page_params
-    params.require(:custom_page).permit(:title, :slug, :published, :meta_title, :meta_description, :meta_keywords, :canonical,
+    params.require(:custom_page).permit(:title, :parent_slug, :slug, :published, :meta_title, :meta_description, :meta_keywords, :canonical,
                                         custom_page_modules_attributes: [:id, :type, :position,
                                                                           :subtitle,
                                                                           :claim,

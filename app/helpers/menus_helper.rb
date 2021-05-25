@@ -39,9 +39,14 @@ module MenusHelper
 
   def custom_page_options
     hash = {}
-    CustomPage.pluck(:title, :slug).each do |key, value|
-      key = "#{key} (/#{value})"
-      hash[key] = value
+    CustomPage.pluck(:title, :parent_slug, :slug).each do |title, parent_slug, slug|
+      if parent_slug
+        title = "#{title} (/#{parent_slug}/#{slug})"
+        hash[title] = "#{parent_slug}/#{slug}"
+      else
+        title = "#{title} (/#{slug})"
+        hash[title] = slug
+      end
     end
     hash
   end

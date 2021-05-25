@@ -362,8 +362,8 @@ es:
           subtitle: Subtítulo
           youtube: URL de YouTube
       destroy:
-        alert_notice: "Esta acción eliminará la página personalizada y todos sus módulos."
-        success: ¡Página personalizadda eliminada con éxito!
+        alert_notice: Esta acción eliminará la página personalizada y todos sus módulos, y las páginas "hija" perderán la página "padre".
+        success: ¡Página personalizada eliminada con éxito!
         error: Hubo algún error al intentar eliminar la página personalizada. Inténtalo de nuevo.
       edit:
         editing: Editar página personalizada
@@ -377,6 +377,7 @@ es:
         meta_keywords: Palabras clave separadas por "comas"
         meta_tags: Meta Etiquetas
         meta_title: Meta-título (aprox. 70 caracteres)
+        parent_slug: Página padre
         published: Estado
         slug: Slug
         title: Título
