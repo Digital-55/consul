@@ -16,10 +16,13 @@ module CustomPagesHelper
 
   def parent_slug_options
     slugs = ['']
-    CustomPage.parent_pages.pluck(:slug).each do |slug|
-      slugs << slug
+    unless @custom_page.children_pages.present?
+      CustomPage.parent_pages.pluck(:slug).each do |slug|
+        slugs << slug
+      end
+      slugs -= [@custom_page.slug]
     end
-    slugs - [@custom_page.slug]
+    slugs
   end
 
   def custom_page_preview_path(custom_page)

@@ -27,4 +27,5 @@ class CustomPage < ApplicationRecord
   def children_pages
     CustomPage.where(parent_slug: self.slug)
   end
+
 end
