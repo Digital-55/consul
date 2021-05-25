@@ -2,3 +2,36 @@
 <%= render partial: "admin/parbudget/buttons", locals: {path: new_admin_parbudget_meeting_path, button_title: t("admin.menu.parbudget_tabs.new_meetings")}%>
 <%= render partial: "subnav"%>
 <%= render partial: "filters"%>
+
+<% if @meetings.any? %>
+  <h3><%= page_entries_info @meetings %></h3>
+
+  <table class="stack">
+    <thead>
+      <tr>
+        <%@model.get_columns.each do |c|%>
+          <th><%= @model.human_attribute_name(c) %></th>
+        <%end%>
+        <th><%= t("admin.actions.actions") %></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @meetings.each do |meeting| %>
+        <tr id="<%= dom_id(meeting) %>">
+          <%@model.get_columns.each do |c|%>
+            <td><%=meeting.try(c)%></td>
+          <%end%>
+          <td>
+            <%= link_to t("admin.legislation.processes.index.delete"), admin_legislation_process_path(process),
+                        method: :delete,
+                        class: "button hollow alert expanded" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate @meetings %>
+<% else %>
+  <div class="callout primary"><%= page_entries_info @meetings %></div>
+<% end %>

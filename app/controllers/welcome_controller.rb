@@ -81,14 +81,14 @@ class WelcomeController < ApplicationController
     @order_generic = Sg::Generic.order_type.first
     get_parametrizer_list(params)
     get_orders(params)
-  # rescue
-  #   @orders_settings = []
-  #   @search_settings = []
-  #   @search_generic = nil
-  #   @order_generic = nil
-  #   @search_terms = false
-  #   @resultado = []
-  #   @listados = []
+  rescue
+    @orders_settings = []
+    @search_settings = []
+    @search_generic = nil
+    @order_generic = nil
+    @search_terms = false
+    @resultado = []
+    @listados = []
   end
 
 

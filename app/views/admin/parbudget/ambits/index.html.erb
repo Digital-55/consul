@@ -1,36 +1,44 @@
 <%= render partial: "admin/parbudget/tabs"%>
-<%= render partial: "admin/parbudget/buttons", locals: {path: new_admin_parbudget_ambit_path, button_title: t("admin.menu.parbudget_tabs.new_ambits")}%>
+<%= render partial: "admin/parbudget/buttons", locals: {path: create_ambit_admin_parbudget_ambits_path, button_title: t("admin.menu.parbudget_tabs.new_ambits")}%>
 <%= render partial: "filters"%>
+
 <% if @ambits.any? %>
   <h3><%= page_entries_info @ambits %></h3>
 
   <table class="stack">
     <thead>
       <tr>
-        <th><%= t("admin.legislation.processes.process.title") %></th>
-        <th><%= t("admin.legislation.processes.process.status") %></th>
+        <%@model.get_columns.each do |c|%>
+          <th><%= @model.human_attribute_name(c) %></th>
+        <%end%>
         <th><%= t("admin.actions.actions") %></th>
       </tr>
     </thead>
 
     <tbody>
       <% @ambits.each do |ambit| %>
-        <tr id="<%= dom_id(ambit) %>">
-          <td></td>
-          <td></td>
-          <td>
-            <%= link_to t("admin.legislation.processes.index.delete"), admin_legislation_process_path(process),
-                        method: :delete,
-                        class: "button hollow alert expanded" %>
-          </td>
-        </tr>
+        <%= form_for ambit, :url => update_ambit_admin_parbudget_ambit_path(ambit), method: :put do |f| %>
+          <tr id="<%= dom_id(ambit) %>">
+            <%@model.get_columns.each do |c|%>
+              <td><%= f.text_field c, label: false, placeholder:  "#{@model.human_attribute_name(c)}..."  %></td>
+            <%end%>
+            <td>
+              <%= link_to admin_parbudget_ambits_path, class: "button hollow", title: "Ver auditorias", alt: "Ver auditorias"  do %>
+                <span class="icon-eye"></span>
+              <%end%>
+              <%= f.submit "Actualizar datos", class: "button icon-edit"%>
+               <%= link_to admin_parbudget_ambits_path, class: "button hollow", title: "Ver auditorias", alt: "Ver auditorias"  do %>
+                <span class="icon-delete"></span>
+              <%end%>
+              <%= link_to "Borrar", admin_parbudget_ambit_path(ambit),
+                          method: :delete, class: "button hollow alert" %>
+            </td>
+          </tr>
+        <% end %>
       <% end %>
     </tbody>
   </table>
-
   <%= paginate @ambits %>
 <% else %>
-  <div class="callout primary">
-    <%= page_entries_info @ambits %>
-  </div>
+  <div class="callout primary"><%= page_entries_info @ambits %></div>
 <% end %>

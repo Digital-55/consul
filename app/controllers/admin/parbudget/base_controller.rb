@@ -2,6 +2,8 @@ class Admin::Parbudget::BaseController < Admin::BaseController
   helper_method :namespace
 
   before_action :load_maintance
+  before_action :get_model
+  before_action :load_resource, only: [:edit,:update,:show,:destroy]
 
   private
 

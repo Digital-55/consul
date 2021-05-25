@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210517165908) do
+ActiveRecord::Schema.define(version: 20210525084520) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1038,8 +1038,8 @@ ActiveRecord::Schema.define(version: 20210517165908) do
   end
 
   create_table "parbudget_ambits", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.integer  "code",       null: false
+    t.string   "name"
+    t.string   "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -1149,7 +1149,7 @@ ActiveRecord::Schema.define(version: 20210517165908) do
   end
 
   create_table "parbudget_topics", force: :cascade do |t|
-    t.string   "name",       null: false
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

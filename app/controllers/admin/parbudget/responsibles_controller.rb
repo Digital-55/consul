@@ -2,7 +2,7 @@ class Admin::Parbudget::ResponsiblesController < Admin::Parbudget::BaseControlle
   respond_to :html, :js
 
   def index
-   
+    @responsibles = ::Parbudget::Responsible.all.page(params[:page]).per(20)
   end
 
   def create
@@ -19,5 +19,21 @@ class Admin::Parbudget::ResponsiblesController < Admin::Parbudget::BaseControlle
 
   def show
     
+  end
+
+  private 
+
+  def get_model
+    @model = ::Parbudget::Responsible
+  end
+
+  def responsible_strong_params
+    params.require(:responsible).permit(:name, :code)
+  end
+
+  def load_resource
+    @ambit = ::Parbudget::Responsible.find(params[:id])
+  rescue
+    @ambit = nil
   end
 end

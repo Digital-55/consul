@@ -1,3 +1,36 @@
 <%= render partial: "admin/parbudget/tabs"%>
 <%= render partial: "admin/parbudget/buttons", locals: {path: new_admin_parbudget_center_path, button_title: t("admin.menu.parbudget_tabs.new_centers")}%>
 <%= render partial: "filters"%>
+
+<% if @centers.any? %>
+  <h3><%= page_entries_info @centers %></h3>
+
+  <table class="stack">
+    <thead>
+      <tr>
+        <%@model.get_columns.each do |c|%>
+          <th><%= @model.human_attribute_name(c) %></th>
+        <%end%>
+        <th><%= t("admin.actions.actions") %></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @centers.each do |center| %>
+        <tr id="<%= dom_id(center) %>">
+          <%@model.get_columns.each do |c|%>
+            <td><%=center.try(c)%></td>
+          <%end%>
+          <td>
+            <%= link_to t("admin.legislation.processes.index.delete"), admin_legislation_process_path(process),
+                        method: :delete,
+                        class: "button hollow alert expanded" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate @centers %>
+<% else %>
+  <div class="callout primary"><%= page_entries_info @centers %></div>
+<% end %>
