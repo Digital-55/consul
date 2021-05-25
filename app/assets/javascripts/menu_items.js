@@ -189,10 +189,10 @@ function getItemField(itemClasses) {
 }
 
 function getItemLink(menuItem) {
-  if (menuItem.find('input.menu-item-url').first().length > 0 ) {
+  if (menuItem.hasClass('url')) {
     return menuItem.find('input.menu-item-url').first().val()
   }
-  if (menuItem.find('select.menu-item-page_link').first().length > 0) {
+  if (menuItem.hasClass('page_link')) {
     return menuItem.find('select.menu-item-page_link').first().val()
   }
 }
