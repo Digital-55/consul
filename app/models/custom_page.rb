@@ -20,6 +20,11 @@ class CustomPage < ApplicationRecord
 
   validates :slug, uniqueness: true, format: { with: /\A[a-z0-9-]+$\z/i }
   scope :published, -> { where(published: true) }
-  scope :draft, -> { where(published:false) }
+  scope :draft, -> { where(published: false) }
   scope :sorted, -> { order(updated_at: :desc) }
+  scope :parent_pages, -> { where(parent_slug: [nil, '']) }
+
+  def children_pages
+    CustomPage.where(parent_slug: self.slug)
+  end
 end

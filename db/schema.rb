@@ -544,6 +544,7 @@ ActiveRecord::Schema.define(version: 20210420102437) do
 
   create_table "custom_pages", force: :cascade do |t|
     t.string   "title"
+    t.string   "parent_slug"
     t.string   "slug"
     t.string   "meta_title"
     t.string   "meta_description"

@@ -1270,6 +1270,7 @@ code {
 
 // 12. Menu manager / Custom Pages Manager
 // ----------------
+
 #new_menu_item, #new_custom_page_module {
   border: 2px dashed #cacaca;
   .card-divider {
@@ -1352,6 +1353,21 @@ code {
   padding-right: 0.5rem;
 }
 
+#menu-items-list select,
+.custom_page-fields select {
+  height: 3rem;
+}
+
 body.is-reveal-open {
   overflow: auto;
+}
+
+td.children-page {
+  padding-left: 3rem;
+}
+
+.path_slash {
+  width: 2rem;
+  font-size: 2rem;
+  padding-top: 2rem;
 }
