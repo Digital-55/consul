@@ -706,9 +706,18 @@ es:
         index:
           title: Seguimiento
     parbudget:
+      show_audits: "Ver auditorias"
       ambit:
         search_code: Código
         search_ambit: Ámbito
+        create_success: "Se ha creado correctamente el ámbito"
+        create_error: "No se ha podido crear el ámbito"
+        update_success: "Se ha actualizado correctamente el ámbito"
+        update_error: "No se ha podido actualizar el ámbito"
+        destroy_success: "Se ha eliminado correctamente el ámbito"
+        destroy_error: "No se ha podido eliminar el ámbito"
+        destroy_confirm: "¿Desea eliminar el ámbito seleccionado?"
+        update_ambit: "Actualizar ámbito"
       center:
         search_center_code: Código centro
         search_section_code: Código sección
@@ -716,6 +725,15 @@ es:
         search_denomination: "Denominación"
         search_responsible: "Responsable"
         search_project: "Proyecto"
+        create_success: "Se ha creado correctamente el centro gestor"
+        create_error: "No se ha podido crear el centro gestor"
+        update_success: "Se ha actualizado correctamente el centro gestor"
+        update_error: "No se ha podido actualizar el centro gestor"
+        destroy_success: "Se ha eliminado correctamente el centro gestor"
+        destroy_error: "No se ha podido eliminar el centro gestor"
+        destroy_confirm: "¿Desea eliminar el centro gestor seleccionado?"
+        update_center: "Actualizar centro gestor"
+        show_center: "Ver centro gestor"
       project:
         search_identificator: "Identificador"
         search_title: "Título"
@@ -724,17 +742,52 @@ es:
         search_memory: "Memoria"
         search_status: "Estado"
         search_center: "Centro gestor"
+        create_success: "Se ha creado correctamente el proyecto"
+        create_error: "No se ha podido crear el proyecto"
+        update_success: "Se ha actualizado correctamente el proyecto"
+        update_error: "No se ha podido actualizar el proyecto"
+        destroy_success: "Se ha eliminado correctamente el proyecto"
+        destroy_error: "No se ha podido eliminar el proyecto"
+        destroy_confirm: "¿Desea eliminar el proyecto seleccionado?"
+        update_center: "Actualizar proyecto"
+        show_project: "Ver proyecto"
       responsible:
         search_responsible: "Responsable"
         search_phone: "Teléfono"
         search_email: "Correo electrónico"
         search_position: "Cargo"
         search_center: "Centro"
+        create_success: "Se ha creado correctamente el responsable"
+        create_error: "No se ha podido crear el responsable"
+        update_success: "Se ha actualizado correctamente el responsable"
+        update_error: "No se ha podido actualizar el responsable"
+        destroy_success: "Se ha eliminado correctamente el responsable"
+        destroy_error: "No se ha podido eliminar el responsable"
+        destroy_confirm: "¿Desea eliminar el responsable seleccionado?"
+        update_center: "Actualizar responsable"
+        show_responsible: "Ver responsable"
       meeting:
         search_date_start: "Fecha desde"
         search_date_end: "Fecha hasta"
+        create_success: "Se ha creado correctamente la reunión"
+        create_error: "No se ha podido crear la reunión"
+        update_success: "Se ha actualizado correctamente la reunión"
+        update_error: "No se ha podido actualizar la reunión"
+        destroy_success: "Se ha eliminado correctamente la reunión"
+        destroy_error: "No se ha podido eliminar la reunión"
+        destroy_confirm: "¿Desea eliminar la reunión seleccionado?"
+        update_center: "Actualizar reunión"
+        show_meeting: "Ver reunión"
       topic:
         search_topic: "Tema"
+        create_success: "Se ha creado correctamente el tema"
+        create_error: "No se ha podido crear el tema"
+        update_success: "Se ha actualizado correctamente el tema"
+        update_error: "No se ha podido actualizar el tema"
+        destroy_success: "Se ha eliminado correctamente el tema"
+        destroy_error: "No se ha podido eliminar el tema"
+        destroy_confirm: "¿Desea eliminar el tema seleccionado?"
+        update_center: "Actualizar tema"
     sures:
       actuations:
         create:

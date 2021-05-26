@@ -1,21 +1,34 @@
-<%=form_tag do %>
+<%=form_tag({controller: "responsibles",action: "index"}, {method: :get}) do %>
     <div class="small-12 column">
         <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
-            <legend>Filtros</legend>
+            <legend><%=t("admin.menu.parbudget_tabs.legend_filter")%></legend>
             <div class="row">
-                <div class="small-12 medium-3 column">
-                    <%=label_tag :search_code, t('admin.sures.searchs_settings.form.data_type')%>
-                    <%= text_field_tag :search_code %>
-                </div>
-                
-                <div class="small-12 medium-3 column end">
-                    <%=label_tag :search_ambit, t('admin.sures.searchs_settings.form.field')%>
-                    <%= text_field_tag :search_ambit %>
-                </div>  
+                <div class="small-12 medium-4 column">
+                    <%=label_tag :search_responsible, t('admin.parbudget.responsible.search_responsible')%>
+                    <%= text_field_tag :search_responsible, params[:search_responsible] %>
+                </div>                
+                <div class="small-12 medium-4 column end">
+                    <%=label_tag :search_phone, t('admin.parbudget.responsible.search_phone')%>
+                    <%= text_field_tag :search_phone, params[:search_phone] %>
+                </div> 
+                 <div class="small-12 medium-4 column end">
+                    <%=label_tag :search_email, t('admin.parbudget.responsible.search_email')%>
+                    <%= text_field_tag :search_email, params[:search_email] %>
+                </div> 
+            </div>
+             <div class="row">
+                <div class="small-12 medium-4 column">
+                    <%=label_tag :search_position, t('admin.parbudget.responsible.search_position')%>
+                    <%= text_field_tag :search_position, params[:search_position] %>
+                </div>                
+                <div class="small-12 medium-4 column end">
+                    <%=label_tag :search_center, t('admin.parbudget.responsible.search_center')%>
+                    <%= text_field_tag :search_center, params[:search_center] %>
+                </div> 
             </div>
             <div class="float-right">
-                <%= submit_tag "Limpiar búsqueda", class: "button" %>
-                <%= submit_tag "Buscar", class: "button" %>
+                <%= link_to t("admin.menu.parbudget_tabs.button_clean"), admin_parbudget_ambits_path, class: "button secondary" %>
+                <%= submit_tag t("admin.menu.parbudget_tabs.button_find"), class: "button" %>
             </div>
         </fieldset>
     </div>

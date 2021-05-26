@@ -5,5 +5,27 @@ class Parbudget::Meeting < ApplicationRecord
     has_and_belongs_to_many :parbudget_trackings, :through => :parbudget_tracking_mettings,  class_name: "Parbudget::Tracking"
 
     self.table_name = "parbudget_meetings"
+
+    def self.get_columns
+        [
+            :date,
+            :who_requests,
+            :reason,
+            :assistants
+        ]
+    end
+
+    def self.get_exporter
+        [
+            :date,
+            :who_requests,
+            :reason,
+            :assistants
+        ]
+    end
+
+    def assistants
+        ""
+    end
 end
 

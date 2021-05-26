@@ -31,9 +31,12 @@ namespace :admin do
   namespace :parbudget do
     resources :ambits, only: [:index,:show,:destroy] do
       get :create_ambit, on: :collection
-      put :update_ambit, on: :member
+      post :update_ambit, on: :member
     end
-    resources :topics
+    resources :topics, only: [:index,:show,:destroy] do
+      get :create_topic, on: :collection
+      post :update_topic, on: :member
+    end
     resources :centers
     resources :projects
     resources :responsibles

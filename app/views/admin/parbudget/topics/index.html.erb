@@ -1,36 +1,46 @@
 <%= render partial: "admin/parbudget/tabs"%>
-<%= render partial: "admin/parbudget/buttons", locals: {path: new_admin_parbudget_topic_path, button_title: t("admin.menu.parbudget_tabs.new_topics")}%>
+<%= render partial: "admin/parbudget/buttons", locals: {path: create_topic_admin_parbudget_topics_path, button_title: t("admin.menu.parbudget_tabs.new_topics")}%>
 <%= render partial: "filters"%>
 
-<% if @topics.any? %>
-  <h3><%= page_entries_info @topics %></h3>
+<div class="small-12 column">
+  <% if @topics.any? %>
+    <h3><%= page_entries_info @topics %></h3>
 
-  <table class="stack">
-    <thead>
-      <tr>
-        <%@model.get_columns.each do |c|%>
-          <th><%= @model.human_attribute_name(c) %></th>
-        <%end%>
-        <th><%= t("admin.actions.actions") %></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @topics.each do |topic| %>
-        <tr id="<%= dom_id(topic) %>">
+    <table class="stack">
+      <thead>
+        <tr>
           <%@model.get_columns.each do |c|%>
-            <td><%=topic.try(c)%></td>
+            <th><%= @model.human_attribute_name(c) %></th>
           <%end%>
-          <td>
-            <%= link_to t("admin.legislation.processes.index.delete"), admin_legislation_process_path(process),
-                        method: :delete,
-                        class: "button hollow alert expanded" %>
-          </td>
+          <th><%= t("admin.actions.actions") %></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <%= paginate @topics %>
-<% else %>
-  <div class="callout primary"><%= page_entries_info @topics %></div>
-<% end %>
+      </thead>
+
+      <tbody>
+        <% @topics.each do |topic| %>
+          <%= form_for topic, :url => update_topic_admin_parbudget_topic_path(topic), method: :post do |f| %>
+            <tr id="<%= dom_id(topic) %>">
+              <%@model.get_columns.each do |c|%>
+                <td><%= f.text_field c, label: false, placeholder:  "#{@model.human_attribute_name(c)}..."  %></td>
+              <%end%>
+              <td>
+                <%= link_to admin_parbudget_topics_path, class: "button hollow", title: t('admin.parbudget.show_audits'), alt: t('admin.parbudget.show_audits')  do %>
+                  <span class="icon-settings"></span>
+                <%end%>
+                <%= link_to '#', class: "button", title: t('admin.parbudget.topic.update_topic'), alt: t('admin.parbudget.topic.update_topic'), :onclick => "$('#edit_parbudget_topic_#{f.object.id}').submit()"  do %>
+                  <span class="icon-edit"></span>
+                <%end%>
+                <%= link_to  admin_parbudget_topic_path(topic),method: :delete, class: "button hollow alert", title: "Borrar ámbito", alt: "Borrar ámbito", data: {confirm: t('admin.parbudget.topic.destroy_confirm')}  do %>
+                  <span class="icon-deleted"></span>
+                <%end%>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+    <%= paginate @topics %>
+  <% else %>
+    <div class="callout primary"><%= page_entries_info @topics %></div>
+  <% end %>
+</div>

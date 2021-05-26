@@ -11,5 +11,53 @@ class Parbudget::Project < ApplicationRecord
 
 
     self.table_name = "parbudget_projects"
+
+    def self.get_columns
+        [
+            :code,
+            :year,
+            :denomination,
+            :responsible,
+            :author,
+            :votes
+        ]
+    end
+
+    def self.get_exporter
+        [
+            :code,
+            :year,
+            :denomination,
+            :responsible,
+            :author,
+            :email,
+            :phone,
+            :association,
+            :url,
+            :descriptive_memory,
+            :entity_association,
+            :plate_proceeds,
+            :license_plate,
+            :plate_installed,
+            :assumes_dgpc,
+            :code_old,
+            :votes,
+            :cost,
+            :ambit,
+            :topic
+        ]
+    end
+
+    def responsible
+        self.try(:parbudget_responsible).try(:full_name)
+    end
+
+    def ambit
+        self.try(:parbudget_ambit).try(:name)
+    end
+
+    def topic
+        self.try(:parbudget_topic).try(:name)
+    end
 end
 

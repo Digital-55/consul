@@ -1,15 +1,15 @@
-<%=form_tag do %>
+<%=form_tag({controller: "ambits",action: "index"}, {method: :get}) do %>
     <div class="small-12 column">
         <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
             <legend><%=t("admin.menu.parbudget_tabs.legend_filter")%></legend>
             <div class="row">
                 <div class="small-12 medium-3 column">
                     <%=label_tag :search_code, t('admin.parbudget.ambit.search_code')%>
-                    <%= text_field_tag :search_code %>
+                    <%= text_field_tag :search_code, params[:search_code] %>
                 </div>                
                 <div class="small-12 medium-3 column end">
                     <%=label_tag :search_ambit, t('admin.parbudget.ambit.search_ambit')%>
-                    <%= text_field_tag :search_ambit %>
+                    <%= text_field_tag :search_ambit, params[:search_ambit] %>
                 </div>  
             </div>
             <div class="float-right">
