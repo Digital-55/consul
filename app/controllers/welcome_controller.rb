@@ -81,14 +81,14 @@ class WelcomeController < ApplicationController
     @order_generic = Sg::Generic.order_type.first
     get_parametrizer_list(params)
     get_orders(params)
-  # rescue
-  #   @orders_settings = []
-  #   @search_settings = []
-  #   @search_generic = nil
-  #   @order_generic = nil
-  #   @search_terms = false
-  #   @resultado = []
-  #   @listados = []
+  rescue
+    @orders_settings = []
+    @search_settings = []
+    @search_generic = nil
+    @order_generic = nil
+    @search_terms = false
+    @resultado = []
+    @listados = []
   end
 
 
@@ -141,7 +141,9 @@ class WelcomeController < ApplicationController
             model = t.table_name.singularize.classify.constantize
             list = @listados.select {|l| l[:model].model_name.to_s == model.model_name.to_s}
             model_list = !@listados.blank? && !list.blank? ? list[0][:list_base] : ""
-            model_list = model_list + "#{" OR " if !model_list.blank?} translate(UPPER(cast(#{t.field_name} as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[f.to_sym]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')"
+            translate = false
+            translate = true if !model.try(:translate_column_names).blank? && model.try(:translate_column_names).include?(t.field_name.to_sym)
+            model_list = model_list + "#{" OR " if !model_list.blank?} translate(UPPER(cast(#{translate ? "#{model.table_name.singularize}_translations" : model.table_name }.#{t.field_name} as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[f.to_sym]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')"
             
             if list.blank?
               order = 0
@@ -177,7 +179,11 @@ class WelcomeController < ApplicationController
     if !@listados.blank?
       @listados = @listados.sort_by {|l| l[:order]} 
       @listados.each do |l|
-        l[:list] = l[:model].where(l[:list_base])
+        if l[:model].try(:translate_column_names).blank?
+          l[:list] = l[:model].where(l[:list_base])
+        else
+          l[:list] = l[:model].joins(:translations).where(l[:list_base])
+        end
         set_votable(l)
         @resultado.push({tabla: l[:model].model_name.human, search: search_data_aux_gen, count: l[:list].blank? ? 0 : l[:list].count})  
         l[:list] = l[:list].page(parametrize[:"page_#{l[:model].model_name.to_s.parameterize.underscore}"]).per(5)         
