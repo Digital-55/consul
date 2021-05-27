@@ -3,7 +3,8 @@ namespace :users do
   desc "Actualización de datos DEMAD-106"
   task send_email: :environment do
     begin
-      Mailer.verification.deliver_later
+      mail =  Mailer.verification.deliver_now
+      puts mail
       puts "Se ha enviado el correo"
     rescue => e
       puts "Error: #{e}"
