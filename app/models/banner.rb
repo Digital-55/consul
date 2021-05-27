@@ -24,4 +24,8 @@ class Banner < ApplicationRecord
   scope :in_section, ->(section_name) { joins(:web_sections, :sections).where("web_sections.name ilike ?", section_name) }
 
   scope :subsection, ->(subsection) { where(subsection: subsection) }
+
+  def self.translate_column_names
+    [:title, :description ]
+  end
 end

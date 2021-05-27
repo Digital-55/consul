@@ -59,6 +59,10 @@ class Budget
       in_phase_or_later?("balloting")
     end
 
+    def self.translate_column_names
+      [:summary, :description ]
+    end
+
     private
 
       def adjust_date_ranges

@@ -51,6 +51,10 @@ class Budget
       headings.count == 1
     end
 
+    def self.translate_column_names
+      [:name ]
+    end
+
     private
 
     def generate_slug?

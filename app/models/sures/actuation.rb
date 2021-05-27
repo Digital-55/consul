@@ -26,6 +26,10 @@ class Sures::Actuation < ApplicationRecord
     validates :status, presence: true
     validate :valid_annos
 
+    def self.translate_column_names
+        [:proposal_title, :proposal_objective, :territorial_scope, :location_performance, :technical_visibility, :actions_taken ]
+      end
+
     private
 
     def valid_annos

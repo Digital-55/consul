@@ -12,6 +12,10 @@ class AdminNotification < ApplicationRecord
 
   before_validation :complete_link_url
 
+  def self.translate_column_names
+    [:title, :body ]
+  end
+
   def list_of_recipients
     UserSegments.send(segment_recipient) if valid_segment_recipient?
   end

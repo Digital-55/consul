@@ -17,4 +17,8 @@ class Legislation::QuestionOption < ApplicationRecord
   validates_translation :value, presence: true, if: -> {self.other.to_s != "true" && self.is_range.to_s != "true"}
   validates_translation :range_first, presence: true, if: -> {self.is_range}
   validates_translation :range_last, presence: true, if: -> {self.is_range}
+
+  def self.translate_column_names
+    [:value, :other, :is_range,:is_number,:range_first,:range_last ]
+  end
 end

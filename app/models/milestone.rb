@@ -23,4 +23,8 @@ class Milestone < ApplicationRecord
     80
   end
 
+  def self.translate_column_names
+    [:title, :description ]
+  end
+
 end

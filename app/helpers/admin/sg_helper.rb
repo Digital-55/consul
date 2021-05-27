@@ -49,7 +49,17 @@ module Admin::SgHelper
             model.try(:column_names).each do |field|
                 fields << ["#{model.human_attribute_name(field)} (#{field})",field]
             end
+
+           
         end
+
+       
+        if !model.try(:translate_column_names).blank?
+            model.try(:translate_column_names).each do |field|
+                fields << ["#{model.human_attribute_name(field)} (#{field})",field]
+            end
+        end
+       
 
         final = [[I18n.t('admin.sg.form.field_name')+"...", '']]
         final + fields.sort

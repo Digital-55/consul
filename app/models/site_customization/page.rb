@@ -23,4 +23,8 @@ class SiteCustomization::Page < ApplicationRecord
   def url
     "/#{slug}"
   end
+
+  def self.translate_column_names
+    [:title, :subtitle,:content ]
+  end
 end

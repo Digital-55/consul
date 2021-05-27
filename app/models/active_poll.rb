@@ -3,4 +3,8 @@ class ActivePoll < ApplicationRecord
 
   translates :description, touch: true
   include Globalizable
+
+  def self.translate_column_names
+    [:description ]
+  end
 end
