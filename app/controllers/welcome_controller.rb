@@ -143,7 +143,8 @@ class WelcomeController < ApplicationController
             model_list = !@listados.blank? && !list.blank? ? list[0][:list_base] : ""
             translate = false
             translate = true if !model.try(:translate_column_names).blank? && model.try(:translate_column_names).include?(t.field_name.to_sym)
-            model_list = model_list + "#{" OR " if !model_list.blank?} translate(UPPER(cast(#{translate ? "#{model.table_name.singularize}_translations" : model.table_name }.#{t.field_name} as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[f.to_sym]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')"
+            value = ActionController::Base.helpers.sanitize(parametrize[f.to_sym])
+            model_list = model_list + "#{" OR " if !model_list.blank?} translate(UPPER(cast(#{translate ? "#{model.table_name.singularize}_translations" : model.table_name }.#{t.field_name} as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{value}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')"
             
             if list.blank?
               order = 0
