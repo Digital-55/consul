@@ -197,20 +197,22 @@ class WelcomeController < ApplicationController
     aux_resultado = []
     aux_listados = []
 
-    @orders_settings.where(title: parametrize[:type_order]).each do |order|
-      table_fields = order.try(:sg_table_fields)
-      table_fields.each do |t| 
-        exist = @listados.select {|l| l[:model].model_name.to_s == t.table_name.to_s}[0]
-        resultado = @resultado.select {|l| l[:tabla].to_s == t.table_name.singularize.classify.constantize.model_name.human.to_s}[0]
+    @orders_settings.each do |order|
+      if order.title.to_s.parameterize.underscore == parametrize[:type_order].to_s.parameterize.underscore
+        table_fields = order.try(:sg_table_fields)
+        table_fields.each do |t| 
+          exist = @listados.select {|l| l[:model].model_name.to_s == t.table_name.to_s}[0]
+          resultado = @resultado.select {|l| l[:tabla].to_s == t.table_name.singularize.classify.constantize.model_name.human.to_s}[0]
 
-        if !exist.blank?
-          if order.data_type.to_s == "asc"
-            exist[:list] = exist[:list].order("#{t.field_name} ASC")
-          else
-            exist[:list] = exist[:list].order("#{t.field_name} DESC")
+          if !exist.blank?
+            if order.data_type.to_s == "asc"
+              exist[:list] = exist[:list].order("#{t.field_name} ASC")
+            else
+              exist[:list] = exist[:list].order("#{t.field_name} DESC")
+            end
+            aux_listados.push(exist)
+            aux_resultado.push(resultado)
           end
-          aux_listados.push(exist)
-          aux_resultado.push(resultado)
         end
       end
     end
