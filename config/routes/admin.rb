@@ -83,6 +83,8 @@ namespace :admin do
     get :hide, on: :member
   end
 
+  resources :profiles
+
   resources :moderated_texts
   namespace :moderated_texts do
     resources :imports, only: [:new, :create]
@@ -194,7 +196,7 @@ namespace :admin do
   resources :editors, only: [:index, :new, :create, :destroy] do
     get :search, on: :collection
   end
-  #resources :users, only: [:index, :show, :destroy, :hide]
+  resources :users, only: [:index, :show, :destroy, :hide]
 
   scope module: :poll do
     resources :polls do

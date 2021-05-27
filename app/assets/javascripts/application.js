@@ -194,6 +194,16 @@ function setHidden(limit) {
   }
 }
 
+function setStatusValue(element) {
+  if(document.getElementById(element).checked == false){
+    console.log("checked->false");
+    document.getElementById(element).value = false;
+  } else {
+    console.log("checked->true");
+    document.getElementById(element).value = true;
+  }
+}
+
 function uniqueCheck(select, other_ids) {
   var aux = $('.' + other_ids)
   for(var i=0; i< aux.length; i++){
@@ -252,6 +262,20 @@ function showhideFieldActuation(element, value, field) {
   } else {
     field.hide();
   }
+}
+
+function showMultiYears(multi,simple) {
+    multi.show();
+    simple.hide();
+}
+
+function hideMultiYears(multi,simple) {
+  multi.hide();
+  simple.show();
+}
+
+function hideAnnos(element) {
+  document.getElementById(element).style.display = "none";
 }
 
 function changeShowFields(element, field) {

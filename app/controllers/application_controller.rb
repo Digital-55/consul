@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   include Analytics
   include AccessDeniedHandler
 
+
   protect_from_forgery with: :exception
 
   before_action :authenticate_http_basic, if: :http_basic_auth_site?

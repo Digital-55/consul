@@ -53,4 +53,8 @@ class Poll::Question::Answer < ApplicationRecord
     question.answers_total_votes.zero? ? 0 : (total_votes * 100.0) / question.answers_total_votes
   end
 
+  def self.translate_column_names
+    [:title, :description ]
+  end
+
 end

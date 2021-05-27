@@ -48,5 +48,9 @@ class Legislation::Question < ApplicationRecord
   def comments_open?
     process.debate_phase.open?
   end
+
+  def self.translate_column_names
+    [:title ]
+  end
   
 end

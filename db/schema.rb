@@ -43,6 +43,13 @@ ActiveRecord::Schema.define(version: 20210525084520) do
     t.index ["user_id"], name: "index_activities_on_user_id", using: :btree
   end
 
+  create_table "actuations_multi_years", force: :cascade do |t|
+    t.string  "annos"
+    t.string  "values"
+    t.integer "sures_actuations_id"
+    t.index ["sures_actuations_id"], name: "index_actuations_multi_years_on_sures_actuations_id", using: :btree
+  end
+
   create_table "admin_notification_translations", force: :cascade do |t|
     t.integer  "admin_notification_id", null: false
     t.string   "locale",                null: false
@@ -1795,9 +1802,10 @@ ActiveRecord::Schema.define(version: 20210525084520) do
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
     t.string   "borought"
-    t.integer  "geozone_id"
     t.string   "other"
-    t.index ["geozone_id"], name: "index_sures_actuations_on_geozone_id", using: :btree
+    t.jsonb    "geozones"
+    t.string   "project"
+    t.index ["geozones"], name: "index_sures_actuations_on_geozones", using: :gin
   end
 
   create_table "sures_administrators", force: :cascade do |t|
@@ -1836,9 +1844,10 @@ ActiveRecord::Schema.define(version: 20210525084520) do
     t.string   "resource"
     t.string   "field"
     t.string   "rules"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.boolean  "active",     default: true
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "active",      default: true
+    t.string   "data_status"
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -2136,6 +2145,7 @@ ActiveRecord::Schema.define(version: 20210525084520) do
     t.datetime "updated_at",             null: false
   end
 
+  add_foreign_key "actuations_multi_years", "sures_actuations", column: "sures_actuations_id"
   add_foreign_key "administrators", "users"
   add_foreign_key "adresses", "users", column: "users_id"
   add_foreign_key "budget_investments", "communities"
@@ -2211,7 +2221,6 @@ ActiveRecord::Schema.define(version: 20210525084520) do
   add_foreign_key "sg_selects", "sg_settings"
   add_foreign_key "sg_table_orders", "sg_generics"
   add_foreign_key "superadministrators", "users"
-  add_foreign_key "sures_actuations", "geozones"
   add_foreign_key "sures_administrators", "users"
   add_foreign_key "users", "adresses"
   add_foreign_key "users", "geozones"

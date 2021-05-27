@@ -64,6 +64,10 @@ class Budget
       name == "Toda la ciudad"
     end
 
+    def self.translate_column_names
+      [:name ]
+    end
+
     private
 
     def generate_slug?

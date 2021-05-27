@@ -125,6 +125,10 @@ class Legislation::Process < ApplicationRecord
     false
   end
 
+  def self.translate_column_names
+    [:title, :summary, :description, :additional_info, :milestones_summary, :homepage ]
+  end
+
   private
 
     def valid_date_ranges

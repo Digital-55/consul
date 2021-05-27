@@ -18,4 +18,8 @@ class Sures::CustomizeCard < ApplicationRecord
   def self.body
     where(header: false, site_customization_page_id: nil).order(:created_at)
   end
+
+  def self.translate_column_names
+    [:title, :description, :label, :link_text ]
+  end
 end

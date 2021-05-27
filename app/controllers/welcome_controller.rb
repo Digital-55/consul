@@ -141,7 +141,10 @@ class WelcomeController < ApplicationController
             model = t.table_name.singularize.classify.constantize
             list = @listados.select {|l| l[:model].model_name.to_s == model.model_name.to_s}
             model_list = !@listados.blank? && !list.blank? ? list[0][:list_base] : ""
-            model_list = model_list + "#{" OR " if !model_list.blank?} translate(UPPER(cast(#{t.field_name} as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[f.to_sym]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')"
+            translate = false
+            translate = true if !model.try(:translate_column_names).blank? && model.try(:translate_column_names).include?(t.field_name.to_sym)
+            value = ActionController::Base.helpers.sanitize(parametrize[f.to_sym])
+            model_list = model_list + "#{" OR " if !model_list.blank?} translate(UPPER(cast(#{translate ? "#{model.table_name.singularize}_translations" : model.table_name }.#{t.field_name} as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{value}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')"
             
             if list.blank?
               order = 0
@@ -177,7 +180,11 @@ class WelcomeController < ApplicationController
     if !@listados.blank?
       @listados = @listados.sort_by {|l| l[:order]} 
       @listados.each do |l|
-        l[:list] = l[:model].where(l[:list_base])
+        if l[:model].try(:translate_column_names).blank?
+          l[:list] = l[:model].where(l[:list_base])
+        else
+          l[:list] = l[:model].joins(:translations).where(l[:list_base])
+        end
         set_votable(l)
         @resultado.push({tabla: l[:model].model_name.human, search: search_data_aux_gen, count: l[:list].blank? ? 0 : l[:list].count})  
         l[:list] = l[:list].page(parametrize[:"page_#{l[:model].model_name.to_s.parameterize.underscore}"]).per(5)         
@@ -190,20 +197,22 @@ class WelcomeController < ApplicationController
     aux_resultado = []
     aux_listados = []
 
-    @orders_settings.where(title: parametrize[:type_order]).each do |order|
-      table_fields = order.try(:sg_table_fields)
-      table_fields.each do |t| 
-        exist = @listados.select {|l| l[:model].model_name.to_s == t.table_name.to_s}[0]
-        resultado = @resultado.select {|l| l[:tabla].to_s == t.table_name.singularize.classify.constantize.model_name.human.to_s}[0]
+    @orders_settings.each do |order|
+      if order.title.to_s.parameterize.underscore == parametrize[:type_order].to_s.parameterize.underscore
+        table_fields = order.try(:sg_table_fields)
+        table_fields.each do |t| 
+          exist = @listados.select {|l| l[:model].model_name.to_s == t.table_name.to_s}[0]
+          resultado = @resultado.select {|l| l[:tabla].to_s == t.table_name.singularize.classify.constantize.model_name.human.to_s}[0]
 
-        if !exist.blank?
-          if order.data_type.to_s == "asc"
-            exist[:list] = exist[:list].order("#{t.field_name} ASC")
-          else
-            exist[:list] = exist[:list].order("#{t.field_name} DESC")
+          if !exist.blank?
+            if order.data_type.to_s == "asc"
+              exist[:list] = exist[:list].order("#{t.field_name} ASC")
+            else
+              exist[:list] = exist[:list].order("#{t.field_name} DESC")
+            end
+            aux_listados.push(exist)
+            aux_resultado.push(resultado)
           end
-          aux_listados.push(exist)
-          aux_resultado.push(resultado)
         end
       end
     end

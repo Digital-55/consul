@@ -65,4 +65,8 @@ class Poll::Question < ApplicationRecord
   def most_voted_answer_id
     question_answers.max_by {|answer| answer.total_votes }&.id
   end
+
+  def self.translate_column_names
+    [:title ]
+  end
 end

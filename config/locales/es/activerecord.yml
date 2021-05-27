@@ -1583,10 +1583,24 @@ es:
         created_at: "Fecha de creación"
       legislation/process/translation:
         title: Título del proceso
+        geozone_restricted: "Restringida por zonas"
         summary: Resumen
         description: En qué consiste
         additional_info: Información adicional
-        milestones_summary: Seguimiento del proceso
+        start_date: Inicio
+        end_date: Fin
+        debate_start_date: Inicio
+        debate_end_date: Fin
+        draft_start_date: Inicio
+        draft_end_date: Fin
+        draft_publication_date: Fecha de publicación del borrador
+        allegations_start_date: Inicio
+        allegations_end_date: Fin
+        proposals_phase_start_date: Inicio
+        proposals_phase_end_date: Fin
+        result_publication_date: Fecha de publicación del resultado final
+        background_color: Color del fondo
+        font_color: Color del texto
         updated_at: "Fecha de actualización"
         created_at: "Fecha de creación"
       legislation/draft_version:
@@ -1751,6 +1765,11 @@ es:
         actions_taken: "Actualizaciones a realizar"
         updated_at: "Fecha de actualización"
         created_at: "Fecha de creación"
+        project: "Proyecto"
+        geozones: "Distritos"
+      actuations_multi_year:
+        annos: Años
+        values: Financiación
       sures/actuation/translation:
         other: Otro
         proposal_title: Propuesta
@@ -1761,6 +1780,7 @@ es:
         actions_taken: "Actualizaciones a realizar"
         updated_at: "Fecha de actualización"
         created_at: "Fecha de creación"
+        project: "Proyecto"
       admin_notification/translation:
         title: Título
         body: Texto

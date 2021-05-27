@@ -69,9 +69,18 @@
                         <p><strong><%=Sures::Actuation.human_attribute_name(:check_multianno) %></strong></p>
                         <p>
                         <ul>
-                        <% aux=''
-                         @actuation.annos.split(';').each {|x| aux = aux + "<li>#{x}</li>"} %>
-                         <%=aux.html_safe%>
+                         <table>
+                            <tr>
+                                <th><%=ActuationsMultiYear.human_attribute_name(:annos)%></th>
+                                <th><%=ActuationsMultiYear.human_attribute_name(:values)%></th>
+                            </tr>
+                            <% ActuationsMultiYear.where(sures_actuations_id: @actuation.id).each do |actuation|%>
+                                <tr style="text-align:center">
+                                    <td><%= actuation.try(:annos) %></td>
+                                    <td><%= actuation.try(:values) %></td>
+                                </tr>
+                            <%end%>
+                         </table>
                         </ul>
                         </p>
                     <%end%>
@@ -80,8 +89,24 @@
             <hr>
             <div class="row">
                 <div class="small-12 column">                    
+                    <p><strong><%=Sures::Actuation.human_attribute_name(:project) %></strong></p>
+                    <p><%= @actuation.project %></p>             
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="small-12 column">                    
+                    <p><strong><%=Sures::Actuation.human_attribute_name(:geozones) %></strong></p>
+                    <% @actuation.try(:geozones).each do |geozone| %>
+                    <p><%= Geozone.find(geozone.to_i).name if !geozone.blank?%></p>        
+                    <%end%>            
+                </div>
+            </div> 
+            <hr>
+            <div class="row">
+                <div class="small-12 column">                    
                     <p><strong><%=Sures::Actuation.human_attribute_name(:borought) %></strong></p>
-                    <p><%= @actuation.borought %> (<%= @actuation.try(:geozone).try(:name)%>)</p>                    
+                    <p><%= @actuation.borought %></p>                    
                 </div>
             </div>            
         </div>

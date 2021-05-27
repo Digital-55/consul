@@ -148,4 +148,10 @@ namespace :settings do
       puts "Tipos de videos añadidos a la página principal"
     end
   end
+
+  task add_actuation_pagination_limit: :environment do
+    if Setting.new(key: "actuations_pagination_limit", value: "").save!
+      puts "Límite de paginación de actuaciones añadido a la configuración global."
+    end
+  end
 end
