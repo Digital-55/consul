@@ -1,4 +1,15 @@
 namespace :users do
+
+  desc "Actualización de datos DEMAD-106"
+  task send_email: :environment do
+    begin
+      Mailer.verification.deliver_later
+      puts "Se ha enviado el correo"
+    rescue => e
+      puts "Error: #{e}"
+    end
+  end
+
   desc "Actualización de datos DEMAD-106"
   task update_106: :environment do
     #RAKE temporal
