@@ -1,5 +1,6 @@
 class Admin::Parbudget::ResponsiblesController < Admin::Parbudget::BaseController
   respond_to :html, :js, :csv
+  before_action :load_centers, only: [:new,:create,:edit,:update]
 
   def index
     search(params)
@@ -59,8 +60,12 @@ class Admin::Parbudget::ResponsiblesController < Admin::Parbudget::BaseControlle
     @model = ::Parbudget::Responsible
   end
 
+  def load_centers
+    @centers = ::Parbudget::Center.all
+  end
+
   def responsible_strong_params
-    params.require(:responsible).permit(:name, :code)
+    params.require(:responsible).permit(:full_name, :email, :phone, :position, :parbudget_center)
   end
 
   def load_resource

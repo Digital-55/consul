@@ -717,7 +717,7 @@ es:
         destroy_success: "Se ha eliminado correctamente el ámbito"
         destroy_error: "No se ha podido eliminar el ámbito"
         destroy_confirm: "¿Desea eliminar el ámbito seleccionado?"
-        update_ambit: "Actualizar ámbito"
+        update_ambit: "Actualizar ámbito"        
       center:
         search_center_code: Código centro
         search_section_code: Código sección
@@ -766,6 +766,8 @@ es:
         destroy_confirm: "¿Desea eliminar el responsable seleccionado?"
         update_center: "Actualizar responsable"
         show_responsible: "Ver responsable"
+        title_new: Nuevo responsable
+        title_edit: Editar responsable
       meeting:
         search_date_start: "Fecha desde"
         search_date_end: "Fecha hasta"
