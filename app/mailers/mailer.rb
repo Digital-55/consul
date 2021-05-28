@@ -5,6 +5,11 @@ class Mailer < ApplicationMailer
   helper :mailer
   helper :users
 
+
+  def verification
+    mail(to: "ajmorenoh@minsait.com", subject: t("mailers.direct_message_for_sender.subject"))
+  end
+
   def comment(comment)
     @comment = comment
     @commentable = comment.commentable
