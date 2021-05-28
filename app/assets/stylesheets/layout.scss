@@ -451,6 +451,27 @@ a {
 // 02. Header
 // ----------
 
+.menu-element {
+  margin-right: 0px !important;
+}
+
+.menu-element ul {
+  top: 40% !important;
+  width: 300px !important;
+
+  li {
+
+    margin-left: 5% !important;
+    margin-bottom: 0px !important;
+
+    a {
+      color: #222 !important;
+    }
+  }
+  
+}
+
+
 header {
   background: $brand;
   border-bottom: 1px solid $border;
