@@ -1,5 +1,6 @@
 class Admin::Parbudget::MeetingsController < Admin::Parbudget::BaseController
   respond_to :html, :js, :csv
+  before_action :load_data, only: [:index]
 
   def index
     search(params)
@@ -59,8 +60,12 @@ class Admin::Parbudget::MeetingsController < Admin::Parbudget::BaseController
     @model = ::Parbudget::Meeting
   end
 
+  def load_data
+    @subnav = [{title: "Todos",value: "all"}]
+  end
+
   def meeting_strong_params
-    params.require(:meeting).permit(:name, :code)
+    params.require(:parbudget_meeting).permit(:reason, :date, :who_requests)
   end
 
   def load_resource

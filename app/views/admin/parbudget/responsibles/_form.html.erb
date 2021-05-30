@@ -14,30 +14,30 @@
     </div>
   <% end %>
   <div class="small-12 column">
-        <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
-            <legend><%=t("admin.menu.parbudget_tabs.legend_filter")%></legend>
-  <div class="row">
-    <div class="small-12 medium-6  column end"  >
-      <%= f.text_field :full_name %>
-    </div>
-    <div class="small-12 medium-3  column end"  >
-      <%= f.text_field :email %>
-    </div>
-    <div class="small-12 medium-3  column end"  >
-      <%= f.text_field :phone %>
-    </div>
-    
+    <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+      <legend>Datos del responsable</legend>
+      <div class="row">
+        <div class="small-12 medium-6  column end"  >
+          <%= f.text_field :full_name %>
+        </div>
+        <div class="small-12 medium-3  column end"  >
+          <%= f.text_field :email %>
+        </div>
+        <div class="small-12 medium-3  column end"  >
+          <%= f.text_field :phone %>
+        </div>
+        
+      </div>
+      <div class="row">
+        <div class="small-12 medium-6  column end"  >
+          <%= f.text_field :position %>
+        </div>
+        <div class="small-12 medium-3 column end">
+          <%= f.select :parbudget_center, options_for_select(@centers || [], @responsible[:parbudget_center]) %>
+        </div>
+      </div>
+    </fieldset>
   </div>
-  <div class="row">
-    <div class="small-12 medium-6  column end"  >
-      <%= f.text_field :position %>
-    </div>
-    <div class="small-12 medium-3 column end">
-      <%= f.select :parbudget_center, options_for_select(@centers || [], @responsible[:parbudget_center]) %>
-    </div>
-  </div>
- </fieldset>
- </div>
   <div class="small-12 medium-3 column clear end">
     <%= f.submit(class: "button success expanded", value: t("admin.sures.actuations.#{admin_submit_action(@responsible)}.submit_button")) %>
   </div> 

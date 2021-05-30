@@ -1,6 +1,6 @@
 class Admin::Parbudget::ResponsiblesController < Admin::Parbudget::BaseController
-  respond_to :html, :js, :csv
-  before_action :load_centers, only: [:new,:create,:edit,:update]
+  respond_to :html, :js, :csv, :pdf
+  before_action :load_data, only: [:new,:create,:edit,:update,:index]
 
   def index
     search(params)
@@ -52,6 +52,17 @@ class Admin::Parbudget::ResponsiblesController < Admin::Parbudget::BaseControlle
   end
 
   def show
+    respond_to do |format|
+      format.html
+      format.pdf do
+        
+        render pdf: @responsible.full_name,
+        layout: 'pdf.html',
+        page_size: 'A4',
+        encoding: "UTF-8"
+       
+      end
+    end
   end
 
   private 
@@ -60,12 +71,16 @@ class Admin::Parbudget::ResponsiblesController < Admin::Parbudget::BaseControlle
     @model = ::Parbudget::Responsible
   end
 
-  def load_centers
+  def load_data
     @centers = ::Parbudget::Center.all
+    @subnav = [{title: "Todos",value: "all"}]
+    @model.pluck(:parbudget_center_id).uniq.each do |center|
+      @subnav.push({title: ::Parbudget::Center.find_by(id: center).try(:denomination),value: center.to_s})
+    end
   end
 
   def responsible_strong_params
-    params.require(:responsible).permit(:full_name, :email, :phone, :position, :parbudget_center)
+    params.require(:parbudget_responsible).permit(:full_name, :email, :phone, :position, :parbudget_center_id)
   end
 
   def load_resource

@@ -1,5 +1,6 @@
 class Admin::Parbudget::ProjectsController < Admin::Parbudget::BaseController
   respond_to :html, :js, :csv
+  before_action :load_data, only: [:index]
 
   def index
     search(params)
@@ -60,13 +61,23 @@ class Admin::Parbudget::ProjectsController < Admin::Parbudget::BaseController
   end
 
   def project_strong_params
-    params.require(:project).permit(:name, :code)
+    params.require(:parbudget_project).permit(:denomination, :code, :year,:votes, :cost, :author, :parbudget_ambit_id,
+      :email, :phone, :association, :url, :descriptive_memory, :parbudget_topic_id, :entity_association, :parbudget_ersponsible,
+      :plate_proceeds, :license_plate, :plate_installed, :assumes_dgpc, :code_old)
   end
 
   def load_resource
     @project = @model.find(params[:id])
   rescue
     @project = nil
+  end
+
+  def load_data
+    @status = []
+    @subnav = [{title: "Todos",value: "all"}]
+    @model.pluck(:year).uniq.each do |year|
+      @subnav.push({title: "Año #{year}",value: year.to_s})
+    end
   end
 
   def search(parametrize = {})

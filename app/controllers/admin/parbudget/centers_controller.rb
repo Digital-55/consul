@@ -1,5 +1,6 @@
 class Admin::Parbudget::CentersController < Admin::Parbudget::BaseController
   respond_to :html, :js, :csv
+  before_action :load_data, only: [:index]
 
   def index
     search(params)
@@ -61,13 +62,18 @@ class Admin::Parbudget::CentersController < Admin::Parbudget::BaseController
 
   def center_strong_params
     params.require(:parbudget_center).permit(:denomination, :code, :code_section, :code_program, :resonsible,
-      :government_area, :general_direction, :parbudget_project_id)
+      :government_area, :general_direction, :parbudget_project_id, :parbudget_responsibles_ids => [])
   end
 
   def load_resource
     @center = @model.find(params[:id])
   rescue
     @center = nil
+  end
+
+  def load_data
+    @responsibles = ::Parbudget::Responsible.all
+    @projects = ::Parbudget::Project.all
   end
 
   def search(parametrize = {})

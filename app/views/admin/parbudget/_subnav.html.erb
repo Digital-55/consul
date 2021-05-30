@@ -1,0 +1,12 @@
+<% @subnav ||=[]%>
+<div class="small-12 column">
+    <ul class="menu simple clear" >
+        <%@subnav.each do |ma|%> 
+            <% if params[:subnav].to_s == ma[:value].to_s %>
+                <li class="is-active"><h2><%=ma[:title]%></h2></li>
+            <% else %>
+                <li><%= link_to ma[:title],current_path_with_query_params(subnav:  ma[:value].to_s , params: params) %></li>
+            <% end %> 
+        <% end %> 
+    </ul>
+</div>

@@ -21,5 +21,6 @@ Rails.application.config.assets.precompile += %w( preselection-charts.js )
 Rails.application.config.assets.precompile += %w( stats-charts.js )
 Rails.application.config.assets.precompile += %w( participatory-budget-charts.js )
 Rails.application.config.assets.precompile += %w( pdf_fonts.css )
+Rails.application.config.assets.precompile += %w(foundation_and_overrides.scss)
 
 # Loads custom images and custom fonts before app/assets/images and app/assets/fonts

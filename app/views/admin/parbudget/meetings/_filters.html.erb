@@ -4,12 +4,12 @@
             <legend><%=t("admin.menu.parbudget_tabs.legend_filter")%></legend>
             <div class="row">
                 <div class="small-12 medium-4 column">
-                    <%=label_tag :search_date_start, t('admin.parbudget.center.search_date_start')%>
-                    <%= text_field_tag :search_date_start %>
+                    <%=label_tag :search_date_start, t('admin.parbudget.meeting.search_date_start')%>
+                    <%= date_field_tag :search_date_start, params[:search_date_start] %>
                 </div>  
                 <div class="small-12 medium-4 column end">
-                    <%=label_tag :search_date_end, t('admin.parbudget.center.search_date_end')%>
-                    <%= text_field_tag :search_date_end %>
+                    <%=label_tag :search_date_end, t('admin.parbudget.meeting.search_date_end')%>
+                    <%= date_field_tag :search_date_end, params[:search_date_end] %>
                 </div>
             </div>
             <div class="float-right">

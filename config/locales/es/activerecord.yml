@@ -882,8 +882,8 @@ es:
         phone: "Teléfono"
         email: "Correo electrónico"
         position: "Cargo"
-        center: "Centro"
-        center_id: "Centro"
+        parbudget_center: "Centro"
+        parbudget_center_id: "Centro"
         created_at: "Fecha de creación"
         updated_at: "Fecha de modificación"
       parbudget/medias:
