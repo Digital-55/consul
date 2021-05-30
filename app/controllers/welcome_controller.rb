@@ -237,6 +237,12 @@ class WelcomeController < ApplicationController
     begin
       @legislation_proposal_votes = current_user ? current_user.legislation_proposal_votes(lista[:list]) : {}
     rescue      
-    end          
+    end  
+    begin
+      load_investment_votes(lista[:list])
+      @investment_ids =lista[:list].pluck(:id)
+     
+    rescue
+    end        
   end
 end

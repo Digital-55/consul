@@ -7,7 +7,10 @@ module TagsHelper
     when "proposal"
       proposals_path(search: tag_name)
     when "budget/investment"
+      begin
       budget_investments_path(@budget, search: tag_name)
+      rescue
+      end
     when "legislation/proposal"
       legislation_process_proposals_path(@process, search: tag_name)
     else

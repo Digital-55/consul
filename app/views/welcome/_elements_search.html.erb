@@ -20,6 +20,14 @@
                             <%=render partial: "legislation/processes/process", :locals =>{process: item}%>
                         <%elsif l[:model].model_name.to_s == "Legislation::Proposal"%>                        
                             <%=render partial: "legislation/proposals/proposal", :locals =>{proposal: item}%>
+                         <%elsif l[:model].model_name.to_s == "Budget::Investment"%>                        
+                            <%= render partial: "/budgets/investments/investment",
+                                    locals: {
+                                    investment: item,
+                                    investment_ids: @investment_ids,
+                                    investment_votes: @investment_votes,
+                                    ballot: item.try(:ballot)
+                                    } %>
                         <%else%>
                             <div id="<%= dom_id(item) %>" class="actuation clear" data-type="actuation">
                                 <div class="panel">
