@@ -213,6 +213,52 @@ es:
     comment: Comentario
   geozones:
     none: Toda la ciudad
+  csc:
+    index:
+      menu: Consejo Social de la Ciudad
+      title: Consejo Social de la Ciudad de Madrid
+      description: "Es el máximo órgano consultivo de participación de la ciudad.<br>
+                    Sus objetivos son promover el diálogo abierto, transparente y responsable sobre el modelo de ciudad y el 
+                    papel de los actores sociales y la administración municipal en la conformación de una ciudad mejor, más 
+                    democrática, atractiva, plural y centrada en el bienestar de sus ciudadanos y visitantes.<br>
+                    Los valores que orientan al Consejo son los propios del diálogo en democracia, con el objetivo de fomentar 
+                    la responsabilidad de todos los agentes de la ciudad en la búsqueda de compromisos con un proyecto de 
+                    ciudad compartido, en el que confluyan los intereses legítimos de los madrileños de hoy, pero también de 
+                    los futuros."
+      title2: ¿Quiénes componen el Consejo Social de la Ciudad?
+      description2: "El Consejo Social de la Ciudad está presidido por el Alcalde de Madrid. <br>
+                      Lo componen representantes de la Corporación municipal, 
+                      todos los agentes sociales (como universidades, sindicatos, 
+                      asociaciones empresariales, asociaciones vecinales) y 
+                      diferentes expertos en diversas materias."
+      title3: ¿Qué hace el Consejo Social de la Ciudad?
+      description3: "Entre sus funciones está el informe, estudio y propuesta (con 
+                      carácter facultativo y no vinculante) en materias de desarrollo 
+                      económico local, planificación estratégica municipal y grandes 
+                      proyectos urbanos.<br>
+                      Actúa como cauce de participación y diálogo de las distintas 
+                      personas interlocutoras sociales en el análisis y propuestas sobre 
+                      asuntos de carácter socio- económico. 
+                      Impulsa iniciativas para la aprobación de disposiciones municipales 
+                      de carácter general.<br>
+                      Plantea al Ayuntamiento Planes Estratégicos o de carácter sectorial 
+                      o territorial.<br>
+                      Propone la realización de hasta dos procesos participativos cada año.<br>
+                      Permite establecer líneas estratégicas para abordar retos venideros."
+      title4: ¿En qué beneficiará a la ciudad de Madrid?
+      description4: "Al ser el máximo órgano de planificación de la ciudad puede reunir a 
+                    expertos y agentes en épocas críticas para buscar soluciones.
+                    Será el órgano de referencia en temas urbanísticos, sociales o 
+                    medioambientales.<br>
+                    Es un órgano permanente que puede hacer frente a situaciones de 
+                    crisis y emergencia.<br> 
+                    Puede dar soluciones para una visión estratégica de la ciudad.<br>
+                    Es una suerte de consejo de sabios."
+      title5: Documentos de Interés
+      link1: Reglamento del Consejo Social de la Ciudad
+      link2: Informes del Consejo Social de la Ciudad
+      link3: Actas del Consejo Social de la Ciudad
+      link4: Sesiones del Consejo Social de la Ciudad
   layouts:
     sures:
       title_1: "Creatividad de campaña"

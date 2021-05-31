@@ -1,7 +1,7 @@
-<div class="small-12 medium-9 column">
-  <ul>
+<div class="small-12 medium-11 column">
+  <ul id="main-menu" class="dropdown menu" data-dropdown-menu>
     <%= raw content_block("subnavigation_left", I18n.locale) %>
-    <li>
+    <li class="menu-element">
       <%= layout_menu_link_to t("layouts.header.inicio"),
                               root_path,
                               controller_name == "welcome",
@@ -9,7 +9,7 @@
                               title: t("shared.go_to_page") + t("layouts.header.inicio") %>
     </li>
     <% if feature?(:debates) %>
-      <li>
+      <li class="menu-element">
         <%= layout_menu_link_to t("layouts.header.debates"),
                                 debates_path,
                                 controller_name == "debates",
@@ -18,7 +18,7 @@
       </li>
     <% end %>
     <% if feature?(:proposals) %>
-      <li>
+      <li class="menu-element">
         <%= layout_menu_link_to t("layouts.header.proposals"),
                                 proposals_path,
                                 controller.class == ProposalsController,
@@ -28,7 +28,7 @@
     <% end %>
 
     <% if feature?(:polls) %>
-      <li>
+      <li class="menu-element">
         <%= layout_menu_link_to t("layouts.header.poll_questions"),
                                   "/vota",
                                   current_page?(first_voting_path) || current_page?(primera_votacion_info_path) ||
@@ -40,7 +40,7 @@
     <% end %>
 
     <% if feature?(:legislation) %>
-      <li>
+      <li class="menu-element">
         <%= layout_menu_link_to t("layouts.header.collaborative_legislation"),
                                 processes_path,
                                 controller.class.parent == Legislation,
@@ -50,7 +50,7 @@
     <% end %>
 
     <% if feature?(:budgets) %>
-      <li>
+      <li class="menu-element">
         <%= layout_menu_link_to t("layouts.header.budgets"),
                                   budgets_welcome_path,
                                   controller_name == "budgets" || controller_name == "investments" || current_page?(budgets_welcome_path),
@@ -58,12 +58,20 @@
                                   title: t("shared.go_to_page") + t("layouts.header.budgets") %>
       </li>
     <% end %>
+      <li class="has-submenu menu-element">
+        <%= link_to "Órganos", "#", rel: "nofollow", class: "hide-for-small-only"%>
+        <ul class="submenu menu vertical csc" data-submenu>
+          <li>
+            <%= layout_menu_link_to t("csc.index.menu"), "organos/consejosocial", controller_name == "csc", accesskey: "8", title: t("csc.index.title") %>
+          </li>
+        </ul>
+      </li>
     <% if feature?(:help_page) %>
-      <li>
+      <li class="menu-element">
         <%= layout_menu_link_to t("layouts.header.help"),
                                 help_path,
                                 current_page?(help_path),
-                                accesskey: "8",
+                                accesskey: "9",
                                 title: t("shared.go_to_page") + t("layouts.header.help") %>
       </li>
     <% end %>
