@@ -53,7 +53,6 @@ Rails.application.routes.draw do
   
   get "/consul.json", to: "installation#details"
 
-  get "/consejosocial.madrid.es", to: "csc#index"
   get "/organos/consejosocial", to: "csc#index"
   
   resources :stats, only: [:index]
