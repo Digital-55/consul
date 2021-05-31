@@ -1147,6 +1147,24 @@ code {
   width: 100%;
   height: 350px;
 
+  %marker-icon {
+    background: #00cae9;
+    border-radius: 50% 50% 50% 0;
+    height: 1em;
+    transform: rotate(-45deg);
+    width: 1em;
+
+    &::after {
+      background: #fff;
+      border-radius: 50%;
+      content: "";
+      height: 46%;
+      margin: 27% 0 0 27%;
+      position: absolute;
+      width: 46%;
+    }
+  }
+
   .map-marker {
     visibility: visible;
     position: absolute;
@@ -1155,27 +1173,33 @@ code {
     margin-top: -5px;
 
     .map-icon {
-      width: 30px;
-      height: 30px;
-      border-radius: 50% 50% 50% 0;
-      background: #00cae9;
-      transform: rotate(-45deg);
+      @extend %marker-icon;
+      font-size: 30px;
     }
 
-    .map-icon::after {
-      content: "";
-      width: 14px;
-      height: 14px;
-      margin: 8px 0 0 8px;
-      background: #fff;
-      position: absolute;
-      border-radius: 50%;
+    .map-icon-related {
+      background: $brand;
     }
+  }
+
+  .layer-related-icon {
+    @extend %marker-icon;
+    display: inline-block;
+    background: $brand;
   }
 
   .map-attributtion {
     visibility: visible;
     height: auto;
+  }
+
+  .leaflet-control-layers-overlays label {
+    font-size: $small-font-size;
+    font-weight: normal;
+
+    input[type="checkbox"] {
+      margin-bottom: 0;
+    }
   }
 }
 
