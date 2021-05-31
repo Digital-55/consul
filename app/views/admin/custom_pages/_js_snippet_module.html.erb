@@ -9,6 +9,7 @@
     </div>
   </div>
   <div class="card-section">
+    <%= f.hidden_field :type, value: 'JSSnippetModule' %>
     <div class="small-12 medium-10 column">
       <%= f.text_area :js_snippet,
                         id: "js_snippet_area_#{f.object.id}",

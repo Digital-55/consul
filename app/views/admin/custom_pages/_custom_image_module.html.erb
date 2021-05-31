@@ -9,6 +9,7 @@
     </div>
   </div>
   <div class="card-section">
+    <%= f.hidden_field :type, value: 'CustomImageModule' %>
     <div class="small-12 medium-7 column">
       <%= f.label :custom_image, t("admin.custom_pages.custom_page_modules.custom_page_module.custom_image") %>
       <%= f.file_field :custom_image, label: false, class: 'custom_image-module-text' %>
