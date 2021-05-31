@@ -5,8 +5,11 @@
         </div>
     </div>
 <%else%>
+    <% sin_items = true%>
     <% @listados.sort_by {|x| x[:order]}.each do |l| %>
+        
         <% if !l[:list].blank? && l[:list].count >0%>
+            <% sin_items = false%>
             <div class="row">
                 <div class="small-12 columns">
                     <h3><%=l[:model].model_name.human%>:</h3>
@@ -53,5 +56,12 @@
                 </div>
             </div>
         <%end%>
+    <%end%>
+    <% if sin_items%>
+        <div class="row">
+            <div class="small-12 columns">
+                <%=t('sgs.no_element_list')%>
+            </div>
+        </div>
     <%end%>
 <%end%>
