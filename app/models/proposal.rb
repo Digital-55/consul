@@ -314,21 +314,25 @@ class Proposal < ApplicationRecord
     end
   end
 
-  def previous(author_id) 
+  def previous(author_id)
     if author_id == nil
-      Proposal.where('proposals.id > ?', self.id).first 
+      Proposal.where('proposals.id > ?', self.id).first
     else
-      Proposal.where(author_id: author_id).where('proposals.id > ?', self.id).first 
+      Proposal.where(author_id: author_id).where('proposals.id > ?', self.id).first
     end
-  end 
+  end
 
   def next(author_id)
     if author_id == nil
-      Proposal.where('proposals.id < ?', self.id).last 
+      Proposal.where('proposals.id < ?', self.id).last
     else
-      Proposal.where(author_id: author_id).where('proposals.id < ?', self.id).last 
+      Proposal.where(author_id: author_id).where('proposals.id < ?', self.id).last
     end
-  end 
+  end
+
+  def related_proposals
+    self.class.where.not(id: id).tagged_with(tag_list, any: true)
+  end
 
   protected
 
