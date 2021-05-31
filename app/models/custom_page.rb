@@ -1,5 +1,5 @@
 class CustomPage < ApplicationRecord
-  has_many :custom_page_modules
+  has_many :custom_page_modules, dependent: :destroy
   has_many :subtitles, class_name: 'SubtitleModule'
   has_many :claims, class_name: 'ClaimModule'
   has_many :rich_texts, class_name: 'RichTextModule'

@@ -13,6 +13,7 @@
     <div class="ckeditor small-12 medium-10 column">
       <%= f.cktext_area :rich_text,
                         id: "rich_text_area_#{f.object.id}",
+                        class: 'custom_page_module-rich_text',
                         label: t("admin.custom_pages.custom_page_modules.custom_page_module.rich_text"),
                         maxlength: RichTextModule::TEXT_MAX_LENGTH,
                         ckeditor: { language: I18n.locale, toolbar: 'admin' } %>
