@@ -16,6 +16,18 @@ namespace :admin do
     resources :customize_cards
   end
 
+  resources :sgs do
+    post :create_generic, on: :collection
+    get :delete_generic, on: :member
+    get :generate_setting, on: :collection
+    post :update_setting, on: :member
+    get :delete_setting, on: :member
+    post :generate_table_setting, on: :member
+    get :delete_table_setting, on: :member
+    post :generate_table_select, on: :member
+    get :delete_table_select, on: :member
+  end
+
   resources :hidden_users, only: [:index, :show] do
     member do
       put :restore
@@ -37,6 +49,8 @@ namespace :admin do
     end
   end
 
+  resources :event_agends
+
   resources :proposals, only: [:index, :show, :update] do
     member { patch :toggle_selection }
     resources :milestones, controller: "proposal_milestones"
@@ -53,6 +67,8 @@ namespace :admin do
   resources :users, only: [:index, :new, :show, :destroy] do
     get :hide, on: :member
   end
+
+  resources :profiles
 
   resources :moderated_texts
   namespace :moderated_texts do
@@ -142,6 +158,10 @@ namespace :admin do
     get :search, on: :collection
   end
 
+  resources :superadministrators, only: [:index, :new, :create, :destroy] do
+    get :search, on: :collection
+  end
+
   resources :administrators, only: [:index, :new, :create, :destroy] do
     get :search, on: :collection
   end
@@ -157,7 +177,11 @@ namespace :admin do
   resources :consultants, only: [:index, :new, :create, :destroy] do
     get :search, on: :collection
   end
-  #resources :users, only: [:index, :show, :destroy, :hide]
+
+  resources :editors, only: [:index, :new, :create, :destroy] do
+    get :search, on: :collection
+  end
+  resources :users, only: [:index, :show, :destroy, :hide]
 
   scope module: :poll do
     resources :polls do
@@ -210,6 +234,7 @@ namespace :admin do
 
   resources :newsletters do
     member do
+      post :deliver_user
       post :deliver
     end
     get :users, on: :collection
@@ -241,6 +266,7 @@ namespace :admin do
   namespace :legislation do
     resources :processes do
       resources :questions do
+        #post :destroy_question_option, on: :member
         get :other_answers, on: :collection
         get :range_answers, on: :collection
         get :number_answers, on: :collection

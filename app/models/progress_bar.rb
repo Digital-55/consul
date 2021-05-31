@@ -21,4 +21,8 @@ class ProgressBar < ApplicationRecord
   before_validation :assign_model_to_translations
   validates_translation :title, presence: true, unless: :primary?
 
+  def self.translate_column_names
+    [:title ]
+  end
+
 end

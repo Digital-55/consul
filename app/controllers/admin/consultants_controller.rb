@@ -1,5 +1,7 @@
 class Admin::ConsultantsController < Admin::BaseController
   load_and_authorize_resource
+  has_filters %w[users superadministrators administrators sures_administrators section_administrators 
+                  organizations officials moderators valuators managers consultants editors]
 
   def index
     @consultants = Consultant.all.page(params[:page])

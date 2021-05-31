@@ -2,6 +2,35 @@ es:
   admin:
     header:
       title: Administración
+    event_agends:
+      index_title: "Agenda de administración abierta"
+      index_create: "Añadir evento"
+      new_title: "Nuevo evento"
+      edit_title: "Evento"
+      date_at: "Fecha"
+      hour_at: "Hora de comienzo"
+      hour_to: "Hora de fin"
+      hour: "Hora"
+      content: "Contenido"
+      back: "Volver"
+      errors: Errores
+      error_compare: "La hora de fin no debe ser mayor a la hora de comienzo"
+      time_one: "A las %{hour}h"
+      time_other: "De %{hour_at}h a %{hour_to}h"
+      additional_info_placeholder: "Introduzca el contenido del evento..."
+      create:
+        notice: 'Evento de agenda creado correctamente.</a>'
+        error: No se ha podido crear el evento
+      update:
+        notice: 'Evento de agenda actualizado correctamente.'
+        error: No se ha podido actualizar el evento
+      destroy:
+        notice: 'Evento de agenda eliminado correctamente.'
+        error: No se ha podido eliminar el evento
+      new:
+        submit_button: "Nuevo evento de agenda"
+      edit:
+        submit_button: "Actualizar evento de agenda"
     actions:
       actions: Acciones
       confirm: '¿Estás seguro?'
@@ -637,6 +666,7 @@ es:
           error: No se ha podido actualizar la pregunta
         destroy:
           notice: Pregunta eliminada correctamente
+          error: No se ha podido eliminar la pregunta
         edit:
           back: Volver
           title: "Editar “%{question_title}”"
@@ -799,6 +829,7 @@ es:
           proposal: Propuesta
           legislation/proposal: Proceso
     menu:
+      sg: Gestionar buscador general
       activity: Actividad de moderadores
       admin: Menú de administración
       banner: Gestionar banners
@@ -813,10 +844,12 @@ es:
       hidden_budget_investments: Proyectos de gasto ocultos
       hidden_proposal_notifications: Notificationes de propuesta ocultas
       hidden_users: Usuarios bloqueados
+      super_administrators: Super Administradores
       administrators: Administradores
       sures_administrators: Administradores de Sures
       section_administrators: Administradores Sectoriales
       consultants: Consultores
+      editors: Editores
       managers: Gestores
       moderators: Moderadores
       messaging_users: Mensajes a usuarios
@@ -836,6 +869,7 @@ es:
       stats: Estadísticas
       signature_sheets: Hojas de firmas
       site_customization:
+        event_agends: "Eventos agenda administración"
         documents: Documentos
         homepage: Homepage
         pages: Personalizar páginas
@@ -872,6 +906,26 @@ es:
       dashboard_actions: Recursos y acciones
       moderated_texts: Texto para moderación automática
       auto_moderated_content: Contenido moderado automáticamente
+    superadministrators:
+      index:
+        title: Super Administradores
+    super_administrators:
+      index:
+        title: Super Administradores
+        create: Nuevo super administrador
+        back: Volver
+        name: Nombre
+        email: Email
+        id: ID de Super Administrador
+        no_administrators: No hay super administradores.
+      administrator:
+        add: Añadir como Super Administrador
+        delete: Borrar
+        restricted_removal: "Lo sentimos, no puedes eliminarte a ti mismo de la lista"
+      search:
+        title: "Super Administradores: Búsqueda de usuarios"
+      new: 
+        title: Crear nuevo usuario super administrador
     administrators:
       index:
         title: Administradores
@@ -906,7 +960,71 @@ es:
         title: "Administradores de Sures: Búsqueda de usuarios"
       new: 
         title: Crear nuevo usuario administrador de Sures
-
+    sg:
+      title: Gestión del buscador general
+      title_avanced: Campos avanzados
+      title_avanced_order: Orden avanzado
+      no_search_settings: No hay campos avanzados del buscador general
+      no_order_settings: No hay campos de orden avanzado
+      avanced:
+        delete_confirm: "¿Estás seguro de eliminar el filtro avanzado del buscador general?"
+      avanced_list:
+        delete_confirm: "¿Estás seguro de eliminar la tabla y el campo del listado del filtro avanzado?"
+        delete_select_confirm: "¿Estás seguro de eliminar la clave y valor del listado del filtro avanzado?"
+      tab:
+        search: Campos del buscador
+        order: Filtros de ordenación
+      form:
+        add: Añadir
+        key: Clave...
+        value: Valor...
+        table_name: Tabla
+        field_name: Campo
+        title_select: Datos del seleccionable
+        active: Activo
+        notice_generic: Se ha guardado correctamente la tabla para el buscador general
+        notice_generic_destroy: Se ha eliminado la tabla del buscador general
+        error_generic: No se ha podido guardar la tabla para el buscador general
+        error_generic_destroy: No se ha podido eliminar la tabla del buscador general
+        notice_generic_order: Se ha guardado correctamente la tabla para la ordenación de apartados
+        error_generic_order: No se ha podido guardar la tabla para la ordenación de apartados
+        notice_generic_order_destroy: Se ha eliminado la tabla de la ordenación de apartados
+        error_generic_order_destroy: No se ha podido eliminar la tabla de la ordenación de apartados
+        notice_table_order_destroy: Se ha eliminado correctamente la tabla del orden avanzado
+        error_table_order_destroy: No se ha podido eliminar la tabla del orden avanzado
+        notice_table_search_destroy: Se ha eliminado la tabla del campo de búsqueda avanzado
+        error_table_search_destroy: No se ha podido eliminar la tabla del campo de búsqueda avanzado
+        error_select_destroy: No se ha podido eliminar el seleccionable del filtro de búsqueda avanzado
+        notice_select_destroy: Se ha podido eliminar el seleccionable para el filtro de búsqueda avanzado
+        notice_select: Se ha creado un nuevo seleccionable con clave y valor para el filtro de búsqueda avanzado
+        error_select: No se ha podido crear el seleccionable para el filtro de búsqueda avanzado
+        placeholder:
+          title: Título
+        avanced:
+          error_order_destroy: No se ha podido eliminar el filtro de ordenación avanzado
+          error_search_destroy: No se ha podido eliminar el filtro de búsqueda avanzado
+          notice_order_destroy: Se ha podido eliminar el filtro de ordenación avanzado
+          notice_search_destroy: Se ha podido eliminar el filtro de búsqueda avanzado
+          error_order: No se ha podido crear el filtro de ordenación avanzado
+          error_search: No se ha podido crear el filtro de búsqueda avanzado
+          notice_order: Se ha creado el filtro de ordenación avanzado
+          notice_search: Se ha creado el filtro de búsqueda avanzado
+          error_update_order: No se ha podido actualizar el filtro de ordenación avanzado
+          error_update_search: No se ha podido actualizar el filtro de búsqueda avanzado
+          notice_update_order: Se ha actualizado el filtro de ordenación avanzado
+          notice_update_search: Se ha actualizado el filtro de búsqueda avanzado
+      list:
+        sugestion: Valores sugeridos para el seleccionable
+        key: Clave
+        value: Valor
+        title_table: Tablas asociadas
+        delete: Borrar
+        update: Actualizar
+        table_name: Nombre de la tabla
+        field_name: Campo
+        no_data: No hay tablas asociadas
+        delete_confirm: "¿Estás seguro de eliminar la tabla y el campo del listado del buscador general?"
+        delete_confirm_order: "¿Estás seguro de eliminar la tabla y el orden del listado de ordenación de apartados?"
     section_administrators:
       index:
         title: Administradores Sectoriales
@@ -941,6 +1059,23 @@ es:
         title: "Consultores: Búsqueda de usuarios"
       new: 
         title: Crear nuevo usuario consultor
+    editors:
+      index:
+        title: Editores
+        create: Nuevo editor
+        back: Volver
+        name: Nombre
+        email: Email
+        id: ID de Editor
+        no_editors: No hay editores.
+      editor:
+        add: Añadir como Editor
+        delete: Borrar
+        restricted_removal: "Lo sentimos, no puedes eliminarte a ti mismo de la lista"
+      search:
+        title: "Editores: Búsqueda de usuarios"
+      new: 
+        title: Crear nuevo usuario editor
     moderators:
       index:
         title: Moderadores
@@ -1446,6 +1581,7 @@ es:
         make_official: Convertir en cargo público
         title: 'Cargos Públicos: Búsqueda de usuarios'
         no_results: No se han encontrado cargos públicos.
+      filter: Cargos Públicos
     organizations:
       index:
         filter: Filtro
@@ -1474,6 +1610,7 @@ es:
       search:
         title: Buscar Organizaciones
         no_results: No se han encontrado organizaciones.
+      filter: Organizaciones
     proposals:
       index:
         title: Propuestas
@@ -1720,6 +1857,7 @@ es:
         no_deleted: No se ha podido eliminar el usuario correctamente
       new:
         title: Nuevo usuario
+      filter: Usuarios
     verifications:
       index:
         phone_not_given: No ha dado su teléfono

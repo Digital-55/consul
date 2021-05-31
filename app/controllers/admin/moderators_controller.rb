@@ -1,5 +1,7 @@
 class Admin::ModeratorsController < Admin::BaseController
   load_and_authorize_resource
+  has_filters %w[users superadministrators administrators sures_administrators section_administrators 
+                  organizations officials moderators valuators managers consultants editors]
 
   def index
     @moderators = @moderators.page(params[:page])
@@ -37,6 +39,5 @@ class Admin::ModeratorsController < Admin::BaseController
   rescue
     flash[:error] = I18n.t("admin.moderators.moderator.restricted_removal")
     redirect_to admin_moderators_path
-  end
   end
 end

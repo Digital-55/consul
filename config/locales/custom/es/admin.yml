@@ -22,6 +22,7 @@ es:
         types_data:
           select: "Desplegable"
           order: "Ordenación"
+          checkbox: "Checkbox"
           text: "Texto"
           fulltext: "Texto varios campos"
         rules:
@@ -45,6 +46,8 @@ es:
           form:
             error: Error
         form:
+          add_multi_year: Nuevo Año
+          delete_multi_year: Eliminar año
           placeholder_proposals_title: "Título para la pestaña."
           help_proposals_title: "Si no se rellena, por defecto se mostrará como 'Propuestas'."
           enabled: Habilitado

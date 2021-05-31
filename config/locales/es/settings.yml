@@ -10,8 +10,12 @@ es:
     text_madrid_balcon_description: Texto con formato html para el apartado de conectados por encima del video principal
     text_eventos: Texto del apartado de eventos
     text_eventos_description: Texto con formato html para el apartado de eventos por encima del video principal
+    text_agend: Texto del apartado de la semana de la administración abierta 2021 
+    text_agend_description: Texto con formato html para el apartado de la semana de la administración abierta 2021 por encima del video principal
     eventos_youtube_connect: Video YouTube de eventos
     eventos_youtube_connect_description: Video YouTube de eventos, video principal
+    agend_youtube_connect: Video YouTube de agenda de la semana de la administración abierta 2021 
+    agend_youtube_connect_description: Video YouTube de la semana de la administración abierta 2021, video principal
     youtube_connect: Video YouTube de conectados
     youtube_connect_description: Video YouTube de conectados con expertos, video principal
     proposal_permit_text: Texto explicativo de propuestas de procesos
@@ -20,6 +24,8 @@ es:
     youtube_playlist_connect_description: Playlist YouTube de conectados con expertos, video realizados anteriormente
     eventos_youtube_playlist_connect: Playlist YouTube de eventos
     eventos_youtube_playlist_connect_description: Playlist YouTube de eventos, video realizados anteriormente
+    agend_youtube_playlist_connect: Playlist YouTube de la semana de la administración abierta 2021 
+    agend_youtube_playlist_connect_description: Playlist YouTube de la semana de la administración abierta 2021, video realizados anteriormente
     comments_body_max_length: "Longitud máxima de los comentarios"
     comments_body_max_length_description: "En número de caracteres"
     official_level_1_name: "Cargos públicos de nivel 1"
@@ -87,6 +93,8 @@ es:
     proposal_notification_minimum_interval_in_days_description: "El número de días en los que un usuario puede enviar una notificación a todos los que apoyan su propuesta"
     direct_message_max_per_day: "Mensajes directos máximos por día"
     direct_message_max_per_day_description: "Número de mensajes directos máximos que un usuario puede enviar por día"
+    actuations_pagination_limit: Límite para la paginación de actuaciones
+    actuations_pagination_limit_description: Valor que establece el número de actuaciones mostradas por página, por defecto su valor será de 50, si se establece un valor no válido, se aplicará el valor por defecto.
     proposals:
       successful_proposal_id: Propuesta exitosa
       successful_proposal_id_description: Esta propuesta se utiliza como referencia de una propuesta exitosa en número de apoyos y se mostrará en el gráfico del panel de control

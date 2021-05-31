@@ -1,5 +1,10 @@
 class Sures::Actuation < ApplicationRecord
-    belongs_to :geozone
+
+    has_many :actuations_multi_years, -> { order(:id) }, class_name: "ActuationsMultiYear", foreign_key: "sures_actuations_id",
+                        dependent: :destroy, inverse_of: :sures_actuations
+    accepts_nested_attributes_for :actuations_multi_years, reject_if: proc { |attributes| attributes.all? { |k, v| v.blank? } }, allow_destroy: true
+
+    has_many :adress
 
     scope :study, -> { where(status: "study") }
     scope :tramit, -> { where(status: "tramit") }
@@ -19,20 +24,18 @@ class Sures::Actuation < ApplicationRecord
 
     validates :proposal_title, presence: true
     validates :status, presence: true
-    validates :borought, presence: true
     validate :valid_annos
 
+    def self.translate_column_names
+        [:proposal_title, :proposal_objective, :territorial_scope, :location_performance, :technical_visibility, :actions_taken ]
+      end
 
     private
 
     def valid_annos
-        if self.check_anno 
+        if self.check_anno.to_s == "true"
             if !self.annos.match(/^\d{4}$/)
                 self.errors.add(:annos, "Se han introducido más de 4 dígitos o formato incorrecto")
-            end
-        elsif self.check_multianno
-            if !self.annos.match(/^(\d{4};)*\d{4}$/)
-                self.errors.add(:annos, "Se han introducido un formato incorrecto debe introducirse 'XXXX;XXXX' o 'XXXX'")
             end
         end
     end

@@ -20,6 +20,7 @@ class User < ApplicationRecord
   has_one :valuator
   has_one :manager
   has_one :consultant
+  has_one :editor
   has_one :poll_officer, class_name: "Poll::Officer"
   has_one :organization
   has_one :lock
@@ -39,10 +40,12 @@ class User < ApplicationRecord
   belongs_to :geozone
   belongs_to :adress
   belongs_to :profile
-
+  attr_accessor :enable_document_validation
   validates :username, presence: true, if: :username_required?
   validates :username, uniqueness: { scope: :registering_with_oauth }, if: :username_required?
-  validates :document_number, uniqueness: { scope: :document_type }, allow_nil: true
+  validates :email, presence: true
+  validates :document_type, presence: true, if: :enable_document_validation
+  validates :document_number, uniqueness: { scope: :document_type }, allow_nil: true, if: :enable_document_validation
 
   validate :validate_username_length
 
@@ -166,7 +169,7 @@ class User < ApplicationRecord
   end
 
   def administrator?
-    !Administrator.find_by(user_id: self.id).blank? || self.sures? || self.super_administrator? || self.section_administrator?
+    !Administrator.find_by(user_id: self.id).blank? || self.sures? || self.super_administrator? || self.section_administrator? || self.consultant? || self.editor?
   end
 
   def sures?
@@ -191,6 +194,10 @@ class User < ApplicationRecord
 
   def consultant?
     !Consultant.find_by(user_id: self.id).blank?
+  end
+
+  def editor?
+    !Editor.find_by(user_id: self.id).blank?
   end
 
   def poll_officer?
@@ -385,7 +392,7 @@ class User < ApplicationRecord
   end
 
   def locale
-    self[:locale] ||= I18n.default_locale.to_s
+    self[:locale] ||= :es.to_s
   end
 
   def confirmation_required?

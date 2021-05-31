@@ -203,6 +203,80 @@ describe "Proposals" do
         expect(page).not_to have_link("No comments", href: "#comments")
       end
     end
+
+    scenario "Shows clickable markers for related proposals by tag on proposal map", :js do
+      Setting["feature.map"] = true
+      proposal = create(:proposal, tag_list: "culture, sports", map_location: create(:map_location, latitude: 51.48))
+      related_proposal = create(:proposal, tag_list: "culture", map_location: create(:map_location, latitude: 51.50))
+      create(:proposal, tag_list: "sports", map_location: nil)
+
+      visit proposal_path(proposal)
+
+      within ".map_location" do
+        expect(page).to have_selector(".map-icon", count: 2)
+        expect(page).to have_selector(".map-icon.map-icon-related", count: 1)
+      end
+
+      find(".map-icon-related").click
+      within ".leaflet-popup-pane" do
+        click_link related_proposal.title
+      end
+
+      expect(page).to have_current_path proposal_path(related_proposal)
+    end
+
+    describe "Control layer to show/hide related proposals", :js do
+      scenario "Allow to hide related proposals" do
+        Setting["feature.map"] = true
+        proposal = create(:proposal, tag_list: "culture, sports", map_location: create(:map_location))
+        create(:proposal, tag_list: "culture", map_location: create(:map_location))
+
+        visit proposal_path(proposal)
+
+        within ".map_location" do
+          expect(page).to have_field "Related proposals"
+          expect(page).to have_selector ".map-icon", count: 2
+          expect(page).to have_selector ".map-icon.map-icon-related", count: 1
+          uncheck "Related proposals"
+          expect(page).to have_selector ".map-icon", count: 1
+          expect(page).to have_field "Related proposals"
+          expect(page).not_to have_selector ".map-icon.map-icon-related"
+        end
+      end
+
+      scenario "Does not render when there are no related proposals" do
+        Setting["feature.map"] = true
+        proposal = create(:proposal, tag_list: "culture", map_location: create(:map_location))
+        create(:proposal, tag_list: "sports", map_location: create(:map_location))
+
+        visit proposal_path(proposal)
+
+        within ".map_location" do
+          expect(page).to have_selector(".map-icon", count: 1)
+          expect(page).not_to have_field "Related proposals"
+          expect(page).not_to have_selector ".map-icon-related"
+        end
+        expect(page).not_to have_selector(".leaflet-control-layers-selector")
+      end
+    end
+  end
+
+  context "Edit" do
+    scenario "Does not show markers for related proposals by tag on proposal map", :js do
+      Setting["feature.map"] = true
+      proposal = create(:proposal, tag_list: "culture, sports", map_location: create(:map_location))
+      create(:proposal, tag_list: "culture", map_location: create(:map_location))
+      create(:proposal, tag_list: "sports")
+      login_as(proposal.author)
+
+      visit edit_proposal_path(proposal)
+
+      within ".map_location" do
+        expect(page).to have_selector(".map-icon", count: 1)
+        expect(page).not_to have_selector ".map-icon-related"
+        expect(page).not_to have_field "Related proposals"
+      end
+    end
   end
 
   context "Show on mobile screens" do

@@ -1,0 +1,16 @@
+<% if params[:errors]%>
+  <div id="error_explanation" data-alert class="callout alert" data-closable>
+    <button class="close-button" aria-label="<%= t("application.close") %>" type="button" data-close>
+      <span aria-hidden="true">&times;</span>
+    </button>
+
+    <strong>
+        <%= pluralize params[:errors].count, t("form.error"), t("form.errors") %>
+        <ul>
+        <%params[:errors].each do |e|%>
+            <li><%=e%></li>
+        <%end%>
+        </ul>
+    </strong>
+  </div>
+<%end%>

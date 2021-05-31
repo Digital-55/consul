@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210210092140) do
+ActiveRecord::Schema.define(version: 20210525084520) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,13 @@ ActiveRecord::Schema.define(version: 20210210092140) do
     t.datetime "updated_at"
     t.index ["actionable_id", "actionable_type"], name: "index_activities_on_actionable_id_and_actionable_type", using: :btree
     t.index ["user_id"], name: "index_activities_on_user_id", using: :btree
+  end
+
+  create_table "actuations_multi_years", force: :cascade do |t|
+    t.string  "annos"
+    t.string  "values"
+    t.integer "sures_actuations_id"
+    t.index ["sures_actuations_id"], name: "index_actuations_multi_years_on_sures_actuations_id", using: :btree
   end
 
   create_table "admin_notification_translations", force: :cascade do |t|
@@ -550,6 +557,20 @@ ActiveRecord::Schema.define(version: 20210210092140) do
     t.index ["user_id"], name: "index_documents_on_user_id", using: :btree
   end
 
+  create_table "editors", force: :cascade do |t|
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_editors_on_user_id", using: :btree
+  end
+
+  create_table "event_agends", force: :cascade do |t|
+    t.date     "date_at"
+    t.string   "hour_at"
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "hour_to"
+  end
+
   create_table "failed_census_calls", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "document_number"
@@ -593,6 +614,7 @@ ActiveRecord::Schema.define(version: 20210210092140) do
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.string   "census_code"
+    t.string   "code_district"
   end
 
   create_table "geozones_legislation_processes", force: :cascade do |t|
@@ -1020,6 +1042,174 @@ ActiveRecord::Schema.define(version: 20210210092140) do
     t.datetime "rejected_at"
     t.string   "responsible_name", limit: 60
     t.index ["user_id"], name: "index_organizations_on_user_id", using: :btree
+  end
+
+  create_table "parbudget_ambits", force: :cascade do |t|
+    t.string   "name"
+    t.string   "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "parbudget_assistants", force: :cascade do |t|
+    t.string   "full_name",            null: false
+    t.integer  "parbudget_meeting_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.index ["parbudget_meeting_id"], name: "index_parbudget_assistants_on_parbudget_meeting_id", using: :btree
+  end
+
+  create_table "parbudget_centers", force: :cascade do |t|
+    t.string   "denomination"
+    t.string   "code"
+    t.string   "code_section"
+    t.string   "code_program"
+    t.string   "responsible"
+    t.string   "government_area"
+    t.string   "general_direction"
+    t.integer  "parbudget_project_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.index ["parbudget_project_id"], name: "index_parbudget_centers_on_parbudget_project_id", using: :btree
+  end
+
+  create_table "parbudget_economic_budgets", force: :cascade do |t|
+    t.integer  "year"
+    t.decimal  "import"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.string   "count_managing_body"
+    t.string   "count_functional"
+    t.string   "economic"
+    t.string   "element_pep"
+    t.string   "financing"
+    t.string   "type_contract"
+    t.integer  "parbudget_project_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.index ["parbudget_project_id"], name: "index_parbudget_economic_budgets_on_parbudget_project_id", using: :btree
+  end
+
+  create_table "parbudget_links", force: :cascade do |t|
+    t.string   "url",                  null: false
+    t.integer  "parbudget_project_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.index ["parbudget_project_id"], name: "index_parbudget_links_on_parbudget_project_id", using: :btree
+  end
+
+  create_table "parbudget_medias", force: :cascade do |t|
+    t.text     "text_document"
+    t.string   "title"
+    t.integer  "parbudget_project_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.index ["parbudget_project_id"], name: "index_parbudget_medias_on_parbudget_project_id", using: :btree
+  end
+
+  create_table "parbudget_meetings", force: :cascade do |t|
+    t.text     "reason"
+    t.string   "who_requests"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "parbudget_projects", force: :cascade do |t|
+    t.string   "denomination"
+    t.integer  "code"
+    t.integer  "year"
+    t.integer  "votes"
+    t.integer  "cost"
+    t.string   "author"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "association"
+    t.string   "url"
+    t.text     "descriptive_memory"
+    t.string   "entity_association"
+    t.boolean  "plate_proceeds"
+    t.boolean  "license_plate"
+    t.string   "plate_installed"
+    t.boolean  "assumes_dgpc"
+    t.integer  "code_old"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "parbudget_ambit_id"
+    t.integer  "parbudget_topic_id"
+    t.integer  "parbudget_responsible_id"
+    t.integer  "parbudget_local_forum_id"
+    t.index ["parbudget_ambit_id"], name: "index_parbudget_projects_on_parbudget_ambit_id", using: :btree
+    t.index ["parbudget_local_forum_id"], name: "index_parbudget_projects_on_parbudget_local_forum_id", using: :btree
+    t.index ["parbudget_responsible_id"], name: "index_parbudget_projects_on_parbudget_responsible_id", using: :btree
+    t.index ["parbudget_topic_id"], name: "index_parbudget_projects_on_parbudget_topic_id", using: :btree
+  end
+
+  create_table "parbudget_responsibles", force: :cascade do |t|
+    t.string   "full_name"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "position"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "parbudget_center_id"
+    t.index ["parbudget_center_id"], name: "index_parbudget_responsibles_on_parbudget_center_id", using: :btree
+  end
+
+  create_table "parbudget_topics", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "parbudget_track_exts", force: :cascade do |t|
+    t.integer  "parbudget_tracking_external_id"
+    t.integer  "parbudget_tracking_id"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.index ["parbudget_tracking_external_id"], name: "index_parbudget_track_exts_on_parbudget_tracking_external_id", using: :btree
+    t.index ["parbudget_tracking_id"], name: "index_parbudget_track_exts_on_parbudget_tracking_id", using: :btree
+  end
+
+  create_table "parbudget_track_ints", force: :cascade do |t|
+    t.integer  "parbudget_tracking_internal_id"
+    t.integer  "parbudget_tracking_id"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.index ["parbudget_tracking_id"], name: "index_parbudget_track_ints_on_parbudget_tracking_id", using: :btree
+    t.index ["parbudget_tracking_internal_id"], name: "index_parbudget_track_ints_on_parbudget_tracking_internal_id", using: :btree
+  end
+
+  create_table "parbudget_tracking_externals", force: :cascade do |t|
+    t.string   "code"
+    t.string   "status"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.text     "status_description"
+  end
+
+  create_table "parbudget_tracking_internals", force: :cascade do |t|
+    t.text     "observations"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.boolean  "file_send",    default: false
+    t.boolean  "file_recived", default: false
+    t.boolean  "file_edited",  default: false
+  end
+
+  create_table "parbudget_trackings", force: :cascade do |t|
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.integer  "parbudget_project_id"
+    t.index ["parbudget_project_id"], name: "index_parbudget_trackings_on_parbudget_project_id", using: :btree
+  end
+
+  create_table "parbudget_trackings_meetings", force: :cascade do |t|
+    t.integer  "parbudget_meeting_id"
+    t.integer  "parbudget_tracking_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.index ["parbudget_meeting_id"], name: "index_parbudget_trackings_meetings_on_parbudget_meeting_id", using: :btree
+    t.index ["parbudget_tracking_id"], name: "index_parbudget_trackings_meetings_on_parbudget_tracking_id", using: :btree
   end
 
   create_table "poll_answers", force: :cascade do |t|
@@ -1457,6 +1647,51 @@ ActiveRecord::Schema.define(version: 20210210092140) do
     t.index ["key"], name: "index_settings_on_key", using: :btree
   end
 
+  create_table "sg_generics", force: :cascade do |t|
+    t.string   "title"
+    t.string   "generic_type"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "sg_selects", force: :cascade do |t|
+    t.string   "key"
+    t.string   "value"
+    t.jsonb    "data"
+    t.integer  "sg_setting_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["sg_setting_id"], name: "index_sg_selects_on_sg_setting_id", using: :btree
+  end
+
+  create_table "sg_settings", force: :cascade do |t|
+    t.string   "title"
+    t.string   "setting_type"
+    t.string   "data_type"
+    t.boolean  "active"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "sg_table_fields", force: :cascade do |t|
+    t.string   "table_name"
+    t.string   "field_name"
+    t.string   "sgeneric_type"
+    t.integer  "sgeneric_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["sgeneric_type", "sgeneric_id"], name: "index_sg_table_fields_on_sgeneric_type_and_sgeneric_id", using: :btree
+  end
+
+  create_table "sg_table_orders", force: :cascade do |t|
+    t.string   "table_name"
+    t.integer  "order",         default: 0
+    t.integer  "sg_generic_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.index ["sg_generic_id"], name: "index_sg_table_orders_on_sg_generic_id", using: :btree
+  end
+
   create_table "signature_sheets", force: :cascade do |t|
     t.string   "signable_type"
     t.integer  "signable_id"
@@ -1567,9 +1802,10 @@ ActiveRecord::Schema.define(version: 20210210092140) do
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
     t.string   "borought"
-    t.integer  "geozone_id"
     t.string   "other"
-    t.index ["geozone_id"], name: "index_sures_actuations_on_geozone_id", using: :btree
+    t.jsonb    "geozones"
+    t.string   "project"
+    t.index ["geozones"], name: "index_sures_actuations_on_geozones", using: :gin
   end
 
   create_table "sures_administrators", force: :cascade do |t|
@@ -1608,9 +1844,10 @@ ActiveRecord::Schema.define(version: 20210210092140) do
     t.string   "resource"
     t.string   "field"
     t.string   "rules"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.boolean  "active",     default: true
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "active",      default: true
+    t.string   "data_status"
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -1739,7 +1976,7 @@ ActiveRecord::Schema.define(version: 20210210092140) do
     t.date     "access_key_generated_at"
     t.integer  "access_key_tried",                          default: 0
     t.date     "date_hide"
-    t.string   "name"
+    t.string   "first_name"
     t.string   "last_name"
     t.string   "last_name_alt"
     t.integer  "adress_id"
@@ -1908,6 +2145,7 @@ ActiveRecord::Schema.define(version: 20210210092140) do
     t.datetime "updated_at",             null: false
   end
 
+  add_foreign_key "actuations_multi_years", "sures_actuations", column: "sures_actuations_id"
   add_foreign_key "administrators", "users"
   add_foreign_key "adresses", "users", column: "users_id"
   add_foreign_key "budget_investments", "communities"
@@ -1916,6 +2154,7 @@ ActiveRecord::Schema.define(version: 20210210092140) do
   add_foreign_key "dashboard_executed_actions", "dashboard_actions", column: "action_id"
   add_foreign_key "dashboard_executed_actions", "proposals"
   add_foreign_key "documents", "users"
+  add_foreign_key "editors", "users"
   add_foreign_key "failed_census_calls", "poll_officers"
   add_foreign_key "failed_census_calls", "users"
   add_foreign_key "flags", "users"
@@ -1937,6 +2176,22 @@ ActiveRecord::Schema.define(version: 20210210092140) do
   add_foreign_key "moderators", "users"
   add_foreign_key "notifications", "users"
   add_foreign_key "organizations", "users"
+  add_foreign_key "parbudget_assistants", "parbudget_meetings"
+  add_foreign_key "parbudget_centers", "parbudget_projects"
+  add_foreign_key "parbudget_economic_budgets", "parbudget_projects"
+  add_foreign_key "parbudget_links", "parbudget_projects"
+  add_foreign_key "parbudget_medias", "parbudget_projects"
+  add_foreign_key "parbudget_projects", "parbudget_ambits"
+  add_foreign_key "parbudget_projects", "parbudget_responsibles"
+  add_foreign_key "parbudget_projects", "parbudget_topics"
+  add_foreign_key "parbudget_responsibles", "parbudget_centers"
+  add_foreign_key "parbudget_track_exts", "parbudget_tracking_externals"
+  add_foreign_key "parbudget_track_exts", "parbudget_trackings"
+  add_foreign_key "parbudget_track_ints", "parbudget_tracking_internals"
+  add_foreign_key "parbudget_track_ints", "parbudget_trackings"
+  add_foreign_key "parbudget_trackings", "parbudget_projects"
+  add_foreign_key "parbudget_trackings_meetings", "parbudget_meetings"
+  add_foreign_key "parbudget_trackings_meetings", "parbudget_trackings"
   add_foreign_key "poll_answers", "poll_questions", column: "question_id"
   add_foreign_key "poll_booth_assignments", "polls"
   add_foreign_key "poll_final_recounts", "poll_booth_assignments", column: "booth_assignment_id"
@@ -1963,8 +2218,9 @@ ActiveRecord::Schema.define(version: 20210210092140) do
   add_foreign_key "related_content_scores", "related_contents"
   add_foreign_key "related_content_scores", "users"
   add_foreign_key "section_administrators", "users"
+  add_foreign_key "sg_selects", "sg_settings"
+  add_foreign_key "sg_table_orders", "sg_generics"
   add_foreign_key "superadministrators", "users"
-  add_foreign_key "sures_actuations", "geozones"
   add_foreign_key "sures_administrators", "users"
   add_foreign_key "users", "adresses"
   add_foreign_key "users", "geozones"

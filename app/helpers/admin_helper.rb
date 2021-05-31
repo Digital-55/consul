@@ -43,7 +43,7 @@ module AdminHelper
   end
 
   def menu_profiles?
-    %w[administrators sures_administrators section_administrators consultants organizations officials moderators valuators managers users].include?(controller_name)
+    %w[superadministrators administrators sures_administrators section_administrators consultants editors organizations officials moderators valuators managers users].include?(controller_name)
   end
 
   def menu_settings?
@@ -52,8 +52,8 @@ module AdminHelper
   end
 
   def menu_customization?
-    ["pages", "banners", "information_texts", "documents"].include?(controller_name) ||
-    menu_homepage? || menu_pages?
+    ["pages", "banners", "information_texts", "documents", "sgs","event_agends"].include?(controller_name) ||
+    menu_homepage? || menu_pages? || menu_sg?
   end
 
   def menu_sures?
@@ -74,6 +74,10 @@ module AdminHelper
 
   def menu_homepage?
     ["homepage", "cards"].include?(controller_name) && params[:page_id].nil?
+  end
+
+  def menu_sg?
+    ["sgs"].include?(controller_name)
   end
 
   def menu_pages?
@@ -121,6 +125,7 @@ module AdminHelper
 
   def user_roles(user)
     roles = []
+    roles << :superadmin if user.super_administrator?
     roles << :admin if user.administrator?
     roles << :sures if user.sures?
     roles << :moderator if user.moderator?

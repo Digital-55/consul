@@ -54,6 +54,10 @@ class Poll < ApplicationRecord
   scope :not_budget,    -> { where(budget_id: nil) }
   scope :created_by_admin, -> { where(related_type: nil) }
 
+  def self.translate_column_names
+    [:name, :description, :summary ]
+  end
+
   def self.sort_for_list
     all.sort do |poll, another_poll|
       if poll.geozone_restricted? == another_poll.geozone_restricted?

@@ -88,6 +88,7 @@
 //= require settings
 //= require login_form
 //= require starrr.js
+//= require sg.js
 
 var initialize_modules = function() {
   App.Answers.initialize();
@@ -193,6 +194,16 @@ function setHidden(limit) {
   }
 }
 
+function setStatusValue(element) {
+  if(document.getElementById(element).checked == false){
+    console.log("checked->false");
+    document.getElementById(element).value = false;
+  } else {
+    console.log("checked->true");
+    document.getElementById(element).value = true;
+  }
+}
+
 function uniqueCheck(select, other_ids) {
   var aux = $('.' + other_ids)
   for(var i=0; i< aux.length; i++){
@@ -253,13 +264,31 @@ function showhideFieldActuation(element, value, field) {
   }
 }
 
+function showMultiYears(multi,simple) {
+    multi.show();
+    simple.hide();
+}
+
+function hideMultiYears(multi,simple) {
+  multi.hide();
+  simple.show();
+}
+
+function hideAnnos(element) {
+  document.getElementById(element).style.display = "none";
+}
+
 function changeShowFields(element, field) {
   if (element.css("display") == "none") {
     field.attr('value',false);
   } else {
     field.attr('value',true);
   }
-  console.log(element)
-  console.log(field)
+}
+
+function changeButton(element){
+  $("#importbtn").each(function(){
+    $(this).attr("disabled", false);
+  });
 }
 

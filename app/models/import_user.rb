@@ -26,24 +26,76 @@ class ImportUser < BaseImporter
   def save
     return false if invalid?
     @path_to_file = file.path
-    import!
-    true
+    valid = valid_users
+    if valid.blank?
+      error_import = import!
+    end
+    if valid == false 
+      valid = {0 => "Fichero en blanco"}
+    elsif valid.blank? && error_import.blank?
+      true
+    else
+      valid.blank? ? error_import : valid
+    end
+  rescue => e
+    {0 => "ERROR: El fichero no tiene formato correcto de CSV ni codificación en UTF-8"}
   end
 
   def save!
     validate! && save
+  rescue 
+    false
   end
 
   private
 
+    def valid_users
+      count = 0
+      message = "Fila #{count}, el nombre, el email y el documento no pueden estar en blanco."
+      errors = {}
+      blank_file = true
+      begin
+        each_row do |row|
+          blank_file = false
+          begin
+            count = count + 1
+            if row.blank?
+              errors.merge!({count => message})
+            else
+              if row[:usuario].blank?
+                errors.merge!({count => "Usuario en blanco"})
+              elsif !User.find_by(username: row[:usuario]).blank?
+                errors.merge!({count => "El nombre de usuario ya está en uso."})
+              elsif row[:email].blank?
+                errors.merge!({count => "Email en blanco"})
+              elsif !User.find_by(email: row[:email]).blank?
+                errors.merge!({count => "El email ya está en uso."})
+              elsif row[:documento].blank?
+                errors.merge!({count => "Documento en blanco"})
+              elsif !User.find_by(document_number: row[:documento]).blank?
+                errors.merge!({count => "Ya existe un usuario con el mismo documento."})
+              end
+            end
+          rescue
+            errors.merge!({count => message})
+          end
+        end
+        blank_file == false ? errors : false
+      rescue => e
+        errors.merge!({count => e})
+      end     
+    end
+
     def import!
       super
-      each_row do |row|
-        if @logs.blank?
+      count = 0
+      errors = {}
+      begin
+        each_row do |row|
           begin
             user = build_user(row)
-            if user.save
-              if user.adress.save
+            if user.save!
+              if user.adress.save!
                 puts "===================================================="
                 puts "Usuario creado"
                 puts "===================================================="
@@ -51,11 +103,13 @@ class ImportUser < BaseImporter
                 puts "===================================================="
                 puts  user.adress.errors.full_messages
                 puts "===================================================="
+                errors.merge!({count =>  user.adress.errors.full_messages })
               end
             else
               puts "===================================================="
               puts  user.errors.full_messages
               puts "===================================================="
+              errors.merge!({count =>  user.errors.full_messages })
             end
           rescue
             puts "========================================================================="
@@ -63,23 +117,28 @@ class ImportUser < BaseImporter
             puts  user.adress.errors.full_messages
             puts  user.errors.full_messages
             puts "========================================================================="
-            @logs.merge!("El usuario '#{row[:usuario]}' no se ha podido generar.")
-            @logs.merge!(user.errors.full_messages)
-            @logs.merge(user.adress.errors.full_messages)
+            errors.merge!({count =>  "El usuario '#{row[:usuario]}' no se ha podido generar. -> #{user.errors.full_messages}" })
           end
-        else
-          break
-          redirect_to management_import_users_path(@logs), alert: error
         end
+        errors
+      rescue => e
+        puts "========================================================================="
+        puts "ERROR: #{e}."
+        puts "========================================================================="
+        errors.merge!({count => e})
       end
     end
 
+    def valid_data(row)
+      !(row[:usuario].blank? || row[:email].blank? || row[:documento].blank?)
+    end
+
     def build_user(row)
-      user = User.new(username: row[:usuario], email: row[:email], name: row[:nombre], last_name: row[:primer_apellido], 
-        last_name_alt: row[:segundo_apellido], phone_number: row[:telefono], document_number: row[:documento], 
+      user = User.new(username: row[:usuario], email: row[:email], first_name: row[:nombre], last_name: row[:primer_apellido], 
+        last_name_alt: row[:segundo_apellido], phone_number: row[:telefono], document_number: row[:documento],
         date_of_birth: row[:fecha_nacimiento], terms_of_service: "1", residence_verified_at: Time.current, 
         verified_at: Time.current)
-      user.document_type = get_document_type(row[:tipo_documento]) if !row[:tipo_documento].blank?
+      user.document_type = !row[:tipo_documento].blank? ? get_document_type(row[:tipo_documento]) : get_document_type(1)
       user.gender = get_gender(row[:sexo]) if !row[:sexo].blank?
       pass = Digest::SHA1.hexdigest("#{user.created_at.to_s}--#{user.username}")[0,8].upcase
       user.password = "12345678" #pass

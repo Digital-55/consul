@@ -46,4 +46,8 @@ class Legislation::DraftVersion < ApplicationRecord
   def total_comments
     annotations.sum(:comments_count)
   end
+
+  def self.translate_column_names
+    [:title, :changelog,:body,:body_html,:toc_html ]
+  end
 end
