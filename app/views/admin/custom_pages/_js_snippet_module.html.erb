@@ -13,6 +13,7 @@
     <div class="small-12 medium-10 column">
       <%= f.text_area :js_snippet,
                         id: "js_snippet_area_#{f.object.id}",
+                        class: 'custom_page_module-js_snippet',
                         label: t("admin.custom_pages.custom_page_modules.custom_page_module.js_snippet"),
                         rows: 10,
                         maxlength: JSSnippetModule::TEXT_MAX_LENGTH  %>
