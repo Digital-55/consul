@@ -186,8 +186,8 @@ class WelcomeController < ApplicationController
           l[:list] = l[:model].joins(:translations).where(l[:list_base])
         end
 
-        if l[:model].try(:model_name).to_s == "Legislation::process"
-          l[:list]= l[:list].published.not_in_draft
+        if l[:model].try(:model_name).to_s == "Legislation::Process"
+          l[:list]= l[:list].seached.published.not_in_draft
         end
         set_votable(l)
         @resultado.push({tabla: l[:model].model_name.human, search: search_data_aux_gen, count: l[:list].blank? ? 0 : l[:list].count})  
