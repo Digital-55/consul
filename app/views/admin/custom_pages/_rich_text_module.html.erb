@@ -9,6 +9,7 @@
     </div>
   </div>
   <div class="card-section">
+    <%= f.hidden_field :type, value: 'RichTextModule' %>
     <div class="ckeditor small-12 medium-10 column">
       <%= f.cktext_area :rich_text,
                         id: "rich_text_area_#{f.object.id}",

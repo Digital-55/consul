@@ -9,6 +9,7 @@
     </div>
   </div>
   <div class="card-section">
+    <%= f.hidden_field :type, value: 'CTAModule' %>
     <div class="small-12 medium-10 column">
       <%= f.label :cta_text, t("admin.custom_pages.custom_page_modules.cta_module.cta_text") %>
       <%= f.text_field :cta_text, label: false, class: 'cta-module-text' %>
