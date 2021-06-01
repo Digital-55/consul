@@ -28,6 +28,10 @@ $(document).on('page:change', function(){
     }
   });
 
+  $('#custom-page-modules-list').bind('cocoon:after-insert', function() {
+    validateInputFields();
+  });
+
   loadCodeSnippet();
   toggleCustomPageModuleCardSection();
   toggleAllCustomPageModuleCardSection();
@@ -35,7 +39,47 @@ $(document).on('page:change', function(){
   avoidScrollTopOnReveal();
   closeRevealAfterAddModule();
   slugAutoFill();
+  validateInputFields();
 });
+
+function validateInputFields() {
+  $('.custom_page_module-youtube_url').change(function(){
+    var url = $(this).val();
+    var regex = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+    var urlValidation = url.match(regex) ? true : false;
+    displayValidation(urlValidation, $(this))
+  })
+
+  $('.custom_page_module-cta_link, .custom_page_module-promo_link_one, .custom_page_module-promo_link_two, .custom_page_module-promo_link_three').change(function(){
+    var link = $(this).val();
+    var regex = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/gm;
+    var linkValidation = link.match(regex) ? true : false;
+    if(link == ""){
+      linkValidation = true;
+    };
+    displayValidation(linkValidation, $(this))
+  })
+}
+
+function displayValidation(validation, $this){
+  if(!validation) {
+    if(!$this.siblings('.error-message').length) {
+      if($this.context.classList.value == "custom_page_module-youtube_url"){
+        $this.after('<small class="error-message">El enlace no corresponde a una URL de YouTube</small>');
+      } else {
+        $this.after('<small class="error-message">El enlace no corresponde a una URL</small>');
+      }
+    }
+    $this.addClass('wrap-field-error');
+    $("input[type=submit]").attr('disabled', true);
+  } else {
+    $this.siblings('.error-message').remove();
+    $this.removeClass('wrap-field-error');
+    $("input[type=submit]").removeClass('disabled');
+    $("input[type=submit]").attr('disabled', false);
+  }
+  return false;
+}
 
 function loadCodeSnippet(){
   var snippets = $('.js_snippets').data("snippets")
