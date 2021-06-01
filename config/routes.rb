@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   draw :valuation
   draw :verification
   draw :sures
+  draw :csc
 
   root "welcome#index"
   get "/welcome", to: "welcome#welcome"
@@ -51,6 +52,8 @@ Rails.application.routes.draw do
   get "/reto-compartimos-barrio" => redirect("legislation/processes/#{Rails.application.secrets.id_reto_compartimos_barrio}/proposals")
   
   get "/consul.json", to: "installation#details"
+
+  get "/organos/consejosocial", to: "csc#index"
   
   resources :stats, only: [:index]
   resources :images, only: [:destroy]
