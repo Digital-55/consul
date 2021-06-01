@@ -188,6 +188,8 @@ class WelcomeController < ApplicationController
 
         if l[:model].try(:model_name).to_s == "Legislation::Process"
           l[:list]= l[:list].seached.published.not_in_draft
+        elsif l[:model].try(:model_name).to_s == "Proposal"
+          l[:list]= l[:list].published
         end
         set_votable(l)
         @resultado.push({tabla: l[:model].model_name.human, search: search_data_aux_gen, count: l[:list].blank? ? 0 : l[:list].count})  
