@@ -27,16 +27,16 @@
                 <%= link_to admin_parbudget_responsibles_path, class: "button hollow", title: t('admin.parbudget.show_audits'), alt: t('admin.parbudget.show_audits')  do %>
                   <span class="icon-settings"></span>
                 <%end%>
-                <%= link_to admin_parbudget_responsible_path(responsible, format: :pdf), class: "button", title: t('admin.parbudget.responsible.update_responsible'), alt: t('admin.parbudget.responsible.update_responsible')  do %>
+                <%= link_to admin_parbudget_responsible_path(responsible, format: :pdf), class: "button", title: t('admin.parbudget.responsible.pdf_download'), alt: t('admin.parbudget.responsible.pdf_download')  do %>
                   <span class="icon-document"></span>
                 <%end%>
-                <%= link_to admin_parbudget_responsible_path(responsible), class: "button", title: t('admin.parbudget.responsible.update_responsible'), alt: t('admin.parbudget.responsible.update_responsible')  do %>
+                <%= link_to admin_parbudget_responsible_path(responsible), class: "button", title: t('admin.parbudget.responsible.show_responsible'), alt: t('admin.parbudget.responsible.show_responsible')  do %>
                   <span class="icon-eye"></span>
                 <%end%>
-                <%= link_to edit_admin_parbudget_responsible_path(responsible), class: "button", title: t('admin.parbudget.responsible.update_responsible'), alt: t('admin.parbudget.responsible.update_responsible')  do %>
+                <%= link_to edit_admin_parbudget_responsible_path(responsible), class: "button", title: t('admin.parbudget.responsible.title_update'), alt: t('admin.parbudget.responsible.title_update')  do %>
                   <span class="icon-edit"></span>
                 <%end%>
-                <%= link_to  admin_parbudget_responsible_path(responsible),method: :delete, class: "button hollow alert", title: "Borrar ámbito", alt: "Borrar ámbito", data: {confirm: t('admin.parbudget.responsible.destroy_confirm')}  do %>
+                <%= link_to  admin_parbudget_responsible_path(responsible),method: :delete, class: "button hollow alert", title: t('admin.parbudget.responsible.title_delete'), alt: t('admin.parbudget.responsible.title_delete'), data: {confirm: t('admin.parbudget.responsible.destroy_confirm')}  do %>
                   <span class="icon-deleted"></span>
                 <%end%>
               </td>

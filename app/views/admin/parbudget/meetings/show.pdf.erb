@@ -1,0 +1,32 @@
+<div class="small-12 column">
+    <h2><%= "#{@meeting.who_requests} - #{@meeting.date_at_convert}"%></h2>
+</div>
+
+
+<div class="small-12 column">
+    <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+        <legend><%=t('admin.parbudget.meeting.title_data')%></legend>
+        <table>
+            <tr>
+                <th style="width: 25%"><%=@model.human_attribute_name(:date_at_convert)%></th>
+                <th style="width: 75%"><%=@model.human_attribute_name(:who_requests)%></th>
+            <tr>
+            <tr>
+                <td style="width: 25%"><%= @meeting.try(:date_at_convert) %></td>
+                <td style="width: 75%"><%= @meeting.try(:who_requests) %></td>
+            <tr>
+        </table>
+        <table >
+            <tr>
+                <th><%=@model.human_attribute_name(:reason)%></th>
+            <tr>
+            <tr>
+                <td ><%= @meeting.try(:reason).to_s.html_safe %></td>
+            <tr>
+        </table>
+    </fieldset>
+    <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+        <legend><%=t('admin.parbudget.meeting.title_data_assistant')%></legend>
+        <%=  @meeting.try(:assistants)%>
+    </fieldset>
+</div>

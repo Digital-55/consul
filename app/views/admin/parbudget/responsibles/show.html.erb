@@ -9,14 +9,14 @@
     <div class="small-12 column">
         <h2><%= @responsible.full_name %></h2>
         <div class="float-right">
-            <%= link_to t("admin.menu.parbudget_tabs.csv_exporter"), current_path_with_query_params(id: @responsible.id, format: :pdf), class: "button" %>
+            <%= link_to t('admin.parbudget.responsible.pdf_download'), current_path_with_query_params(id: @responsible.id, format: :pdf), class: "button" %>
         </div>
     </div>
 
  
   <div class="small-12 column">
     <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
-      <legend>Datos del responsable</legend>
+      <legend><%=t('admin.parbudget.responsible.title_data')%></legend>
       <div class="row">
         <div class="small-12 medium-6  column end"  >
             <p><b><%=@model.human_attribute_name(:full_name)%></b></p>

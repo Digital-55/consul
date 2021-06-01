@@ -1,6 +1,4 @@
-
 <%= form_for [:admin, @meeting], html: {data: {watch_changes: true}} do |f| %>
-
   <% if @meeting.errors.any? %>
     <div id="error_explanation" data-alert class="callout alert" data-closable>
       <button class="close-button" aria-label="<%= t("application.close") %>" type="button" data-close>
@@ -14,42 +12,40 @@
     </div>
   <% end %>
   <div class="small-12 column">
-        <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
-            <legend><%=t("admin.menu.parbudget_tabs.legend_filter")%></legend>
-  <div class="row">
-    <div class="small-12 medium-3  column end"  >
-      <%= f.text_field :date %>
-    </div>
-    <div class="small-12 medium-9  column end"  >
-      <%= f.text_field :who_requests %>
-    </div>
-    
-    
-  </div>
-  <div class="row">
-    <div class="small-12 medium-12  column end"  >
-      <%= f.text_field :reason %>
-    </div>
-  </div>
- </fieldset>
-  <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
-        <legend><%=t("admin.menu.parbudget_tabs.legend_filter")%></legend>
-          <div id="nested_parbudget_responsibles">
-            <%= f.fields_for :parbudget_responsibles do |ff| %>
-                <%= render "parbudget_responsible_fields", f: ff %>
-            <% end %>
-
-            <div class="js-add-fields-container">
-                <div class="small-12 medium-9 column">
-                    <%= link_to_add_association t("admin.legislation.questions.form.add_option"),
-                                            f, :parbudget_responsibles, class: "button hollow"  %>
-                </div>
-            </div>
-  </div>
+    <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+      <legend><%=t('admin.parbudget.meeting.title_data')%></legend>
+      <div class="row">
+        <div class="small-12 medium-3  column end"  >
+          <%= f.date_field :date_at %>
+        </div>
+        <div class="small-12 medium-9  column end"  >
+          <%= f.text_field :who_requests %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-12 medium-12  column end ckeditor"  >
+          <%= f.cktext_area :reason, rows: 5,
+          ckeditor: { language: I18n.locale, toolbar: current_user.administrator? ? "admin" : 'mini' } %>
+        </div>
+      </div>
     </fieldset>
- </div>
-  <div class="small-12 medium-3 column clear end">
-    <%= f.submit(class: "button success expanded", value: t("admin.sures.actuations.#{admin_submit_action(@meeting)}.submit_button")) %>
-  </div> 
+    <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+      <legend><%=t('admin.parbudget.meeting.title_data_assistant')%></legend>
+      <div id="nested_parbudget_assistants">
+        <%= f.fields_for :parbudget_assistants do |ff| %>
+            <%= render "parbudget_assistant_fields", f: ff %>
+        <% end %>
 
+        <div class="js-add-fields-container">
+            <div class="small-12 medium-9 column end">
+                <%= link_to_add_association t("admin.parbudget.meeting.add_assistant"),
+                                        f, :parbudget_assistants, class: "button hollow"  %>
+            </div>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+  <div class="small-12 medium-3 column clear end">
+    <%= f.submit(class: "button success expanded", value: t("admin.parbudget.#{admin_submit_action(@meeting)}.submit_button")) %>
+  </div>
 <% end %>

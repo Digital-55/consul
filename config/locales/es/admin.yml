@@ -706,6 +706,10 @@ es:
         index:
           title: Seguimiento
     parbudget:
+      edit:
+        submit_button: "Guardar cambios"
+      new:
+        submit_button: "Crear"
       show_audits: "Ver auditorias"
       ambit:
         search_code: Código
@@ -718,6 +722,7 @@ es:
         destroy_error: "No se ha podido eliminar el ámbito"
         destroy_confirm: "¿Desea eliminar el ámbito seleccionado?"
         update_ambit: "Actualizar ámbito"        
+        title_delete: Borrar ámbito
       center:
         search_center_code: Código centro
         search_section_code: Código sección
@@ -734,6 +739,11 @@ es:
         destroy_confirm: "¿Desea eliminar el centro gestor seleccionado?"
         update_center: "Actualizar centro gestor"
         show_center: "Ver centro gestor"
+        title_new: Nuevo centro
+        title_update: Editar centro
+        title_delete: Borrar centro
+        pdf_download: "Descargar PDF del centro"
+        title_data: "Datos del centro"
       project:
         search_identificator: "Identificador"
         search_title: "Título"
@@ -749,8 +759,13 @@ es:
         destroy_success: "Se ha eliminado correctamente el proyecto"
         destroy_error: "No se ha podido eliminar el proyecto"
         destroy_confirm: "¿Desea eliminar el proyecto seleccionado?"
-        update_center: "Actualizar proyecto"
+        update_project: "Actualizar proyecto"
         show_project: "Ver proyecto"
+        title_new: Nuevo proyecto
+        title_update: Editar proyecto
+        title_delete: Borrar proyecto
+        pdf_download: "Descargar PDF del proyecto"
+        title_data: "Datos del proyecto"
       responsible:
         search_responsible: "Responsable"
         search_phone: "Teléfono"
@@ -764,10 +779,13 @@ es:
         destroy_success: "Se ha eliminado correctamente el responsable"
         destroy_error: "No se ha podido eliminar el responsable"
         destroy_confirm: "¿Desea eliminar el responsable seleccionado?"
-        update_center: "Actualizar responsable"
+        update_responsible: "Actualizar responsable"
         show_responsible: "Ver responsable"
         title_new: Nuevo responsable
-        title_edit: Editar responsable
+        title_update: Editar responsable
+        title_delete: Borrar responsable
+        pdf_download: "Descargar PDF del responsable"
+        title_data: "Datos del responsable"
       meeting:
         search_date_start: "Fecha desde"
         search_date_end: "Fecha hasta"
@@ -778,8 +796,16 @@ es:
         destroy_success: "Se ha eliminado correctamente la reunión"
         destroy_error: "No se ha podido eliminar la reunión"
         destroy_confirm: "¿Desea eliminar la reunión seleccionado?"
-        update_center: "Actualizar reunión"
+        update_meeting: "Actualizar reunión"
         show_meeting: "Ver reunión"
+        title_new: Nueva reunión
+        title_update: Editar reunión
+        title_delete: Borrar reunión
+        pdf_download: "Descargar PDF de la reunión"
+        title_data: "Datos de la reunión"
+        title_data_assistant: "Invitados / Asistentes"
+        add_assistant: "Añadir invitado / asistente"
+        delete_assistant: "Borrar invitado / asistente"
       topic:
         search_topic: "Tema"
         create_success: "Se ha creado correctamente el tema"
@@ -789,7 +815,8 @@ es:
         destroy_success: "Se ha eliminado correctamente el tema"
         destroy_error: "No se ha podido eliminar el tema"
         destroy_confirm: "¿Desea eliminar el tema seleccionado?"
-        update_center: "Actualizar tema"
+        update_topic: "Actualizar tema"
+        title_delete: Borrar tema
     sures:
       actuations:
         create:

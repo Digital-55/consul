@@ -1,5 +1,5 @@
 class Admin::Parbudget::MeetingsController < Admin::Parbudget::BaseController
-  respond_to :html, :js, :csv
+  respond_to :html, :js, :csv, :pdf
   before_action :load_data, only: [:index]
 
   def index
@@ -52,6 +52,17 @@ class Admin::Parbudget::MeetingsController < Admin::Parbudget::BaseController
   end
 
   def show
+    respond_to do |format|
+      format.html
+      format.pdf do
+        
+        render pdf: "#{@meeting.who_requests}_#{@meeting.date_at_convert}",
+        layout: 'pdf.html',
+        page_size: 'A4',
+        encoding: "UTF-8"
+       
+      end
+    end
   end
 
   private 
@@ -65,7 +76,7 @@ class Admin::Parbudget::MeetingsController < Admin::Parbudget::BaseController
   end
 
   def meeting_strong_params
-    params.require(:parbudget_meeting).permit(:reason, :date, :who_requests)
+    params.require(:parbudget_meeting).permit(:reason, :date_at, :who_requests, {parbudget_assistants_attributes: [:id, :full_name, :_destroy]})
   end
 
   def load_resource
