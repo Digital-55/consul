@@ -1,42 +1,53 @@
 $(document).on('page:change', function(){  
+  sortItems();
+  updateItems();
+  toggleMenuItemCardSection();
+  toggleAllMenuItemCardSection();
+  removeItem();
 
   $('#menu-items-list').bind('cocoon:after-insert', function() {
-    $('.nesting-wrapper').sortable({
-      cursor: "move",
-      opacity: 0.7,
-      connectWith: '.nesting-wrapper',
-      placeholder: 'ui-state-hover',
-      update: function(e, ui) {
-        $.ajax({
-          url: $(this).data("url"),
-          type: "PATCH",
-          data: $(this).sortable('serialize') + '&parent_item_id=' + getParentItem(e.target)
-        });
-      },
-      start: function( e, ui ) {
-        $sortedItem = ui.item;
-        $('.nesting-wrapper').addClass('subitem');
-        $('.nesting-wrapper.subitem.dropped').removeClass('dropped');
-        // Avoids nesting more than two levels deep
-        $('.nested-fields').each(function() {
-          if($(this).parents('.nested-fields').length > 0 || $sortedItem.find('.nested-fields').length > 0){
-            $(this).find('.nesting-wrapper.subitem').addClass('dropped')
-          }
-        });
-      },
-      stop: function( e, ui ) {
-        $('.nesting-wrapper.subitem').addClass('dropped')
-        $('.nesting-wrapper').addClass('subitem')
-      }
-    })
-
-    function getParentItem(event_target) {
-      if(event_target.id !== "menu-items-list") {
-        return event_target.parentElement.getAttribute('id').split('_').pop()
-      }
-    }
+    sortItems();
   });
+});
 
+function sortItems() {
+  $('.nesting-wrapper').sortable({
+    cursor: "move",
+    opacity: 0.7,
+    connectWith: '.nesting-wrapper',
+    placeholder: 'ui-state-hover',
+    update: function(e, ui) {
+      $.ajax({
+        url: $(this).data("url"),
+        type: "PATCH",
+        data: $(this).sortable('serialize') + '&parent_item_id=' + getParentItem(e.target)
+      });
+    },
+    start: function( e, ui ) {
+      $sortedItem = ui.item;
+      $('.nesting-wrapper').addClass('subitem');
+      $('.nesting-wrapper.subitem.dropped').removeClass('dropped');
+      // Avoids nesting more than two levels deep
+      $('.nested-fields').each(function() {
+        if($(this).parents('.nested-fields').length > 0 || $sortedItem.find('.nested-fields').length > 0){
+          $(this).find('.nesting-wrapper.subitem').addClass('dropped')
+        }
+      });
+    },
+    stop: function( e, ui ) {
+      $('.nesting-wrapper.subitem').addClass('dropped')
+      $('.nesting-wrapper').addClass('subitem')
+    }
+  })
+}
+
+function getParentItem(event_target) {
+  if(event_target.id !== "menu-items-list") {
+    return event_target.parentElement.getAttribute('id').split('_').pop()
+  }
+}
+
+function updateItems() {
   $('.nesting-wrapper.nested').on('change', function(e, ui) {
     var eventTargetMenuItem = getMenuItem(e.target);
     var $menuItem = $(eventTargetMenuItem)
@@ -144,16 +155,7 @@ $(document).on('page:change', function(){
     };
     removeItem();
   })
-
-  toggleMenuItemCardSection();
-  toggleAllMenuItemCardSection();
-  removeItem();
-  // Activates 'cocoon:after-insert' to allow sorting existing menu-items
-  if($('.nested-fields').length > 0) {
-    $('.button.add_fields').click()
-    $('.remove_fields.dynamic').click()
-  }
-});
+}
 
 function removeItem() {
   $('#menu-items-list a.remove_fields').click(function(e) {
