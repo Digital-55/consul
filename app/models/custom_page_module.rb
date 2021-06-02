@@ -9,4 +9,8 @@ class CustomPageModule < ApplicationRecord
   scope :promotional, -> { where(type: 'PromotionalModule') }
   scope :enabled, -> { where(disabled: false)}
   scope :sorted, -> { order(position: :asc, updated_at: :desc) }
+
+  after_save do
+    custom_page.update_attribute(:updated_at, Time.now)
+  end
 end
