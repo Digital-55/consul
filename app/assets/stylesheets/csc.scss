@@ -1,6 +1,15 @@
 #csc-container {
     font-family:'Helvetica Neue';
+    .row {
+        max-width: 75rem;
+        margin-right: auto;
+        margin-left: auto;
+    }
     
+    #title {
+        padding-top: 1em;
+    }
+
     .title {
         color: #27348B;
         font-size: 45px;
@@ -10,11 +19,10 @@
 
     p {
         padding-top: 0.5em;
-        font-size: 25px;
     }
 
     .row {
-        padding-top: 6em;
+        padding-top: 4em;
     }
 
     .link {
