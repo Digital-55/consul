@@ -1,10 +1,7 @@
 #csc-container {
     font-family:'Helvetica Neue';
-    .row {
-        max-width: 75rem;
-        margin-right: auto;
-        margin-left: auto;
-    }
+    
+    
     
     #title {
         padding-top: 1em;
@@ -12,29 +9,35 @@
 
     .title {
         color: #27348B;
-        font-size: 45px;
         border: none;
         line-height: 1;
+    }
+
+    .title_sub {
+        color: #27348B;
+        border: none;
+        line-height: 1;
+        font-weight: normal;
     }
 
     p {
         padding-top: 0.5em;
     }
 
-    .row {
-        padding-top: 4em;
-    }
-
     .link {
         color: #1779ba;
     }
 
-    #desc {
-        padding-top: 1em;
+    .desc {
+        padding-top: 2em;
     }
 
     .dropdown {
         display: none;
+    }
+
+    .tabul {
+        margin-left: 2em;
     }
 
 }

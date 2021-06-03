@@ -37,7 +37,7 @@ Rails.application.routes.draw do
   draw :valuation
   draw :verification
   draw :sures
-  draw :csc
+  #draw :csc
 
   root "welcome#index"
   get "/welcome", to: "welcome#welcome"
@@ -54,6 +54,7 @@ Rails.application.routes.draw do
   get "/consul.json", to: "installation#details"
 
   get "/organos/consejosocial", to: "csc#index"
+  get "/organos/consejosocial/miembros", to: "csc#members"
   
   resources :stats, only: [:index]
   resources :images, only: [:destroy]
