@@ -47,4 +47,22 @@ describe "Admin custom pages management" do
     end
 
   end
+
+  context "New" do
+    scenario "Can´t create custom page modules before custom page creation" do
+      visit new_admin_custom_page_path
+      expect(page).not_to have_content("Añadir Módulo")
+    end
+  end
+
+  context "Edit" do
+    before do
+      @custom_page = create(:custom_page)
+    end
+
+    scenario "Can create custom page modules after custom page creation" do
+      visit edit_admin_custom_page_path(@custom_page)
+      expect(page).to have_content("Añadir Módulo")
+    end
+  end
 end
