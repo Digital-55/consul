@@ -2,6 +2,8 @@ class SuresController < SuresBaseController
     include Admin::SuresHelper
     
     before_action :load_districts, only: [:index,:search,:actuation]
+    before_action :load_search
+
     def index
         @cards = Sures::CustomizeCard.body
     end
@@ -9,8 +11,7 @@ class SuresController < SuresBaseController
     def search
         @resultado = ""
         @actuations = []
-        @sures_searchs_settings = Sures::SearchSetting.search_settings.order(id: :asc)
-        @sures_orders_filter = Sures::SearchSetting.order_settings.order(id: :asc)
+       
 
         run_search(params)
     end
@@ -20,6 +21,11 @@ class SuresController < SuresBaseController
     end
 
     private
+
+    def load_search
+        @sures_searchs_settings = Sures::SearchSetting.search_settings.order(id: :asc)
+        @sures_orders_filter = Sures::SearchSetting.order_settings.order(id: :asc)
+    end
 
     def run_search(parametrize)
         aux_active = false
@@ -120,5 +126,7 @@ class SuresController < SuresBaseController
         parse_data_json(data_status).map {|k,v| disabled << k.to_s if v == false}
         parse_data_json(data).map {|k,v| @districts = @districts.merge!({k.to_s == "Toda la ciudad" ? "SURES(TODOS)" : k=>v}) if disabled.include?(v.to_s) == false}
         @districts
+    rescue
+        @districts = {}
     end
 end
