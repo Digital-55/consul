@@ -1,46 +1,69 @@
-<div class="row" id="csc-container">
-    <div class="row">   
-        <span class="title"><%=t("csc.index.title")%></span>
+<div id="csc-container">
+    <div class="row" >
+        <div id="title" class="small-12 column">   
+            <h1><%=t("csc.index.title")%></h1>
+        </div>
     </div>
-    <div class="row" id="desc" style="text-align: justify">
-        <p><%=t("csc.index.description").html_safe%></p>
+    <div class="row" >
+         <div id="title" class="small-12 column">   
+            <h2><span class="title"><%=t("csc.index.subtitle")%></span></h2>
+        </div>
     </div>
     <div class="row">
-        <div class="small-12 medium-4 column" >
-            <span class="title"><%=t("csc.index.title2").html_safe%></span>
+        <div class="small-12 medium-5 column">
+            <%= image_tag("custom/consejo_social/Banner_Superior.jpg", width: '100%', alt: t("csc.index.title")) %>
         </div>
         <div class="small-12 medium-7 column" style="text-align: justify">
-            <p><%=t("csc.index.description2").html_safe%></p>
+            <%=t("csc.index.description").html_safe%>
         </div>
     </div>
-    <div class="row">
+    <div class="row desc">
         <div class="small-12 medium-4 column" >
-            <span class="title"><%=t("csc.index.title3").html_safe%></span>
+            <h2><span class="title_sub"><%=t("csc.index.title2").html_safe%></span></h2>
         </div>
+        <div class="small-12 medium-1 column" ></div>
         <div class="small-12 medium-7 column" style="text-align: justify">
-            <p><%=t("csc.index.description3").html_safe%></p>
+            <%=t("csc.index.description2").html_safe%>
+            <p><%=link_to t("csc.index.description2_link"), "/organos/consejosocial/miembros" , title: t("csc.index.description2_link"), alt: t("csc.index.description2_link") %></p>
         </div>
     </div>
-    <div class="row">
+    <div class="row desc" >
+        <div class="small-12 medium-4 column" >
+            <h2><span class="title_sub"><%=t("csc.index.title3").html_safe%></span></h2>
+        </div>
+        <div class="small-12 medium-1 column" ></div>
+        <div class="small-12 medium-7 column" style="text-align: justify">
+            <%=t("csc.index.description3").html_safe%>
+        </div>
+    </div>
+    <div class="row desc" >
         <div class="small-12 medium-4 column">
-            <span class="title"><%=t("csc.index.title4").html_safe%></span>
+            <h2><span class="title_sub"><%=t("csc.index.title4").html_safe%></span></h2>
         </div>
+        <div class="small-12 medium-1 column" ></div>
         <div class="small-12 medium-7 column" style="text-align: justify">
-            <p><%=t("csc.index.description4").html_safe%></p>
+            <%=t("csc.index.description4").html_safe%>
         </div>
     </div>
-    <div class="row">
+    <div class="row desc" >
         <div class="small-12 medium-4 column" >
-            <span class="title"><%=t("csc.index.title5").html_safe%></span>
+            <h2><span class="title_sub"><%=t("csc.index.title5").html_safe%></span></h2>
         </div>
+        <div class="small-12 medium-1 column" ></div>
         <div class="small-12 medium-7 column">
-            <p class="link"><%=t("csc.index.link1").html_safe%></p>
-            <p class="link"><%=t("csc.index.link2").html_safe%></p>
-            <p class="link"><%=t("csc.index.link3").html_safe%></p>
-            <p class="link"><%=t("csc.index.link4").html_safe%></p>
+            <p><%= t("csc.index.title_link_1")%></p>
+            <p class="link tabul">
+                <%=link_to t("csc.index.link1"), asset_url("assets/custom/consejo_social/Reglamento Orgánico Consejo Social.pdf"), target: "_blank", title: t("csc.index.link1"), alt: t("csc.index.link1") %>
+                <br>
+                <%=link_to t("csc.index.link2"),  asset_path("assets/custom/consejo_social/Acuerdo miembros 20.05.21 BOAM.pdf"), target: "_blank", title: t("csc.index.link2"), alt: t("csc.index.link2") %>
+            </p>
+            <p><%= t("csc.index.title_link_2")%></p>
+            <p class="link tabul"><%=link_to t("csc.index.link4"),  asset_path("assets/custom/consejo_social/Convocatoria sesión constitutiva CSCM 11-06-2021.pdf"), target: "_blank", title: t("csc.index.link4"), alt: t("csc.index.link4") %></p>
         </div>
     </div>
-    <div class="row">
-        <%= image_tag("banner_csc.jpg", width: '120%', alt: t("csc.index.title")) %>
+    <div class="row desc" >
+        <div class="small-12 column">
+            <%= image_tag("custom/consejo_social/Banner_Inferior.jpg", width: '120%', alt: t("csc.index.title")) %>
+        </div>
     </div>
 </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210601142817) do
+ActiveRecord::Schema.define(version: 20210525084520) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1112,7 +1112,6 @@ ActiveRecord::Schema.define(version: 20210601142817) do
     t.string   "who_requests"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.datetime "date_at"
   end
 
   create_table "parbudget_projects", force: :cascade do |t|
@@ -1977,7 +1976,7 @@ ActiveRecord::Schema.define(version: 20210601142817) do
     t.date     "access_key_generated_at"
     t.integer  "access_key_tried",                          default: 0
     t.date     "date_hide"
-    t.string   "first_name"
+    t.string   "name"
     t.string   "last_name"
     t.string   "last_name_alt"
     t.integer  "adress_id"
@@ -2177,22 +2176,6 @@ ActiveRecord::Schema.define(version: 20210601142817) do
   add_foreign_key "moderators", "users"
   add_foreign_key "notifications", "users"
   add_foreign_key "organizations", "users"
-  add_foreign_key "parbudget_assistants", "parbudget_meetings"
-  add_foreign_key "parbudget_centers", "parbudget_projects"
-  add_foreign_key "parbudget_economic_budgets", "parbudget_projects"
-  add_foreign_key "parbudget_links", "parbudget_projects"
-  add_foreign_key "parbudget_medias", "parbudget_projects"
-  add_foreign_key "parbudget_projects", "parbudget_ambits"
-  add_foreign_key "parbudget_projects", "parbudget_responsibles"
-  add_foreign_key "parbudget_projects", "parbudget_topics"
-  add_foreign_key "parbudget_responsibles", "parbudget_centers"
-  add_foreign_key "parbudget_track_exts", "parbudget_tracking_externals"
-  add_foreign_key "parbudget_track_exts", "parbudget_trackings"
-  add_foreign_key "parbudget_track_ints", "parbudget_tracking_internals"
-  add_foreign_key "parbudget_track_ints", "parbudget_trackings"
-  add_foreign_key "parbudget_trackings", "parbudget_projects"
-  add_foreign_key "parbudget_trackings_meetings", "parbudget_meetings"
-  add_foreign_key "parbudget_trackings_meetings", "parbudget_trackings"
   add_foreign_key "poll_answers", "poll_questions", column: "question_id"
   add_foreign_key "poll_booth_assignments", "polls"
   add_foreign_key "poll_final_recounts", "poll_booth_assignments", column: "booth_assignment_id"

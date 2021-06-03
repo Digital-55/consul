@@ -5,6 +5,9 @@ class CscController < ApplicationController
   
     def index
     end
+
+    def members
+    end
   
   end
   
