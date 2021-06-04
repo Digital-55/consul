@@ -53,12 +53,12 @@
         <div class="small-12 medium-7 column">
             <p><%= t("csc.index.title_link_1")%></p>
             <p class="link tabul">
-                <%=link_to t("csc.index.link1"), asset_url("assets/consejo_social/reglamento.pdf"), target: "_blank", title: t("csc.index.link1"), alt: t("csc.index.link1") %>
+                <%=link_to t("csc.index.link1"), "/reglamento.pdf", target: "_blank", title: t("csc.index.link1"), alt: t("csc.index.link1") %>
                 <br>
-                <%=link_to t("csc.index.link2"),  asset_path("assets/consejo_social/acuerdo.pdf"), target: "_blank", title: t("csc.index.link2"), alt: t("csc.index.link2") %>
+                <%=link_to t("csc.index.link2"),  "/acuerdo.pdf", target: "_blank", title: t("csc.index.link2"), alt: t("csc.index.link2") %>
             </p>
             <p><%= t("csc.index.title_link_2")%></p>
-            <p class="link tabul"><%=link_to t("csc.index.link4"),  asset_path("assets/consejo_social/convocatoria.pdf"), target: "_blank", title: t("csc.index.link4"), alt: t("csc.index.link4") %></p>
+            <p class="link tabul"><%=link_to t("csc.index.link4"),  "/convocatoria.pdf", target: "_blank", title: t("csc.index.link4"), alt: t("csc.index.link4") %></p>
         </div>
     </div>
     <div class="row desc" >
