@@ -475,7 +475,14 @@ class User < ApplicationRecord
   end
 
   def send_devise_notification(notification, *args)
-    devise_mailer.send(notification, self, *args).deliver_later
+    begin
+      devise_mailer.send(notification, self, *args).deliver_now!
+    rescue => e
+      begin
+        Rails.logger.error("ERROR-MAILER: #{e}")
+      rescue
+      end
+    end
   end
 
   def exceeded_failed_login_attempts?

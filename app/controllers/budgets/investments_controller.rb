@@ -69,7 +69,14 @@ module Budgets
       @investment.author = current_user
 
       if @investment.save
-        Mailer.budget_investment_created(@investment).deliver_later
+        begin
+          Mailer.budget_investment_created(@investment).deliver_now!
+        rescue => e
+          begin
+            Rails.logger.error("ERROR-MAILER: #{e}")
+          rescue
+          end
+        end
         redirect_to budget_investment_path(@budget, @investment),
                     notice: t("flash.actions.create.budget_investment")
       else

@@ -225,7 +225,14 @@ class Budget
     end
 
     def send_unfeasible_email
-      Mailer.budget_investment_unfeasible(self).deliver_later
+      begin
+        Mailer.budget_investment_unfeasible(self).deliver_now!
+      rescue => e
+        begin
+          Rails.logger.error("ERROR-MAILER: #{e}")
+        rescue
+        end
+      end
       update(unfeasible_email_sent_at: Time.current)
     end
 

@@ -185,13 +185,27 @@ class Budget < ApplicationRecord
 
   def email_selected
     investments.selected.order(:id).each do |investment|
-      Mailer.budget_investment_selected(investment).deliver_later
+      begin
+        Mailer.budget_investment_selected(investment).deliver_now!
+      rescue => e
+        begin
+          Rails.logger.error("ERROR-MAILER: #{e}")
+        rescue
+        end
+      end
     end
   end
 
   def email_unselected
     investments.unselected.order(:id).each do |investment|
-      Mailer.budget_investment_unselected(investment).deliver_later
+      begin
+        Mailer.budget_investment_unselected(investment).deliver_now!
+      rescue => e
+        begin
+          Rails.logger.error("ERROR-MAILER: #{e}")
+        rescue
+        end
+      end
     end
   end
 

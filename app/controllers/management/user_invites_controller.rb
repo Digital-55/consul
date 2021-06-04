@@ -7,7 +7,14 @@ class Management::UserInvitesController < Management::BaseController
     @emails = params[:emails].split(",").map(&:strip)
     @emails.each do |email|
       ahoy.track(:user_invite, email: email) rescue nil
-      Mailer.user_invite(email).deliver_later
+      begin
+        Mailer.user_invite(email).deliver_now!
+      rescue => e
+        begin
+          Rails.logger.error("ERROR-MAILER: #{e}")
+        rescue
+        end
+      end
     end
   end
 

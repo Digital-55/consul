@@ -13,12 +13,26 @@ class CommentNotifier
 
   def send_comment_email
     unless @comment.commentable.is_a?(Legislation::Annotation)
-      Mailer.comment(@comment).deliver_later if email_on_comment?
+      begin
+        Mailer.comment(@comment).deliver_now! if email_on_comment?
+      rescue => e
+        begin
+          Rails.logger.error("ERROR-MAILER: #{e}")
+        rescue
+        end
+      end
     end
   end
 
   def send_reply_email
-    Mailer.reply(@comment).deliver_later if email_on_comment_reply?
+    begin
+      Mailer.reply(@comment).deliver_now! if email_on_comment_reply?
+    rescue => e
+      begin
+        Rails.logger.error("ERROR-MAILER: #{e}")
+      rescue
+      end
+    end
   end
 
   def email_on_comment?
