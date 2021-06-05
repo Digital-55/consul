@@ -25,6 +25,23 @@ module CustomPagesHelper
     slugs
   end
 
+  def promo_location_options
+    {
+      "Izquierda" => 'left',
+      "Centro" => 'center',
+      "Derecha" => 'right'
+    }
+  end
+
+  def promo_location_sort(custom_page_module)
+    locations = {
+                  'one': custom_page_module.attributes['promo_location_one'],
+                  'two': custom_page_module.attributes['promo_location_two'],
+                  'three': custom_page_module.attributes['promo_location_three']
+                }
+    [locations.key("left").to_s, locations.key("center").to_s, locations.key("right").to_s]
+  end
+
   def custom_page_preview_path(custom_page)
     if custom_page.parent_slug.present?
       custom_page_url_path(custom_page.parent_slug, custom_page.slug)
