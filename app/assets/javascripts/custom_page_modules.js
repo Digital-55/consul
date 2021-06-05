@@ -30,6 +30,7 @@ $(document).on('page:change', function(){
 
   $('#custom-page-modules-list').bind('cocoon:after-insert', function() {
     validateInputFields();
+    updatePromotionalsLocation();
   });
 
   loadCodeSnippet();
@@ -40,6 +41,7 @@ $(document).on('page:change', function(){
   closeRevealAfterAddModule();
   slugAutoFill();
   validateInputFields();
+  updatePromotionalsLocation();
 });
 
 function validateInputFields() {
@@ -165,4 +167,35 @@ function slugAutoFill(){
       $('#slug').val(str);
     })
   }
+}
+
+function updatePromotionalsLocation(){
+  $('[id*="_promo_location_one"], [id*="_promo_location_two"], [id*="_promo_location_three"]').change(function(){
+    var targetId = this.id.split("_").map(Number).filter(Number).toString() || "0";
+    var promoOneLocation, promoTwoLocation, promoThreeLocation;
+    var selectValues = {};
+    if($(this).parents('#new_custom_page_module').length == 0) {
+      promoOneLocation = $('#custom_page_custom_page_modules_attributes_' + targetId + '_promo_location_one').val();
+      promoTwoLocation = $('#custom_page_custom_page_modules_attributes_' + targetId + '_promo_location_two').val();
+      promoThreeLocation = $('#custom_page_custom_page_modules_attributes_' + targetId + '_promo_location_three').val();
+      selectValues['custom_page_custom_page_modules_attributes_' + targetId + '_promo_location_one'] = promoOneLocation;
+      selectValues['custom_page_custom_page_modules_attributes_' + targetId + '_promo_location_two'] = promoTwoLocation;
+      selectValues['custom_page_custom_page_modules_attributes_' + targetId + '_promo_location_three'] = promoThreeLocation;
+    } else {
+      promoOneLocation = $('#custom_page_promotionals_attributes_' + targetId + '_promo_location_one').val();
+      promoTwoLocation = $('#custom_page_promotionals_attributes_' + targetId + '_promo_location_two').val();
+      promoThreeLocation = $('#custom_page_promotionals_attributes_' + targetId + '_promo_location_three').val();
+      selectValues['custom_page_promotionals_attributes_' + targetId + '_promo_location_one'] = promoOneLocation;
+      selectValues['custom_page_promotionals_attributes_' + targetId + '_promo_location_two'] = promoTwoLocation;
+      selectValues['custom_page_promotionals_attributes_' + targetId + '_promo_location_three'] = promoThreeLocation;
+    }
+    var locationToUpdate = ($.grep(["left", "center", "right"], function(el){return $.inArray(el, [promoOneLocation, promoTwoLocation, promoThreeLocation]) == -1}))[0];
+    var changedPromotionalLocation = $(this).context.id;
+    var changedPromotionalLocationValue = selectValues[changedPromotionalLocation];
+    delete selectValues[changedPromotionalLocation]
+    var valueIndex = Object.values(selectValues).indexOf(changedPromotionalLocationValue);
+    var selectorToUdpate = Object.keys(selectValues)[valueIndex];
+    $('#' + selectorToUdpate).val(locationToUpdate).change()
+
+  })
 }

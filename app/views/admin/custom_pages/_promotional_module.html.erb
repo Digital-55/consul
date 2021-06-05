@@ -10,14 +10,21 @@
   </div>
   <div class="card-section">
     <%= f.hidden_field :type, value: 'PromotionalModule' %>
+    <%# byebug %>
     <ul class="tabs" data-tabs id="promotional-tabs">
-      <li class="tabs-title is-active"><a href="#promo1" aria-selected="true"><%= t("admin.custom_pages.custom_page_modules.custom_page_module.promotional_one") %></a></li>
-      <li class="tabs-title"><a href="#promo2"><%= t("admin.custom_pages.custom_page_modules.custom_page_module.promotional_two") %></a></li>
-      <li class="tabs-title"><a href="#promo3"><%= t("admin.custom_pages.custom_page_modules.custom_page_module.promotional_three") %></a></li>
+      <li class="tabs-title is-active"><a href='#<%= "#{dom_id(f.object)}_one" %>' aria-selected="true"><%= t("admin.custom_pages.custom_page_modules.custom_page_module.promotional_one") %></a></li>
+      <li class="tabs-title"><a href='#<%= "#{dom_id(f.object)}_two" %>'><%= t("admin.custom_pages.custom_page_modules.custom_page_module.promotional_two") %></a></li>
+      <li class="tabs-title"><a href='#<%= "#{dom_id(f.object)}_three" %>'><%= t("admin.custom_pages.custom_page_modules.custom_page_module.promotional_three") %></a></li>
     </ul>
     <div class="tabs-content" data-tabs-content="promotional-tabs">
-      <div class="tabs-panel is-active" id="promo1">
-        <div class="small-12 medium-10 column">
+      <div class="tabs-panel is-active" id='<%= "#{dom_id(f.object)}_one" %>'>
+        <div class="small-12 medium-6 column">
+          <%= f.label :promo_location_one, t("admin.custom_pages.custom_page_modules.custom_page_module.promo.promo_location_one") %>
+          <%= f.select :promo_location_one, {}, label: false do %>
+            <%= options_for_select(promo_location_options, (f.object.promo_location_one || 'left')) %>
+          <% end %>
+        </div>
+        <div class="small-12 medium-12 column">
           <%= f.label :promo_title_one, t("admin.custom_pages.custom_page_modules.custom_page_module.promo.promo_title_one") %>
           <%= f.text_field :promo_title_one, label: false, class: 'custom_page_module-promo_title_one' %>
         </div>
@@ -35,7 +42,7 @@
             </small>
           <% end %>
         </div>
-        <div class="small-12 medium-10 column">
+        <div class="small-12 medium-12 column">
           <%= f.label :promo_alt_image_one, t("admin.custom_pages.custom_page_modules.custom_page_module.promo.promo_alt_image_one") %>
           <%= f.text_field :promo_alt_image_one, label: false, class: 'custom_page_module-promo_alt_image_one' %>
         </div>
@@ -52,8 +59,14 @@
           <%= f.text_field :promo_link_one, label: false, class: 'custom_page_module-promo_link_one' %>
         </div>
       </div>
-      <div class="tabs-panel" id="promo2">
-        <div class="small-12 medium-10 column">
+      <div class="tabs-panel" id='<%= "#{dom_id(f.object)}_two" %>'>
+        <div class="small-12 medium-6 column">
+          <%= f.label :promo_location_two, t("admin.custom_pages.custom_page_modules.custom_page_module.promo.promo_location_two") %>
+          <%= f.select :promo_location_two, {}, label: false do %>
+            <%= options_for_select(promo_location_options, (f.object.promo_location_two || 'center')) %>
+          <% end %>
+        </div>
+        <div class="small-12 medium-12 column">
           <%= f.label :promo_title_two, t("admin.custom_pages.custom_page_modules.custom_page_module.promo.promo_title_two") %>
           <%= f.text_field :promo_title_two, label: false, class: 'custom_page_module-promo_title_two' %>
         </div>
@@ -71,7 +84,7 @@
             </small>
           <% end %>
         </div>
-        <div class="small-12 medium-10 column">
+        <div class="small-12 medium-12 column">
           <%= f.label :promo_alt_image_two, t("admin.custom_pages.custom_page_modules.custom_page_module.promo.promo_alt_image_two") %>
           <%= f.text_field :promo_alt_image_two, label: false, class: 'custom_page_module-promo_alt_image_two' %>
         </div>
@@ -88,8 +101,14 @@
           <%= f.text_field :promo_link_two, label: false, class: 'custom_page_module-promo_link_two' %>
         </div>
       </div>
-      <div class="tabs-panel" id="promo3">
-        <div class="small-12 medium-10 column">
+      <div class="tabs-panel" id='<%= "#{dom_id(f.object)}_three" %>'>
+        <div class="small-12 medium-6 column">
+          <%= f.label :promo_location_three, t("admin.custom_pages.custom_page_modules.custom_page_module.promo.promo_location_three") %>
+          <%= f.select :promo_location_three, {}, label: false do %>
+            <%= options_for_select(promo_location_options, (f.object.promo_location_three || 'right')) %>
+          <% end %>
+        </div>
+        <div class="small-12 medium-12 column">
           <%= f.label :promo_title_three, t("admin.custom_pages.custom_page_modules.custom_page_module.promo.promo_title_three") %>
           <%= f.text_field :promo_title_three, label: false, class: 'custom_page_module-promo_title_three' %>
         </div>
@@ -107,7 +126,7 @@
             </small>
           <% end %>
         </div>
-        <div class="small-12 medium-10 column">
+        <div class="small-12 medium-12 column">
           <%= f.label :promo_alt_image_three, t("admin.custom_pages.custom_page_modules.custom_page_module.promo.promo_alt_image_three") %>
           <%= f.text_field :promo_alt_image_three, label: false, class: 'custom_page_module-promo_alt_image_three' %>
         </div>
