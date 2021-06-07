@@ -1,15 +1,7 @@
-@font-face {
-    font-family: "HelveticaNeueLT Std";
-    src: url("HelveticaNeueLTStd-Roman.ttf");
-  }
-  
 
 
-#csc-container {
-    
-    
-    
-    
+
+#csc-container {    
     #title {
         padding-top: 1em;
     }
@@ -25,7 +17,7 @@
         border: none;
         line-height: 1;
         font-weight: normal;
-        font-family:'HelveticaNeueLT Std' !important;
+        font-family:'HelveticaNeueLT' !important;
     }
 
     p {

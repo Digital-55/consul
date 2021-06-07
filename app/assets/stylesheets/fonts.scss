@@ -94,9 +94,10 @@
   font-style: normal;
 }
 
-// 03. Helvetica Neue
-// - - - - - - - - - - - - - - - - - - - - - - - - -
+
 @font-face {
-  font-family: "Helvetica Neue";
-  src: font-url("HelveticaNeueLTStd-Roman.ttf");
-}
+  font-family: "HelveticaNeueLT";
+  src: font-url("helveticanue.otf")  format("opentype");
+  font-weight: normal;
+  font-style: normal;
+} 
