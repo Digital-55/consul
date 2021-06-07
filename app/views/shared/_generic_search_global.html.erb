@@ -3,10 +3,10 @@
         <div class="row" style="margin: 1em 0">
             <div class="small-12 medium-10 column">
                 <div class="input-group">
-                    <%= text_field_tag :search, params[:search], label: false, placeholder: t("landings.sg_find")%>
+                    <%= text_field_tag :search, params[:search], label: false, placeholder: "#{t("landings.sg_find")} en Decide Madrid..."%>
                     <div class="input-group-button">
-                        <button type="submit" class="button" title="<%= t("landings.search_sures") %>">
-                            <span class="show-for-sr"><%= t("landings.search_sures") %></span>
+                        <button type="submit" class="button" title="<%= t("landings.sg_find")%>" alt="<%= t("landings.sg_find") %>">
+                            <span class="show-for-sr"><%= t("landings.sg_find") %></span>
                             <span class='icon-search'></span>
                         </button>
                     </div>

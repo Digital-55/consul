@@ -10,10 +10,16 @@
         
         <% if !l[:list].blank? && l[:list].count >0%>
             <% sin_items = false%>
+            <div class="no-margin-top padding margin-bottom" style="background: LightGray">
+                <div class="row" id="id_<%=l[:model].model_name.human.parameterize.underscore%>" >
+                    <div class="small-12 columns">
+                        <h3><%=l[:model].model_name.human%>:</h3>
+                        <%= page_entries_info l[:list] %>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="small-12 columns">
-                    <h3><%=l[:model].model_name.human%>:</h3>
-                    <%= page_entries_info l[:list] %>
                     <% l[:list].each_with_index do |item, index|%>
                         <%if l[:model].model_name.to_s == "Debate"%>
                             <%=render partial: "debates/debate", :locals =>{ debate: item}%>

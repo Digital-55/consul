@@ -126,7 +126,7 @@ class WelcomeController < ApplicationController
       #Comprobamos si existe el campo #
       if !parametrize[f.to_sym].blank?
         # Si existe con datos indicamos que hay datos de búsqueda #
-        @search_terms = true
+        @search_terms = f.to_s!="search" || @search_terms
 
         #Cargamos el dato de preferencia generico (search) o avanzado (el resto) #
         search_aux = f.to_s=="search" ? @search_generic : @search_settings.select {|x| x.title.parameterize.underscore.to_s == f.to_s }[0]
@@ -179,18 +179,8 @@ class WelcomeController < ApplicationController
 
     if !@listados.blank?
       @listados = @listados.sort_by {|l| l[:order]} 
-      @listados.each do |l|
-        if l[:model].try(:translate_column_names).blank?
-          l[:list] = l[:model].where(l[:list_base])
-        else
-          l[:list] = l[:model].joins(:translations).where(l[:list_base])
-        end
-
-        if l[:model].try(:model_name).to_s == "Legislation::Process"
-          l[:list]= l[:list].seached.published.not_in_draft
-        elsif l[:model].try(:model_name).to_s == "Proposal"
-          l[:list]= l[:list].published
-        end
+      @listados.each do |l| 
+        l = validations_tables(l)
         set_votable(l)
         @resultado.push({tabla: l[:model].model_name.human, search: search_data_aux_gen, count: l[:list].blank? ? 0 : l[:list].count})  
         l[:list] = l[:list].page(parametrize[:"page_#{l[:model].model_name.to_s.parameterize.underscore}"]).per(5)         
@@ -225,6 +215,28 @@ class WelcomeController < ApplicationController
 
     @listados = aux_listados
     @resultado = aux_resultado
+  end
+
+  def validations_tables(l)
+    if l[:model].try(:model_name).to_s == "Legislation::Process"
+      if l[:model].try(:translate_column_names).blank?
+        l[:list] = l[:model].where(l[:list_base]).seached.published.not_in_draft
+      else
+        l[:list] = l[:model].joins(:translations).where(l[:list_base]).seached.published.not_in_draft
+      end
+    elsif l[:model].try(:model_name).to_s == "Proposal"
+      if l[:model].try(:translate_column_names).blank?
+        l[:list] = l[:model].where(l[:list_base]).published.not_archived
+      else
+        l[:list] = l[:model].joins(:translations).where(l[:list_base]).published.not_archived
+      end
+    elsif l[:model].try(:translate_column_names).blank?
+      l[:list] = l[:model].where(l[:list_base])
+    else
+      l[:list] = l[:model].joins(:translations).where(l[:list_base])
+    end
+
+    l
   end
 
   def set_votable(lista)
