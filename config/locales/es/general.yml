@@ -213,6 +213,101 @@ es:
     comment: Comentario
   geozones:
     none: Toda la ciudad
+  csc:
+    members:
+      title: "Composición y miembros"
+      back: "Volver"
+      title_1: "Presidencia:"
+      description_1: "<p>D. José Luis Martínez-Almeida Navasqüés, titular de la Alcaldía.</p>"
+      title_2: "Vicepresidencia:"
+      description_2: "<p>Dª. Begoña Villacís Sánchez, titular del Área de Gobierno competente en materia de
+        Participación Ciudadana.</p>"
+      title_3: "Vocalías:"
+      description_3: "<p>D. Francisco de Borja Carabante Muntada, titular del Área de Gobierno competente en materia de
+        Medio Ambiente y Movilidad.</p>
+        <p>D. Miguel Ángel Redondo Rodriguez, titular del Área de Gobierno competente en materia de
+        Economía.</p>
+        <p>D. Mariano Fuentes Sedano, titular del Área de Gobierno competente en materia de Urbanismo</p>
+        <p>Dª. Silvia Saavedra Ibarrondo, titular del Área de Gobierno competente en materia de
+        Coordinación Territorial.</p>
+        <p>Dª. Concepción Chapa Monteagudo, concejal del distrito de Villaverde, representante en la
+        Comisión de los Distritos del Sur y del Este de Madrid.</p>
+        <p>D. José Fernández Sánchez, concejal del distrito de Centro, representante en la Comisión del resto
+        de Distritos de Madrid.</p>
+        <p>D. Jose Aniorte Rueda, titular del Área de Gobierno en materia de Servicios Sociales.</p>
+        <p>D. Ignacio Murgui Parra, representante del Grupo Municipal Más Madrid.</p>
+        <p>Dª. Sonia Cea Quintana, representante del Grupo Municipal del Partido Popular.</p>
+        <p>Dª. Sofia Miranda Esteban, representante del Grupo Municipal Ciudadanos.</p>
+        <p>D. José Vicente Hernández Fernández, representante del Grupo Municipal Socialista de Madrid.</p>
+        <p>D. Javier Ortega Smith-Molina, representante del Grupo Municipal VOX.</p>
+        <p>Dª. Sara Molero Palomino, en representación de las asociaciones empresariales de Madrid.</p>
+        <p>D. Francisco Ruano Tellaeche, en representación de las asociaciones empresariales de Madrid.</p>
+        <p>D. Jaime Cedrún López, en representación de la organización sindical CCOO.</p>
+        <p>D. Luis Miguel López Reillo, en representación de la organización sindical UGT.</p>
+        <p>D. Enrique Villalobos Juan, en representante de la Federación Regional de Asociaciones Vecinales.</p>
+        <p>D. José Ramón García-Albertos Constán, en representación de la Federación INJUCAM para la
+        promoción de la Infancia y la Juventud.</p>
+        <p>D. Santiago Atrio Cerezo, representante de la Universidad Autónoma de Madrid.</p>
+        <p>D. Joaquín Goyache Goñi, representante de la Universidad Complutense de Madrid.</p>
+        <p>D. Francisco Javier Jiménez Leube, representante de la Universidad Politécnica de Madrid.</p>
+        <p>D. Sigfrido Herráez Rodríguez, representante del Colegio Oficial de Arquitectos de Madrid (COAM).</p>
+        <p>D. Emilio del Moral Serrano, representante del Colegio Profesional de Ingenieros en Informática
+        de la Comunidad de Madrid (CPIICM).</p>
+        <p>D. Eladio José Acevedo Heranz, representante del Ilustre Colegio Central de Titulados Mercantiles
+        y Empresariales.</p>
+        <p>D. Lorenzo Navarrete Moreno, representante del Colegio Profesional de Politólogos y Sociólogos.</p>
+        <p>Dª. Ana Garcia Montero, representante del Colegio Oficial de Trabajo Social.</p>
+        <p>D. José Ignacio Monedero Montero de Espinosa, representante del Ilustre Colegio de Abogados de
+        Madrid.</p>"
+      title_4: "Secretaría:"
+      description_4: "<p>Dª. María Pía Junquera Temprano, Directora General de Participación Ciudadana.</p>"
+    index:
+      menu: Consejo Social de la Ciudad
+      title: Consejo Social de la Ciudad
+      subtitle: Detrás de una gran ciudad, hay un gran consejo
+      description: "<p>Para tomar las mejores decisiones estratégicas y afrontar los retos de futuro de nuestra ciudad, 
+        el Ayuntamiento de Madrid cuenta con el Consejo Social de la Ciudad.</p>
+        <p>Aprobado por el Pleno Municipal el 23 de diciembre de 2020, el Consejo Social de la Ciudad actúa como máximo 
+        órgano consultivo y de participación ciudadana.</p>
+        <p>Sus objetivos son promover el diálogo abierto, transparente y responsable sobre el modelo de  ciudad y el 
+        papel de los actores sociales y la administración municipal en la conformación de una ciudad mejor, más democrática, 
+        atractiva, plural y centrada en el bienestar de su ciudadanía y visitantes.</p>"
+      title2: ¿Quiénes componen el Consejo Social de la Ciudad?
+      description2: "<p>El Consejo Social de la Ciudad está presidido por el Alcalde de Madrid.</br>
+        Su representación está cualificada y lo componen representantes de la
+        Corporación municipal, todos los agentes sociales (como universidades,
+        sindicatos, asociaciones empresariales, asociaciones vecinales) y diferentes
+        expertos en diversas materias.</p>"
+      description2_link: "Ver composición y miembros"
+      title3: ¿Qué hace el Consejo Social de la Ciudad?
+      description3: "<p>Entre sus funciones está el informe, estudio y propuesta (con carácter
+        facultativo y no vinculante) en materias de desarrollo económico local,
+        planificación estratégica municipal y grandes proyectos urbanos.</p>
+        <p>Actúa como cauce de participación y diálogo de las distintas personas
+        interlocutoras sociales en el análisis y propuestas sobre asuntos de carácter
+        socio- económico.</p>
+        <p>Impulsa iniciativas para la aprobación de disposiciones municipales de
+        carácter general.</p>
+        <p>Plantea al Ayuntamiento Planes Estratégicos o de carácter sectorial o
+        territorial.</p>
+        <p>Propone la realización de dos procesos participativos cada año.</p>
+        <p>Podrá proponer líneas estratégicas para abordar retos venideros.</p>"
+      title4: ¿En qué beneficiará a la ciudad de Madrid?
+      description4: "<p>Al ser el máximo órgano consultivo y de participación de la ciudad de Madrid
+        reúne a expertos y organizaciones económicas, sociales, profesionales y de
+        vecinos más representativas, facilita una participación amplia y plural y la
+        búsqueda de compromisos con un proyecto de ciudad compartido.</p>
+        <p>Es un órgano de referencia en temas urbanísticos, sociales o
+        medioambientales.</p>
+        <p>Es un órgano permanente que puede hacer frente a situaciones de crisis y
+        emergencia.</p>
+        <p>Puede ofrecer soluciones con una visión estratégica de la ciudad.</p>"
+      title5: Documentos de Interés
+      title_link_1: "Normativa del Consejo Social de la Ciudad"
+      link1: Reglamento Orgánico
+      link2: Acuerdo de nombramientos por la Junta de Gobierno
+      title_link_2: Sesiones del Consejo Social de la Ciudad
+      link4: Sesión constitutiva. Convocatoria 11 de junio 2021
   layouts:
     sures:
       title_1: "Creatividad de campaña"

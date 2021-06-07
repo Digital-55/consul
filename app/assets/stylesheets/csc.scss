@@ -1,0 +1,51 @@
+@font-face {
+    font-family: "HelveticaNeueLT Std";
+    src: url("HelveticaNeueLTStd-Roman.ttf");
+  }
+  
+
+
+#csc-container {
+    
+    
+    
+    
+    #title {
+        padding-top: 1em;
+    }
+
+    .title {
+        color: #27348B;
+        border: none;
+        line-height: 1;
+    }
+
+    .title_sub {
+        color: #27348B;
+        border: none;
+        line-height: 1;
+        font-weight: normal;
+        font-family:'HelveticaNeueLT Std' !important;
+    }
+
+    p {
+        padding-top: 0.5em;
+    }
+
+    .link {
+        color: #1779ba;
+    }
+
+    .desc {
+        padding-top: 2em;
+    }
+
+    .dropdown {
+        display: none;
+    }
+
+    .tabul {
+        margin-left: 2em;
+    }
+
+}
