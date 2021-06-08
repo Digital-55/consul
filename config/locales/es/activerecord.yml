@@ -89,8 +89,8 @@ es:
         one: "Reclasificación de votos presupuestarios"
         other: "Reclasificaciones de votos presupuestarios"
       budget/investment:
-        one: "Proyecto de gasto"
-        other: "Proyectos de gasto"
+        one: "Presupuesto participativo"
+        other: "Presupuestos participativos"
       milestone:
         one: "Hito"
         other: "Hitos"

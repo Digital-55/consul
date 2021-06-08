@@ -1,8 +1,7 @@
-#csc-container {
-    font-family:'Helvetica Neue';
-    
-    
-    
+
+
+
+#csc-container {    
     #title {
         padding-top: 1em;
     }
@@ -18,6 +17,7 @@
         border: none;
         line-height: 1;
         font-weight: normal;
+        font-family:'HelveticaNeueLT' !important;
     }
 
     p {

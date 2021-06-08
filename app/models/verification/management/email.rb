@@ -31,7 +31,14 @@ class Verification::Management::Email
                 level_two_verified_at: Time.current,
                 email_verification_token: plain_token)
 
-    Mailer.email_verification(user, email, encrypted_token, document_type, document_number).deliver_later
+    begin
+      Mailer.email_verification(user, email, encrypted_token, document_type, document_number).deliver_now!
+    rescue => e
+      begin
+        Rails.logger.error("ERROR-MAILER: #{e}")
+      rescue
+      end
+    end
     true
   end
 

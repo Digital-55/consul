@@ -12,7 +12,14 @@ class Admin::AutoModeratedContentController < Admin::BaseController
 
   def show_again
     @contents.update_all(declined_at: Time.current)
-    Mailer.declined_moderation(@contents.first.moderable).deliver_later
+    begin
+      Mailer.declined_moderation(@contents.first.moderable).deliver_now!
+    rescue => e
+      begin
+        Rails.logger.error("ERROR-MAILER: #{e}")
+      rescue
+      end
+    end
     @contents.first.moderable.touch
     @contents.first.moderable.increment_comments_count
     redirect_to admin_auto_moderated_content_index_path(filter: "pending")
@@ -20,7 +27,14 @@ class Admin::AutoModeratedContentController < Admin::BaseController
 
   def confirm_moderation
     @contents.update_all(confirmed_at: Time.current)
-    Mailer.confirmed_moderation(@contents.first.moderable).deliver_later
+    begin
+      Mailer.confirmed_moderation(@contents.first.moderable).deliver_now!
+    rescue => e
+      begin
+        Rails.logger.error("ERROR-MAILER: #{e}")
+      rescue
+      end
+    end
     redirect_to admin_auto_moderated_content_index_path(filter: "pending")
   end
 

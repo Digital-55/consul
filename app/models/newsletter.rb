@@ -29,7 +29,7 @@ class Newsletter < ApplicationRecord
     list_of_recipient_emails_in_batches.each do |recipient_emails|
       recipient_emails.each do |recipient_email|
         if valid_recipient?(recipient_email)
-          Mailer.delay(run_at: run_at).newsletter(self, segment_recipient)
+          Mailer.newsletter(self, segment_recipient).deliver_now!
           log_delivery(segment_recipient)
         end
       end
@@ -39,7 +39,7 @@ class Newsletter < ApplicationRecord
 
   def deliver_user
     run_at = first_batch_run_at
-    Mailer.delay(run_at: run_at).newsletter(self, segment_recipient)
+    Mailer.newsletter(self, segment_recipient).deliver_now!
     log_delivery(segment_recipient)
   end
 

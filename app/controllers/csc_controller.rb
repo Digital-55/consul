@@ -10,4 +10,3 @@ class CscController < ApplicationController
     end
   
   end
-  
