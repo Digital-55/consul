@@ -11,6 +11,6 @@ class CustomPageModule < ApplicationRecord
   scope :sorted, -> { order(position: :asc, updated_at: :desc) }
 
   after_save do
-    custom_page.update_attribute(:updated_at, Time.now)
+    custom_page&.update_attribute(:updated_at, Time.now)
   end
 end
