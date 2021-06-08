@@ -86,7 +86,7 @@ describe "Admin custom pages management" do
     end
   end
 
-  context "Create custom page modules", wip: true do
+  context "Create custom page modules" do
     before do
       @custom_page = create(:custom_page, published: true)
       visit edit_admin_custom_page_path(@custom_page)
