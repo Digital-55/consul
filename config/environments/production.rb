@@ -70,6 +70,8 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   config.action_mailer.smtp_settings = {
     address: Rails.application.secrets.server_name_mail,
+    port: 25,
+    domain: "munimadrid.es"
   }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.raise_delivery_errors = true
