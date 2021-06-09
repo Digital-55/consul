@@ -243,6 +243,21 @@ describe "Admin custom pages management" do
       expect(page).to have_content('Changed Title')
     end
 
+    scenario "Disabled module is not displayed", :js do
+      within("#add_modules") do
+        click_link "Subtítulo"
+      end
+      find('button.close-button').click
+      within(".subtitle-module") do
+        fill_in "Subtítulo", with: "Subtitle text"
+        find(:css, '.custom_page_module-disabled').set(true)
+      end
+      find('.submit_form').click
+
+      visit "/#{@custom_page.slug}"
+      expect(page).not_to have_content(@custom_page.custom_page_modules.first.subtitle)
+    end
+
   end
 
   def fill_in_ckeditor(id, with:)
