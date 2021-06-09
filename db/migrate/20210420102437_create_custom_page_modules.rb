@@ -1,5 +1,5 @@
 class CreateCustomPageModules < ActiveRecord::Migration[5.0]
-  def change
+  def up
     create_table :custom_page_modules do |t|
       t.integer :custom_page_id
       t.string :type
@@ -37,5 +37,18 @@ class CreateCustomPageModules < ActiveRecord::Migration[5.0]
       t.timestamps
     end
     add_index :custom_page_modules, [:type, :custom_page_id]
+
+    SiteCustomization::Page.published.each do |page|
+      cp = CustomPage.create(title: page.title, slug: page.slug.humanize.parameterize, published: true)
+      position = 0
+      cp.custom_page_modules.build(type: 'SubtitleModule', subtitle: page.subtitle, position: position += 1).save if page.subtitle.present?
+      cp.custom_page_modules.build(type: 'RichTextModule', rich_text: page.content, position: position += 1).save if page.content.present?
+      page.update_column(:status, "draft")
+    end
   end
+
+  def down
+    drop_table :custom_page_modules
+  end
+
 end
