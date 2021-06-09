@@ -70,13 +70,13 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   config.action_mailer.smtp_settings = {
     address: Rails.application.secrets.server_name_mail,
+    port: 25,
+    domain: "munimadrid.es"
   }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_url_options = { host: Rails.application.secrets.server_name }
   config.action_mailer.asset_host = "https://#{Rails.application.secrets.server_name}"
-
-  # SMTP configuration to deliver emails
   # Uncomment the following block of code and add your SMTP service credentials
   # config.action_mailer.delivery_method = :smtp
   # config.action_mailer.smtp_settings = {
