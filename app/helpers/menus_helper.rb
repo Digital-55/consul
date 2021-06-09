@@ -17,7 +17,7 @@ module MenusHelper
 
   def page_link_options
     hash = { t("admin.menus.menu_items.page_link_select") => nil }
-    SiteCustomization::Page.pluck(:title, :slug).each do |key, value|
+    SiteCustomization::Page.where(status: "published").pluck(:title, :slug).each do |key, value|
       key = "#{key} (/#{value})"
       hash[key] = value
     end
