@@ -39,10 +39,14 @@ class CreateCustomPageModules < ActiveRecord::Migration[5.0]
     add_index :custom_page_modules, [:type, :custom_page_id]
 
     SiteCustomization::Page.published.each do |page|
-      cp = CustomPage.create(title: page.title, slug: page.slug.humanize.parameterize, published: true)
+      cp = CustomPage.create(
+                              title: page.title,
+                              slug: page.slug.humanize.parameterize,
+                              published: page.status == "published" ? true : false
+                            )
       position = 0
-      cp.custom_page_modules.build(type: 'SubtitleModule', subtitle: page.subtitle, position: position += 1).save if page.subtitle.present?
-      cp.custom_page_modules.build(type: 'RichTextModule', rich_text: page.content, position: position += 1).save if page.content.present?
+      cp.subtitles.build(subtitle: page.subtitle, position: position += 1).save if page.subtitle.present?
+      cp.rich_texts.build(rich_text: page.content, position: position += 1).save if page.content.present?
       page.update_column(:status, "draft")
     end
   end
