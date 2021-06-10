@@ -1,6 +1,6 @@
 class Parbudget::Responsible < ApplicationRecord
-    belongs_to :parbudget_center, class_name: "Parbudget::Center"
-    has_many :parbudget_projects, class_name: "Parbudget::Project"
+    belongs_to :parbudget_center, class_name: "Parbudget::Center", foreign_key: "parbudget_center_id"
+    has_many :parbudget_projects, class_name: "Parbudget::Project", foreign_key: "parbudget_project_id"
 
     validates :full_name, :phone, presence: true
     validates_format_of :phone, :with => /\A(\+34|0034|34)?[6|7|8|9][0-9]{8}\z/, allow_blank: true

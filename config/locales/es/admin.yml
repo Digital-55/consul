@@ -744,6 +744,9 @@ es:
         title_delete: Borrar centro
         pdf_download: "Descargar PDF del centro"
         title_data: "Datos del centro"
+        title_responsibles: "Responsables"
+        button_add: "Añadir responsable"
+        button_delete: "Borrar responsable"
       project:
         search_identificator: "Identificador"
         search_title: "Título"

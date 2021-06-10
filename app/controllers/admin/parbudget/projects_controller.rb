@@ -1,5 +1,5 @@
 class Admin::Parbudget::ProjectsController < Admin::Parbudget::BaseController
-  respond_to :html, :js, :csv
+  respond_to :html, :js, :csv, :pdf
   before_action :load_data, only: [:index]
 
   def index
@@ -8,7 +8,7 @@ class Admin::Parbudget::ProjectsController < Admin::Parbudget::BaseController
   end
 
   def new
-    @project = @model.new
+    @project = ::Parbudget::Project.new
   end
 
   def edit
@@ -52,6 +52,15 @@ class Admin::Parbudget::ProjectsController < Admin::Parbudget::BaseController
   end
 
   def show
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: @project.denomination,
+        layout: 'pdf.html',
+        page_size: 'A4',
+        encoding: "UTF-8"
+      end
+    end
   end
 
   private 

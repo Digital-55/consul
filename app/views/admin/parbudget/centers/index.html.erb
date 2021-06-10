@@ -12,7 +12,7 @@
           <%@model.get_columns.each do |c|%>
             <th><%= @model.human_attribute_name(c) %></th>
           <%end%>
-          <th><%= t("admin.actions.actions") %></th>
+          <th style="width: 18em;"><%= t("admin.actions.actions") %></th>
         </tr>
       </thead>
 
@@ -22,20 +22,20 @@
               <%@model.get_columns.each do |c|%>
                 <td><%=center.try(c)%></td>
               <%end%>
-              <td>
+              <td style="width: 18em;">
                 <%= link_to admin_parbudget_centers_path, class: "button hollow", title: t('admin.parbudget.show_audits'), alt: t('admin.parbudget.show_audits')  do %>
                   <span class="icon-settings"></span>
                 <%end%>
-                <%= link_to admin_parbudget_center_path(center), class: "button", title: t('admin.parbudget.center.update_center'), alt: t('admin.parbudget.center.update_center')  do %>
+                <%= link_to admin_parbudget_center_path(center, format: :pdf), class: "button", style: "margin: 0px", title: t('admin.parbudget.center.update_center'), alt: t('admin.parbudget.center.update_center')  do %>
                   <span class="icon-document"></span>
                 <%end%>
-                <%= link_to admin_parbudget_center_path(center), class: "button", title: t('admin.parbudget.center.update_center'), alt: t('admin.parbudget.center.update_center')  do %>
+                <%= link_to admin_parbudget_center_path(center), class: "button", style: "margin: 0px", title: t('admin.parbudget.center.update_center'), alt: t('admin.parbudget.center.update_center')  do %>
                   <span class="icon-eye"></span>
                 <%end%>
-                <%= link_to edit_admin_parbudget_center_path(center), class: "button", title: t('admin.parbudget.center.update_center'), alt: t('admin.parbudget.center.update_center')  do %>
+                <%= link_to edit_admin_parbudget_center_path(center), class: "button", style: "margin: 0px", title: t('admin.parbudget.center.update_center'), alt: t('admin.parbudget.center.update_center')  do %>
                   <span class="icon-edit"></span>
                 <%end%>
-                <%= link_to  admin_parbudget_center_path(center),method: :delete, class: "button hollow alert", title: "Borrar ámbito", alt: "Borrar ámbito", data: {confirm: t('admin.parbudget.center.destroy_confirm')}  do %>
+                <%= link_to  admin_parbudget_center_path(center),method: :delete, class: "button hollow alert", style: "margin: 0px", title: "Borrar ámbito", alt: "Borrar ámbito", data: {confirm: t('admin.parbudget.center.destroy_confirm')}  do %>
                   <span class="icon-deleted"></span>
                 <%end%>
               </td>

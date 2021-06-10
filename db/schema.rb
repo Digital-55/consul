@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210601142817) do
+ActiveRecord::Schema.define(version: 20210610152858) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1124,10 +1124,9 @@ ActiveRecord::Schema.define(version: 20210601142817) do
     t.string   "author"
     t.string   "email"
     t.string   "phone"
-    t.string   "association"
     t.string   "url"
     t.text     "descriptive_memory"
-    t.string   "entity_association"
+    t.string   "entity"
     t.boolean  "plate_proceeds"
     t.boolean  "license_plate"
     t.string   "plate_installed"
@@ -1138,9 +1137,7 @@ ActiveRecord::Schema.define(version: 20210601142817) do
     t.integer  "parbudget_ambit_id"
     t.integer  "parbudget_topic_id"
     t.integer  "parbudget_responsible_id"
-    t.integer  "parbudget_local_forum_id"
     t.index ["parbudget_ambit_id"], name: "index_parbudget_projects_on_parbudget_ambit_id", using: :btree
-    t.index ["parbudget_local_forum_id"], name: "index_parbudget_projects_on_parbudget_local_forum_id", using: :btree
     t.index ["parbudget_responsible_id"], name: "index_parbudget_projects_on_parbudget_responsible_id", using: :btree
     t.index ["parbudget_topic_id"], name: "index_parbudget_projects_on_parbudget_topic_id", using: :btree
   end

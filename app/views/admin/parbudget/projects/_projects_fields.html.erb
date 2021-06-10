@@ -1,0 +1,42 @@
+<fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+    <legend><%=t("admin.parbudget.project.title_data")%></legend>
+ 
+    <div class="small-12 medium-2  column end"  >
+      <%= f.text_field :year %>
+    </div>
+    <div class="small-12 medium-4  column end"  >
+      <%= f.text_field :code%>
+    </div>
+    <div class="small-12 medium-3  column end"  >
+          <%= f.select :parbudget_ambit, options_for_select(@ambits || [], @project[:parbudget_ambit]) %>
+    </div>
+    <div class="small-12 medium-3  column end"  >
+      <%#= f.text_field :status %>
+    </div>
+    <div class="small-12 column end">
+        <%= f.text_field :denomination %>
+    </div>
+    <div class="small-12 column end">
+        <%= f.text_field :descriptive_memory %>
+    </div>
+    <div class="small-12 medium-2 column end">
+        <%= f.text_field :votes %>
+    </div>
+    <div class="small-12 medium-3 column end">
+        <%= f.text_field :cost %>
+    </div>
+    <div class="small-12 medium-4 column end">
+        <%= f.text_field :url %>
+    </div>
+    <div class="small-12 medium-3 column end">
+        <%= f.text_field :code_old %>
+    </div>
+
+    <div class="small-12 medium-4  column end"  >
+        <%= f.select :parbudget_topic, options_for_select(@topics || [], @project[:parbudget_topic]) %>
+    </div>
+
+    <div class="small-12 medium-4  column end"  >
+        <%= f.select :parbudget_responsible, options_for_select(@responsibles || [], @project[:parbudget_responsible]) %>
+    </div>
+ </fieldset>

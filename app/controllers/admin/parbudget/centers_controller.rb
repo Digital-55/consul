@@ -1,5 +1,5 @@
 class Admin::Parbudget::CentersController < Admin::Parbudget::BaseController
-  respond_to :html, :js, :csv
+  respond_to :html, :js, :csv, :pdf
   before_action :load_data, only: [:index]
 
   def index
@@ -52,6 +52,17 @@ class Admin::Parbudget::CentersController < Admin::Parbudget::BaseController
   end
 
   def show
+    respond_to do |format|
+      format.html
+      format.pdf do
+        
+        render pdf: @center.denomination,
+        layout: 'pdf.html',
+        page_size: 'A4',
+        encoding: "UTF-8"
+       
+      end
+    end
   end
 
   private 
@@ -61,9 +72,11 @@ class Admin::Parbudget::CentersController < Admin::Parbudget::BaseController
   end
 
   def center_strong_params
-    params.require(:parbudget_center).permit(:denomination, :code, :code_section, :code_program, :resonsible,
-      :government_area, :general_direction, :parbudget_project_id, :parbudget_responsibles_ids => [])
+    params.require(:parbudget_center).permit(:denomination, :code, :code_section, :code_program, :responsible,
+      :government_area, :general_direction, :parbudget_project_id,
+      {:parbudget_responsibles_attributes => [:parbudget_center_id, :full_name, :email, :phone, :position, :_destroy]})
   end
+
 
   def load_resource
     @center = @model.find(params[:id])

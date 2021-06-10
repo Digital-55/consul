@@ -840,7 +840,7 @@ es:
         updated_at: "Fecha de modificación"
       parbudget/center:
         denomination: Denominación
-        code: "Código de centor"
+        code: "Código de centro"
         code_section: Código sección
         code_program: Código programa
         responsible: Responsable

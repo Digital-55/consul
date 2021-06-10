@@ -1,45 +1,28 @@
 
-<%= form_for [:admin, @responsible], html: {data: {watch_changes: true}} do |f| %>
+<%= form_for [:admin, @project], html: {data: {watch_changes: true}} do |f| %>
 
-  <% if @responsible.errors.any? %>
+  <% if @project.errors.any? %>
     <div id="error_explanation" data-alert class="callout alert" data-closable>
       <button class="close-button" aria-label="<%= t("application.close") %>" type="button" data-close>
         <span aria-hidden="true">&times;</span>
       </button>
 
       <strong>
-        <%= @responsible.errors.count %>
-        <%= t("admin.sures.actuations.errors.form.error", count: @responsible.errors.count) %>
+        <%= @project.errors.count %>
+        <%= t("admin.sures.actuations.errors.form.error", count: @project.errors.count) %>
       </strong>
     </div>
   <% end %>
-  <div class="small-12 column">
-        <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
-            <legend><%=t("admin.menu.parbudget_tabs.legend_filter")%></legend>
-  <div class="row">
-    <div class="small-12 medium-6  column end"  >
-      <%= f.text_field :full_name %>
-    </div>
-    <div class="small-12 medium-3  column end"  >
-      <%= f.text_field :email %>
-    </div>
-    <div class="small-12 medium-3  column end"  >
-      <%= f.text_field :phone %>
-    </div>
-    
-  </div>
-  <div class="row">
-    <div class="small-12 medium-6  column end"  >
-      <%= f.text_field :position %>
-    </div>
-    <div class="small-12 medium-3 column end">
-      <%= f.select :parbudget_center, options_for_select(@centers || [], @responsible[:parbudget_center]) %>
-    </div>
-  </div>
- </fieldset>
- </div>
+
+  <%=render "projects_fields", f: f%>
+  <%=render "center_fields", f: f%>
+  <%=render "author_fields", f: f%>
+  <%=render "economic_fields", f: f%>
+  <%=render "media_fields", f: f%>
+  <%=render "link_fields", f: f%>
+  
   <div class="small-12 medium-3 column clear end">
-    <%= f.submit(class: "button success expanded", value: t("admin.sures.actuations.#{admin_submit_action(@responsible)}.submit_button")) %>
+    <%= f.submit(class: "button success expanded", value: t("admin.sures.actuations.#{admin_submit_action(@project)}.submit_button")) %>
   </div> 
 
 <% end %>

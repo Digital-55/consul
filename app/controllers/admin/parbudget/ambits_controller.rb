@@ -2,6 +2,8 @@ class Admin::Parbudget::AmbitsController < Admin::Parbudget::BaseController
   respond_to :html, :js, :csv
   before_action :load_resource, only: [:update_ambit,:destroy]
 
+  load_and_authorize_resource :ambit, class: "Parbudget::Ambit"
+
   def index
     search(params)
     @ambits = @ambits.page(params[:page]).per(20)

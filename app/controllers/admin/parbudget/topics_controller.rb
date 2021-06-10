@@ -7,7 +7,7 @@ class Admin::Parbudget::TopicsController < Admin::Parbudget::BaseController
     @topics = @topics.page(params[:page]).per(20)
   end
 
-  def create_topic
+  def generate_topic
     topic=  @model.new
     if topic.save(validate: false)
       redirect_to admin_parbudget_topics_path,  notice: I18n.t("admin.parbudget.topic.create_success")

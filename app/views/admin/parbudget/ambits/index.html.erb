@@ -1,46 +1,7 @@
 <%= render partial: "admin/parbudget/tabs"%>
-<%= render partial: "admin/parbudget/buttons", locals: {path: create_ambit_admin_parbudget_ambits_path, button_title: t("admin.menu.parbudget_tabs.new_ambits")}%>
+<%= render partial: "admin/parbudget/buttons", locals: {method: :post, remote: true, path: create_ambit_admin_parbudget_ambits_path, button_title: t("admin.menu.parbudget_tabs.new_ambits")}%>
 <%= render partial: "filters"%>
 
-<div class="small-12 column">
-  <% if @ambits.any? %>
-    <h3><%= page_entries_info @ambits %></h3>
-
-    <table class="stack">
-      <thead>
-        <tr>
-          <%@model.get_columns.each do |c|%>
-            <th><%= @model.human_attribute_name(c) %></th>
-          <%end%>
-          <th><%= t("admin.actions.actions") %></th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @ambits.each do |ambit| %>
-          <%= form_for ambit, :url => update_ambit_admin_parbudget_ambit_path(ambit), method: :post do |f| %>
-            <tr id="<%= dom_id(ambit) %>">
-              <%@model.get_columns.each do |c|%>
-                <td><%= f.text_field c, label: false, placeholder:  "#{@model.human_attribute_name(c)}..."  %></td>
-              <%end%>
-              <td>
-                <%= link_to admin_parbudget_ambits_path, class: "button hollow", title: t('admin.parbudget.show_audits'), alt: t('admin.parbudget.show_audits')  do %>
-                  <span class="icon-settings"></span>
-                <%end%>
-                <%= link_to '#', class: "button", title: t('admin.parbudget.ambit.update_ambit'), alt: t('admin.parbudget.ambit.update_ambit'), :onclick => "$('#edit_parbudget_ambit_#{f.object.id}').submit()"  do %>
-                  <span class="icon-edit"></span>
-                <%end%>
-                <%= link_to  admin_parbudget_ambit_path(ambit),method: :delete, class: "button hollow alert", title: "Borrar ámbito", alt: "Borrar ámbito", data: {confirm: t('admin.parbudget.ambit.destroy_confirm')}  do %>
-                  <span class="icon-deleted"></span>
-                <%end%>
-              </td>
-            </tr>
-          <% end %>
-        <% end %>
-      </tbody>
-    </table>
-    <%= paginate @ambits %>
-  <% else %>
-    <div class="callout primary"><%= page_entries_info @ambits %></div>
-  <% end %>
+<div id = "content-ambits" class="small-12 column">
+  <%= render partial: "content_ambits" %>
 </div>
