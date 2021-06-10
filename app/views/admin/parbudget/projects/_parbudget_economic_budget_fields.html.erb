@@ -1,0 +1,38 @@
+<div class="small-12 column nested-fields">
+    <%= f.hidden_field :id %>
+    <div class="row">
+        <div class="small-12 medium-6  column end"  >
+            <%= f.text_field :year %>
+        </div>
+         <div class="small-12 medium-6  column end"  >
+            <%= f.text_field :import %>
+        </div>
+         <div class="small-12 medium-6  column end"  >
+            <%= f.text_field :start_date %>
+        </div>
+         <div class="small-12 medium-6  column end"  >
+            <%= f.text_field :end_date %>
+        </div>
+         <div class="small-12 medium-6  column end"  >
+            <%= f.text_field :count_managing_body %>
+        </div>
+        <div class="small-12 medium-6  column end"  >
+            <%= f.text_field :count_functional %>
+        </div>
+        <div class="small-12 medium-6  column end"  >
+            <%= f.text_field :economic %>
+        </div>
+        <div class="small-12 medium-6  column end"  >
+            <%= f.text_field :element_pep %>
+        </div>
+        <div class="small-12 medium-6  column end"  >
+            <%= f.text_field :financing %>
+        </div>
+        <div class="small-12 medium-6  column end"  >
+            <%= f.text_field :type_contract %>
+        </div>
+        <div class="medium-4 column action-remove text-right">
+            <%=link_to_remove_association  t("admin.parbudget.project.delete_economic") , f, class: "delete"%>
+        </div>
+    </div>
+</div>

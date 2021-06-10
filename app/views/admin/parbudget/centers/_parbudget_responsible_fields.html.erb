@@ -2,6 +2,7 @@
 <div id="<%= dom_id(f.object) %>" class="parbudget-responsibles-<%=nome%>">
 <div class="nested-fields">
   <div class="fields">
+  <%= f.hidden_field :id %>
     <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
       <%= f.hidden_field :parbudget_center_id, value: f.object.parbudget_center_id ||  @center.id %>
       <div class="small-12 medium-6  column end"  >
