@@ -125,7 +125,8 @@ class Mailer < ApplicationMailer
   def newsletter(newsletter, recipient_email)
     @newsletter = newsletter
     @email_to = recipient_email
-
+    @email_to = @email_to.gsub('@munimadrid.es','')
+    @email_to = @email_to + "@madrid.es" if !@email_to.include?("@")
     mail(to: @email_to, from: @newsletter.from, subject: @newsletter.subject)
   end
 
