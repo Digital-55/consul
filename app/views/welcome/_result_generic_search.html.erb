@@ -5,8 +5,10 @@
           <%if @resultado.blank?%>
             <%=t('sgs.no_result_find')%>
           <%else%>
+          <% sin_items = true%>
             <% @resultado.each do |r|%>
             <%if r[:count].to_i > 0%>
+            <% sin_items = false%>
             <p>
               <%
                 fields = ""
@@ -19,7 +21,15 @@
             </p>
             <%end%>
             <%end%>    
-          <%end%>       
+          <%end%>  
+          
       </div>
     </div>
+     <% if sin_items%>
+        <div class="row">
+            <div class="small-12 columns">
+                <%=t('sgs.no_element_list')%>
+            </div>
+        </div>
+    <%end%>    
 </div>
