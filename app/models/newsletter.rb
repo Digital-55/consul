@@ -29,7 +29,7 @@ class Newsletter < ApplicationRecord
     list_of_recipient_emails_in_batches.each do |recipient_emails|
       recipient_emails.each do |recipient_email|
         if valid_recipient?(recipient_email)
-          Mailer.newsletter(self, segment_recipient).deliver_now!
+          Mailer.newsletter(self, recipient_email).deliver_now!
           log_delivery(segment_recipient)
         end
       end
