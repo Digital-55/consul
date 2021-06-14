@@ -16,8 +16,6 @@ class Admin::Parbudget::ProjectsController < Admin::Parbudget::BaseController
   end
 
   def create
-
-    xxxxx
     @project=  @model.new(project_strong_params)
     if @project.save
       redirect_to admin_parbudget_projects_path,  notice: I18n.t("admin.parbudget.project.create_success")
@@ -25,9 +23,9 @@ class Admin::Parbudget::ProjectsController < Admin::Parbudget::BaseController
       flash[:error] = I18n.t("admin.parbudget.project.create_error")
       render :new
     end
-  # rescue
-  #   flash[:error] = I18n.t("admin.parbudget.project.create_error")
-  #   redirect_to admin_parbudget_projects_path
+  rescue
+    flash[:error] = I18n.t("admin.parbudget.project.create_error")
+    redirect_to admin_parbudget_projects_path
   end
 
   def update
@@ -73,9 +71,12 @@ class Admin::Parbudget::ProjectsController < Admin::Parbudget::BaseController
   end
 
   def project_strong_params
-    params.require(:parbudget_project).permit(:denomination, :code, :year,:votes, :cost, :author, :parbudget_ambit_id,
-      :email, :phone, :association, :url, :descriptive_memory, :parbudget_topic_id, :entity_association, :parbudget_ersponsible,
-      :plate_proceeds, :license_plate, :plate_installed, :assumes_dgpc, :code_old)
+    params.require(:parbudget_project).permit(:denomination, :code, :year,:web_title,:votes, :cost, :author, :parbudget_ambit_id,
+      :email, :phone, :url, :descriptive_memory, :parbudget_topic_id, :entity, :parbudget_responsible,
+      :plate_proceeds, :license_plate, :plate_installed, :code_old, :parbudget_center_ids => [],
+      :parbudget_economic_budgets_attributes=> [:id, :year, :import, :start_date, :end_date, :count_managing_body, :count_functional,
+        :economic,:element_pep,:financing,:type_contract,:_destroy], :parbudget_medias_attributes => [:id, :title, :text_document, 
+        :attachment,  :_destroy], :parbudget_links_attributes => [:id,:url, :_destroy])
   end
 
   def load_resource

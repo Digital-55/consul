@@ -1,47 +1,155 @@
 <% provide :title do %>
- <%= t("admin.header.title") %> - <%= t("admin.menu.parbudget_maintance") %> - <%= t("admin.menu.parbudget_tabs.responsibles") %> - <%= @responsible.full_name %>
+ <%= t("admin.header.title") %> - <%= t("admin.menu.parbudget_maintance") %> - <%= t("admin.menu.parbudget_tabs.projects") %> - <%= @project.denomination %>
 <% end %>
 
-<div class="parbudget-responsible-show">
-  <%= back_link_to admin_parbudget_responsibles_path, t("admin.sures.actuations.new.back") %>
+<div class="parbudget-project-show">
+  <%= back_link_to admin_parbudget_projects_path, t("admin.sures.actuations.new.back") %>
 
  
     <div class="small-12 column">
-        <h2><%= @responsible.full_name %></h2>
+        <h2><%= @project.denomination %></h2>
         <div class="float-right">
-            <%= link_to t('admin.parbudget.responsible.pdf_download'), current_path_with_query_params(id: @responsible.id, format: :pdf), class: "button" %>
+            <%= link_to t('admin.parbudget.project.pdf_download'), current_path_with_query_params(id: @project.id, format: :pdf), class: "button" %>
         </div>
     </div>
 
  
   <div class="small-12 column">
     <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
-      <legend><%=t('admin.parbudget.responsible.title_data')%></legend>
-      <div class="row">
-        <div class="small-12 medium-6  column end"  >
-            <p><b><%=@model.human_attribute_name(:full_name)%></b></p>
-            <p><%= @responsible.try(:full_name) %></p>
-        </div>
-        <div class="small-12 medium-3  column end"  >
-            <p><b><%=@model.human_attribute_name(:email)%></b></p>
-            <p><%=  @responsible.try(:email) %></p>
-        </div>
-        <div class="small-12 medium-3  column end"  >
-            <p><b><%=@model.human_attribute_name(:phone)%></b></p>
-            <p><%=  @responsible.try(:phone) %></p>
-        </div>
-        
+      <legend><%=t("admin.parbudget.project.title_data")%></legend>
+  
+      <div class="small-12 medium-2  column end"  >
+        <p><b><%=@model.human_attribute_name(:year)%></b></p>
+        <p><%= @project.try(:year) %></p>
       </div>
-      <div class="row">
-        <div class="small-12 medium-6  column end"  >
-            <p><b><%=@model.human_attribute_name(:position)%></b></p>
-            <p><%=  @responsible.try(:position) %></p>
-        </div>
-        <div class="small-12 medium-6 column end">
-            <p><b><%=@model.human_attribute_name(:parbudget_center)%></b>
-            <p><%=  @responsible.try(:parbudget_center).try(:denomination) %></b>
-        </div>
+      <div class="small-12 medium-4  column end"  >
+        <p><b><%=@model.human_attribute_name(:code)%></b></p>
+        <p><%= @project.try(:code) %></p>
       </div>
+      <div class="small-12 medium-3  column end"  >
+        <p><b><%=@model.human_attribute_name(:parbudget_ambit)%></b></p>
+        <p><%= @project.try(:parbudget_ambit) %></p>
+      </div>
+      <div class="small-12 medium-3  column end"  >
+        <p><b><%=@model.human_attribute_name(:status)%></b></p>
+        <p><%= @project.try(:status) %></p>
+      </div>
+      <div class="small-12 column end">
+        <p><b><%=@model.human_attribute_name(:web_title)%></b></p>
+        <p><%= @project.try(:web_title) %></p>
+      </div>
+      <div class="ckeditor small-12 column">
+        <p><b><%=@model.human_attribute_name(:descriptive_memory)%></b></p>
+        <p><%= @project.try(:descriptive_memory).html_safe %></p>
+      </div>
+      <div class="small-12 medium-2 column end">
+        <p><b><%=@model.human_attribute_name(:votes)%></b></p>
+        <p><%= @project.try(:votes) %></p>
+      </div>
+      <div class="small-12 medium-3 column end">
+        <p><b><%=@model.human_attribute_name(:cost)%></b></p>
+        <p><%= @project.try(:cost) %></p>
+      </div>
+      <div class="small-12 medium-4 column end">
+        <p><b><%=@model.human_attribute_name(:url)%></b></p>
+        <p><%= @project.try(:url) %></p>
+      </div>
+      <div class="small-12 medium-3 column end">
+        <p><b><%=@model.human_attribute_name(:code_old)%></b></p>
+        <p><%= @project.try(:code_old) %></p>
+      </div>
+      <div class="small-12 column end">
+        <p><b><%=@model.human_attribute_name(:denomination)%></b></p>
+        <p><%= @project.try(:denomination) %></p>
+      </div>
+      <div class="small-12 medium-4  column end"  >
+        <p><b><%=@model.human_attribute_name(:parbudget_topic)%></b></p>
+        <p><%= @project.try(:parbudget_topic) %></p>
+      </div>
+      <div class="small-12 medium-4  column end"  >
+        <p><b><%=@model.human_attribute_name(:parbudget_responsible)%></b></p>
+        <p><%= @project.try(:parbudget_responsible) %></p>
+      </div>
+    </fieldset>
+
+    <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+      <legend><%=t("admin.parbudget.project.title_data_center")%></legend>
+      <%@project.parbudget_centers.each do |center|%>
+        <div class='small-12 column'>
+          <fieldset  style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+            <div  class='small-12 medium-6 column'>
+              <p><b><%=center.class.human_attribute_name(:government_area)%></b></p>
+              <p><%=center.try(:government_area)%></p>
+            </div>
+            <div  class='small-12 medium-6 column'>
+              <p><b><%=center.class.human_attribute_name(:general_direction)%></b></p>
+              <p><%=center.try(:general_direction)%></p>
+            </div>
+            <div  class='small-12 medium-6 column'>
+              <p><b><%=center.class.human_attribute_name(:denomination)%></b></p>
+              <p><%=center.try(:denomination)%></p>
+            </div>
+            <div  class='small-12 medium-6 column'>
+              <p><b><%=center.class.human_attribute_name(:responsible)%></b></p>
+              <p><%=center.try(:responsible)%></p>
+            </div>
+            <div  class='small-12 medium-4 column'>
+              <p><b><%=center.class.human_attribute_name(:code)%></b></p>
+              <p><%=center.try(:code)%></p>
+            </div>
+            <div  class='small-12 medium-4 column'>
+              <p><b><%=center.class.human_attribute_name(:code_section)%></b></p>
+              <p><%=center.try(:code_section)%></p>
+            </div>
+            <div  class='small-12 medium-4 column'>
+              <p><b><%=center.class.human_attribute_name(:code_program)%></b></p>
+              <p><%=center.try(:code_program)%></p>
+            </div>
+          </fieldset>
+        </div>
+      <%end%>
+    </fieldset>
+
+    <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+      <legend><%=t("admin.parbudget.project.title_data_author")%></legend>
+      <div class="small-12 medium-6  column end"  >
+        <p><b><%=@model.human_attribute_name(:author)%></b></p>
+        <p><%= @project.try(:author) %></p>
+      </div>
+      <div class="small-12 medium-6  column end"  >
+        <p><b><%=@model.human_attribute_name(:entity)%></b></p>
+        <p><%= @project.try(:entity) %></p>
+      </div>   
+      <div class="small-12 medium-6 column end">
+        <p><b><%=@model.human_attribute_name(:email)%></b></p>
+        <p><%= @project.try(:email) %></p>
+      </div>
+      <div class="small-12 medium-6 column end">
+        <p><b><%=@model.human_attribute_name(:phone)%></b></p>
+        <p><%= @project.try(:phone) %></p>
+      </div>
+      <div class="small-12 medium-4 column end">
+        <p><b><%=@model.human_attribute_name(:plate_proceeds)%></b></p>
+        <p><%= t(@project.try(:plate_proceeds).to_s) %></p>
+      </div>
+      <div class="small-12 medium-4 column end">
+        <p><b><%=@model.human_attribute_name(:license_plate)%></b></p>
+        <p><%= t(@project.try(:license_plate).to_s) %></p>
+      </div>
+      <div class="small-12 medium-4 column end">
+        <p><b><%=@model.human_attribute_name(:plate_installed)%></b></p>
+        <p><%= t(@project.try(:plate_installed).to_s) %></p>
+      </div>    
+    </fieldset>
+
+
+    <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+      <legend><%=t("admin.parbudget.project.title_data_link")%></legend>
+      <% @project.parbudget_links.each do |link| %>
+        <div class="small-12 column end">
+          <p><%= link_to link.url, link.url, target: "_blank" %></p>
+        </div>
+      <% end %>
     </fieldset>
   </div>
 </div>

@@ -14,7 +14,7 @@ class Parbudget::Project < ApplicationRecord
     accepts_nested_attributes_for :parbudget_medias, allow_destroy: true
     accepts_nested_attributes_for :parbudget_economic_budgets, allow_destroy: true
 
-    validates :year, :code, :parbudger_ambit, :web_title, :descriptive_memory, :votes, :cost, :url, :code_old, :denomination, :author, :entity, :email, :phone, presence: true
+    #validates :year, :code, :parbudger_ambit, :web_title, :descriptive_memory, :votes, :cost, :url, :code_old, :denomination, :author, :entity, :email, :phone, presence: true
     validates_format_of :phone, :with => /\A(\+34|0034|34)?[6|7|8|9][0-9]{8}\z/, allow_blank: true
     validates_format_of :email, :with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, allow_blank: true
 
