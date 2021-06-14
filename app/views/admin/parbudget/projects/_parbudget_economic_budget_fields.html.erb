@@ -1,36 +1,39 @@
-<div class="small-12 column nested-fields">
-    <%= f.hidden_field :id %>
-    <div class="small-12 medium-6  column end"  >
-        <%= f.text_field :year %>
-    </div>
-        <div class="small-12 medium-6  column end"  >
-        <%= f.text_field :import %>
-    </div>
-        <div class="small-12 medium-6  column end"  >
-        <%= f.text_field :start_date %>
-    </div>
-        <div class="small-12 medium-6  column end"  >
-        <%= f.text_field :end_date %>
-    </div>
-        <div class="small-12 medium-6  column end"  >
-        <%= f.text_field :count_managing_body %>
-    </div>
-    <div class="small-12 medium-6  column end"  >
-        <%= f.text_field :count_functional %>
-    </div>
-    <div class="small-12 medium-6  column end"  >
-        <%= f.text_field :economic %>
-    </div>
-    <div class="small-12 medium-6  column end"  >
-        <%= f.text_field :element_pep %>
-    </div>
-    <div class="small-12 medium-6  column end"  >
-        <%= f.text_field :financing %>
-    </div>
-    <div class="small-12 medium-6  column end"  >
-        <%= f.text_field :type_contract %>
-    </div>
-    <div class="medium-4 column action-remove text-right">
-        <%=link_to_remove_association  t("admin.parbudget.project.delete_economic") , f, class: "delete"%>
-    </div>
+<div id="<%= dom_id(f.object) %>" class="nested-fields">
+    <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+        <legend><%=t("admin.parbudget.project.subtitle_economic", i: "")%></legend>
+        <%= f.hidden_field :id %>
+        <div class="small-12 medium-2  column end"  >
+            <%= f.number_field :year %>
+        </div>
+            <div class="small-12 medium-4  column end"  >
+            <%= f.number_field :import %>
+        </div>
+            <div class="small-12 medium-3  column end"  >
+            <%= f.date_field :start_date %>
+        </div>
+            <div class="small-12 medium-3  column end"  >
+            <%= f.date_field :end_date %>
+        </div>
+        <div class="small-12 medium-3  column end"  >
+            <%= f.number_field :count_managing_body %>
+        </div>
+        <div class="small-12 medium-3 column end"  >
+            <%= f.number_field :count_functional %>
+        </div>
+        <div class="small-12 medium-3  column end"  >
+            <%= f.text_field :economic %>
+        </div>
+        <div class="small-12 medium-3  column end"  >
+            <%= f.text_field :element_pep %>
+        </div>
+        <div class="small-12 medium-4  column end"  >
+            <%= f.text_field :financing %>
+        </div>
+        <div class="small-12 medium-4  column end"  >
+            <%= f.text_field :type_contract %>
+        </div>
+        <div class="small-12 medium-4 column action-remove text-right">
+            <%=link_to_remove_association  t("admin.parbudget.project.delete_economic") , f, class: "button alert"%>
+        </div>
+    </fieldset>
 </div>

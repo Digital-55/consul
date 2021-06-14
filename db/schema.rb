@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210610152858) do
+ActiveRecord::Schema.define(version: 20210614095904) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1102,8 +1102,12 @@ ActiveRecord::Schema.define(version: 20210610152858) do
     t.text     "text_document"
     t.string   "title"
     t.integer  "parbudget_project_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
     t.index ["parbudget_project_id"], name: "index_parbudget_medias_on_parbudget_project_id", using: :btree
   end
 
@@ -1129,14 +1133,15 @@ ActiveRecord::Schema.define(version: 20210610152858) do
     t.string   "entity"
     t.boolean  "plate_proceeds"
     t.boolean  "license_plate"
-    t.string   "plate_installed"
-    t.boolean  "assumes_dgpc"
     t.integer  "code_old"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.integer  "parbudget_ambit_id"
     t.integer  "parbudget_topic_id"
     t.integer  "parbudget_responsible_id"
+    t.string   "status"
+    t.string   "web_title"
+    t.boolean  "plate_installed"
     t.index ["parbudget_ambit_id"], name: "index_parbudget_projects_on_parbudget_ambit_id", using: :btree
     t.index ["parbudget_responsible_id"], name: "index_parbudget_projects_on_parbudget_responsible_id", using: :btree
     t.index ["parbudget_topic_id"], name: "index_parbudget_projects_on_parbudget_topic_id", using: :btree

@@ -8,19 +8,19 @@
       <%= f.text_field :entity%>
     </div>   
     <div class="small-12 medium-6 column end">
-        <%= f.text_field :email %>
+        <%= f.email_field :email %>
     </div>
     <div class="small-12 medium-6 column end">
-        <%= f.text_field :phone %>
+        <%= f.telephone_field :phone %>
     </div>
 
     <div class="small-12 medium-4 column end">
-        <%= f.text_field :plate_proceeds %>
+        <%= f.check_box  :plate_proceeds %>
     </div>
     <div class="small-12 medium-4 column end">
-        <%= f.text_field :license_plate %>
+        <%= f.check_box  :license_plate %>
     </div>
     <div class="small-12 medium-4 column end">
-        <%= f.text_field :plate_installed %>
+        <%= f.check_box  :plate_installed %>
     </div>    
  </fieldset>

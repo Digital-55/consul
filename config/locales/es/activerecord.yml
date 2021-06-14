@@ -861,7 +861,7 @@ es:
         author: "Autor"
         email: "Correo electrónico"
         phone: "Teléfono"
-        association: "En nombre de"
+        entity: "En nombre de"
         url: "URL"
         denomination: "Título"
         descriptive_memory: "Memoria descriptiva"
@@ -889,8 +889,9 @@ es:
         parbudget_center_id: "Centro"
         created_at: "Fecha de creación"
         updated_at: "Fecha de modificación"
-      parbudget/medias:
+      parbudget/media:
         text_document: "Descripción"
+        attachment: "Archivo"
         title: "Título"
         project: "Proyecto"
         project_id: "Proyecto"
@@ -908,7 +909,7 @@ es:
         start_date: "Fecha inicio"
         end_date: "Fecha fin"
         count_managing_body: "Nº Organo gestor"
-        count_funcional: "Nº Funcional"
+        count_functional: "Nº Funcional"
         economic: "Económico"
         element_pep: "Elemento PEP"
         financing: "Financiación"

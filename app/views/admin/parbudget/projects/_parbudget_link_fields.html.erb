@@ -1,9 +1,9 @@
-<div class="small-12 column nested-fields">
+<div class="nested-fields">
     <%= f.hidden_field :id %>
-    <div class="small-12 medium-6  column end"  >
-        <%= f.text_field :url %>
+    <div class="small-12 medium-10  column end"  >
+        <%= f.text_field :url, placeholder: f.object.class.human_attribute_name(:url), label: false %>
     </div>
-    <div class="medium-4 column action-remove text-right">
-        <%=link_to_remove_association  t("admin.parbudget.project.delete_assistant") , f, class: "delete"%>
+    <div class="small-12 medium-2 column action-remove text-right">
+        <%=link_to_remove_association  t("admin.parbudget.project.delete_link") , f, class: "button alert"%>
     </div>
 </div>

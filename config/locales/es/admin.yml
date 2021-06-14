@@ -775,6 +775,8 @@ es:
         subtitle_economic: "Presupuesto %{i}"
         title_data_media: "Archivos adjuntos"
         title_data_link: "Enlaces"
+        add_media: Añadir archivo
+        delete_media: Eliminar archivo
         add_economic: Añadir presupuesto
         add_link: Añadir enlace
         delete_economic: Borrar presupuesto
