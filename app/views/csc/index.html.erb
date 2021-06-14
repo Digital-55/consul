@@ -1,6 +1,8 @@
 <% provide :title do %><%= t("meta_tags.csc.title") %><% end %>
-<% provide :meta_description do %><%= t("meta_tags.csc.description") %><% end %>
-<% provide :meta_keywords do %><%= t("meta_tags.csc.keywords") %><% end %>
+<% provide :meta_description , t("meta_tags.csc.description")  %>
+<% provide :meta_keywords, t("meta_tags.csc.keywords") %>
+<%content_for(:meta_description) {t("meta_tags.csc.description") }%>
+<%content_for(:meta_keywords) {t("meta_tags.csc.keywords")}%>
 <div id="csc-container">
     <div class="row" >
         <div id="title" class="small-12 column">   
