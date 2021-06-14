@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="<%= I18n.locale %>" data-current-user-id="<%= current_user.try(:id) %>">
   <head>
+    <meta name="turbolinks-cache-control" content="no-cache">
     <%= render "layouts/common_head", default_title: setting["org_name"] %>
     <%= render "layouts/tracking_data" %>
     <%= render "layouts/meta_tags" %>
