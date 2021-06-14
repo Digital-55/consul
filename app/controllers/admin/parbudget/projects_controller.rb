@@ -1,6 +1,7 @@
 class Admin::Parbudget::ProjectsController < Admin::Parbudget::BaseController
   respond_to :html, :js, :csv, :pdf
   before_action :load_data, only: [:index]
+  before_action :load_center
 
   def index
     search(params)
@@ -15,6 +16,8 @@ class Admin::Parbudget::ProjectsController < Admin::Parbudget::BaseController
   end
 
   def create
+
+    xxxxx
     @project=  @model.new(project_strong_params)
     if @project.save
       redirect_to admin_parbudget_projects_path,  notice: I18n.t("admin.parbudget.project.create_success")
@@ -22,9 +25,9 @@ class Admin::Parbudget::ProjectsController < Admin::Parbudget::BaseController
       flash[:error] = I18n.t("admin.parbudget.project.create_error")
       render :new
     end
-  rescue
-    flash[:error] = I18n.t("admin.parbudget.project.create_error")
-    redirect_to admin_parbudget_projects_path
+  # rescue
+  #   flash[:error] = I18n.t("admin.parbudget.project.create_error")
+  #   redirect_to admin_parbudget_projects_path
   end
 
   def update
@@ -79,6 +82,10 @@ class Admin::Parbudget::ProjectsController < Admin::Parbudget::BaseController
     @project = @model.find(params[:id])
   rescue
     @project = nil
+  end
+
+  def load_center
+    @centers = ::Parbudget::Center.all
   end
 
   def load_data

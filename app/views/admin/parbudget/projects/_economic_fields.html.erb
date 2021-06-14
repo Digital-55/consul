@@ -1,6 +1,6 @@
 <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
     <legend><%=t("admin.parbudget.project.title_data_economic")%></legend>
- <div id="nested_parbudget_economic_budgets">
+    <div id="nested_parbudget_economic_budgets">
         <%= f.fields_for :parbudget_economic_budgets do |ff| %>
             <%= render "parbudget_economic_budget_fields", f: ff %>
         <% end %>
@@ -11,6 +11,5 @@
                                         f, :parbudget_economic_budgets, class: "button hollow"  %>
             </div>
         </div>
-      </div>
-       
+    </div>       
  </fieldset>

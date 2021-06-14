@@ -852,6 +852,7 @@ es:
         updated_at: "Fecha de modificación"
       parbudget/project:
         code: "Identificador"
+        web_title: Título
         year: "Año"
         ambit: "Ámbito"
         parbudget_ambit: "Ámbito"
@@ -863,7 +864,8 @@ es:
         phone: "Teléfono"
         entity: "En nombre de"
         url: "URL"
-        denomination: "Título"
+        denomination: "Denominación del proyecto"
+        status: Estado de tramitación
         descriptive_memory: "Memoria descriptiva"
         topic: "Tema"
         parbudget_topic: "Tema"

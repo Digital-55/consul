@@ -2,28 +2,28 @@
     <legend><%=t("admin.parbudget.project.title_data")%></legend>
  
     <div class="small-12 medium-2  column end"  >
-      <%= f.text_field :year %>
+        <%= f.number_field :year %>
     </div>
     <div class="small-12 medium-4  column end"  >
-      <%= f.text_field :code%>
+        <%= f.text_field :code%>
     </div>
     <div class="small-12 medium-3  column end"  >
-          <%= f.select :parbudget_ambit, options_for_select(@ambits || [], @project[:parbudget_ambit]) %>
+        <%= f.select :parbudget_ambit, options_for_select(@ambits || [], @project[:parbudget_ambit]) %>
     </div>
     <div class="small-12 medium-3  column end"  >
-      <%#= f.text_field :status %>
+      <%= f.select :status, options_for_select(@status || [], @project[:status]) %>
     </div>
     <div class="small-12 column end">
-        <%= f.text_field :denomination %>
+        <%= f.text_field :web_title %>
     </div>
-    <div class="small-12 column end">
-        <%= f.text_field :descriptive_memory %>
+    <div class="ckeditor small-12 column">
+        <%= f.cktext_area :descriptive_memory, ckeditor: { language: I18n.locale, toolbar: current_user.administrator? ? "admin" : 'mini' } %>
     </div>
     <div class="small-12 medium-2 column end">
         <%= f.text_field :votes %>
     </div>
     <div class="small-12 medium-3 column end">
-        <%= f.text_field :cost %>
+        <%= f.number_field :cost %>
     </div>
     <div class="small-12 medium-4 column end">
         <%= f.text_field :url %>
@@ -31,11 +31,12 @@
     <div class="small-12 medium-3 column end">
         <%= f.text_field :code_old %>
     </div>
-
+    <div class="small-12 column end">
+        <%= f.text_field :denomination %>
+    </div>
     <div class="small-12 medium-4  column end"  >
         <%= f.select :parbudget_topic, options_for_select(@topics || [], @project[:parbudget_topic]) %>
     </div>
-
     <div class="small-12 medium-4  column end"  >
         <%= f.select :parbudget_responsible, options_for_select(@responsibles || [], @project[:parbudget_responsible]) %>
     </div>

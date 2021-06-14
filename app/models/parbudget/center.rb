@@ -29,6 +29,19 @@ class Parbudget::Center < ApplicationRecord
         ]
     end
 
+    def get_list
+        [
+            self.id,
+            self.denomination,
+            self.code,
+            self.code_section,
+            self.code_program,
+            self.responsible,
+            self.government_area,
+            self.general_direction
+        ]
+    end
+
     def project
         self.try(:parbudget_project).try(:denomination)
     end
