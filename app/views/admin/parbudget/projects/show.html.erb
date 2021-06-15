@@ -142,6 +142,71 @@
       </div>    
     </fieldset>
 
+    <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+      <legend><%=t("admin.parbudget.project.title_data_economic")%></legend>
+      <%@project.parbudget_economic_budgets.each do |economic|%>
+        <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+          <legend><%=t("admin.parbudget.project.subtitle_economic", i: "")%></legend>
+          <div class="small-12 medium-2  column end"  >
+            <p><b><%=economic.class.human_attribute_name(:year)%></b></p>
+            <p><%= economic.try(:year) %></p>
+          </div>
+          <div class="small-12 medium-4  column end"  >
+            <p><b><%=economic.class.human_attribute_name(:import)%></b></p>
+            <p><%= economic.try(:import) %></p>
+          </div>
+          <div class="small-12 medium-3  column end"  >
+            <p><b><%=economic.class.human_attribute_name(:start_date)%></b></p>
+            <p><%= economic.try(:start_date) %></p>
+          </div>
+          <div class="small-12 medium-3  column end"  >
+            <p><b><%=economic.class.human_attribute_name(:end_date)%></b></p>
+            <p><%= economic.try(:end_date) %></p>
+          </div>
+          <div class="small-12 medium-3  column end"  >
+            <p><b><%=economic.class.human_attribute_name(:count_managing_body)%></b></p>
+            <p><%= economic.try(:count_managing_body) %></p>
+          </div>
+          <div class="small-12 medium-3 column end"  >
+            <p><b><%=economic.class.human_attribute_name(:count_functional)%></b></p>
+            <p><%= economic.try(:count_functional) %></p>
+          </div>
+          <div class="small-12 medium-3  column end"  >
+            <p><b><%=economic.class.human_attribute_name(:economic)%></b></p>
+            <p><%= economic.try(:economic) %></p>
+          </div>
+          <div class="small-12 medium-3  column end"  >
+            <p><b><%=economic.class.human_attribute_name(:element_pep)%></b></p>
+            <p><%= economic.try(:element_pep) %></p>
+          </div>
+          <div class="small-12 medium-4  column end"  >
+            <p><b><%=economic.class.human_attribute_name(:financing)%></b></p>
+            <p><%= economic.try(:financing) %></p>
+          </div>
+          <div class="small-12 medium-4  column end"  >
+            <p><b><%=economic.class.human_attribute_name(:type_contract)%></b></p>
+            <p><%= economic.try(:type_contract) %></p>
+          </div>
+        </fieldset>
+      <%end%>
+    </fieldset>
+
+    <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+      <legend><%=t("admin.parbudget.project.title_data_media")%></legend>
+      <%= @project.parbudget_medias do |media| %>
+        <div class="small-12 medium-6  column end"  >
+          <p><b><%=media.class.human_attribute_name(:title)%></b></p>
+          <p><%= media.try(:title) %></p>
+        </div>
+        <div class="small-12 medium-6  column end"  >
+          <p><b><%=media.class.human_attribute_name(:text_document)%></b></p>
+          <p><%= media.try(:text_document) %></p>
+        </div>
+        <div class="small-12 medium-12  column end"  >
+            <%#= f.file_field :attachment %>
+        </div>
+      <%end%>
+    </fieldset>
 
     <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
       <legend><%=t("admin.parbudget.project.title_data_link")%></legend>
