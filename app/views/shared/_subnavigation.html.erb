@@ -63,13 +63,13 @@
       <%= link_to "Órganos", "#", rel: "nofollow", class: "hide-for-small-only"%>
       <ul class="submenu menu vertical csc menu-element" data-submenu>
         <li>
-          <%= layout_menu_link_to t("csc.index.menu"), "organos/consejosocial", controller_name == "csc", accesskey: "8", title: t("csc.index.title") %>
+          <%= layout_menu_link_to t("csc.index.menu"), "/organos/consejosocial", controller_name == "csc", accesskey: "8", title: t("csc.index.title") %>
         </li>
       </ul>
     </li>
 
     <li class= "show-for-small-only menu-element" >
-      <%= layout_menu_link_to t("csc.index.menu"), "organos/consejosocial", controller_name == "csc", accesskey: "8", title: t("csc.index.title") %>
+      <%= layout_menu_link_to t("csc.index.menu"), "/organos/consejosocial", controller_name == "csc", accesskey: "8", title: t("csc.index.title") %>
     </li>
     
     <% if feature?(:help_page) %>
