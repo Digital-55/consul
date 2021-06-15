@@ -1,4 +1,4 @@
-source "http://rubygems.org"
+source "https://rubygems.org"
 
 gem "rails", "5.0.7.2"
 
@@ -64,7 +64,6 @@ gem 'paperclip-ffmpeg'
 gem 'paperclip-av-transcoder'
 gem "cocaine"
 gem 'jw_player_helper'
-gem 'meta-tags'
 
 #source "https://rails-assets.org" do
   gem "rails-assets-leaflet"
