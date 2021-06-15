@@ -42,6 +42,7 @@ $(document).on('page:change', function(){
   slugAutoFill();
   validateInputFields();
   updatePromotionalsLocation();
+  displayCharLimit();
 });
 
 function validateInputFields() {
@@ -199,3 +200,16 @@ function updatePromotionalsLocation(){
 
   })
 }
+
+function displayCharLimit() {
+  $('#meta-title, #meta-description').bind('keyup keydown', function(e) {
+    var len = this.value.length;
+    var charLimit = $(this).data('charLimit');
+    $(this).siblings('#char_num').text(charLimit - len);
+    if (len > charLimit) {
+      $(this).css('color', '#ff0000')
+    } else {
+      $(this).css('color', '#000000')
+    }
+  })
+};
