@@ -1,7 +1,7 @@
 class CscController < ApplicationController
     skip_authorization_check
   
-    layout "devise", only: [:welcome, :verification]
+    #layout "social", only: [:welcome, :verification]
   
     def index
     end

@@ -36,6 +36,8 @@ class ApplicationController < ActionController::Base
         aux_layout = "sures_register"
       elsif params[:controller].include?("sures")
         aux_layout = "sures"
+      elsif params[:controller].include?("csc")
+        aux_layout = "social"
       elsif devise_controller?
         aux_layout = "devise"
       else
@@ -43,7 +45,7 @@ class ApplicationController < ActionController::Base
       end
       
 
-      if aux_layout.to_s == "application"
+      if aux_layout.to_s == "application" || aux_layout.to_s == "social"
         @generic_searchs_settings = Sg::Setting.search_settings.active.order(id: :asc) 
         @search_terms = nil
       end     
@@ -89,6 +91,8 @@ class ApplicationController < ActionController::Base
         "sures_register"
       elsif params[:controller].include?("sures")
         "sures"
+      elsif params[:controller].include?("csc")
+        "social"
       elsif devise_controller?
         "devise"
       else

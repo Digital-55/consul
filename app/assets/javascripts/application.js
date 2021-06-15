@@ -19,7 +19,6 @@
 //= require jquery-ui/widgets/sortable
 //= require jquery-fileupload/basic
 //= require foundation
-//= require turbolinks
 //= require ckeditor/loader
 //= require_directory ./ckeditor
 //= require social-share-button

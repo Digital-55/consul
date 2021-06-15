@@ -64,6 +64,7 @@ gem 'paperclip-ffmpeg'
 gem 'paperclip-av-transcoder'
 gem "cocaine"
 gem 'jw_player_helper'
+gem 'meta-tags'
 
 #source "https://rails-assets.org" do
   gem "rails-assets-leaflet"
