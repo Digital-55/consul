@@ -28,7 +28,7 @@ module Admin::SuresHelper
     def parse_data_json(data)
         eval(JSON.parse(data.to_s)).to_h
     rescue
-        eval(data)
+        eval(data) if !data.blank?
     end
 
 
