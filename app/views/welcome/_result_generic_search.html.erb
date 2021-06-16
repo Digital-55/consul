@@ -7,7 +7,7 @@
           <%else%>
             <% sin_items = true%>
             <% @resultado.each do |r|%>
-              <%if !rblank? && r[:count].to_i > 0%>
+              <%if !r.blank? && r[:count].to_i > 0%>
               <% sin_items = false%>
               <p>
                 <%
