@@ -1,4 +1,4 @@
-<%=form_tag do %>
+<%=form_tag({controller: "centers",action: "index"}, {method: :get})  do %>
     <div class="small-12 column">
         <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
             <legend><%=t("admin.menu.parbudget_tabs.legend_filter")%></legend>

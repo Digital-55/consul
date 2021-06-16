@@ -55,12 +55,10 @@ class Admin::Parbudget::CentersController < Admin::Parbudget::BaseController
     respond_to do |format|
       format.html
       format.pdf do
-        
         render pdf: @center.denomination,
         layout: 'pdf.html',
         page_size: 'A4',
         encoding: "UTF-8"
-       
       end
     end
   end
@@ -85,22 +83,65 @@ class Admin::Parbudget::CentersController < Admin::Parbudget::BaseController
   end
 
   def load_data
-    @responsibles = ::Parbudget::Responsible.all
-    @projects = ::Parbudget::Project.all
+    @responsibles = ::Parbudget::Responsible.all.order(full_name: :asc).select(:full_name, :id)
+    @projects = ::Parbudget::Project.all.order(denomination: :asc).select(:denomination, :id)
   end
 
   def search(parametrize = {})
     @centers = @model.all
     @filters = []
 
-    if !parametrize[:search_code].blank?
-      @filters.push("#{I18n.t('admin.parbudget.ambit.search_code')}: #{parametrize[:search_code]}")
-      @ambits = @ambits.where("translate(UPPER(cast(code as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_code]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')")
+    begin
+      if !parametrize[:search_center_code].blank?
+        @filters.push("#{I18n.t('admin.parbudget.center.search_center_code')}: #{parametrize[:search_center_code]}")
+        @centers = @centers.where("translate(UPPER(cast(code as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_center_code]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')")
+      end
+    rescue
     end
 
-    if !parametrize[:search_ambit].blank?
-      @filters.push("#{I18n.t('admin.parbudget.ambit.search_ambit')}: #{parametrize[:search_ambit]}")
-      @ambits = @ambits.where("translate(UPPER(cast(name as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_ambit]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')")
+    begin
+      if !parametrize[:search_section_code].blank?
+        @filters.push("#{I18n.t('admin.parbudget.center.search_section_code')}: #{parametrize[:search_section_code]}")
+        @centers = @centers.where("translate(UPPER(cast(code_section as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_section_code]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')")
+      end
+    rescue
     end
+
+    begin
+      if !parametrize[:search_program_code].blank?
+        @filters.push("#{I18n.t('admin.parbudget.center.search_program_code')}: #{parametrize[:search_program_code]}")
+        @centers = @centers.where("translate(UPPER(cast(code_program as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_program_code]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')")
+      end
+    rescue
+    end
+
+    begin
+      if !parametrize[:search_denomination].blank?
+        @filters.push("#{I18n.t('admin.parbudget.center.search_denomination')}: #{parametrize[:search_denomination]}")
+        @centers = @centers.where("translate(UPPER(cast(denomination as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_denomination]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')")
+      end
+    rescue
+    end
+
+    begin
+      if !parametrize[:search_responsible].blank?
+        @filters.push("#{I18n.t('admin.parbudget.center.search_responsible')}: #{parametrize[:search_responsible]}")
+        @centers = @centers.where("translate(UPPER(cast(responsible as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_responsible]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU') OR id in (?)", 
+          ::Parbudget::Responsible.where(id: parametrize[:search_responsible]).select(:parbudget_center_id)
+      )
+      end
+    rescue
+    end
+
+    begin
+      if !parametrize[:search_project].blank?
+        @filters.push("#{I18n.t('admin.parbudget.center.search_project')}: #{parametrize[:search_project]}")
+        @centers = @centers.where("parbudget_project_id =  ?",parametrize[:search_project])
+      end
+    rescue
+    end
+  rescue
+    @centers = []
+    @filters = []
   end
 end

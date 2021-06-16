@@ -15,6 +15,18 @@
         <% @ambits.each do |ambit| %>
           <%= form_for ambit, :url => update_ambit_admin_parbudget_ambit_path(ambit), method: :post do |f| %>
             <tr id="<%= dom_id(ambit) %>">
+              <% if !params[:errors].blank? && ambit.id.to_i == params[:id].to_i %>
+                <div id="error_explanation" data-alert class="callout alert" data-closable>
+                  <button class="close-button" aria-label="<%= t("application.close") %>" type="button" data-close>
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  <strong>
+                      <% params[:errors].each do |error| %>
+                        <%=error%>
+                      <%end%>
+                  </strong>
+                </div>
+              <% end %>
               <%@model.get_columns.each do |c|%>
                 <td><%= f.text_field c, label: false, placeholder:  "#{@model.human_attribute_name(c)}..."  %></td>
               <%end%>

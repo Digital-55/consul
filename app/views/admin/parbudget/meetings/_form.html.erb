@@ -14,20 +14,18 @@
   <div class="small-12 column">
     <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
       <legend><%=t('admin.parbudget.meeting.title_data')%></legend>
-      <div class="row">
+     
         <div class="small-12 medium-3  column end"  >
           <%= f.date_field :date_at %>
         </div>
         <div class="small-12 medium-9  column end"  >
           <%= f.text_field :who_requests %>
         </div>
-      </div>
-      <div class="row">
+      
         <div class="small-12 medium-12  column end ckeditor"  >
           <%= f.cktext_area :reason, rows: 5,
           ckeditor: { language: I18n.locale, toolbar: current_user.administrator? ? "admin" : 'mini' } %>
         </div>
-      </div>
     </fieldset>
     <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
       <legend><%=t('admin.parbudget.meeting.title_data_assistant')%></legend>

@@ -25,7 +25,7 @@ class Admin::Parbudget::TopicsController < Admin::Parbudget::BaseController
       redirect_to admin_parbudget_topics_path,  notice: I18n.t("admin.parbudget.topic.update_success")
     else
       flash[:error] = I18n.t("admin.parbudget.topic.update_error")
-      redirect_to admin_parbudget_topics_path(errors: @topic.errors.full_messages)
+      redirect_to admin_parbudget_topics_path(errors: @topic.errors.full_messages, id: @topic.id)
     end
   rescue
     flash[:error] = I18n.t("admin.parbudget.topic.update_error")
@@ -37,7 +37,7 @@ class Admin::Parbudget::TopicsController < Admin::Parbudget::BaseController
       redirect_to admin_parbudget_topics_path,  notice: I18n.t("admin.parbudget.topic.destroy_success")
     else
       flash[:error] = I18n.t("admin.parbudget.topic.destroy_error")
-      redirect_to admin_parbudget_topics_path(errors: @topic.errors.full_messages)
+      redirect_to admin_parbudget_topics_path(errors: @topic.errors.full_messages, id: @topic.id)
     end
   rescue
     flash[:error] = I18n.t("admin.parbudget.topic.destroy_error")
@@ -64,9 +64,16 @@ class Admin::Parbudget::TopicsController < Admin::Parbudget::BaseController
     @topics = @model.all
     @filters = []
 
-    if !parametrize[:search_topic].blank?
-      @filters.push("#{I18n.t('admin.parbudget.topic.search_topic')}: #{parametrize[:search_topic]}")
-      @topics = @topics.where("translate(UPPER(cast(name as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_topic]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')")
+    begin
+      if !parametrize[:search_topic].blank?
+        @filters.push("#{I18n.t('admin.parbudget.topic.search_topic')}: #{parametrize[:search_topic]}")
+        @topics = @topics.where("translate(UPPER(cast(name as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_topic]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')")
+      end
+    rescue
     end
+  rescue
+    @topics = []
+    @filters = []
   end
+
 end
