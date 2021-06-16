@@ -198,7 +198,7 @@ class WelcomeController < ApplicationController
         table_fields = order.try(:sg_table_fields)
         table_fields.each do |t| 
           exist = @listados.select {|l| l[:model].model_name.to_s == t.table_name.to_s}[0]
-          resultado = @resultado.select {|l| l[:tabla].to_s == t.table_name.singularize.classify.constantize.model_name.human.to_s}[0]
+          resultado = @resultado.select {|l| l[:list].count > 1 ? l[:tabla].to_s == t.table_name.singularize.classify.constantize.model_name.human(:count => 2).to_s  : l[:tabla].to_s == t.table_name.singularize.classify.constantize.model_name.human.to_s}[0]
 
           if !exist.blank?
             if order.data_type.to_s == "asc"
