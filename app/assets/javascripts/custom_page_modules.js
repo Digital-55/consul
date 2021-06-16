@@ -202,14 +202,23 @@ function updatePromotionalsLocation(){
 }
 
 function displayCharLimit() {
-  $('#meta-title, #meta-description').bind('keyup keydown', function(e) {
-    var len = this.value.length;
-    var charLimit = $(this).data('charLimit');
-    $(this).siblings('#char_num').text(charLimit - len);
-    if (len > charLimit) {
-      $(this).css('color', '#ff0000')
-    } else {
-      $(this).css('color', '#000000')
+  for(var metaSelector of ['#meta-title', '#meta-description']) {
+    if ($(metaSelector).val().length > $(metaSelector).data('charLimit') ){
+      $(metaSelector).css('color', '#ff0000');
+      $(metaSelector).siblings('#char_num').css('color', '#ff0000');
     }
-  })
+
+    $(metaSelector).bind('keyup keydown', function() {
+      var len = this.value.length;
+      var charLimit = $(this).data('charLimit');
+      $(this).siblings('#char_num').text(charLimit - len);
+      if (len > charLimit) {
+        $(this).css('color', '#ff0000')
+        $(this).siblings('#char_num').css('color', '#ff0000');
+      } else {
+        $(this).css('color', '#000000')
+        $(this).siblings('#char_num').css('color', '#000000');
+      }
+    })
+  }
 };
