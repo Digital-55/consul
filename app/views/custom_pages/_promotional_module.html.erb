@@ -9,7 +9,7 @@
                             custom_page_module.send("promo_image_#{promo_number}").url(:content),
                             alt: custom_page_module.send("promo_alt_image_#{promo_number}"))
                             %>
-              <div class="card-section">
+              <div class="row card-section">
                 <h4><%= custom_page_module.send("promo_title_#{promo_number}") %></h4>
                 <%= custom_page_module.send("promo_description_#{promo_number}").html_safe %>
               </div>

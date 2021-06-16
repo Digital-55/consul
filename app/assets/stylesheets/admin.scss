@@ -1375,3 +1375,8 @@ td.children-page {
 .error-message {
   color: red;
 }
+
+// Foundation override
+.custom-page .card p {
+  padding: 0 !important;
+}
