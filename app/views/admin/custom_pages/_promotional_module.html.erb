@@ -14,6 +14,10 @@
       <li class="tabs-title is-active"><a href='#<%= "#{dom_id(f.object)}_one" %>' aria-selected="true"><%= t("admin.custom_pages.custom_page_modules.custom_page_module.promotional_one") %></a></li>
       <li class="tabs-title"><a href='#<%= "#{dom_id(f.object)}_two" %>'><%= t("admin.custom_pages.custom_page_modules.custom_page_module.promotional_two") %></a></li>
       <li class="tabs-title"><a href='#<%= "#{dom_id(f.object)}_three" %>'><%= t("admin.custom_pages.custom_page_modules.custom_page_module.promotional_three") %></a></li>
+      <div class="row text-right">
+        <%= f.check_box :disabled, label: false, class: 'custom_page_module-disabled' %>
+        <%= f.label :disabled, t("admin.custom_pages.custom_page_modules.disabled") %>
+      </div>
     </ul>
     <div class="tabs-content" data-tabs-content="promotional-tabs">
       <div class="tabs-panel is-active" id='<%= "#{dom_id(f.object)}_one" %>'>
@@ -140,12 +144,6 @@
         <div class="small-12 medium-12 column">
           <%= f.label :promo_link_three, t("admin.custom_pages.custom_page_modules.custom_page_module.promo.promo_link_three") %>
           <%= f.text_field :promo_link_three, label: false, class: 'custom_page_module-promo_link_three' %>
-        </div>
-      </div>
-      <div class="check-options">
-        <div class="small-12 medium-2 column">
-          <%= f.check_box :disabled, label: false, class: 'custom_page_module-disabled' %>
-          <%= f.label :disabled, t("admin.custom_pages.custom_page_modules.disabled") %>
         </div>
       </div>
     </div>
