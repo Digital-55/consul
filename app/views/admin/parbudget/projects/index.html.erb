@@ -27,7 +27,7 @@
                 <%= link_to admin_parbudget_projects_path, class: "button hollow", style: "margin: 0px", title: t('admin.parbudget.show_audits'), alt: t('admin.parbudget.show_audits')  do %>
                   <span class="icon-settings"></span>
                 <%end%>
-                <%= link_to admin_parbudget_project_path(project), class: "button", style: "margin: 0px", title: t('admin.parbudget.project.update_project'), alt: t('admin.parbudget.project.update_project')  do %>
+                <%= link_to admin_parbudget_project_path(project,  format: :pdf), class: "button", style: "margin: 0px", title: t('admin.parbudget.project.update_project'), alt: t('admin.parbudget.project.update_project')  do %>
                   <span class="icon-document"></span>
                 <%end%>
                 <%= link_to admin_parbudget_project_path(project), class: "button", style: "margin: 0px", title: t('admin.parbudget.project.update_project'), alt: t('admin.parbudget.project.update_project')  do %>
@@ -36,7 +36,7 @@
                 <%= link_to edit_admin_parbudget_project_path(project), class: "button", style: "margin: 0px", title: t('admin.parbudget.project.update_project'), alt: t('admin.parbudget.project.update_project')  do %>
                   <span class="icon-edit"></span>
                 <%end%>
-                <%= link_to  admin_parbudget_project_path(project),method: :delete,  class: "button hollow alert", style: "margin: 0px", title: "Borrar ámbito", alt: "Borrar ámbito", data: {confirm: t('admin.parbudget.project.destroy_confirm')}  do %>
+                <%= link_to  admin_parbudget_project_path(project),method: :delete,  class: "button hollow alert", style: "margin: 0px", title: t('admin.parbudget.project.title_delete'), alt: t('admin.parbudget.project.title_delete'), data: {confirm: t('admin.parbudget.project.destroy_confirm')}  do %>
                   <span class="icon-deleted"></span>
                 <%end%>
               </td>

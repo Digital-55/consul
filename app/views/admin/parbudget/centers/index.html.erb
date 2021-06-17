@@ -35,7 +35,7 @@
                 <%= link_to edit_admin_parbudget_center_path(center), class: "button", style: "margin: 0px", title: t('admin.parbudget.center.update_center'), alt: t('admin.parbudget.center.update_center')  do %>
                   <span class="icon-edit"></span>
                 <%end%>
-                <%= link_to  admin_parbudget_center_path(center),method: :delete, class: "button hollow alert", style: "margin: 0px", title: "Borrar ámbito", alt: "Borrar ámbito", data: {confirm: t('admin.parbudget.center.destroy_confirm')}  do %>
+                <%= link_to  admin_parbudget_center_path(center),method: :delete, class: "button hollow alert", style: "margin: 0px", title: t('admin.parbudget.center.title_delete'), alt: t('admin.parbudget.center.title_delete'), data: {confirm: t('admin.parbudget.center.destroy_confirm')}  do %>
                   <span class="icon-deleted"></span>
                 <%end%>
               </td>

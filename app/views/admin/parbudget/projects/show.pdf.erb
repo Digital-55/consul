@@ -201,7 +201,7 @@
 
     <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
       <legend><%=t("admin.parbudget.project.title_data_media")%></legend>
-      <%= @project.parbudget_medias do |media| %>
+      <% @project.parbudget_medias do |media| %>
         <table>
             <tr>
                 <th style="width: 50%"><%=media.class.human_attribute_name(:title)%></th>

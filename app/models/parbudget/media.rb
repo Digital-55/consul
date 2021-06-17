@@ -24,6 +24,8 @@ class Parbudget::Media < ApplicationRecord
     hash_secret: Rails.application.secrets.secret_key_base
 
 
+    do_not_validate_attachment_file_type :attachment
+
     # validates_attachment_content_type :attachment, content_type: /\Aimage\/.*\z/ , if: 'image?'
     # validates_attachment_content_type :attachment,
     #                 content_type: %w(

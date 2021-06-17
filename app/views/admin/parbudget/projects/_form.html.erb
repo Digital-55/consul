@@ -1,5 +1,5 @@
 
-<%= form_for [:admin, @project], html: {data: {watch_changes: true}} do |f| %>
+<%= form_for [:admin, @project], html: {data: {watch_changes: true, multipart: true}} do |f| %>
 
   <% if @project.errors.any? %>
     <div id="error_explanation" data-alert class="callout alert" data-closable>

@@ -27,8 +27,8 @@
         <p><%= @project.try(:code) %></p>
       </div>
       <div class="small-12 medium-3  column end"  >
-        <p><b><%=@model.human_attribute_name(:parbudget_ambit)%></b></p>
-        <p><%= @project.try(:parbudget_ambit) %></p>
+        <p><b><%=@model.human_attribute_name(:ambit)%></b></p>
+        <p><%= @project.try(:ambit) %></p>
       </div>
       <div class="small-12 medium-3  column end"  >
         <p><b><%=@model.human_attribute_name(:status)%></b></p>
@@ -63,12 +63,12 @@
         <p><%= @project.try(:denomination) %></p>
       </div>
       <div class="small-12 medium-4  column end"  >
-        <p><b><%=@model.human_attribute_name(:parbudget_topic)%></b></p>
-        <p><%= @project.try(:parbudget_topic) %></p>
+        <p><b><%=@model.human_attribute_name(:topic)%></b></p>
+        <p><%= @project.try(:topic) %></p>
       </div>
       <div class="small-12 medium-4  column end"  >
-        <p><b><%=@model.human_attribute_name(:parbudget_responsible)%></b></p>
-        <p><%= @project.try(:parbudget_responsible) %></p>
+        <p><b><%=@model.human_attribute_name(:responsible)%></b></p>
+        <p><%= @project.try(:responsible) %></p>
       </div>
     </fieldset>
 
@@ -193,7 +193,7 @@
 
     <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
       <legend><%=t("admin.parbudget.project.title_data_media")%></legend>
-      <%= @project.parbudget_medias do |media| %>
+      <% @project.parbudget_medias do |media| %>
         <div class="small-12 medium-6  column end"  >
           <p><b><%=media.class.human_attribute_name(:title)%></b></p>
           <p><%= media.try(:title) %></p>

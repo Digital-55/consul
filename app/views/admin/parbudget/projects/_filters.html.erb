@@ -9,16 +9,17 @@
             <div class="small-12 medium-3 column">
                 <%=label_tag :search_title, t('admin.parbudget.project.search_title')%>
                 <%= text_field_tag :search_title, params[:search_title] %>
-            </div>               
-            <div class="small-12 medium-3 column end">
-                <%=label_tag :search_year_to, t('admin.parbudget.project.search_year_to')%>
-                <%= number_field_tag :search_year_to, params[:search_year_to] %>
-            </div>  
-            <div class="small-12 medium-3 column end">
-                <%=label_tag :search_year_end, t('admin.parbudget.project.search_year_end')%>
-                <%= number_field_tag :search_year_end, params[:search_year_end] %>
-            </div>
-        
+            </div>   
+            <% if params[:subnav].blank? || params[:subnav].to_s == "all" %>            
+                <div class="small-12 medium-3 column end">
+                    <%=label_tag :search_year_to, t('admin.parbudget.project.search_year_to')%>
+                    <%= number_field_tag :search_year_to, params[:search_year_to] %>
+                </div>  
+                <div class="small-12 medium-3 column end">
+                    <%=label_tag :search_year_end, t('admin.parbudget.project.search_year_end')%>
+                    <%= number_field_tag :search_year_end, params[:search_year_end] %>
+                </div>
+            <%end%>        
             <div class="small-12 medium-4 column">
                 <%=label_tag :search_memory, t('admin.parbudget.project.search_memory')%>
                 <%= text_field_tag :search_memory, params[:search_memory] %>
