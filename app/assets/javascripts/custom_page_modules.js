@@ -97,13 +97,13 @@ function toggleCustomPageModuleCardSection() {
   $('#custom-page-modules-list .card-section').hide()
   $('#custom-page-modules-list .card-divider').on('click', function(){
     $(this).siblings('.card-section').slideToggle();
-    var $arrowDown = $(this).find('.icon-arrow-down');
+    var $arrowDown = $(this).find('.icon-angle-down');
     if($arrowDown.length) {
-      $arrowDown.toggleClass('icon-arrow-down icon-arrow-top');
+      $arrowDown.toggleClass('icon-angle-down icon-angle-up');
     } else {
-      var $arrowTop = $(this).find('.icon-arrow-top');
+      var $arrowTop = $(this).find('.icon-angle-up');
       if($arrowTop.length){
-        $arrowTop.toggleClass('icon-arrow-top icon-arrow-down');
+        $arrowTop.toggleClass('icon-angle-up icon-angle-down');
       }
     }
   })
@@ -112,18 +112,18 @@ function toggleCustomPageModuleCardSection() {
 function toggleAllCustomPageModuleCardSection() {
   $('#toggle_modules_collapse_button').on('click', function(){
     $(this).toggleClass('toggle-open');
-    $(this).find('.icon-arrow-down').toggleClass('icon-arrow-down icon-arrow-top');
+    $(this).find('.icon-angle-down').toggleClass('icon-angle-down icon-angle-up');
     var cardSections = $('#custom-page-modules-list .card-section')
     for(var cardSection of cardSections) {
       var $arrow = $(cardSection).siblings('.card-divider')
       if($(this).hasClass('toggle-open')){
-        $(this).find('.icon-arrow-down').toggleClass('icon-arrow-down icon-arrow-top');
+        $(this).find('.icon-angle-down').toggleClass('icon-angle-down icon-angle-up');
         cardSections.show('slow', 'swing');
-        $arrow.find('.icon-arrow-down').toggleClass('icon-arrow-down icon-arrow-top');
+        $arrow.find('.icon-angle-down').toggleClass('icon-angle-down icon-angle-up');
       } else {
-        $(this).find('.icon-arrow-top').toggleClass('icon-arrow-top icon-arrow-down');
+        $(this).find('.icon-angle-up').toggleClass('icon-angle-up icon-angle-down');
         cardSections.hide('slow', 'swing');
-        $arrow.find('.icon-arrow-top').toggleClass('icon-arrow-top icon-arrow-down');
+        $arrow.find('.icon-angle-up').toggleClass('icon-angle-up icon-angle-down');
       }
     }
     return false;
@@ -132,9 +132,9 @@ function toggleAllCustomPageModuleCardSection() {
 
 function toggleCustomPageMetaTags() {
   $('#custom_page-meta_tags').hide();
-  $('.custom_page-fields .icon-arrow-down').on('click', function(){
+  $('.custom_page-fields .icon-angle-down').on('click', function(){
     $('#custom_page-meta_tags').slideToggle();
-    $('#custom_page-toggle_meta_tags a').toggleClass('icon-arrow-down icon-arrow-top');
+    $('#custom_page-toggle_meta_tags a').toggleClass('icon-angle-down icon-angle-up');
     return false;
   })
 }
