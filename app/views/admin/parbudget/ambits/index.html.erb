@@ -1,5 +1,5 @@
 <%= render partial: "admin/parbudget/tabs"%>
-<%= render partial: "admin/parbudget/buttons", locals: {method: :post, remote: true, path: create_ambit_admin_parbudget_ambits_path, button_title: t("admin.menu.parbudget_tabs.new_ambits")}%>
+<%= render partial: "admin/parbudget/buttons", locals: {method: :post, remote: false, path: create_ambit_admin_parbudget_ambits_path(format: :html), button_title: t("admin.menu.parbudget_tabs.new_ambits")}%>
 <%= render partial: "filters"%>
 
 <div id = "content-ambits" class="small-12 column">

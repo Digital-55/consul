@@ -193,18 +193,28 @@
 
     <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
       <legend><%=t("admin.parbudget.project.title_data_media")%></legend>
-      <% @project.parbudget_medias do |media| %>
-        <div class="small-12 medium-6  column end"  >
-          <p><b><%=media.class.human_attribute_name(:title)%></b></p>
-          <p><%= media.try(:title) %></p>
-        </div>
-        <div class="small-12 medium-6  column end"  >
-          <p><b><%=media.class.human_attribute_name(:text_document)%></b></p>
-          <p><%= media.try(:text_document) %></p>
-        </div>
-        <div class="small-12 medium-12  column end"  >
-            <%#= f.file_field :attachment %>
-        </div>
+      <% @project.parbudget_medias.each do |media| %>
+        <fieldset  style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+          <div class="small-12 medium-3  column end"  >
+            <p><b><%=media.class.human_attribute_name(:title)%></b></p>
+            <p><%= media.try(:title) %></p>
+          </div>
+          <div class="small-12 medium-6  column end"  >
+            <p><b><%=media.class.human_attribute_name(:text_document)%></b></p>
+            <p><%= media.try(:text_document).html_safe %></p>
+          </div>
+          <div class="small-12 medium-3  column end"  >
+            <p><b><%=t("admin.parbudget.project.download_file")%>: </b></p>
+            <% if !media.attachment.blank? %>
+              <p>
+                <%= link_to media.attachment.url, target: :_blank do %>
+                              <span class="icon-document"></span>
+                              <%= media.attachment.original_filename %>
+                <% end %>
+              </p>
+            <%end%>
+          </div>
+        </fieldset>
       <%end%>
     </fieldset>
 

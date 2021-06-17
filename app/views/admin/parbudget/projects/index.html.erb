@@ -27,10 +27,10 @@
                 <%= link_to admin_parbudget_projects_path, class: "button hollow", style: "margin: 0px", title: t('admin.parbudget.show_audits'), alt: t('admin.parbudget.show_audits')  do %>
                   <span class="icon-settings"></span>
                 <%end%>
-                <%= link_to admin_parbudget_project_path(project,  format: :pdf), class: "button", style: "margin: 0px", title: t('admin.parbudget.project.update_project'), alt: t('admin.parbudget.project.update_project')  do %>
+                <%= link_to admin_parbudget_project_path(project,  format: :pdf), class: "button", style: "margin: 0px", title: t('admin.parbudget.project.pdf_download'), alt: t('admin.parbudget.project.pdf_download')  do %>
                   <span class="icon-document"></span>
                 <%end%>
-                <%= link_to admin_parbudget_project_path(project), class: "button", style: "margin: 0px", title: t('admin.parbudget.project.update_project'), alt: t('admin.parbudget.project.update_project')  do %>
+                <%= link_to admin_parbudget_project_path(project), class: "button", style: "margin: 0px", title: t('admin.parbudget.project.show_project'), alt: t('admin.parbudget.project.show_project')  do %>
                   <span class="icon-eye"></span>
                 <%end%>
                 <%= link_to edit_admin_parbudget_project_path(project), class: "button", style: "margin: 0px", title: t('admin.parbudget.project.update_project'), alt: t('admin.parbudget.project.update_project')  do %>

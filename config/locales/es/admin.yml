@@ -781,6 +781,7 @@ es:
         add_link: Añadir enlace
         delete_economic: Borrar presupuesto
         delete_link: Borrar enlace
+        download_file: Archivo descargable
       responsible:
         search_responsible: "Responsable"
         search_phone: "Teléfono"

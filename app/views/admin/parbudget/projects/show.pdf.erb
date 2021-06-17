@@ -201,17 +201,19 @@
 
     <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
       <legend><%=t("admin.parbudget.project.title_data_media")%></legend>
-      <% @project.parbudget_medias do |media| %>
-        <table>
-            <tr>
-                <th style="width: 50%"><%=media.class.human_attribute_name(:title)%></th>
-                <th style="width: 50%"><%=media.class.human_attribute_name(:text_document)%></th>
-            <tr>
-            <tr>
-                <td style="width: 50%"><%= media.try(:title) %></td>
-                <td style="width: 50%"><%= media.try(:text_document) %></td>
-            <tr>
-        </table>        
+      <% @project.parbudget_medias.each do |media| %>
+        <fieldset  style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+            <table>
+                <tr>
+                    <th style="width: 50%"><%=media.class.human_attribute_name(:title)%></th>
+                    <th style="width: 50%"><%=media.class.human_attribute_name(:text_document)%></th>
+                <tr>
+                <tr>
+                    <td style="width: 50%"><%= media.try(:title) %></td>
+                    <td style="width: 50%"><%= media.try(:text_document) %></td>
+                <tr>
+            </table>  
+        </fieldset>      
       <%end%>
     </fieldset>
 

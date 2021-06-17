@@ -8,12 +8,13 @@
             <%= f.file_field :attachment %>
         </div>
         <div class="small-12  column end"  >
-            <%= f.text_field :text_document %>
+            <%= f.cktext_area :text_document, ckeditor: { language: I18n.locale, toolbar: current_user.administrator? ? "admin" : 'mini' } %>
         </div>
         <% if !f.object.attachment.blank? %>
             <fieldset  style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
                 <div class=" small-12 column">
-                Archivo descargable: 
+                <b><%=t("admin.parbudget.project.download_file")%>: </b>
+                
                     <%= link_to f.object.attachment.url, target: :_blank do %>
                             <span class="icon-document"></span>
                             <%= f.object.attachment.original_filename %>
