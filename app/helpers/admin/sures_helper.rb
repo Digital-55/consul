@@ -19,6 +19,7 @@ module Admin::SuresHelper
         data = Sures::SearchSetting.find_by(title: "Estratégia").data
         data_status = Sures::SearchSetting.find_by(title: "Estratégia").data_status
         
+
         parse_data_json(data_status).map {|k,v| disabled << k.to_s if v == false}
         parse_data_json(data).map {|k,v| aux = aux.merge!({k=>v}) if disabled.include?(v.to_s) == false}
         aux 
@@ -28,7 +29,11 @@ module Admin::SuresHelper
     def parse_data_json(data)
         eval(JSON.parse(data.to_s)).to_h
     rescue
-        eval(data) if !data.blank?
+        if !data.blank?
+            eval(data) 
+        else
+            []
+        end
     end
 
 
