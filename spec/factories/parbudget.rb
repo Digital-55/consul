@@ -1,5 +1,5 @@
 FactoryBot.define do
-    factory :parbudget_ambit, class: "Parbuget::Ambit" do
+    factory :parbudget_ambit, :class => 'Parbudget::Ambit' do
         name "Ambito 1"
         code "0"
     end
@@ -14,7 +14,7 @@ FactoryBot.define do
         code_section "02"
         code_program "03"
         denomination "Centro gestor 1"
-        association :parbudget_project, factory: :parbudget_project  
+        #association :parbudget_project, factory: :parbudget_project  
     end
 
     factory :parbudget_economic_budget, class: "Parbudget::EconomicBudget" do   
@@ -44,49 +44,48 @@ FactoryBot.define do
         votes 50
         cost 15.5
         url "La mia"
-        
+        code_old "B014"
+        denomination "Proyecto denominado"
+        author "Autor 1"
+        entity "Entidad 1"
+        email "p@p.es"
+        phone "614787878"
         association :parbudget_responsible, factory: :parbudget_responsible 
         association :parbudget_ambit, factory: :parbudget_ambit    
         association :parbudget_topic, factory: :parbudget_topic    
     end
 
     factory :parbudget_responsible, class: "Parbudget::Responsible" do
-        key "Nueva clave"
-        association :sg_setting, factory: :sg_setting      
+        full_name "Responsable completo 1"
+        phone "614525252"
+        association :parbudget_center, factory: :parbudget_center       
     end
 
     factory :parbudget_topic, class: "Parbudget::Topic" do
-        key "Nueva clave"
-        association :sg_setting, factory: :sg_setting      
+       name "Topic 1"      
     end
 
     factory :parbudget_track_ext, class: "Parbudget::TrackExt" do
-        key "Nueva clave"
-        association :sg_setting, factory: :sg_setting      
+        
     end
 
     factory :parbudget_track_int, class: "Parbudget::TrackInt" do
-        key "Nueva clave"
-        association :sg_setting, factory: :sg_setting      
+            
     end
 
     factory :parbudget_tracking_external, class: "Parbudget::TrackingExternal" do
-        key "Nueva clave"
-        association :sg_setting, factory: :sg_setting      
+            
     end
 
     factory :parbudget_tracking_internal, class: "Parbudget::TrackingInternal" do
-        key "Nueva clave"
-        association :sg_setting, factory: :sg_setting      
+           
     end
 
     factory :parbudget_tracking_meeting, class: "Parbudget::TrackingMeeting" do
-        key "Nueva clave"
-        association :sg_setting, factory: :sg_setting      
+            
     end
 
     factory :parbudget_tracking, class: "Parbudget::Tracking" do
-        key "Nueva clave"
-        association :sg_setting, factory: :sg_setting      
+            
     end
 end
