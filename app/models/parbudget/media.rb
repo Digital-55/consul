@@ -1,12 +1,11 @@
 class Parbudget::Media < ApplicationRecord
-    include DocumentsHelper
-    include DocumentablesHelper
-    include ImagesHelper
-    include ImageablesHelper
+  include DocumentsHelper
+  include DocumentablesHelper
+  include ImagesHelper
+  include ImageablesHelper
 
-    belongs_to :parbudget_project, class_name: "Parbudget::Project", foreign_key: "parbudget_project_id"
-
-    has_attached_file :attachment,
+  belongs_to :parbudget_project, class_name: "Parbudget::Project", foreign_key: "parbudget_project_id"
+  has_attached_file :attachment,
     styles: lambda{ |a|
       return {} unless a.content_type.in? %w(image/jpeg image/png image/jpg image/gif)
       { large: "x#{Setting["uploads.images.min_height"]}", medium: "300x300#", thumb: "140x245#" }
@@ -23,68 +22,16 @@ class Parbudget::Media < ApplicationRecord
     },
     hash_secret: Rails.application.secrets.secret_key_base
 
+  validates :title, :attachment, presence: true
+  do_not_validate_attachment_file_type :attachment
 
-    do_not_validate_attachment_file_type :attachment
+  attr_accessor :original_filename
 
-    # validates_attachment_content_type :attachment, content_type: /\Aimage\/.*\z/ , if: 'image?'
-    # validates_attachment_content_type :attachment,
-    #                 content_type: %w(
-    #                   application/x-7z-compressed
-    #                   image/bmp
-    #                   txt/csv
-    #                   application/msword
-    #                   application/vnd.openxmlformats-officedocument.wordprocessingml.document
-    #                   application/vnd.openxmlformats-officedocument.wordprocessingml.template
-    #                   image/gif
-    #                   image/jpeg
-    #                   application/vnd.oasis.opendocument.graphics
-    #                   application/vnd.oasis.opendocument.presentation
-    #                   application/vnd.oasis.opendocument.spreadsheet
-    #                   application/vnd.oasis.opendocument.text
-    #                   application/pdf
-    #                   image/png
-    #                   application/vnd.ms-powerpoint
-    #                   application/vnd.openxmlformats-officedocument.presentationml.presentation
-    #                   application/rtf
-    #                   application/x-rar-compressed
-    #                   text/plain
-    #                   image/tiff
-    #                   application/x-tar
-    #                   application/vnd.ms-excel
-    #                   application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
-    #                   text/xml
-    #                   application/zip
-    #                 ),
-    #                 if: 'document?'
+  self.table_name = "parbudget_medias"
 
-    # delegate  :image?, :document?, :kind_i18n, to: :link_type, allow_nil: true
-   
-    attr_accessor :cached_attachment, :remove, :original_filename
-
-    self.table_name = "parbudget_medias"
-
-    # validate :attachment_presence
-    # validate :validate_attachment_content_type,         if: -> { attachment.present? }
-    # validate :validate_attachment_size,                 if: -> { attachment.present? }
-    # validate :validate_image_dimensions, if: -> { attachment.present? && attachment.dirty? && attachment.content_type != 'video/mp4' }
-    # before_save :set_attachment_from_cached_attachment, if: -> { cached_attachment.present? }
-    # after_save :remove_cached_attachment,               if: -> { cached_attachment.present? }
-
-  def set_cached_attachment_from_attachment
-    self.cached_attachment = if Paperclip::Attachment.default_options[:storage] == :filesystem
-                               attachment.path
-                             else
-                               attachment.url
-                             end
-  end
-
-  def set_attachment_from_cached_attachment
-    self.attachment = if Paperclip::Attachment.default_options[:storage] == :filesystem
-                        File.open(cached_attachment)
-                      else
-                        URI.parse(cached_attachment)
-                      end
-  end
+  validate :validate_attachment_content_type,         if: -> { attachment.present? }
+  # validate :validate_attachment_size,                 if: -> { attachment.present? }
+  # validate :validate_image_dimensions, if: -> { attachment.present? && attachment.dirty? && attachment.content_type != 'video/mp4' } 
 
   Paperclip.interpolates :prefix do |attachment, style|
     attachment.instance.prefix(attachment, style)
@@ -104,13 +51,8 @@ class Parbudget::Media < ApplicationRecord
 
   private
 
-    def documentable_class
-      documentable_type.constantize if documentable_type.present?
-    end
-
     def validate_attachment_size
-      if documentable_class.present? &&
-         attachment_file_size > documentable_class.max_file_size
+      if attachment_file_size > documentable_class.max_file_size
         errors.add(:attachment, I18n.t("documents.errors.messages.in_between",
                                       min: "0 Bytes",
                                       max: "#{max_file_size(documentable_class)} MB"))
@@ -118,36 +60,21 @@ class Parbudget::Media < ApplicationRecord
     end
 
     def validate_attachment_content_type
-      if documentable_class &&
-         !accepted_content_types(documentable_class).include?(attachment_content_type)
-        accepted_content_types = documentable_humanized_accepted_content_types(documentable_class)
-        message = I18n.t("documents.errors.messages.wrong_content_type",
-                         content_type: attachment_content_type,
-                         accepted_content_types: accepted_content_types)
-        errors.add(:attachment, message)
+      if self.image? 
+
+      elsif self.document?
+
       end
+      # if !accepted_content_types(documentable_class).include?(attachment_content_type)
+      #   accepted_content_types = documentable_humanized_accepted_content_types(documentable_class)
+      #   message = I18n.t("documents.errors.messages.wrong_content_type",
+      #                    content_type: attachment_content_type,
+      #                    accepted_content_types: accepted_content_types)
+      #   errors.add(:attachment, message)
+      # end
     end
 
-    def attachment_presence
-      if attachment.blank? && cached_attachment.blank?
-        errors.add(:attachment, I18n.t("errors.messages.blank"))
-      end
-    end
-
-    def remove_cached_attachment
-      document = Document.new(documentable: documentable,
-                              cached_attachment: cached_attachment,
-                              user: user,
-                              remove: true,
-                              original_filename: title)
-      document.set_attachment_from_cached_attachment
-      document.attachment.destroy
-    end
-
-
-    def imageable_class
-        imageable_type.constantize if imageable_type.present?
-      end
+    
   
       def validate_image_dimensions
         if attachment_of_valid_content_type?
@@ -180,24 +107,5 @@ class Parbudget::Media < ApplicationRecord
           errors.add(:attachment, message)
         end
       end
-  
-      def attachment_presence
-        if attachment.blank? && cached_attachment.blank?
-          errors.add(:attachment, I18n.t("errors.messages.blank"))
-        end
-      end
-  
-      def attachment_of_valid_content_type?
-        attachment.present? && imageable_accepted_content_types.include?(attachment_content_type)
-      end
-  
-      def remove_cached_attachment
-        image = Image.new(imageable: imageable,
-                          cached_attachment: cached_attachment,
-                          user: user)
-        image.set_attachment_from_cached_attachment
-        image.attachment.destroy
-      end
-   
 end
 

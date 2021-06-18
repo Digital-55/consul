@@ -4,6 +4,17 @@ class Parbudget::EconomicBudget < ApplicationRecord
 
     self.table_name = "parbudget_economic_budgets"
 
-   
+    validates :year, :import, :start_date, presence: true
+    validate :check_dates
+
+
+    private
+
+    def check_dates
+        if self.start_date > self.end_date
+            self.errors.add(:start_date, "La fecha de inicio debe ser menor a la fecha de fin")
+        end
+    end
+
 end
 
