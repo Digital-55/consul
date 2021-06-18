@@ -6,6 +6,10 @@ class Parbudget::Center < ApplicationRecord
 
     accepts_nested_attributes_for :parbudget_responsibles, allow_destroy: true
 
+    validates :code, :code_section, :code_program, :denomination, presence: true
+
+    validates_associated :parbudget_responsibles
+
     def self.get_columns
         [
             :code,
