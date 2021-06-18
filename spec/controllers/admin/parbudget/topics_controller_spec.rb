@@ -13,6 +13,12 @@ describe Admin::Parbudget::TopicsController do
       expect(response.status).to be(200)
     end
 
+    it "export CSV" do
+      create(:parbudget_topic)
+      get :index, params: {format: :csv}
+      expect(response.status).to be(200)
+    end
+
     it "search_topic" do
       create(:parbudget_topic)
       get :index,  params: {search_topic: 'order'}

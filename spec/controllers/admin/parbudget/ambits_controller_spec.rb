@@ -13,6 +13,12 @@ describe Admin::Parbudget::AmbitsController do
       expect(response.status).to be(200)
     end
 
+    it "export CSV" do
+      create(:parbudget_ambit)
+      get :index, params: {format: :csv}
+      expect(response.status).to be(200)
+    end
+
     it "search_code" do
       create(:parbudget_ambit)
       get :index,  params: {search_code: 'order'}

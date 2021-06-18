@@ -13,15 +13,77 @@ describe Admin::Parbudget::ProjectsController do
       expect(response.status).to be(200)
     end
 
-    it "search_code" do
+    it "export CSV" do
       create(:parbudget_project)
-      get :index,  params: {search_code: 'order'}
+      get :index, params: {format: :csv}
       expect(response.status).to be(200)
     end
 
-    it "search_ambit" do
+    it "search_identificator" do
       create(:parbudget_project)
-      get :index,  params: {search_ambit: 'order'}
+      get :index,  params: {search_identificator: 'order'}
+      expect(response.status).to be(200)
+    end
+
+    it "search_title" do
+      create(:parbudget_project)
+      get :index,  params: {search_title: 'order'}
+      expect(response.status).to be(200)
+    end
+
+    it "search_memory" do
+      create(:parbudget_project)
+      get :index,  params: {search_memory: 'order'}
+      expect(response.status).to be(200)
+    end
+
+    it "search_status" do
+      create(:parbudget_project)
+      get :index,  params: {search_status: 'order'}
+      expect(response.status).to be(200)
+    end
+
+    it "search_center" do
+      create(:parbudget_project)
+      get :index,  params: {search_center: 'order'}
+      expect(response.status).to be(200)
+    end
+
+    it "subnav" do
+      create(:parbudget_project)
+      get :index,  params: {subnav: 2015}
+      expect(response.status).to be(200)
+    end
+
+    it "search_year_to" do
+      create(:parbudget_project)
+      get :index,  params: {search_year_to: 2015}
+      expect(response.status).to be(200)
+    end
+
+    it "search_year_end" do
+      create(:parbudget_project)
+      get :index,  params: {search_year_end: 2015}
+      expect(response.status).to be(200)
+    end
+
+    it "search_year_to and search_year_end" do
+      create(:parbudget_project)
+      get :index,  params: {search_year_to: 2015, search_year_end: 2015}
+      expect(response.status).to be(200)
+    end
+  end
+
+  describe "GET show_project" do
+    it "show element" do
+      project = create(:parbudget_project)
+      get :show, params: {id: project.id}
+      expect(response.status).to be(200)
+    end
+
+    it "export pdf" do
+      project = create(:parbudget_project)
+      get :show, params: {id: project.id, format: :pdf}
       expect(response.status).to be(200)
     end
   end

@@ -13,15 +13,47 @@ describe Admin::Parbudget::MeetingsController do
       expect(response.status).to be(200)
     end
 
-    it "search_code" do
+    it "export CSV" do
       create(:parbudget_meeting)
-      get :index,  params: {search_code: 'order'}
+      get :index, params: {format: :csv}
       expect(response.status).to be(200)
     end
 
-    it "search_ambit" do
+    it "search_date_start" do
       create(:parbudget_meeting)
-      get :index,  params: {search_ambit: 'order'}
+      get :index,  params: {search_date_start: Time.zone.now}
+      expect(response.status).to be(200)
+    end
+
+    it "search_date_end" do
+      create(:parbudget_meeting)
+      get :index,  params: {search_date_end: Time.zone.now}
+      expect(response.status).to be(200)
+    end
+
+    it "search_date_start and search_date_end" do
+      create(:parbudget_meeting)
+      get :index,  params: {search_date_start: Time.zone.now,search_date_end: Time.zone.now}
+      expect(response.status).to be(200)
+    end
+
+    it "subnav" do
+      create(:parbudget_meeting)
+      get :index,  params: {subnav: "pending"}
+      expect(response.status).to be(200)
+    end
+  end
+
+  describe "GET show_meeting" do
+    it "show element" do
+      meeting = create(:parbudget_meeting)
+      get :show, params: {id: meeting.id}
+      expect(response.status).to be(200)
+    end
+
+    it "export pdf" do
+      meeting = create(:parbudget_meeting)
+      get :show, params: {id: meeting.id, format: :pdf}
       expect(response.status).to be(200)
     end
   end

@@ -13,15 +13,59 @@ describe Admin::Parbudget::CentersController do
       expect(response.status).to be(200)
     end
 
-    it "search_code" do
+    it "export CSV" do
       create(:parbudget_center)
-      get :index,  params: {search_code: 'order'}
+      get :index, params: {format: :csv}
       expect(response.status).to be(200)
     end
 
-    it "search_ambit" do
+    it "search_center_code" do
       create(:parbudget_center)
-      get :index,  params: {search_ambit: 'order'}
+      get :index,  params: {search_center_code: 'order'}
+      expect(response.status).to be(200)
+    end
+
+    it "search_section_code" do
+      create(:parbudget_center)
+      get :index,  params: {search_section_code: 'order'}
+      expect(response.status).to be(200)
+    end
+
+    it "search_program_code" do
+      create(:parbudget_center)
+      get :index,  params: {search_program_code: 'order'}
+      expect(response.status).to be(200)
+    end
+
+    it "search_denomination" do
+      create(:parbudget_center)
+      get :index,  params: {search_denomination: 'order'}
+      expect(response.status).to be(200)
+    end
+
+    it "search_responsible" do
+      create(:parbudget_center)
+      get :index,  params: {search_responsible: 'order'}
+      expect(response.status).to be(200)
+    end
+
+    it "search_project" do
+      create(:parbudget_center)
+      get :index,  params: {search_project: 1}
+      expect(response.status).to be(200)
+    end
+  end
+
+  describe "GET show_center" do
+    it "show element" do
+      center = create(:parbudget_center)
+      get :show, params: {id: center.id}
+      expect(response.status).to be(200)
+    end
+
+    it "export pdf" do
+      center = create(:parbudget_center)
+      get :show, params: {id: center.id, format: :pdf}
       expect(response.status).to be(200)
     end
   end

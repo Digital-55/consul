@@ -13,15 +13,59 @@ describe Admin::Parbudget::ResponsiblesController do
       expect(response.status).to be(200)
     end
 
-    it "search_code" do
+    it "export CSV" do
       create(:parbudget_responsible)
-      get :index,  params: {search_code: 'order'}
+      get :index, params: {format: :csv}
       expect(response.status).to be(200)
     end
 
-    it "search_ambit" do
+    it "search_responsible" do
       create(:parbudget_responsible)
-      get :index,  params: {search_ambit: 'order'}
+      get :index,  params: {search_responsible: 'order'}
+      expect(response.status).to be(200)
+    end
+
+    it "search_phone" do
+      create(:parbudget_responsible)
+      get :index,  params: {search_phone: 'order'}
+      expect(response.status).to be(200)
+    end
+
+    it "search_email" do
+      create(:parbudget_responsible)
+      get :index,  params: {search_email: 'order'}
+      expect(response.status).to be(200)
+    end
+
+    it "search_position" do
+      create(:parbudget_responsible)
+      get :index,  params: {search_position: 'order'}
+      expect(response.status).to be(200)
+    end
+
+    it "search_center" do
+      create(:parbudget_responsible)
+      get :index,  params: {search_center: 'order'}
+      expect(response.status).to be(200)
+    end
+
+    it "subnav" do
+      create(:parbudget_responsible)
+      get :index,  params: {subnav: 1}
+      expect(response.status).to be(200)
+    end
+  end
+
+  describe "GET show_responsible" do
+    it "show element" do
+      responsible = create(:parbudget_responsible)
+      get :show, params: {id: responsible.id}
+      expect(response.status).to be(200)
+    end
+
+    it "export pdf" do
+      responsible = create(:parbudget_responsible)
+      get :show, params: {id: responsible.id, format: :pdf}
       expect(response.status).to be(200)
     end
   end
