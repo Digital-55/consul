@@ -48,7 +48,7 @@ $(document).on('page:change', function(){
 function validateInputFields() {
   $('.custom_page_module-youtube_url').change(function(){
     var url = $(this).val();
-    var regex = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+    var regex = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$|https?:\/\/(www.)?vimeo.com\/([0-9]{9})/g
     var urlValidation = url.match(regex) ? true : false;
     displayValidation(urlValidation, $(this))
   })
