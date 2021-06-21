@@ -5,21 +5,30 @@
           <%if @resultado.blank?%>
             <%=t('sgs.no_result_find')%>
           <%else%>
+            <% sin_items = true%>
             <% @resultado.each do |r|%>
-            <%if r[:count].to_i > 0%>
-            <p>
-              <%
-                fields = ""
-                search = ""
-                r[:search].each do |rs|
-                  fields = fields + (fields.blank? ? rs[:field] : "/#{rs[:field]}") 
-                  search = search + (search.blank? ? rs[:search] : "/#{rs[:search]}") 
-                end%>
-              <%=t("shared.sgs_result", count: r[:count], table: r[:tabla], id: "id_#{r[:tabla].parameterize.underscore}", text_count:  r[:count].to_i > 1 ? "contienen" : "contiene" , search: search).html_safe%>         
-            </p>
-            <%end%>
+              <%if !r.blank? && r[:count].to_i > 0%>
+              <% sin_items = false%>
+              <p>
+                <%
+                  fields = ""
+                  search = ""
+                  r[:search].each do |rs|
+                    fields = fields + (fields.blank? ? rs[:field] : "/#{rs[:field]}") 
+                    search = search + (search.blank? ? rs[:search] : "/#{rs[:search]}") 
+                  end%>
+                <%=t("shared.sgs_result", count: r[:count], table: r[:tabla], id: "id_#{r[:tabla].parameterize.underscore}", text_count:  r[:count].to_i > 1 ? "contienen" : "contiene" , search: search).html_safe%>         
+              </p>
+              <%end%>
             <%end%>    
-          <%end%>       
+          <%end%>  
       </div>
     </div>
+     <% if sin_items%>
+        <div class="row">
+            <div class="small-12 columns">
+                <%=t('sgs.no_element_list')%>
+            </div>
+        </div>
+    <%end%>    
 </div>

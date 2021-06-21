@@ -4,7 +4,7 @@ class Admin::Parbudget::ResponsiblesController < Admin::Parbudget::BaseControlle
 
   def index
     search(params)
-    @responsibles = @responsibles.page(params[:page]).per(20)
+    @responsibles = Kaminari.paginate_array(@responsibles).page(params[:page]).per(20)
   end
 
   def new
@@ -72,7 +72,7 @@ class Admin::Parbudget::ResponsiblesController < Admin::Parbudget::BaseControlle
   end
 
   def load_data
-    @centers = ::Parbudget::Center.all
+    @centers = ::Parbudget::Center.all.select(:id, :denomination)
     @subnav = [{title: "Todos",value: "all"}]
     @model.pluck(:parbudget_center_id).uniq.each do |center|
       @subnav.push({title: ::Parbudget::Center.find_by(id: center).try(:denomination),value: center.to_s})
@@ -93,32 +93,69 @@ class Admin::Parbudget::ResponsiblesController < Admin::Parbudget::BaseControlle
     @responsibles = @model.all
     @filters = []
 
-    if !parametrize[:search_responsible].blank?
-      @filters.push("#{I18n.t('admin.parbudget.responsible.search_responsible')}: #{parametrize[:search_responsible]}")
-      @responsibles = @responsibles.where("translate(UPPER(cast(full_name as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_responsible]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')")
+    begin
+      if !parametrize[:sort_by].blank?
+        if parametrize[:direction].blank? || parametrize[:direction].to_s == "asc"
+          @responsibles = @responsibles.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }
+        else
+          @responsibles = @responsibles.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }.reverse
+        end
+      else
+        @responsibles = @responsibles.sort_by { |a| a.try(@model.get_columns[0].to_sym) }
+      end
+    rescue
     end
 
-    if !parametrize[:search_phone].blank?
-      @filters.push("#{I18n.t('admin.parbudget.responsible.search_phone')}: #{parametrize[:search_phone]}")
-      @responsibles = @responsibles.where("translate(UPPER(cast(phone as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_phone]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')")
+    begin
+      if !parametrize[:search_responsible].blank?
+        @filters.push("#{I18n.t('admin.parbudget.responsible.search_responsible')}: #{parametrize[:search_responsible]}")
+        @responsibles = @responsibles.where("translate(UPPER(cast(full_name as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_responsible]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')")
+      end
+    rescue
     end
 
-    if !parametrize[:search_email].blank?
-      @filters.push("#{I18n.t('admin.parbudget.responsible.search_email')}: #{parametrize[:search_email]}")
-      @responsibles = @responsibles.where("translate(UPPER(cast(email as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_email]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')")
+    begin
+      if !parametrize[:search_phone].blank?
+        @filters.push("#{I18n.t('admin.parbudget.responsible.search_phone')}: #{parametrize[:search_phone]}")
+        @responsibles = @responsibles.where("translate(UPPER(cast(phone as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_phone]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')")
+      end
+    rescue
     end
 
-    if !parametrize[:search_position].blank?
-      @filters.push("#{I18n.t('admin.parbudget.responsible.search_position')}: #{parametrize[:search_position]}")
-      @responsibles = @responsibles.where("translate(UPPER(cast(position as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_position]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')")
+    begin
+      if !parametrize[:search_email].blank?
+        @filters.push("#{I18n.t('admin.parbudget.responsible.search_email')}: #{parametrize[:search_email]}")
+        @responsibles = @responsibles.where("translate(UPPER(cast(email as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_email]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')")
+      end
+    rescue
     end
 
-    if !parametrize[:search_center].blank?
-      @filters.push("#{I18n.t('admin.parbudget.responsible.search_center')}: #{parametrize[:search_center]}")
-      @responsibles = @responsibles.joins(:parbudget_center).where("translate(UPPER(cast(parbudget_centers.denomination as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_center]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')")
+    begin
+      if !parametrize[:search_position].blank?
+        @filters.push("#{I18n.t('admin.parbudget.responsible.search_position')}: #{parametrize[:search_position]}")
+        @responsibles = @responsibles.where("translate(UPPER(cast(position as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_position]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')")
+      end
+    rescue
     end
+
+    begin
+      if !parametrize[:search_center].blank?
+        @filters.push("#{I18n.t('admin.parbudget.responsible.search_center')}: #{parametrize[:search_center]}")
+        @responsibles = @responsibles.joins(:parbudget_center).where("translate(UPPER(cast(parbudget_centers.denomination as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_center]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')")
+      end
+    rescue
+    end
+
+    begin
+      if !parametrize[:subnav].blank? && parametrize[:subnav].to_s != "all"
+        @filters.push("#{I18n.t('admin.parbudget.responsible.search_center')}: #{parametrize[:subnav]}")
+        @responsibles = @responsibles.where(parbudget_center_id: parametrize[:subnav].to_i)
+      end
+    rescue
+    end
+  rescue
+    @responsibles = []
+    @filters = []
   end
-rescue
-  @responsibles = []
-  @filters = []
+
 end

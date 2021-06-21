@@ -4,7 +4,7 @@ class Admin::Parbudget::MeetingsController < Admin::Parbudget::BaseController
 
   def index
     search(params)
-    @meetings = @meetings.page(params[:page]).per(20)
+    @meetings = Kaminari.paginate_array(@meetings).page(params[:page]).per(20)
   end
 
   def new
@@ -72,7 +72,7 @@ class Admin::Parbudget::MeetingsController < Admin::Parbudget::BaseController
   end
 
   def load_data
-    @subnav = [{title: "Todos",value: "all"}]
+    @subnav = [{title: "Todos",value: "all"}, {title: "Pendientes (#{@model.pending.count})",value: "pending"},{title: "Realizadas",value: "done"}]
   end
 
   def meeting_strong_params
@@ -89,14 +89,44 @@ class Admin::Parbudget::MeetingsController < Admin::Parbudget::BaseController
     @meetings = @model.all
     @filters = []
 
-    if !parametrize[:search_code].blank?
-      @filters.push("#{I18n.t('admin.parbudget.ambit.search_code')}: #{parametrize[:search_code]}")
-      @ambits = @ambits.where("translate(UPPER(cast(code as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_code]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')")
+    begin
+      if !parametrize[:sort_by].blank?
+        if parametrize[:direction].blank? || parametrize[:direction].to_s == "asc"
+          @meetings = @meetings.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }
+        else
+          @meetings = @meetings.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }.reverse
+        end
+      else
+        @meetings = @meetings.sort_by { |a| a.try(@model.get_columns[0].to_sym) }
+      end
+    rescue
     end
 
-    if !parametrize[:search_ambit].blank?
-      @filters.push("#{I18n.t('admin.parbudget.ambit.search_ambit')}: #{parametrize[:search_ambit]}")
-      @ambits = @ambits.where("translate(UPPER(cast(name as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_ambit]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')")
+    if !params[:subnav].blank? && params[:subnav].to_s != "all"
+      case params[:subnav].to_s
+      when "pending"
+        @meetings = @meetings.pending
+      when "done"
+        @meetings = @meetings.done
+      end
     end
+
+    begin
+      if !parametrize[:search_date_start].blank? && !parametrize[:search_date_end].blank?
+        @filters.push("#{I18n.t('admin.parbudget.meeting.search_date_start')}: #{parametrize[:search_date_start]}")
+        @filters.push("#{I18n.t('admin.parbudget.meeting.search_date_end')}: #{parametrize[:search_date_end]}")
+        @meetings = @meetings.where("date_at BETWEEN to_date(?, 'YYYY-MM-DD') AND to_date(?, 'YYYY-MM-DD')", parametrize[:search_date_start], parametrize[:search_date_end])
+      elsif !parametrize[:search_date_start].blank?
+        @filters.push("#{I18n.t('admin.parbudget.meeting.search_date_start')}: #{parametrize[:search_date_start]}")
+        @meetings = @meetings.where("date_at >= to_date(?, 'YYYY-MM-DD') ", parametrize[:search_date_start])
+      elsif !parametrize[:search_date_end].blank?
+        @filters.push("#{I18n.t('admin.parbudget.meeting.search_date_end')}: #{parametrize[:search_date_end]}")
+        @meetings = @meetings.where("date_at <= to_date(?, 'YYYY-MM-DD') ", parametrize[:search_date_end])
+      end
+    rescue
+    end
+  rescue
+    @meetings = []
+    @filters = []
   end
 end

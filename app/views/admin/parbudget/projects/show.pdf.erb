@@ -1,0 +1,226 @@
+<div class="small-12 column">
+    <h2><%= @project.denomination %></h2>
+</div>
+
+
+<div class="small-12 column">
+    
+
+
+    <div class="small-12 column">
+    <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+        <legend><%=t("admin.parbudget.project.title_data")%></legend>
+        <table>
+            <tr>
+                <th style="width: 17%"><%=@model.human_attribute_name(:year)%></th>
+                <th style="width: 33%"><%=@model.human_attribute_name(:code)%></th>
+                <th style="width: 25%"><%=@model.human_attribute_name(:ambit)%></th>
+                <th style="width: 25%"><%=@model.human_attribute_name(:status)%></th>
+            <tr>
+            <tr>
+                <td style="width: 17%"><%= @project.try(:year) %></td>
+                <td style="width: 33%"><%= @project.try(:code) %></td>
+                <td style="width: 25%"><%= @project.try(:ambit) %></td>
+                <td style="width: 25%"><%= @project.try(:status) %></td>
+            <tr>
+        </table>
+        <table>
+            <tr>
+                <th><%=@model.human_attribute_name(:web_title)%></th>
+            <tr>
+            <tr>
+                <td><%= @project.try(:web_title) %></td>
+            <tr>
+        </table>
+        <table>
+            <tr>
+                <th><%=@model.human_attribute_name(:descriptive_memory)%></th>
+            <tr>
+            <tr>
+                <td><%= @project.try(:descriptive_memory).html_safe %></td>
+            <tr>
+        </table>
+        <table>
+            <tr>
+                <th style="width: 17%"><%=@model.human_attribute_name(:votes)%></th>
+                <th style="width: 25%"><%=@model.human_attribute_name(:cost)%></th>
+                <th style="width: 33%"><%=@model.human_attribute_name(:url)%></th>
+                <th style="width: 25%"><%=@model.human_attribute_name(:code_old)%></th>
+            <tr>
+            <tr>
+                <td style="width: 17%"><%= @project.try(:votes) %></td>
+                <td style="width: 25%"><%= @project.try(:cost) %></td>
+                <td style="width: 33%"><%= @project.try(:url) %></td>
+                <td style="width: 25%"><%= @project.try(:code_old) %></td>
+            <tr>
+        </table>
+        <table>
+            <tr>
+                <th><%=@model.human_attribute_name(:denomination)%></th>
+            <tr>
+            <tr>
+                <td><%= @project.try(:denomination) %></td>
+            <tr>
+        </table>
+        <table>
+            <tr>
+                <th style="width: 33%"><%=@model.human_attribute_name(:topic)%></th>
+                <th style="width: 33%"><%=@model.human_attribute_name(:responsible)%></th>
+            <tr>
+            <tr>
+                <td style="width: 33%"><%= @project.try(:topic) %></td>
+                <td style="width: 33%"><%= @project.try(:responsible) %></td>
+            <tr>
+        </table>
+    </fieldset>
+
+    <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+      <legend><%=t("admin.parbudget.project.title_data_center")%></legend>
+      <%@project.parbudget_centers.each do |center|%>
+        <div class='small-12 column'>
+            <fieldset  style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+            <table>
+                <tr>
+                    <th style="width: 50%"><%=center.class.human_attribute_name(:government_area)%></th>
+                    <th style="width: 50%"><%=center.class.human_attribute_name(:general_direction)%></th>
+                <tr>
+                <tr>
+                    <td style="width: 50%"><%= center.try(:government_area) %></td>
+                    <td style="width: 50%"><%= center.try(:general_direction) %></td>
+                <tr>
+            </table>
+            <table>
+                <tr>
+                    <th style="width: 50%"><%=center.class.human_attribute_name(:denomination)%></th>
+                    <th style="width: 50%"><%=center.class.human_attribute_name(:responsible)%></th>
+                <tr>
+                <tr>
+                    <td style="width: 50%"><%= center.try(:denomination) %></td>
+                    <td style="width: 50%"><%= center.try(:responsible) %></td>
+                <tr>
+            </table>
+            <table>
+                <tr>
+                    <th style="width: 33%"><%=center.class.human_attribute_name(:code)%></th>
+                    <th style="width: 33%"><%=center.class.human_attribute_name(:code_section)%></th>
+                    <th style="width: 33%"><%=center.class.human_attribute_name(:code_program)%></th>
+                <tr>
+                <tr>
+                    <td style="width: 33%"><%= center.try(:code) %></td>
+                    <td style="width: 33%"><%= center.try(:code_section) %></td>
+                    <td style="width: 33%"><%= center.try(:code_program) %></td>
+                <tr>
+            </table>
+            </fieldset>
+        </div>
+      <%end%>
+    </fieldset>
+
+    <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+        <legend><%=t("admin.parbudget.project.title_data_author")%></legend>
+        <table>
+            <tr>
+                <th style="width: 50%"><%=@model.human_attribute_name(:author)%></th>
+                <th style="width: 50%"><%=@model.human_attribute_name(:entity)%></th>
+            <tr>
+            <tr>
+                <td style="width: 50%"><%= @project.try(:author) %></td>
+                <td style="width: 50%"><%= @project.try(:entity) %></td>
+            <tr>
+        </table>
+        <table>
+            <tr>
+                <th style="width: 50%"><%=@model.human_attribute_name(:email)%></th>
+                <th style="width: 50%"><%=@model.human_attribute_name(:phone)%></th>
+            <tr>
+            <tr>
+                <td style="width: 50%"><%= @project.try(:email) %></td>
+                <td style="width: 50%"><%= @project.try(:phone) %></td>
+            <tr>
+        </table>
+        <table>
+            <tr>
+                <th style="width: 33%"><%=@model.human_attribute_name(:plate_proceeds)%></th>
+                <th style="width: 33%"><%=@model.human_attribute_name(:license_plate)%></th>
+                <th style="width: 33%"><%=@model.human_attribute_name(:plate_installed)%></th>
+            <tr>
+            <tr>
+                <td style="width: 33%"><%= t(@project.try(:plate_proceeds).to_s) %></td>
+                <td style="width: 33%"><%= t(@project.try(:license_plate).to_s) %></td>
+                <td style="width: 33%"><%= t(@project.try(:plate_installed).to_s) %></td>
+            <tr>
+        </table>
+    </fieldset>
+
+    <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+      <legend><%=t("admin.parbudget.project.title_data_economic")%></legend>
+      <%@project.parbudget_economic_budgets.each do |economic|%>
+        <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+            <legend><%=t("admin.parbudget.project.subtitle_economic", i: "")%></legend>
+            <table>
+                <tr>
+                    <th style="width: 17%"><%=economic.class.human_attribute_name(:year)%></th>
+                    <th style="width: 33%"><%=economic.class.human_attribute_name(:import)%></th>
+                    <th style="width: 25%"><%=economic.class.human_attribute_name(:start_date)%></th>
+                    <th style="width: 25%"><%=economic.class.human_attribute_name(:end_date)%></th>
+                <tr>
+                <tr>
+                    <td style="width: 17%"><%= economic.try(:year) %></td>
+                    <td style="width: 33%"><%= economic.try(:import) %></td>
+                    <td style="width: 25%"><%= economic.try(:start_date) %></td>
+                    <td style="width: 25%"><%= economic.try(:end_date) %></td>
+                <tr>
+            </table>
+            <table>
+                <tr>
+                    <th style="width: 25%"><%=economic.class.human_attribute_name(:count_managing_body)%></th>
+                    <th style="width: 25%"><%=economic.class.human_attribute_name(:count_functional)%></th>
+                    <th style="width: 25%"><%=economic.class.human_attribute_name(:economic)%></th>
+                    <th style="width: 25%"><%=economic.class.human_attribute_name(:element_pep)%></th>
+                <tr>
+                <tr>
+                    <td style="width: 25%"><%= economic.try(:count_managing_body) %></td>
+                    <td style="width: 25%"><%= economic.try(:count_functional) %></td>
+                    <td style="width: 25%"><%= economic.try(:economic) %></td>
+                    <td style="width: 25%"><%= economic.try(:element_pep) %></td>
+                <tr>
+            </table>
+            <table>
+                <tr>
+                    <th style="width: 33%"><%=economic.class.human_attribute_name(:financing)%></th>
+                    <th style="width: 33%"><%=economic.class.human_attribute_name(:type_contract)%></th>
+                <tr>
+                <tr>
+                    <td style="width: 33%"><%= economic.try(:financing) %></td>
+                    <td style="width: 33%"><%= economic.try(:type_contract) %></td>
+                <tr>
+            </table>
+        </fieldset>
+      <%end%>
+    </fieldset>
+
+    <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+      <legend><%=t("admin.parbudget.project.title_data_media")%></legend>
+      <% @project.parbudget_medias.each do |media| %>
+        <fieldset  style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+            <table>
+                <tr>
+                    <th style="width: 50%"><%=media.class.human_attribute_name(:title)%></th>
+                    <th style="width: 50%"><%=media.class.human_attribute_name(:text_document)%></th>
+                <tr>
+                <tr>
+                    <td style="width: 50%"><%= media.try(:title) %></td>
+                    <td style="width: 50%"><%= media.try(:text_document) %></td>
+                <tr>
+            </table>  
+        </fieldset>      
+      <%end%>
+    </fieldset>
+
+    <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+      <legend><%=t("admin.parbudget.project.title_data_link")%></legend>
+      <% @project.parbudget_links.each do |link| %>
+        <p><%= link_to link.url, link.url, target: "_blank" %></p>
+      <% end %>
+    </fieldset>
+</div>

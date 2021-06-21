@@ -37,6 +37,10 @@ es:
   cards:
     button: "Más información"
   meta_tags:
+    csc:
+      title: "Consejo Social de la Ciudad - Decide Madrid"
+      description: "El Consejo Social de la Ciudad es el máximo órgano consultivo y de participación de la ciudad de Madrid."
+      keywords: "consejosocial, órgano consultivo, consejo, social"
     sures:
       title: "SURES – Decide Madrid" 
       description: Conoce el plan que cambiará el sur y el este de Madrid. Es nuestro momento

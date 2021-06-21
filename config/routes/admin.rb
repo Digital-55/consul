@@ -29,12 +29,12 @@ namespace :admin do
   end
 
   namespace :parbudget do
-    resources :ambits, only: [:index,:show,:destroy] do
-      get :create_ambit, on: :collection
+    resources :ambits do
+      post :create_ambit, on: :collection
       post :update_ambit, on: :member
     end
-    resources :topics, only: [:index,:show,:destroy] do
-      get :create_topic, on: :collection
+    resources :topics do
+      post :generate_topic, on: :collection
       post :update_topic, on: :member
     end
     resources :centers

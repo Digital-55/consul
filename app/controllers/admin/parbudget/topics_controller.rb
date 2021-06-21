@@ -4,10 +4,10 @@ class Admin::Parbudget::TopicsController < Admin::Parbudget::BaseController
 
   def index
     search(params)
-    @topics = @topics.page(params[:page]).per(20)
+    @topics = Kaminari.paginate_array(@topics).page(params[:page]).per(20)
   end
 
-  def create_topic
+  def generate_topic
     topic=  @model.new
     if topic.save(validate: false)
       redirect_to admin_parbudget_topics_path,  notice: I18n.t("admin.parbudget.topic.create_success")
@@ -25,7 +25,7 @@ class Admin::Parbudget::TopicsController < Admin::Parbudget::BaseController
       redirect_to admin_parbudget_topics_path,  notice: I18n.t("admin.parbudget.topic.update_success")
     else
       flash[:error] = I18n.t("admin.parbudget.topic.update_error")
-      redirect_to admin_parbudget_topics_path(errors: @topic.errors.full_messages)
+      redirect_to admin_parbudget_topics_path(errors: @topic.errors.full_messages, id: @topic.id)
     end
   rescue
     flash[:error] = I18n.t("admin.parbudget.topic.update_error")
@@ -37,7 +37,7 @@ class Admin::Parbudget::TopicsController < Admin::Parbudget::BaseController
       redirect_to admin_parbudget_topics_path,  notice: I18n.t("admin.parbudget.topic.destroy_success")
     else
       flash[:error] = I18n.t("admin.parbudget.topic.destroy_error")
-      redirect_to admin_parbudget_topics_path(errors: @topic.errors.full_messages)
+      redirect_to admin_parbudget_topics_path(errors: @topic.errors.full_messages, id: @topic.id)
     end
   rescue
     flash[:error] = I18n.t("admin.parbudget.topic.destroy_error")
@@ -64,9 +64,29 @@ class Admin::Parbudget::TopicsController < Admin::Parbudget::BaseController
     @topics = @model.all
     @filters = []
 
-    if !parametrize[:search_topic].blank?
-      @filters.push("#{I18n.t('admin.parbudget.topic.search_topic')}: #{parametrize[:search_topic]}")
-      @topics = @topics.where("translate(UPPER(cast(name as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_topic]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')")
+    begin
+      if !parametrize[:sort_by].blank?
+        if parametrize[:direction].blank? || parametrize[:direction].to_s == "asc"
+          @topics = @topics.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }
+        else
+          @topics = @topics.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }.reverse
+        end
+      else
+        @topics = @topics.sort_by { |a| a.try(@model.get_columns[0].to_sym) }
+      end
+    rescue
     end
+
+    begin
+      if !parametrize[:search_topic].blank?
+        @filters.push("#{I18n.t('admin.parbudget.topic.search_topic')}: #{parametrize[:search_topic]}")
+        @topics = @topics.where("translate(UPPER(cast(name as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_topic]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')")
+      end
+    rescue
+    end
+  rescue
+    @topics = []
+    @filters = []
   end
+
 end

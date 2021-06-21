@@ -1,5 +1,5 @@
 <div class="small-12 medium-11 column">
-  <ul id="main-menu" class="dropdown menu" data-dropdown-menu>
+  <ul id="main-menu" class="dropdown menu" data-dropdown-menu data-responsive-menu="medium-dropdown">
     <%= raw content_block("subnavigation_left", I18n.locale) %>
     <li class="menu-element">
       <%= layout_menu_link_to t("layouts.header.inicio"),
@@ -58,14 +58,20 @@
                                   title: t("shared.go_to_page") + t("layouts.header.budgets") %>
       </li>
     <% end %>
-      <li class="has-submenu menu-element">
-        <%= link_to "Órganos", "#", rel: "nofollow", class: "hide-for-small-only"%>
-        <ul class="submenu menu vertical csc" data-submenu>
-          <li>
-            <%= layout_menu_link_to t("csc.index.menu"), "organos/consejosocial", controller_name == "csc", accesskey: "8", title: t("csc.index.title") %>
-          </li>
-        </ul>
-      </li>
+      
+    <li class="has-submenu menu-element">
+      <%= link_to "Órganos", "#", rel: "nofollow", class: "hide-for-small-only"%>
+      <ul class="submenu menu vertical csc menu-element" data-submenu>
+        <li>
+          <%= layout_menu_link_to t("csc.index.menu"), "/organos/consejosocial", controller_name == "csc", accesskey: "8", title: t("csc.index.title") %>
+        </li>
+      </ul>
+    </li>
+
+    <li class= "show-for-small-only menu-element" >
+      <%= layout_menu_link_to t("csc.index.menu"), "/organos/consejosocial", controller_name == "csc", accesskey: "8", title: t("csc.index.title") %>
+    </li>
+    
     <% if feature?(:help_page) %>
       <li class="menu-element">
         <%= layout_menu_link_to t("layouts.header.help"),
@@ -75,7 +81,8 @@
                                 title: t("shared.go_to_page") + t("layouts.header.help") %>
       </li>
     <% end %>
-
     <%= raw content_block("subnavigation_right", I18n.locale) %>
   </ul>
+
 </div>
+

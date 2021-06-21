@@ -11,9 +11,9 @@
         <% if !l[:list].blank? && l[:list].count >0%>
             <% sin_items = false%>
             <div class="no-margin-top padding margin-bottom" style="background: LightGray">
-                <div class="row" id="id_<%=l[:model].model_name.human.parameterize.underscore%>" >
+                <div class="row" id="id_<%=  l[:list].count > 1 ? l[:model].model_name.human(:count => 2).parameterize.underscore : l[:model].model_name.human.parameterize.underscore%>" >
                     <div class="small-12 columns">
-                        <h3><%=l[:model].model_name.human%>:</h3>
+                        <h3><%=l[:model].model_name.human(:count => 2)%>:</h3>
                         <%= page_entries_info l[:list] %>
                     </div>
                 </div>

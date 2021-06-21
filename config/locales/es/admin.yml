@@ -744,6 +744,9 @@ es:
         title_delete: Borrar centro
         pdf_download: "Descargar PDF del centro"
         title_data: "Datos del centro"
+        title_responsibles: "Responsables"
+        button_add: "Añadir responsable"
+        button_delete: "Borrar responsable"
       project:
         search_identificator: "Identificador"
         search_title: "Título"
@@ -766,6 +769,19 @@ es:
         title_delete: Borrar proyecto
         pdf_download: "Descargar PDF del proyecto"
         title_data: "Datos del proyecto"
+        title_data_center: "Datos unidad responsable"
+        title_data_author: "Datos del responsable"
+        title_data_economic: "Económico-presupuestario"
+        subtitle_economic: "Presupuesto %{i}"
+        title_data_media: "Archivos adjuntos"
+        title_data_link: "Enlaces"
+        add_media: Añadir archivo
+        delete_media: Eliminar archivo
+        add_economic: Añadir presupuesto
+        add_link: Añadir enlace
+        delete_economic: Borrar presupuesto
+        delete_link: Borrar enlace
+        download_file: Archivo descargable
       responsible:
         search_responsible: "Responsable"
         search_phone: "Teléfono"

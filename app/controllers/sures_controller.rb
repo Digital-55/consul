@@ -110,7 +110,7 @@ class SuresController < SuresBaseController
             end
             @actuations = @actuations.order(aux_order)
             paginate = 50
-            if !Setting.find_by(key: 'actuations_pagination_limit').value.blank? && Setting.find_by(key: 'actuations_pagination_limit').value.to_i != 0
+            if !Setting.find_by(key: 'actuations_pagination_limit').try(:value).blank? && Setting.find_by(key: 'actuations_pagination_limit').value.to_i != 0
                 paginate = Setting.find_by(key: 'actuations_pagination_limit').value.to_i
             end
 

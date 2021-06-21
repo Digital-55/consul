@@ -16,57 +16,44 @@
 
   <div class="small-12 column">
     <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
-        <legend><%=t("admin.menu.parbudget_tabs.legend_filter")%></legend>
-        <div class="row">
-            <div class="small-12 medium-3  column end"  >
-            <%= f.text_field :code %>
-            </div>
-            <div class="small-12 medium-3  column end"  >
-            <%= f.text_field :code_section %>
-            </div>
-            <div class="small-12 medium-3  column end"  >
-            <%= f.text_field :code_program %>
-            </div>
-            <div class="small-12 medium-3  column end"  >
-            <%= f.text_field :responsible %>
-            </div>
-        </div>
-        <div class="row">
-            <div class="small-12 medium-6  column end"  >
-            <%= f.text_field :denomination %>
-            </div>
-            <div class="small-12 medium-6  column end"  >
-            <%= f.text_field :government_area %>
-            </div>
-            
-        </div>
-        <div class="row">
-            <div class="small-12   column end"  >
-            <%= f.text_field :general_direction %>
-            </div>
-            <div class="small-12 medium-3 column end">
-            <%= f.select :parbudget_center, options_for_select(@centers || [], @center[:parbudget_center]) %>
-            </div>
-        </div>
+        <legend><%=t("admin.parbudget.center.title_data")%></legend>
+      <div class="small-12 medium-3  column end"  >
+        <%= f.text_field :code %>
+      </div>
+      <div class="small-12 medium-3  column end"  >
+        <%= f.text_field :code_section %>
+      </div>
+      <div class="small-12 medium-3  column end"  >
+        <%= f.text_field :code_program %>
+      </div>
+      <div class="small-12 medium-3  column end"  >
+        <%= f.text_field :responsible %>
+      </div>
+      <div class="small-12 medium-6  column end"  >
+        <%= f.text_field :denomination %>
+      </div>
+      <div class="small-12 medium-6  column end"  >
+        <%= f.text_field :government_area %>
+      </div>
+      <div class="small-12  column end"  >
+        <%= f.text_field :general_direction %>
+      </div>
     </fieldset>
     <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
-        <legend><%=t("admin.menu.parbudget_tabs.legend_filter")%></legend>
-          <div id="nested_parbudget_responsibles">
-            <%= f.fields_for :parbudget_responsibles do |ff| %>
-                <%= render "parbudget_responsible_fields", f: ff %>
-            <% end %>
-
-            <div class="js-add-fields-container">
-                <div class="small-12 medium-9 column">
-                    <%= link_to_add_association t("admin.legislation.questions.form.add_option"),
-                                            f, :parbudget_responsibles, class: "button hollow"  %>
-                </div>
-            </div>
-  </div>
+      <legend><%=t("admin.parbudget.center.title_responsibles")%></legend>
+      <div id="nested_parbudget_responsibles">
+        <%= f.fields_for :parbudget_responsibles do |ff| %>
+          <%= render "parbudget_responsible_fields", f: ff if !ff.object.blank? %>
+        <% end %>
+        <div class="js-add-fields-container">
+          <div class="small-12 column end">
+            <%= link_to_add_association t("admin.parbudget.center.button_add"), f, :parbudget_responsibles, class: "button hollow"  %>
+          </div>
+        </div>
+      </div>
     </fieldset>
- </div>
+  </div>
   <div class="small-12 medium-3 column clear end">
-    <%= f.submit(class: "button success expanded", value: t("admin.sures.actuations.#{admin_submit_action(@center)}.submit_button")) %>
+    <%= f.submit(class: "button success expanded", value: t("admin.parbudget.#{admin_submit_action(@center)}.submit_button")) %>
   </div> 
-
 <% end %>

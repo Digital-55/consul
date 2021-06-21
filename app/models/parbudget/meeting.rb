@@ -10,6 +10,9 @@ class Parbudget::Meeting < ApplicationRecord
     validates :date_at, :who_requests, :reason, presence: true
     validates_associated :parbudget_assistants
 
+    scope :pending, -> { where("date_at >= to_date(?,'YYYY-MM-DD')", Time.zone.now) }
+    scope :done, -> { where("date_at < to_date(?,'YYYY-MM-DD')", Time.zone.now) }
+
 
     self.table_name = "parbudget_meetings"
 

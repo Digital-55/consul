@@ -121,6 +121,14 @@ module Abilities
       can :create, ModeratedTexts::Import
 
       can :manage, ImportUser
+
+      can :manage, Parbudget::Ambit
+      can :manage, Parbudget::Project
+      can :manage, Parbudget::Center
+      can :manage, Parbudget::Meeting
+      can :manage, Parbudget::Topic
+      can :manage, Parbudget::Responsible
+
     end
   end
 end

@@ -7,13 +7,13 @@
   <% if @projects.any? %>
     <h3><%= page_entries_info @projects %></h3>
 
-    <table class="stack">
+    <table class="stack sortable">
       <thead>
         <tr>
           <%@model.get_columns.each do |c|%>
-            <th><%= @model.human_attribute_name(c) %></th>
+            <th><%= link_to_parbudget_sorted_by c, @model.human_attribute_name(c) %></th>
           <%end%>
-          <th><%= t("admin.actions.actions") %></th>
+          <th style="width: 18em;"><%= t("admin.actions.actions") %></th>
         </tr>
       </thead>
 
@@ -23,20 +23,20 @@
               <%@model.get_columns.each do |c|%>
                 <td><%=project.try(c)%></td>
               <%end%>
-              <td>
-                <%= link_to admin_parbudget_projects_path, class: "button hollow", title: t('admin.parbudget.show_audits'), alt: t('admin.parbudget.show_audits')  do %>
+              <td style="width: 18em;">
+                <%= link_to admin_parbudget_projects_path, class: "button hollow", style: "margin: 0px", title: t('admin.parbudget.show_audits'), alt: t('admin.parbudget.show_audits')  do %>
                   <span class="icon-settings"></span>
                 <%end%>
-                <%= link_to admin_parbudget_project_path(project), class: "button", title: t('admin.parbudget.project.update_project'), alt: t('admin.parbudget.project.update_project')  do %>
+                <%= link_to admin_parbudget_project_path(project,  format: :pdf), class: "button", style: "margin: 0px", title: t('admin.parbudget.project.pdf_download'), alt: t('admin.parbudget.project.pdf_download')  do %>
                   <span class="icon-document"></span>
                 <%end%>
-                <%= link_to admin_parbudget_project_path(project), class: "button", title: t('admin.parbudget.project.update_project'), alt: t('admin.parbudget.project.update_project')  do %>
+                <%= link_to admin_parbudget_project_path(project), class: "button", style: "margin: 0px", title: t('admin.parbudget.project.show_project'), alt: t('admin.parbudget.project.show_project')  do %>
                   <span class="icon-eye"></span>
                 <%end%>
-                <%= link_to edit_admin_parbudget_project_path(project), class: "button", title: t('admin.parbudget.project.update_project'), alt: t('admin.parbudget.project.update_project')  do %>
+                <%= link_to edit_admin_parbudget_project_path(project), class: "button", style: "margin: 0px", title: t('admin.parbudget.project.update_project'), alt: t('admin.parbudget.project.update_project')  do %>
                   <span class="icon-edit"></span>
                 <%end%>
-                <%= link_to  admin_parbudget_project_path(project),method: :delete, class: "button hollow alert", title: "Borrar ámbito", alt: "Borrar ámbito", data: {confirm: t('admin.parbudget.project.destroy_confirm')}  do %>
+                <%= link_to  admin_parbudget_project_path(project),method: :delete,  class: "button hollow alert", style: "margin: 0px", title: t('admin.parbudget.project.title_delete'), alt: t('admin.parbudget.project.title_delete'), data: {confirm: t('admin.parbudget.project.destroy_confirm')}  do %>
                   <span class="icon-deleted"></span>
                 <%end%>
               </td>

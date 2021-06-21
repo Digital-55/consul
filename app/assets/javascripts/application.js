@@ -19,7 +19,6 @@
 //= require jquery-ui/widgets/sortable
 //= require jquery-fileupload/basic
 //= require foundation
-//= require turbolinks
 //= require ckeditor/loader
 //= require_directory ./ckeditor
 //= require social-share-button
@@ -89,6 +88,7 @@
 //= require login_form
 //= require starrr.js
 //= require sg.js
+//= require parbudget
 
 var initialize_modules = function() {
   App.Answers.initialize();
@@ -142,7 +142,7 @@ var initialize_modules = function() {
 };
 
 $(function(){
-  Turbolinks.enableProgressBar();
+  //Turbolinks.enableProgressBar();
 
   $(document).ready(initialize_modules);
   $(document).on("page:load", initialize_modules);
