@@ -18,6 +18,9 @@ FactoryBot.define do
     end
 
     factory :parbudget_economic_budget, class: "Parbudget::EconomicBudget" do   
+        year 2015
+        import 15.55
+        start_date Time.zone.now
         association :parbudget_project, factory: :parbudget_project 
     end
 
@@ -27,6 +30,8 @@ FactoryBot.define do
     end
 
     factory :parbudget_media, class: "Parbudget::Media" do
+        title "Archivo"
+        attachment { File.new("spec/fixtures/files/empty.pdf") }
         association :parbudget_project, factory: :parbudget_project    
     end
 

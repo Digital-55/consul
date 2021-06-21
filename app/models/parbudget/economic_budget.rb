@@ -11,7 +11,7 @@ class Parbudget::EconomicBudget < ApplicationRecord
     private
 
     def check_dates
-        if self.start_date > self.end_date
+        if !self.start_date.blank? && !self.end_date.blank? && self.start_date > self.end_date
             self.errors.add(:start_date, "La fecha de inicio debe ser menor a la fecha de fin")
         end
     end
