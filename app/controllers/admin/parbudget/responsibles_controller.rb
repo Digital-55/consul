@@ -94,19 +94,6 @@ class Admin::Parbudget::ResponsiblesController < Admin::Parbudget::BaseControlle
     @filters = []
 
     begin
-      if !parametrize[:sort_by].blank?
-        if parametrize[:direction].blank? || parametrize[:direction].to_s == "asc"
-          @responsibles = @responsibles.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }
-        else
-          @responsibles = @responsibles.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }.reverse
-        end
-      else
-        @responsibles = @responsibles.sort_by { |a| a.try(@model.get_columns[0].to_sym) }
-      end
-    rescue
-    end
-
-    begin
       if !parametrize[:search_responsible].blank?
         @filters.push("#{I18n.t('admin.parbudget.responsible.search_responsible')}: #{parametrize[:search_responsible]}")
         @responsibles = @responsibles.where("translate(UPPER(cast(full_name as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_responsible]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')")
@@ -150,6 +137,19 @@ class Admin::Parbudget::ResponsiblesController < Admin::Parbudget::BaseControlle
       if !parametrize[:subnav].blank? && parametrize[:subnav].to_s != "all"
         @filters.push("#{I18n.t('admin.parbudget.responsible.search_center')}: #{parametrize[:subnav]}")
         @responsibles = @responsibles.where(parbudget_center_id: parametrize[:subnav].to_i)
+      end
+    rescue
+    end
+
+    begin
+      if !parametrize[:sort_by].blank?
+        if parametrize[:direction].blank? || parametrize[:direction].to_s == "asc"
+          @responsibles = @responsibles.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }
+        else
+          @responsibles = @responsibles.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }.reverse
+        end
+      else
+        @responsibles = @responsibles.sort_by { |a| a.try(@model.get_columns[0].to_sym) }
       end
     rescue
     end

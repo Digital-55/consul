@@ -92,19 +92,6 @@ class Admin::Parbudget::CentersController < Admin::Parbudget::BaseController
     @filters = []
 
     begin
-      if !parametrize[:sort_by].blank?
-        if parametrize[:direction].blank? || parametrize[:direction].to_s == "asc"
-          @centers = @centers.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }
-        else
-          @centers = @centers.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }.reverse
-        end
-      else
-        @centers = @centers.sort_by { |a| a.try(@model.get_columns[0].to_sym) }
-      end
-    rescue
-    end
-
-    begin
       if !parametrize[:search_center_code].blank?
         @filters.push("#{I18n.t('admin.parbudget.center.search_center_code')}: #{parametrize[:search_center_code]}")
         @centers = @centers.where("translate(UPPER(cast(code as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_center_code]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')")
@@ -150,6 +137,19 @@ class Admin::Parbudget::CentersController < Admin::Parbudget::BaseController
       if !parametrize[:search_project].blank?
         @filters.push("#{I18n.t('admin.parbudget.center.search_project')}: #{parametrize[:search_project]}")
         @centers = @centers.where("parbudget_project_id =  ?",parametrize[:search_project])
+      end
+    rescue
+    end
+
+    begin
+      if !parametrize[:sort_by].blank?
+        if parametrize[:direction].blank? || parametrize[:direction].to_s == "asc"
+          @centers = @centers.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }
+        else
+          @centers = @centers.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }.reverse
+        end
+      else
+        @centers = @centers.sort_by { |a| a.try(@model.get_columns[0].to_sym) }
       end
     rescue
     end

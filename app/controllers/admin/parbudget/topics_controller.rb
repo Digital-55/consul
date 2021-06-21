@@ -65,6 +65,14 @@ class Admin::Parbudget::TopicsController < Admin::Parbudget::BaseController
     @filters = []
 
     begin
+      if !parametrize[:search_topic].blank?
+        @filters.push("#{I18n.t('admin.parbudget.topic.search_topic')}: #{parametrize[:search_topic]}")
+        @topics = @topics.where("translate(UPPER(cast(name as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_topic]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')")
+      end
+    rescue
+    end
+
+    begin
       if !parametrize[:sort_by].blank?
         if parametrize[:direction].blank? || parametrize[:direction].to_s == "asc"
           @topics = @topics.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }
@@ -73,14 +81,6 @@ class Admin::Parbudget::TopicsController < Admin::Parbudget::BaseController
         end
       else
         @topics = @topics.sort_by { |a| a.try(@model.get_columns[0].to_sym) }
-      end
-    rescue
-    end
-
-    begin
-      if !parametrize[:search_topic].blank?
-        @filters.push("#{I18n.t('admin.parbudget.topic.search_topic')}: #{parametrize[:search_topic]}")
-        @topics = @topics.where("translate(UPPER(cast(name as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_topic]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')")
       end
     rescue
     end

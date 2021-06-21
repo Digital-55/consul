@@ -930,6 +930,7 @@ es:
         date_at: "Fecha de la reunión"
         who_requests: "Convocante"
         reason: "Asunto"
+        assistants: "Asistentes/Invitados"
         created_at: "Fecha de creación"
         updated_at: "Fecha de modificación"
       parbudget/assistant:

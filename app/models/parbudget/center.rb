@@ -1,6 +1,6 @@
 class Parbudget::Center < ApplicationRecord
     belongs_to :parbudget_project, class_name: "Parbudget::Project"
-    has_many :parbudget_responsibles, foreign_key: "parbudget_center_id", class_name: "Parbudget::Responsible"
+    has_many :parbudget_responsibles, foreign_key: "parbudget_center_id", class_name: "Parbudget::Responsible", dependent: :destroy
 
     self.table_name = "parbudget_centers"
 

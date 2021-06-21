@@ -43,9 +43,9 @@ class Admin::Parbudget::ProjectsController < Admin::Parbudget::BaseController
       flash[:error] = I18n.t("admin.parbudget.project.update_error")
       render :edit
     end
-  # rescue
-  #   flash[:error] = I18n.t("admin.parbudget.project.update_error")
-  #   redirect_to admin_parbudget_projects_path    
+  rescue
+    flash[:error] = I18n.t("admin.parbudget.project.update_error")
+    redirect_to admin_parbudget_projects_path    
   end
 
   def destroy
@@ -111,22 +111,12 @@ class Admin::Parbudget::ProjectsController < Admin::Parbudget::BaseController
   def search(parametrize = {})
     @projects = @model.all
     @filters = []
-
+    
     begin
-      if !parametrize[:sort_by].blank?
-        if parametrize[:direction].blank? || parametrize[:direction].to_s == "asc"
-          @projects = @projects.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }
-        else
-          @projects = @projects.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }.reverse
-        end
-      else
-        @projects = @projects.sort_by { |a| a.try(@model.get_columns[0].to_sym) }
+      if !params[:subnav].blank? && params[:subnav].to_s != "all"
+        @projects = @projects.where(year: params[:subnav])
       end
     rescue
-    end
-
-    if !params[:subnav].blank? && params[:subnav].to_s != "all"
-      @projects = @projects.where(year: params[:subnav])
     end
 
     begin
@@ -181,6 +171,19 @@ class Admin::Parbudget::ProjectsController < Admin::Parbudget::BaseController
       elsif !parametrize[:search_year_end].blank?
         @filters.push("#{I18n.t('admin.parbudget.meeting.search_date_end')}: #{parametrize[:search_year_end]}")
         @projects = @projects.where("date_at <= ?", parametrize[:search_year_end])
+      end
+    rescue
+    end
+
+    begin
+      if !parametrize[:sort_by].blank?
+        if parametrize[:direction].blank? || parametrize[:direction].to_s == "asc"
+          @projects = @projects.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }
+        else
+          @projects = @projects.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }.reverse
+        end
+      else
+        @projects = @projects.sort_by { |a| a.try(@model.get_columns[0].to_sym) }
       end
     rescue
     end

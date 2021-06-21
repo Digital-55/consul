@@ -2,8 +2,8 @@ class Parbudget::Meeting < ApplicationRecord
     require 'nokogiri'
     has_many :parbudget_assistants, class_name: "Parbudget::Assistant", foreign_key: "parbudget_meeting_id", dependent: :destroy
 
-    has_and_belongs_to_many :parbudget_tracking_meetings, class_name: "Parbudget::TrackingMeeting"
-    has_and_belongs_to_many :parbudget_trackings, :through => :parbudget_tracking_mettings,  class_name: "Parbudget::Tracking"
+    # has_and_belongs_to_many :parbudget_tracking_meetings, class_name: "Parbudget::TrackingMeeting"
+    # has_and_belongs_to_many :parbudget_trackings, :through => :parbudget_tracking_mettings,  class_name: "Parbudget::Tracking"
 
     accepts_nested_attributes_for :parbudget_assistants, reject_if: :all_blank, allow_destroy: true
 
