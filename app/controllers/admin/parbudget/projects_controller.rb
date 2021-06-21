@@ -49,6 +49,12 @@ class Admin::Parbudget::ProjectsController < Admin::Parbudget::BaseController
   end
 
   def destroy
+    @project.parbudget_centers.each do |center|
+      center.parbudget_project_id = nil
+      center.save(validate: false)
+    end
+    @project.parbudget_centers = []
+    @project.save
     if @project.destroy
       redirect_to admin_parbudget_projects_path,  notice: I18n.t("admin.parbudget.project.destroy_success")
     else
@@ -121,7 +127,7 @@ class Admin::Parbudget::ProjectsController < Admin::Parbudget::BaseController
 
     begin
       if !parametrize[:search_identificator].blank?
-        @filters.push("#{I18n.t('admin.parbudget.ambit.search_identificator')}: #{parametrize[:search_identificator]}")
+        @filters.push("#{I18n.t('admin.parbudget.project.search_identificator')}: #{parametrize[:search_identificator]}")
         @projects = @projects.where("translate(UPPER(cast(code as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_identificator]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')")
       end
     rescue
@@ -129,7 +135,7 @@ class Admin::Parbudget::ProjectsController < Admin::Parbudget::BaseController
 
     begin
       if !parametrize[:search_title].blank?
-        @filters.push("#{I18n.t('admin.parbudget.ambit.search_title')}: #{parametrize[:search_title]}")
+        @filters.push("#{I18n.t('admin.parbudget.project.search_title')}: #{parametrize[:search_title]}")
         @projects = @projects.where("translate(UPPER(cast(web_title as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_title]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU') OR
           translate(UPPER(cast(denomination as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_title]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')")
       end
@@ -138,7 +144,7 @@ class Admin::Parbudget::ProjectsController < Admin::Parbudget::BaseController
 
     begin
       if !parametrize[:search_memory].blank?
-        @filters.push("#{I18n.t('admin.parbudget.ambit.search_memory')}: #{parametrize[:search_memory]}")
+        @filters.push("#{I18n.t('admin.parbudget.project.search_memory')}: #{parametrize[:search_memory]}")
         @projects = @projects.where("translate(UPPER(cast(descriptive_memory as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_memory]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')")
       end
     rescue
@@ -146,7 +152,7 @@ class Admin::Parbudget::ProjectsController < Admin::Parbudget::BaseController
 
     begin
       if !parametrize[:search_status].blank?
-        @filters.push("#{I18n.t('admin.parbudget.ambit.search_status')}: #{parametrize[:search_status]}")
+        @filters.push("#{I18n.t('admin.parbudget.project.search_status')}: #{parametrize[:search_status]}")
         @projects = @projects.where("translate(UPPER(cast(status as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_status]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')")
       end
     rescue
@@ -154,7 +160,7 @@ class Admin::Parbudget::ProjectsController < Admin::Parbudget::BaseController
 
     begin
       if !parametrize[:search_center].blank?
-        @filters.push("#{I18n.t('admin.parbudget.ambit.search_center')}: #{parametrize[:search_center]}")
+        @filters.push("#{I18n.t('admin.parbudget.project.search_center')}: #{parametrize[:search_center]}")
         @projects = @projects.where("id in (?)", ::Parbudget::Center.where("translate(UPPER(cast(denomination as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_center]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')").select(:parbudget_project_id))
       end
     rescue
@@ -162,14 +168,14 @@ class Admin::Parbudget::ProjectsController < Admin::Parbudget::BaseController
 
     begin
       if !parametrize[:search_year_to].blank? && !parametrize[:search_year_end].blank?
-        @filters.push("#{I18n.t('admin.parbudget.meeting.search_year_to')}: #{parametrize[:search_year_to]}")
-        @filters.push("#{I18n.t('admin.parbudget.meeting.search_date_end')}: #{parametrize[:search_year_end]}")
+        @filters.push("#{I18n.t('admin.parbudget.project.search_year_to')}: #{parametrize[:search_year_to]}")
+        @filters.push("#{I18n.t('admin.parbudget.project.search_year_end')}: #{parametrize[:search_year_end]}")
         @projects = @projects.where("year BETWEEN ? AND ?", parametrize[:search_year_to], parametrize[:search_year_end])
       elsif !parametrize[:search_year_to].blank?
-        @filters.push("#{I18n.t('admin.parbudget.meeting.search_year_to')}: #{parametrize[:search_year_to]}")
+        @filters.push("#{I18n.t('admin.parbudget.project.search_year_to')}: #{parametrize[:search_year_to]}")
         @projects = @projects.where("date_at >= ?", parametrize[:search_year_to])
       elsif !parametrize[:search_year_end].blank?
-        @filters.push("#{I18n.t('admin.parbudget.meeting.search_date_end')}: #{parametrize[:search_year_end]}")
+        @filters.push("#{I18n.t('admin.parbudget.project.search_year_end')}: #{parametrize[:search_year_end]}")
         @projects = @projects.where("date_at <= ?", parametrize[:search_year_end])
       end
     rescue

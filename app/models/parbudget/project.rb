@@ -47,15 +47,27 @@ class Parbudget::Project < ApplicationRecord
             :url,
             :descriptive_memory_export,
             :entity,
-            :plate_proceeds,
-            :license_plate,
-            :plate_installed,
+            :plate_proceeds_translate,
+            :license_plate_translate,
+            :plate_installed_translate,
             :code_old,
             :votes,
             :cost,
             :ambit,
             :topic
         ]
+    end
+
+    def plate_proceeds_translate
+        I18n.t(plate_proceeds.to_s)
+    end
+
+    def license_plate_translate
+        I18n.t(license_plate.to_s)
+    end
+
+    def plate_installed_translate
+        I18n.t(plate_installed.to_s)
     end
 
     def responsible

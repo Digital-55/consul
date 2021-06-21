@@ -878,6 +878,9 @@ es:
         plate_proceeds: "¿Procede placa?"
         license_plate: "¿Autoriza placa?"
         plate_installed: "¿Placa instalada?"
+        plate_proceeds_translate: "¿Procede placa?"
+        license_plate_translate: "¿Autoriza placa?"
+        plate_installed_translate: "¿Placa instalada?"
         assumes_dgpc: "Asume DGPC"
         code_old: Identificador antiguo
         created_at: "Fecha de creación"
