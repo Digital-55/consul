@@ -4,7 +4,7 @@ class Admin::Parbudget::CentersController < Admin::Parbudget::BaseController
 
   def index
     search(params)
-    @centers = @centers.page(params[:page]).per(20)
+    @centers = Kaminari.paginate_array(@centers).page(params[:page]).per(20)
   end
 
   def new
@@ -90,6 +90,19 @@ class Admin::Parbudget::CentersController < Admin::Parbudget::BaseController
   def search(parametrize = {})
     @centers = @model.all
     @filters = []
+
+    begin
+      if !parametrize[:sort_by].blank?
+        if parametrize[:direction].blank? || parametrize[:direction].to_s == "asc"
+          @centers = @centers.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }
+        else
+          @centers = @centers.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }.reverse
+        end
+      else
+        @centers = @centers.sort_by { |a| a.try(@model.get_columns[0].to_sym) }
+      end
+    rescue
+    end
 
     begin
       if !parametrize[:search_center_code].blank?

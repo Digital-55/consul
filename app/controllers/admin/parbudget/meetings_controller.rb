@@ -4,7 +4,7 @@ class Admin::Parbudget::MeetingsController < Admin::Parbudget::BaseController
 
   def index
     search(params)
-    @meetings = @meetings.page(params[:page]).per(20)
+    @meetings = Kaminari.paginate_array(@meetings).page(params[:page]).per(20)
   end
 
   def new
@@ -88,6 +88,19 @@ class Admin::Parbudget::MeetingsController < Admin::Parbudget::BaseController
   def search(parametrize = {})
     @meetings = @model.all
     @filters = []
+
+    begin
+      if !parametrize[:sort_by].blank?
+        if parametrize[:direction].blank? || parametrize[:direction].to_s == "asc"
+          @meetings = @meetings.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }
+        else
+          @meetings = @meetings.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }.reverse
+        end
+      else
+        @meetings = @meetings.sort_by { |a| a.try(@model.get_columns[0].to_sym) }
+      end
+    rescue
+    end
 
     if !params[:subnav].blank? && params[:subnav].to_s != "all"
       case params[:subnav].to_s

@@ -5,7 +5,7 @@ class Admin::Parbudget::ProjectsController < Admin::Parbudget::BaseController
 
   def index
     search(params)
-    @projects = @projects.page(params[:page]).per(20)
+    @projects = Kaminari.paginate_array(@projects).page(params[:page]).per(20)
   end
 
   def new
@@ -111,6 +111,19 @@ class Admin::Parbudget::ProjectsController < Admin::Parbudget::BaseController
   def search(parametrize = {})
     @projects = @model.all
     @filters = []
+
+    begin
+      if !parametrize[:sort_by].blank?
+        if parametrize[:direction].blank? || parametrize[:direction].to_s == "asc"
+          @projects = @projects.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }
+        else
+          @projects = @projects.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }.reverse
+        end
+      else
+        @projects = @projects.sort_by { |a| a.try(@model.get_columns[0].to_sym) }
+      end
+    rescue
+    end
 
     if !params[:subnav].blank? && params[:subnav].to_s != "all"
       @projects = @projects.where(year: params[:subnav])

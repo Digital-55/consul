@@ -6,7 +6,7 @@ class Admin::Parbudget::AmbitsController < Admin::Parbudget::BaseController
 
   def index
     search(params)
-    @ambits = @ambits.page(params[:page]).per(20)
+    @ambits = Kaminari.paginate_array(@ambits).page(params[:page]).per(20)
   end
 
   def create_ambit
@@ -65,6 +65,19 @@ class Admin::Parbudget::AmbitsController < Admin::Parbudget::BaseController
   def search(parametrize = {})
     @ambits = @model.all
     @filters = []
+
+    begin
+      if !parametrize[:sort_by].blank?
+        if parametrize[:direction].blank? || parametrize[:direction].to_s == "asc"
+          @ambits = @ambits.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }
+        else
+          @ambits = @ambits.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }.reverse
+        end
+      else
+        @ambits = @ambits.sort_by { |a| a.try(@model.get_columns[0].to_sym) }
+      end
+    rescue
+    end
 
     begin
       if !parametrize[:search_code].blank?

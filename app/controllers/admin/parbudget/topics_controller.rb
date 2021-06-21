@@ -4,7 +4,7 @@ class Admin::Parbudget::TopicsController < Admin::Parbudget::BaseController
 
   def index
     search(params)
-    @topics = @topics.page(params[:page]).per(20)
+    @topics = Kaminari.paginate_array(@topics).page(params[:page]).per(20)
   end
 
   def generate_topic
@@ -63,6 +63,19 @@ class Admin::Parbudget::TopicsController < Admin::Parbudget::BaseController
   def search(parametrize = {})
     @topics = @model.all
     @filters = []
+
+    begin
+      if !parametrize[:sort_by].blank?
+        if parametrize[:direction].blank? || parametrize[:direction].to_s == "asc"
+          @topics = @topics.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }
+        else
+          @topics = @topics.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }.reverse
+        end
+      else
+        @topics = @topics.sort_by { |a| a.try(@model.get_columns[0].to_sym) }
+      end
+    rescue
+    end
 
     begin
       if !parametrize[:search_topic].blank?

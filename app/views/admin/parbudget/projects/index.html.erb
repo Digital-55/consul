@@ -7,11 +7,11 @@
   <% if @projects.any? %>
     <h3><%= page_entries_info @projects %></h3>
 
-    <table class="stack">
+    <table class="stack sortable">
       <thead>
         <tr>
           <%@model.get_columns.each do |c|%>
-            <th><%= @model.human_attribute_name(c) %></th>
+            <th><%= link_to_parbudget_sorted_by c, @model.human_attribute_name(c) %></th>
           <%end%>
           <th style="width: 18em;"><%= t("admin.actions.actions") %></th>
         </tr>

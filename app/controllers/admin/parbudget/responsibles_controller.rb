@@ -4,7 +4,7 @@ class Admin::Parbudget::ResponsiblesController < Admin::Parbudget::BaseControlle
 
   def index
     search(params)
-    @responsibles = @responsibles.page(params[:page]).per(20)
+    @responsibles = Kaminari.paginate_array(@responsibles).page(params[:page]).per(20)
   end
 
   def new
@@ -92,6 +92,19 @@ class Admin::Parbudget::ResponsiblesController < Admin::Parbudget::BaseControlle
   def search(parametrize = {})
     @responsibles = @model.all
     @filters = []
+
+    begin
+      if !parametrize[:sort_by].blank?
+        if parametrize[:direction].blank? || parametrize[:direction].to_s == "asc"
+          @responsibles = @responsibles.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }
+        else
+          @responsibles = @responsibles.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }.reverse
+        end
+      else
+        @responsibles = @responsibles.sort_by { |a| a.try(@model.get_columns[0].to_sym) }
+      end
+    rescue
+    end
 
     begin
       if !parametrize[:search_responsible].blank?
