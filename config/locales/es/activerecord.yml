@@ -867,6 +867,7 @@ es:
         denomination: "Denominación del proyecto"
         status: Estado de tramitación
         descriptive_memory: "Memoria descriptiva"
+        descriptive_memory_export: "Memoria descriptiva"
         topic: "Tema"
         parbudget_topic: "Tema"
         parbudget_topic_id: "Tema"
@@ -893,6 +894,7 @@ es:
         updated_at: "Fecha de modificación"
       parbudget/media:
         text_document: "Descripción"
+        text_document_export: "Descripción" 
         attachment: "Archivo"
         title: "Título"
         project: "Proyecto"

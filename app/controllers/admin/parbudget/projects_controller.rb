@@ -111,7 +111,7 @@ class Admin::Parbudget::ProjectsController < Admin::Parbudget::BaseController
   def search(parametrize = {})
     @projects = @model.all
     @filters = []
-    
+
     begin
       if !params[:subnav].blank? && params[:subnav].to_s != "all"
         @projects = @projects.where(year: params[:subnav])

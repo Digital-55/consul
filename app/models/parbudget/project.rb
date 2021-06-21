@@ -45,7 +45,7 @@ class Parbudget::Project < ApplicationRecord
             :email,
             :phone,
             :url,
-            :descriptive_memory,
+            :descriptive_memory_export,
             :entity,
             :plate_proceeds,
             :license_plate,
@@ -68,6 +68,12 @@ class Parbudget::Project < ApplicationRecord
 
     def topic
         self.try(:parbudget_topic).try(:name)
+    end
+
+    def descriptive_memory_export
+        Nokogiri::HTML(descriptive_memory).text
+    rescue
+        ""
     end
 end
 

@@ -34,7 +34,7 @@ class Parbudget::Media < ApplicationRecord
 
   def prefix(attachment, _style)
     if !attachment.instance.persisted?
-      "cached_attachments/project/#{attachment.instance.project_id}"
+      "cached_attachments/project/#{attachment.instance.parbudget_project_id}"
     else
       ":attachment/:id_partition"
     end
@@ -42,6 +42,13 @@ class Parbudget::Media < ApplicationRecord
 
   def humanized_content_type
     attachment_content_type.split("/").last.upcase
+  end
+
+
+  def text_document_export
+    Nokogiri::HTML(text_document).text
+  rescue
+      ""
   end
 
   private
