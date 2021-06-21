@@ -67,17 +67,19 @@ module CustomPagesHelper
     @custom_page.custom_page_modules.enabled.map(&:js_snippet).compact
   end
 
-  def youtube_thumbnail(youtube_url)
-    "https://img.youtube.com/vi/#{youtube_id(youtube_url)}/hqdefault.jpg"
-  end
-
-  def youtube_id(youtube_url)
-    regex = /(?:youtube(?:-nocookie)?\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
-    match = regex.match(youtube_url)
-    if match && !match[1].blank?
-      match[1]
-    else
-      nil
+  def video_thumbnail(url)
+    if url.include?("youtu")
+      return "https://img.youtube.com/vi/#{video_id(url, "youtube")}/hqdefault.jpg"
+    end
+    if url.include?("vimeo.com")
+      uri = URI.parse("https://vimeo.com/api/oembed.json?url=#{url}")
+      response = Net::HTTP.get_response(uri)
+      if response.code == "200"
+        response_json = JSON.parse(response.body)
+        return response_json["thumbnail_url"]
+      else
+        return "https://i.vimeocdn.com/video/"
+      end
     end
   end
 
@@ -91,6 +93,30 @@ module CustomPagesHelper
 
   def render_module(custom_page_module)
     render partial: "/custom_pages/#{custom_page_module.type.underscore}", locals: {custom_page_module: custom_page_module} rescue nil
+  end
+
+  def render_video_resource(url)
+    if url.include?("vimeo.com")
+      return "<iframe src='https://player.vimeo.com/video/#{video_id(url, "vimeo")}?color=ffffff&title=0&byline=0&portrait=0' width='800' height='450' frameborder='0' allow='autoplay; fullscreen; picture-in-picture' allowfullscreen></iframe>".html_safe
+    end
+    if url.include?("youtu")
+      return "<iframe width='800' height='450' src='https://www.youtube.com/embed/#{video_id(url, "youtube")}' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>".html_safe
+    end
+  end
+
+  def video_id(url, type)
+    regex = case type
+    when "youtube"
+      /(?:youtube(?:-nocookie)?\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
+    when "vimeo"
+      /(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/(?:[^\/]*)\/videos\/|album\/(?:\d+)\/video\/|video\/|)(\d+)(?:[a-zA-Z0-9_\-]+)?/
+    end
+    match = regex.match(url)
+    if match && !match[1].blank?
+      match[1]
+    else
+      nil
+    end
   end
 
 end
