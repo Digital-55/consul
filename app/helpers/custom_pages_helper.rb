@@ -86,13 +86,13 @@ module CustomPagesHelper
       response = Net::HTTP.get_response(uri)
       if response.code == "200"
         response_json = JSON.parse(response.body)
-        return "<img src='#{response_json['thumbnail_url']}'>".html_safe
+        return "<img src='#{response_json['thumbnail_url']}' width='260'>".html_safe
       else
         return "<img src='https://i.vimeocdn.com/video/'>".html_safe
       end
     end
     if url.include?("prezi.com")
-      return "<iframe src='https://prezi.com/embed/#{video_id(url, "prezi")}' id='iframe_container' frameborder='0' height='160' width='215'></iframe>".html_safe
+      return "<iframe src='https://prezi.com/embed/#{video_id(url, "prezi")}' id='iframe_container' frameborder='0' height='170' width='260'></iframe>".html_safe
     end
   end
 
