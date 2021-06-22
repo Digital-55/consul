@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20210609060536) do
-=======
-ActiveRecord::Schema.define(version: 20210614095904) do
->>>>>>> DEMAD-APP
+ActiveRecord::Schema.define(version: 20210622111055) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,11 +50,6 @@ ActiveRecord::Schema.define(version: 20210614095904) do
     t.index ["sures_actuations_id"], name: "index_actuations_multi_years_on_sures_actuations_id", using: :btree
   end
 
-  create_table "admin_editors", force: :cascade do |t|
-    t.integer "user_id"
-    t.index ["user_id"], name: "index_admin_editors_on_user_id", using: :btree
-  end
-
   create_table "admin_notification_translations", force: :cascade do |t|
     t.integer  "admin_notification_id", null: false
     t.string   "locale",                null: false
@@ -77,11 +68,6 @@ ActiveRecord::Schema.define(version: 20210614095904) do
     t.date     "sent_at"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
-  end
-
-  create_table "admin_readers", force: :cascade do |t|
-    t.integer "user_id"
-    t.index ["user_id"], name: "index_admin_readers_on_user_id", using: :btree
   end
 
   create_table "administrators", force: :cascade do |t|
@@ -448,6 +434,16 @@ ActiveRecord::Schema.define(version: 20210614095904) do
   create_table "communities", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "conplan_editors", force: :cascade do |t|
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_conplan_editors_on_user_id", using: :btree
+  end
+
+  create_table "conplan_readers", force: :cascade do |t|
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_conplan_readers_on_user_id", using: :btree
   end
 
   create_table "consultants", force: :cascade do |t|
@@ -1104,6 +1100,11 @@ ActiveRecord::Schema.define(version: 20210614095904) do
     t.index ["parbudget_project_id"], name: "index_parbudget_economic_budgets_on_parbudget_project_id", using: :btree
   end
 
+  create_table "parbudget_editors", force: :cascade do |t|
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_parbudget_editors_on_user_id", using: :btree
+  end
+
   create_table "parbudget_links", force: :cascade do |t|
     t.string   "url",                  null: false
     t.integer  "parbudget_project_id"
@@ -1159,6 +1160,11 @@ ActiveRecord::Schema.define(version: 20210614095904) do
     t.index ["parbudget_ambit_id"], name: "index_parbudget_projects_on_parbudget_ambit_id", using: :btree
     t.index ["parbudget_responsible_id"], name: "index_parbudget_projects_on_parbudget_responsible_id", using: :btree
     t.index ["parbudget_topic_id"], name: "index_parbudget_projects_on_parbudget_topic_id", using: :btree
+  end
+
+  create_table "parbudget_readers", force: :cascade do |t|
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_parbudget_readers_on_user_id", using: :btree
   end
 
   create_table "parbudget_responsibles", force: :cascade do |t|
@@ -2163,11 +2169,11 @@ ActiveRecord::Schema.define(version: 20210614095904) do
   end
 
   add_foreign_key "actuations_multi_years", "sures_actuations", column: "sures_actuations_id"
-  add_foreign_key "admin_editors", "users"
-  add_foreign_key "admin_readers", "users"
   add_foreign_key "administrators", "users"
   add_foreign_key "adresses", "users", column: "users_id"
   add_foreign_key "budget_investments", "communities"
+  add_foreign_key "conplan_editors", "users"
+  add_foreign_key "conplan_readers", "users"
   add_foreign_key "consultants", "users"
   add_foreign_key "dashboard_administrator_tasks", "users"
   add_foreign_key "dashboard_executed_actions", "dashboard_actions", column: "action_id"
@@ -2198,11 +2204,13 @@ ActiveRecord::Schema.define(version: 20210614095904) do
   add_foreign_key "parbudget_assistants", "parbudget_meetings"
   add_foreign_key "parbudget_centers", "parbudget_projects"
   add_foreign_key "parbudget_economic_budgets", "parbudget_projects"
+  add_foreign_key "parbudget_editors", "users"
   add_foreign_key "parbudget_links", "parbudget_projects"
   add_foreign_key "parbudget_medias", "parbudget_projects"
   add_foreign_key "parbudget_projects", "parbudget_ambits"
   add_foreign_key "parbudget_projects", "parbudget_responsibles"
   add_foreign_key "parbudget_projects", "parbudget_topics"
+  add_foreign_key "parbudget_readers", "users"
   add_foreign_key "parbudget_responsibles", "parbudget_centers"
   add_foreign_key "parbudget_track_exts", "parbudget_tracking_externals"
   add_foreign_key "parbudget_track_exts", "parbudget_trackings"
