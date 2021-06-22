@@ -241,7 +241,6 @@ function toggleAllMenuItemCardSection(e) {
     var cardSections = $('#menu-items-list .card-section')
     for(var cardSection of cardSections) {
       var $arrow = $(cardSection).siblings('.card-divider')
-      // debugger;
       if($(this).hasClass('toggle-open')){
         $(this).find('.icon-angle-down').toggleClass('icon-angle-down icon-angle-up');
         cardSections.show('slow', 'swing');
