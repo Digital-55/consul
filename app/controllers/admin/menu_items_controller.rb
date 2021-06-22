@@ -1,7 +1,7 @@
 class Admin::MenuItemsController < Admin::BaseController
   before_action :set_menu, only: [:sort]
   before_action :set_menu_item, only: [:update, :destroy]
-  after_filter :update_children_parent, only: [:create]
+  after_action :update_children_parent, only: [:create]
 
   def sort
     if params[:menu_item].present?

@@ -326,7 +326,7 @@ es:
         add_promotional: Promocionales
         add_rich_text: Texto
         add_subtitle: Subtítulo
-        add_youtube: Vídeo
+        add_youtube: Vídeo/Presentación
         cta_module:
           cta: Call to Action
           cta_text: Texto Call to Action
@@ -363,8 +363,8 @@ es:
           promotional_three: Promocional 3
           rich_text: Texto
           subtitle: Subtítulo
-          youtube: Vídeo
-          youtube_url: URL de Vídeo (YouTube, Vimeo)
+          youtube: Vídeo/Presentación
+          youtube_url: URL de Vídeo o Presentación(YouTube, Vimeo, Slideshare, Prezi)
       destroy:
         alert_notice: Esta acción eliminará la página personalizada y todos sus módulos, y las páginas "hija" perderán la página "padre".
         success: ¡Página personalizada eliminada con éxito!

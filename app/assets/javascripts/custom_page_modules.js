@@ -48,7 +48,11 @@ $(document).on('page:change', function(){
 function validateInputFields() {
   $('.custom_page_module-youtube_url').change(function(){
     var url = $(this).val();
-    var regex = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$|https?:\/\/(www.)?vimeo.com\/([0-9]{9})/g
+    var regex = new RegExp (['/^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?|',
+                              'https?:\/\/(www.)?vimeo.com\/([0-9]{9})+|',
+                              'https:\/\/([a-z0-9]+[.])*slideshare.net\/[a-zA-Z0-9\-]+\/[a-zA-Z0-9\-]+|',
+                              'https:\/\/([a-z0-9]+[.])*prezi.com\/[a-zA-Z0-9\-]+\/[a-zA-Z0-9-\/]+']
+                              .join(''));
     var urlValidation = url.match(regex) ? true : false;
     displayValidation(urlValidation, $(this))
   })
