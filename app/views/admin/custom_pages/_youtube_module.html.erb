@@ -18,7 +18,7 @@
       <% if f.object.persisted? %>
         <div>
           <%= link_to f.object.youtube_url do %>
-            <%= image_tag video_thumbnail(f.object.youtube_url) %>
+              <%= video_thumbnail(f.object.youtube_url) %>
           <% end %>
         </div>
       <% end %>

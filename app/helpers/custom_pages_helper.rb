@@ -69,17 +69,30 @@ module CustomPagesHelper
 
   def video_thumbnail(url)
     if url.include?("youtu")
-      return "https://img.youtube.com/vi/#{video_id(url, "youtube")}/hqdefault.jpg"
+      return "<img src='https://img.youtube.com/vi/#{video_id(url, 'youtube')}/hqdefault.jpg'>".html_safe
     end
     if url.include?("vimeo.com")
       uri = URI.parse("https://vimeo.com/api/oembed.json?url=#{url}")
       response = Net::HTTP.get_response(uri)
       if response.code == "200"
         response_json = JSON.parse(response.body)
-        return response_json["thumbnail_url"]
+        return "<img src='#{response_json['thumbnail_url']}'>".html_safe
       else
-        return "https://i.vimeocdn.com/video/"
+        return "<img src='https://i.vimeocdn.com/video/'>"
       end
+    end
+    if url.include?("slideshare.net")
+      uri = URI.parse("https://www.slideshare.net/api/oembed/2?url=#{url}&format=json")
+      response = Net::HTTP.get_response(uri)
+      if response.code == "200"
+        response_json = JSON.parse(response.body)
+        return "<img src='#{response_json['thumbnail_url']}'>".html_safe
+      else
+        return "<img src='https://i.vimeocdn.com/video/'>".html_safe
+      end
+    end
+    if url.include?("prezi.com")
+      return "<iframe src='https://prezi.com/embed/#{video_id(url, "prezi")}' id='iframe_container' frameborder='0' height='160' width='215'></iframe>".html_safe
     end
   end
 
@@ -95,13 +108,46 @@ module CustomPagesHelper
     render partial: "/custom_pages/#{custom_page_module.type.underscore}", locals: {custom_page_module: custom_page_module} rescue nil
   end
 
+  def default_video_size
+    {
+      width: '800',
+      height: '450'
+    }
+  end
+
   def render_video_resource(url)
     if url.include?("vimeo.com")
-      return "<iframe src='https://player.vimeo.com/video/#{video_id(url, "vimeo")}?color=ffffff&title=0&byline=0&portrait=0' width='800' height='450' frameborder='0' allow='autoplay; fullscreen; picture-in-picture' allowfullscreen></iframe>".html_safe
+      return "<iframe src='https://player.vimeo.com/video/#{video_id(url, "vimeo")}?color=ffffff&title=0&byline=0&portrait=0' width='#{default_video_size[:width]}' height='#{default_video_size[:height]}' frameborder='0' allow='autoplay; fullscreen; picture-in-picture' allowfullscreen></iframe>".html_safe
     end
     if url.include?("youtu")
-      return "<iframe width='800' height='450' src='https://www.youtube.com/embed/#{video_id(url, "youtube")}' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>".html_safe
+      return "<iframe width='#{default_video_size[:width]}' height='#{default_video_size[:height]}' src='https://www.youtube.com/embed/#{video_id(url, "youtube")}' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>".html_safe
     end
+    if url.include?("slideshare.net")
+      return slideshare_render(url).html_safe
+    end
+    if url.include?("prezi.com")
+      return "<iframe src='https://prezi.com/embed/#{video_id(url, "prezi")}' id='iframe_container' frameborder='0' height='#{default_video_size[:height]}' width='#{default_video_size[:width]}'></iframe>".html_safe
+    end
+  end
+
+  def slideshare_render(url)
+    uri = URI.parse("https://www.slideshare.net/api/oembed/2?url=#{url}&format=json")
+    response = Net::HTTP.get_response(uri)
+    if response.code == "200"
+      response_json = JSON.parse(response.body)
+      slideshare_html = response_json["html"]
+      return update_slideshare_size(slideshare_html)
+    else
+      return "<iframe src='https://www.slideshare.net/slideshow/embed_code/key/not_found' width='#{default_video_size[:width]}' height='#{default_video_size[:height]}' style='border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;' allowfullscreen> </iframe>"
+    end
+  end
+
+  def update_slideshare_size(html)
+    width = (html.scan(/width="([0-9]+)"/)).flatten.first
+    height = (html.scan(/height="([0-9]+)"/)).flatten.first
+    html.gsub!(width, default_video_size[:width])
+    html.gsub!(height, default_video_size[:height])
+    html
   end
 
   def video_id(url, type)
@@ -110,6 +156,10 @@ module CustomPagesHelper
       /(?:youtube(?:-nocookie)?\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
     when "vimeo"
       /(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/(?:[^\/]*)\/videos\/|album\/(?:\d+)\/video\/|video\/|)(\d+)(?:[a-zA-Z0-9_\-]+)?/
+    when "prezi"
+      splitted_url = url.split("/")
+      id_index = splitted_url.find_index("prezi.com") + 1
+      return splitted_url[id_index]
     end
     match = regex.match(url)
     if match && !match[1].blank?
