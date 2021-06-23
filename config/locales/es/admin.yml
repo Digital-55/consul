@@ -1098,6 +1098,74 @@ es:
         title: "Administradores: Búsqueda de usuarios"
       new: 
         title: Crear nuevo usuario administrador
+    parbudget_editors:
+      index:
+        title: Gestores escritura Presupuestos Participativos
+        create: Nuevo Gestor de escritura
+        back: Volver
+        name: Nombre
+        email: Email
+        id: ID de Gestor
+        no_parbudget_editorss: No hay gestores de escritura.
+      administrator:
+        add: Añadir como Gestor de escritura
+        delete: Borrar
+        restricted_removal: "Lo sentimos, no puedes eliminarte a ti mismo de la lista"
+      search:
+        title: "Gestores de escritura: Búsqueda de usuarios"
+      new: 
+        title: Crear nuevo usuario gestor de Presupuestos Participativos
+    parbudget_readers:
+      index:
+        title: Gestores Lectura Presupuestos Participativos
+        create: Nuevo Gestor de Lectura
+        back: Volver
+        name: Nombre
+        email: Email
+        id: ID de Gestor
+        no_parbudget_editorss: No hay gestores de lectura.
+      administrator:
+        add: Añadir como Gestor de Lectura
+        delete: Borrar
+        restricted_removal: "Lo sentimos, no puedes eliminarte a ti mismo de la lista"
+      search:
+        title: "Gestores de lectura: Búsqueda de usuarios"
+      new: 
+        title: Crear nuevo usuario gestor de Planes Concertados
+    conplan_editors:
+      index:
+        title: Gestores escritura Planes Concertados
+        create: Nuevo Gestor de escritura
+        back: Volver
+        name: Nombre
+        email: Email
+        id: ID de Gestor
+        no_conplan_editorss: No hay gestores de escritura.
+      administrator:
+        add: Añadir como Gestor de escritura
+        delete: Borrar
+        restricted_removal: "Lo sentimos, no puedes eliminarte a ti mismo de la lista"
+      search:
+        title: "Gestores de escritura: Búsqueda de usuarios"
+      new: 
+        title: Crear nuevo usuario gestor de Planes Concertados
+    conplan_readers:
+      index:
+        title: Gestores Lectura Planes Concertados
+        create: Nuevo Gestor de Lectura
+        back: Volver
+        name: Nombre
+        email: Email
+        id: ID de Gestor
+        no_conplan_editorss: No hay gestores de lectura.
+      administrator:
+        add: Añadir como Gestor de Lectura
+        delete: Borrar
+        restricted_removal: "Lo sentimos, no puedes eliminarte a ti mismo de la lista"
+      search:
+        title: "Gestores de lectura: Búsqueda de usuarios"
+      new:
+        title: Crear nuevo usuario gestor de Planes Concertados
     sures_administrators:
       index:
         title: Administradores de Sures

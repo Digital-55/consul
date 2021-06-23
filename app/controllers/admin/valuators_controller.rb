@@ -1,8 +1,8 @@
 class Admin::ValuatorsController < Admin::BaseController
   load_and_authorize_resource
   has_filters %w[users superadministrators administrators sures_administrators section_administrators 
-                  organizations officials moderators valuators managers consultants editors]
-                  
+  organizations officials moderators valuators managers consultants editors parbudget_editors parbudget_readers conplan_editors conplan_readers]
+                
   def show
     @valuator = Valuator.find(params[:id])
   end
