@@ -782,6 +782,12 @@ es:
         delete_economic: Borrar presupuesto
         delete_link: Borrar enlace
         download_file: Archivo descargable
+        status:
+          definition: En definición
+          contract: En contratación
+          exec: En ejecución
+          finished: Finalizado
+          invalid: Inviable
       responsible:
         search_responsible: "Responsable"
         search_phone: "Teléfono"

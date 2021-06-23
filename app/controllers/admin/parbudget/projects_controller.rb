@@ -104,6 +104,13 @@ class Admin::Parbudget::ProjectsController < Admin::Parbudget::BaseController
     @ambits = ::Parbudget::Ambit.all.select(:id, :name, :code)
     @topics = ::Parbudget::Topic.all.select(:id,:name)
     @responsibles = ::Parbudget::Responsible.all.select(:id, :full_name)
+    @status = [
+      [I18n.t('admin.parbudget.project.status.definition'),I18n.t('admin.parbudget.project.status.definition')],
+      [I18n.t('admin.parbudget.project.status.contract'),I18n.t('admin.parbudget.project.status.contract')],
+      [I18n.t('admin.parbudget.project.status.exec'),I18n.t('admin.parbudget.project.status.exec')],
+      [I18n.t('admin.parbudget.project.status.finished'),I18n.t('admin.parbudget.project.status.finished')],
+      [I18n.t('admin.parbudget.project.status.invalid'),I18n.t('admin.parbudget.project.status.invalid')]
+    ]
   end
 
   def load_data

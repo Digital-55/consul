@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210622111055) do
+ActiveRecord::Schema.define(version: 20210623135539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -432,6 +432,223 @@ ActiveRecord::Schema.define(version: 20210622111055) do
   end
 
   create_table "communities", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "complan_activities", force: :cascade do |t|
+    t.text     "description"
+    t.string   "activity"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "complan_performance_id"
+    t.index ["complan_performance_id"], name: "index_complan_activities_on_complan_performance_id", using: :btree
+  end
+
+  create_table "complan_ambits", force: :cascade do |t|
+    t.text     "description"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "complan_performance_id"
+    t.index ["complan_performance_id"], name: "index_complan_ambits_on_complan_performance_id", using: :btree
+  end
+
+  create_table "complan_assistants", force: :cascade do |t|
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "complan_person_id"
+    t.integer  "complan_thecnical_table_id"
+    t.index ["complan_person_id"], name: "index_complan_assistants_on_complan_person_id", using: :btree
+    t.index ["complan_thecnical_table_id"], name: "index_complan_assistants_on_complan_thecnical_table_id", using: :btree
+  end
+
+  create_table "complan_beneficiaries", force: :cascade do |t|
+    t.text     "description"
+    t.integer  "count_participants"
+    t.integer  "count_men"
+    t.integer  "count_women"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "complan_performance_id"
+    t.index ["complan_performance_id"], name: "index_complan_beneficiaries_on_complan_performance_id", using: :btree
+  end
+
+  create_table "complan_beneficiaries_typologies", force: :cascade do |t|
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "complan_beneficiary_id"
+    t.integer  "complan_typology_id"
+    t.index ["complan_beneficiary_id"], name: "index_complan_bt_beneficiary", using: :btree
+    t.index ["complan_typology_id"], name: "index_complan_bt_typology", using: :btree
+  end
+
+  create_table "complan_centers", force: :cascade do |t|
+    t.string   "organism"
+    t.string   "dg"
+    t.string   "sg"
+    t.string   "denomination"
+    t.string   "address"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "complan_credit_modifications", force: :cascade do |t|
+    t.string   "departure_destination"
+    t.string   "number_file"
+    t.date     "mc_accept"
+    t.date     "of_remission"
+    t.date     "posted"
+    t.string   "count_credit"
+    t.string   "ad_aprobed"
+    t.string   "o_aprobed"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.integer  "complan_import_id"
+    t.index ["complan_import_id"], name: "index_complan_credit_modifications_on_complan_import_id", using: :btree
+  end
+
+  create_table "complan_files", force: :cascade do |t|
+    t.string   "number_file"
+    t.string   "type_file"
+    t.date     "proposal_date"
+    t.date     "start_date"
+    t.date     "approval_date"
+    t.date     "accounting_date"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.integer  "complan_financing_id"
+    t.index ["complan_financing_id"], name: "index_complan_files_on_complan_financing_id", using: :btree
+  end
+
+  create_table "complan_financings", force: :cascade do |t|
+    t.integer  "start_year"
+    t.string   "type_financing"
+    t.string   "type_subfinancing"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  create_table "complan_imports", force: :cascade do |t|
+    t.float    "import"
+    t.string   "type_import"
+    t.string   "annuity"
+    t.float    "import_start_assing"
+    t.float    "import_requested"
+    t.float    "import_remaining"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.integer  "complan_financing_id"
+    t.integer  "complan_center_id"
+    t.index ["complan_center_id"], name: "index_complan_imports_on_complan_center_id", using: :btree
+    t.index ["complan_financing_id"], name: "index_complan_imports_on_complan_financing_id", using: :btree
+  end
+
+  create_table "complan_indicators", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "numeric_value"
+    t.integer  "provided"
+    t.integer  "done"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "complan_performance_id"
+    t.index ["complan_performance_id"], name: "index_complan_indicators_on_complan_performance_id", using: :btree
+  end
+
+  create_table "complan_locations", force: :cascade do |t|
+    t.string   "district"
+    t.string   "borought"
+    t.string   "address"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.integer  "complan_financing_id"
+    t.index ["complan_financing_id"], name: "index_complan_locations_on_complan_financing_id", using: :btree
+  end
+
+  create_table "complan_medias", force: :cascade do |t|
+    t.text     "text_document"
+    t.string   "title"
+    t.string   "origin"
+    t.date     "date_document"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "complan_performance_id"
+    t.index ["complan_performance_id"], name: "index_complan_medias_on_complan_performance_id", using: :btree
+  end
+
+  create_table "complan_people", force: :cascade do |t|
+    t.string   "name"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "position"
+    t.string   "address"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "complan_center_id"
+    t.index ["complan_center_id"], name: "index_complan_people_on_complan_center_id", using: :btree
+  end
+
+  create_table "complan_performances", force: :cascade do |t|
+    t.string   "type_performance"
+    t.text     "description"
+    t.text     "comments"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.string   "status"
+    t.integer  "annuity"
+    t.integer  "valued"
+    t.integer  "vulnerability_index"
+    t.integer  "edition"
+    t.integer  "multi_year"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.integer  "complan_project_id"
+    t.integer  "complan_financing_id"
+    t.index ["complan_financing_id"], name: "index_complan_performances_on_complan_financing_id", using: :btree
+    t.index ["complan_project_id"], name: "index_complan_performances_on_complan_project_id", using: :btree
+  end
+
+  create_table "complan_projects", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "complan_strategy_id"
+    t.index ["complan_strategy_id"], name: "index_complan_projects_on_complan_strategy_id", using: :btree
+  end
+
+  create_table "complan_strategies", force: :cascade do |t|
+    t.string   "name"
+    t.string   "departure"
+    t.text     "description"
+    t.date     "approbal_date"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "complan_thecnical_tables", force: :cascade do |t|
+    t.date     "date_at"
+    t.text     "description"
+    t.string   "name"
+    t.string   "year"
+    t.string   "type"
+    t.date     "date_agreement"
+    t.string   "sesion"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "complan_performance_id"
+    t.index ["complan_performance_id"], name: "index_complan_thecnical_tables_on_complan_performance_id", using: :btree
+  end
+
+  create_table "complan_trackings", force: :cascade do |t|
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "complan_performance_id"
+    t.index ["complan_performance_id"], name: "index_complan_trackings_on_complan_performance_id", using: :btree
+  end
+
+  create_table "complan_typologies", force: :cascade do |t|
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -1826,7 +2043,7 @@ ActiveRecord::Schema.define(version: 20210622111055) do
     t.datetime "updated_at",                           null: false
     t.string   "borought"
     t.string   "other"
-    t.jsonb    "geozones",             default: "{}",  null: false
+    t.jsonb    "geozones"
     t.string   "project"
     t.index ["geozones"], name: "index_sures_actuations_on_geozones", using: :gin
   end
@@ -1999,7 +2216,7 @@ ActiveRecord::Schema.define(version: 20210622111055) do
     t.date     "access_key_generated_at"
     t.integer  "access_key_tried",                          default: 0
     t.date     "date_hide"
-    t.string   "first_name"
+    t.string   "name"
     t.string   "last_name"
     t.string   "last_name_alt"
     t.integer  "adress_id"
@@ -2172,6 +2389,26 @@ ActiveRecord::Schema.define(version: 20210622111055) do
   add_foreign_key "administrators", "users"
   add_foreign_key "adresses", "users", column: "users_id"
   add_foreign_key "budget_investments", "communities"
+  add_foreign_key "complan_activities", "complan_performances"
+  add_foreign_key "complan_ambits", "complan_performances"
+  add_foreign_key "complan_assistants", "complan_people"
+  add_foreign_key "complan_assistants", "complan_thecnical_tables"
+  add_foreign_key "complan_beneficiaries", "complan_performances"
+  add_foreign_key "complan_beneficiaries_typologies", "complan_beneficiaries"
+  add_foreign_key "complan_beneficiaries_typologies", "complan_typologies"
+  add_foreign_key "complan_credit_modifications", "complan_imports"
+  add_foreign_key "complan_files", "complan_financings"
+  add_foreign_key "complan_imports", "complan_centers"
+  add_foreign_key "complan_imports", "complan_financings"
+  add_foreign_key "complan_indicators", "complan_performances"
+  add_foreign_key "complan_locations", "complan_financings"
+  add_foreign_key "complan_medias", "complan_performances"
+  add_foreign_key "complan_people", "complan_centers"
+  add_foreign_key "complan_performances", "complan_financings"
+  add_foreign_key "complan_performances", "complan_projects"
+  add_foreign_key "complan_projects", "complan_strategies"
+  add_foreign_key "complan_thecnical_tables", "complan_performances"
+  add_foreign_key "complan_trackings", "complan_performances"
   add_foreign_key "conplan_editors", "users"
   add_foreign_key "conplan_readers", "users"
   add_foreign_key "consultants", "users"
