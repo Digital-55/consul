@@ -169,7 +169,8 @@ class User < ApplicationRecord
   end
 
   def administrator?
-    !Administrator.find_by(user_id: self.id).blank? || self.sures? || self.super_administrator? || self.section_administrator? || self.consultant? || self.editor?
+    !Administrator.find_by(user_id: self.id).blank? || self.sures? || self.super_administrator? || self.section_administrator? || self.consultant? || 
+        self.editor? || self.parbudget_editor? || self.parbudget_reader? || self.conplan_editor? || self.conplan_reader?
   end
 
   def sures?
@@ -198,6 +199,22 @@ class User < ApplicationRecord
 
   def editor?
     !Editor.find_by(user_id: self.id).blank?
+  end
+
+  def parbudget_editor?
+    !ParbudgetEditor.find_by(user_id: self.id).blank?
+  end
+
+  def parbudget_reader?
+    !ParbudgetReader.find_by(user_id: self.id).blank?
+  end
+
+  def conplan_editor?
+    !ConplanEditor.find_by(user_id: self.id).blank?
+  end
+
+  def conplan_reader?
+    !ConplanReader.find_by(user_id: self.id).blank?
   end
 
   def poll_officer?

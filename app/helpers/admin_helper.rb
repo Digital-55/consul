@@ -33,6 +33,11 @@ module AdminHelper
     controller_name.starts_with?("budget")
   end
 
+  def menu_proposals?
+    %w[proposals].include?(controller_name) ||
+    controller.class.parent == Admin::Proposals
+  end
+
   def menu_polls?
     %w[polls active_polls recounts results questions answers].include?(controller_name) ||
     controller.class.parent == Admin::Poll::Questions::Answers

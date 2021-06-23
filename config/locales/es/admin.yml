@@ -1100,7 +1100,7 @@ es:
         name: Nombre
         email: Email
         id: ID de Gestor
-        no_parbudget_editorss: No hay gestores de escritura.
+        no_parbudget_editors: No hay gestores de escritura.
       administrator:
         add: Añadir como Gestor de escritura
         delete: Borrar
@@ -1117,7 +1117,7 @@ es:
         name: Nombre
         email: Email
         id: ID de Gestor
-        no_parbudget_editorss: No hay gestores de lectura.
+        no_parbudget_editors: No hay gestores de lectura.
       administrator:
         add: Añadir como Gestor de Lectura
         delete: Borrar
@@ -1134,7 +1134,7 @@ es:
         name: Nombre
         email: Email
         id: ID de Gestor
-        no_conplan_editorss: No hay gestores de escritura.
+        no_conplan_editors: No hay gestores de escritura.
       administrator:
         add: Añadir como Gestor de escritura
         delete: Borrar
@@ -1151,7 +1151,7 @@ es:
         name: Nombre
         email: Email
         id: ID de Gestor
-        no_conplan_editorss: No hay gestores de lectura.
+        no_conplan_readers: No hay gestores de lectura.
       administrator:
         add: Añadir como Gestor de Lectura
         delete: Borrar

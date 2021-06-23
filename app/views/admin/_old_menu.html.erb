@@ -1,21 +1,55 @@
 <div class="admin-sidebar" data-equalizer-watch>
   <ul id="admin_menu" data-accordion-menu data-multi-open="false">
-    <%if !current_user.parbudget_reader? && !current_user.parbudget_editor? && !current_user.conplan_editor? && !current_user.conplan_reader? %>
+    <%if !current_user.parbudget_reader? && !current_user.parbudget_editor? && !current_user.conplan_editor && !current_user.conplan_reader? %>
       <%if !current_user.consultant?%>
         <%if !current_user.editor? %>
           <% if feature?(:proposals) %>
-            <%= render "admin/shared/menu_items/proposals" %>
+            <li class="section-title">
+                <%= link_to admin_proposals_path do %>
+                <span class="icon-proposals"></span>
+                <strong><%= t("admin.menu.proposals") %></strong>
+                <% end %>
+            </li>
           <% end %>
 
           <% if feature?(:polls) %>
-            <%= render "admin/shared/menu_items/polls" %>
+            <li class="section-title <%= "is-active" if menu_polls? %>">
+              <%= link_to admin_polls_path do %>
+                <span class="icon-checkmark-circle"></span>
+                <strong><%= t("admin.menu.polls") %></strong>
+              <% end %>
+            </li>
           <% end %>
 
           <% if feature?(:legislation) %>
-            <%= render "admin/shared/menu_items/legislation" %>
+            <li class="section-title <%= "is-active" if controller.class.parent == Admin::Legislation %>">
+              <%= link_to admin_legislation_processes_path do %>
+                <span class="icon-file-text"></span>
+                <strong><%= t("admin.menu.legislation") %></strong>
+              <% end %>
+            </li>
           <% end %>
           <%if current_user.sures? || current_user.super_administrator? %>
-            <%= render "admin/shared/menu_items/sures" %>
+            <li class="section-title">
+              <a href="#">
+                <span class="icon-edit"></span>
+                <strong><%= t("admin.menu.title_sures") %></strong>
+              </a>
+              <ul <%= "class=is-active" if menu_sures? %>>
+
+                <li <%= "class=is-active" if menu_sures_actuation? %>>
+                  <%= link_to t("admin.menu.sures.actuations"), admin_sures_actuations_path %>
+                </li>
+
+                <li <%= "class=is-active" if menu_sures_customize? %>>
+                  <%= link_to t("admin.menu.sures.customize"), admin_sures_customizes_path %>
+                </li>
+
+                <li <%= "class=is-active" if menu_sures_search? %>>
+                  <%= link_to t("admin.menu.sures.search_settings"), admin_sures_searchs_settings_path %>
+                </li>        
+              </ul>
+            </li>
           <%end%>
 
           <% if feature?(:budgets) %>
