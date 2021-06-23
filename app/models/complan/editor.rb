@@ -1,4 +1,4 @@
-class ConplanReader < ApplicationRecord
+class Complan::Editor < ApplicationRecord
     belongs_to :user, touch: true
     delegate :name, :email, :name_and_email, to: :user, allow_nil: true
   
