@@ -210,7 +210,7 @@
                 <tr>
                 <tr>
                     <td style="width: 50%"><%= media.try(:title) %></td>
-                    <td style="width: 50%"><%= media.try(:text_document) %></td>
+                    <td style="width: 50%"><%= media.try(:text_document).html_safe %></td>
                 <tr>
             </table>  
         </fieldset>      

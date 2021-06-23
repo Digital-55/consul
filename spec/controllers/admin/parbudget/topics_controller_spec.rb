@@ -13,6 +13,18 @@ describe Admin::Parbudget::TopicsController do
       expect(response.status).to be(200)
     end
 
+    it "seach data order asc" do
+      create(:parbudget_topic)
+      get :index, params: {direction: "asc",sort_by: "name"}
+      expect(response.status).to be(200)
+    end
+
+    it "seach data order desc" do
+      create(:parbudget_topic)
+      get :index, params: {direction: "asc",sort_by: "name"}
+      expect(response.status).to be(200)
+    end
+
     it "export CSV" do
       create(:parbudget_topic)
       get :index, params: {format: :csv}

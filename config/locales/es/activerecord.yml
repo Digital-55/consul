@@ -867,6 +867,7 @@ es:
         denomination: "Denominación del proyecto"
         status: Estado de tramitación
         descriptive_memory: "Memoria descriptiva"
+        descriptive_memory_export: "Memoria descriptiva"
         topic: "Tema"
         parbudget_topic: "Tema"
         parbudget_topic_id: "Tema"
@@ -877,6 +878,9 @@ es:
         plate_proceeds: "¿Procede placa?"
         license_plate: "¿Autoriza placa?"
         plate_installed: "¿Placa instalada?"
+        plate_proceeds_translate: "¿Procede placa?"
+        license_plate_translate: "¿Autoriza placa?"
+        plate_installed_translate: "¿Placa instalada?"
         assumes_dgpc: "Asume DGPC"
         code_old: Identificador antiguo
         created_at: "Fecha de creación"
@@ -893,6 +897,7 @@ es:
         updated_at: "Fecha de modificación"
       parbudget/media:
         text_document: "Descripción"
+        text_document_export: "Descripción" 
         attachment: "Archivo"
         title: "Título"
         project: "Proyecto"
@@ -930,6 +935,7 @@ es:
         date_at: "Fecha de la reunión"
         who_requests: "Convocante"
         reason: "Asunto"
+        assistants: "Asistentes/Invitados"
         created_at: "Fecha de creación"
         updated_at: "Fecha de modificación"
       parbudget/assistant:

@@ -90,25 +90,15 @@ class Admin::Parbudget::MeetingsController < Admin::Parbudget::BaseController
     @filters = []
 
     begin
-      if !parametrize[:sort_by].blank?
-        if parametrize[:direction].blank? || parametrize[:direction].to_s == "asc"
-          @meetings = @meetings.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }
-        else
-          @meetings = @meetings.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }.reverse
+      if !params[:subnav].blank? && params[:subnav].to_s != "all"
+        case params[:subnav].to_s
+        when "pending"
+          @meetings = @meetings.pending
+        when "done"
+          @meetings = @meetings.done
         end
-      else
-        @meetings = @meetings.sort_by { |a| a.try(@model.get_columns[0].to_sym) }
       end
     rescue
-    end
-
-    if !params[:subnav].blank? && params[:subnav].to_s != "all"
-      case params[:subnav].to_s
-      when "pending"
-        @meetings = @meetings.pending
-      when "done"
-        @meetings = @meetings.done
-      end
     end
 
     begin
@@ -122,6 +112,19 @@ class Admin::Parbudget::MeetingsController < Admin::Parbudget::BaseController
       elsif !parametrize[:search_date_end].blank?
         @filters.push("#{I18n.t('admin.parbudget.meeting.search_date_end')}: #{parametrize[:search_date_end]}")
         @meetings = @meetings.where("date_at <= to_date(?, 'YYYY-MM-DD') ", parametrize[:search_date_end])
+      end
+    rescue
+    end
+
+    begin
+      if !parametrize[:sort_by].blank?
+        if parametrize[:direction].blank? || parametrize[:direction].to_s == "asc"
+          @meetings = @meetings.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }
+        else
+          @meetings = @meetings.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }.reverse
+        end
+      else
+        @meetings = @meetings.sort_by { |a| a.try(@model.get_columns[0].to_sym) }
       end
     rescue
     end

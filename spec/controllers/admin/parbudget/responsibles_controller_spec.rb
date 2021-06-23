@@ -13,6 +13,18 @@ describe Admin::Parbudget::ResponsiblesController do
       expect(response.status).to be(200)
     end
 
+    it "seach data order asc" do
+      create(:parbudget_responsible)
+      get :index, params: {direction: "asc",sort_by: "full_name"}
+      expect(response.status).to be(200)
+    end
+
+    it "seach data order desc" do
+      create(:parbudget_responsible)
+      get :index, params: {direction: "asc",sort_by: "full_name"}
+      expect(response.status).to be(200)
+    end
+
     it "export CSV" do
       create(:parbudget_responsible)
       get :index, params: {format: :csv}

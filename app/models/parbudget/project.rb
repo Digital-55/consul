@@ -3,10 +3,10 @@ class Parbudget::Project < ApplicationRecord
     belongs_to :parbudget_ambit, class_name: "Parbudget::Ambit", foreign_key: "parbudget_ambit_id"
     belongs_to :parbudget_topic, class_name: "Parbudget::Topic", foreign_key: "parbudget_topic_id"
     has_many :parbudget_centers, class_name: "Parbudget::Center", foreign_key: "parbudget_project_id"
-    has_many :parbudget_trackings, class_name: "Parbudget::Tracking", foreign_key: "parbudget_project_id"
-    has_many :parbudget_links, class_name: "Parbudget::Link", foreign_key: "parbudget_project_id"
-    has_many :parbudget_medias, class_name: "Parbudget::Media", foreign_key: "parbudget_project_id"
-    has_many :parbudget_economic_budgets, class_name: "Parbudget::EconomicBudget", foreign_key: "parbudget_project_id"
+    has_many :parbudget_trackings, class_name: "Parbudget::Tracking", foreign_key: "parbudget_project_id", dependent: :destroy
+    has_many :parbudget_links, class_name: "Parbudget::Link", foreign_key: "parbudget_project_id", dependent: :destroy
+    has_many :parbudget_medias, class_name: "Parbudget::Media", foreign_key: "parbudget_project_id", dependent: :destroy
+    has_many :parbudget_economic_budgets, class_name: "Parbudget::EconomicBudget", foreign_key: "parbudget_project_id", dependent: :destroy
 
     accepts_nested_attributes_for :parbudget_centers, allow_destroy: true
     accepts_nested_attributes_for :parbudget_trackings, allow_destroy: true
@@ -45,17 +45,29 @@ class Parbudget::Project < ApplicationRecord
             :email,
             :phone,
             :url,
-            :descriptive_memory,
+            :descriptive_memory_export,
             :entity,
-            :plate_proceeds,
-            :license_plate,
-            :plate_installed,
+            :plate_proceeds_translate,
+            :license_plate_translate,
+            :plate_installed_translate,
             :code_old,
             :votes,
             :cost,
             :ambit,
             :topic
         ]
+    end
+
+    def plate_proceeds_translate
+        I18n.t(plate_proceeds.to_s)
+    end
+
+    def license_plate_translate
+        I18n.t(license_plate.to_s)
+    end
+
+    def plate_installed_translate
+        I18n.t(plate_installed.to_s)
     end
 
     def responsible
@@ -68,6 +80,12 @@ class Parbudget::Project < ApplicationRecord
 
     def topic
         self.try(:parbudget_topic).try(:name)
+    end
+
+    def descriptive_memory_export
+        Nokogiri::HTML(descriptive_memory).text
+    rescue
+        ""
     end
 end
 

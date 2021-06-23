@@ -67,19 +67,6 @@ class Admin::Parbudget::AmbitsController < Admin::Parbudget::BaseController
     @filters = []
 
     begin
-      if !parametrize[:sort_by].blank?
-        if parametrize[:direction].blank? || parametrize[:direction].to_s == "asc"
-          @ambits = @ambits.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }
-        else
-          @ambits = @ambits.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }.reverse
-        end
-      else
-        @ambits = @ambits.sort_by { |a| a.try(@model.get_columns[0].to_sym) }
-      end
-    rescue
-    end
-
-    begin
       if !parametrize[:search_code].blank?
         @filters.push("#{I18n.t('admin.parbudget.ambit.search_code')}: #{parametrize[:search_code]}")
         @ambits = @ambits.where("translate(UPPER(cast(code as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_code]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')")
@@ -94,8 +81,21 @@ class Admin::Parbudget::AmbitsController < Admin::Parbudget::BaseController
       end
     rescue
     end
+
+    begin
+      if !parametrize[:sort_by].blank?
+        if parametrize[:direction].blank? || parametrize[:direction].to_s == "asc"
+          @ambits = @ambits.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }
+        else
+          @ambits = @ambits.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }.reverse
+        end
+      else
+        @ambits = @ambits.sort_by { |a| a.try(@model.get_columns[0].to_sym) }
+      end
+    rescue
+    end
   rescue
     @ambits = []
     @filters = []
-  end
+   end
 end

@@ -13,6 +13,18 @@ describe Admin::Parbudget::CentersController do
       expect(response.status).to be(200)
     end
 
+    it "seach data order asc" do
+      create(:parbudget_center)
+      get :index, params: {direction: "asc",sort_by: "code"}
+      expect(response.status).to be(200)
+    end
+
+    it "seach data order desc" do
+      create(:parbudget_center)
+      get :index, params: {direction: "asc",sort_by: "code"}
+      expect(response.status).to be(200)
+    end
+
     it "export CSV" do
       create(:parbudget_center)
       get :index, params: {format: :csv}
