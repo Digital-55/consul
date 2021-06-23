@@ -41,6 +41,7 @@ class Parbudget::Project < ApplicationRecord
             :year,
             :denomination,
             :responsible,
+            :status,
             :author,
             :email,
             :phone,
