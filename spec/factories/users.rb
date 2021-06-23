@@ -8,6 +8,7 @@ FactoryBot.define do
     confirmed_at        { Time.current }
     date_of_birth       { 20.years.ago }
     public_activity     true
+    document_type "1"
 
     trait :incomplete_verification do
       after :create do |user|

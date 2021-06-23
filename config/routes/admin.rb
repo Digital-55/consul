@@ -16,6 +16,18 @@ namespace :admin do
     resources :customize_cards
   end
 
+  resources :sgs do
+    post :create_generic, on: :collection
+    get :delete_generic, on: :member
+    get :generate_setting, on: :collection
+    post :update_setting, on: :member
+    get :delete_setting, on: :member
+    post :generate_table_setting, on: :member
+    get :delete_table_setting, on: :member
+    post :generate_table_select, on: :member
+    get :delete_table_select, on: :member
+  end
+
   resources :hidden_users, only: [:index, :show] do
     member do
       put :restore
@@ -55,6 +67,8 @@ namespace :admin do
   resources :users, only: [:index, :new, :show, :destroy] do
     get :hide, on: :member
   end
+
+  resources :profiles
 
   resources :moderated_texts
   namespace :moderated_texts do
@@ -167,7 +181,7 @@ namespace :admin do
   resources :editors, only: [:index, :new, :create, :destroy] do
     get :search, on: :collection
   end
-  #resources :users, only: [:index, :show, :destroy, :hide]
+  resources :users, only: [:index, :show, :destroy, :hide]
 
   scope module: :poll do
     resources :polls do

@@ -39,7 +39,6 @@ module CsvConverters
             each_row{ |row|
              puts row.inspect
             }
-            xxxx
         end
     end
 end

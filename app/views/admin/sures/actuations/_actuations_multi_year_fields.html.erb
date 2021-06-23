@@ -1,0 +1,14 @@
+<% nome ="_#{f.index}_#{f.object.id}_"%>
+<div class="row" id="<%=nome%>" style="display:block">
+  <div class="small-12 medium-3 column end" >
+    <%= f.text_field :annos %>
+  </div>
+  <div class="small-12 medium-3 column end" >
+    <%= f.text_field :values %>
+  </div>
+  <div class="small-12 medium-3 column end">
+    <%= link_to_remove_association f, class: "delete", onclick: "hideAnnos('#{nome}')" do %>
+        <%= t("admin.sures.actuations.form.delete_multi_year") %>
+      <% end %>
+  </div>
+</div>

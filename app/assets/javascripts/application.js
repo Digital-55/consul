@@ -19,7 +19,6 @@
 //= require jquery-ui/widgets/sortable
 //= require jquery-fileupload/basic
 //= require foundation
-//= require turbolinks
 //= require ckeditor/loader
 //= require_directory ./ckeditor
 //= require social-share-button
@@ -88,6 +87,7 @@
 //= require settings
 //= require login_form
 //= require starrr.js
+//= require sg.js
 
 var initialize_modules = function() {
   App.Answers.initialize();
@@ -141,7 +141,7 @@ var initialize_modules = function() {
 };
 
 $(function(){
-  Turbolinks.enableProgressBar();
+  //Turbolinks.enableProgressBar();
 
   $(document).ready(initialize_modules);
   $(document).on("page:load", initialize_modules);
@@ -190,6 +190,16 @@ function setHidden(limit) {
   });
   if(count >= 1){
     document.getElementById("submit").display = "block";
+  }
+}
+
+function setStatusValue(element) {
+  if(document.getElementById(element).checked == false){
+    console.log("checked->false");
+    document.getElementById(element).value = false;
+  } else {
+    console.log("checked->true");
+    document.getElementById(element).value = true;
   }
 }
 
@@ -253,14 +263,26 @@ function showhideFieldActuation(element, value, field) {
   }
 }
 
+function showMultiYears(multi,simple) {
+    multi.show();
+    simple.hide();
+}
+
+function hideMultiYears(multi,simple) {
+  multi.hide();
+  simple.show();
+}
+
+function hideAnnos(element) {
+  document.getElementById(element).style.display = "none";
+}
+
 function changeShowFields(element, field) {
   if (element.css("display") == "none") {
     field.attr('value',false);
   } else {
     field.attr('value',true);
   }
-  console.log(element)
-  console.log(field)
 }
 
 function changeButton(element){

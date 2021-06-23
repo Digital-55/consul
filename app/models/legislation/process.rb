@@ -53,6 +53,7 @@ class Legislation::Process < ApplicationRecord
   validates :font_color, format: { allow_blank: true, with: CSS_HEX_COLOR }
 
   scope :open, -> { where("start_date <= ? and end_date >= ?", Date.current, Date.current) }
+  scope :seached, -> { where("start_date <= ?", Date.current) }
   scope :active, -> { where("end_date >= ?", Date.current) }
   scope :past, -> { where("end_date < ?", Date.current) }
   scope :by_geozone_id, ->(geozone_id) { where(geozones: {id: geozone_id}.joins(:geozones)) }
@@ -123,6 +124,10 @@ class Legislation::Process < ApplicationRecord
     self.geozones.each {|geo| return true if geo.id.to_i == user.geozone_id.to_i}
 
     false
+  end
+
+  def self.translate_column_names
+    [:title, :summary, :description, :additional_info, :milestones_summary, :homepage ]
   end
 
   private

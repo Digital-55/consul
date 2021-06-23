@@ -46,4 +46,8 @@ class I18nContent < ApplicationRecord
     return output
   end
 
+  def self.translate_column_names
+    [:value ]
+  end
+
 end

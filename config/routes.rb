@@ -37,13 +37,15 @@ Rails.application.routes.draw do
   draw :valuation
   draw :verification
   draw :sures
+  #draw :csc
 
   root "welcome#index"
   get "/welcome", to: "welcome#welcome"
   get "/conectados", to: "welcome#encuentrosconexpertos"
   get '/update_padron' => 'users#update_padron', as: :update_padron
   get "/eventos", to: "welcome#eventos"  
-  get "/semana-administracion-abierta", to: "welcome#agend_admin" 
+  get "/buscador_general", to: "welcome#generic_search"  
+  get "/semana-administracion-abierta", to: "welcome#agend_admin"
 
   get "/madridsalealbalcon" => redirect("/legislation/processes/#{Rails.application.secrets.id}")
   get "/compartimosbarrio" => redirect("/legislation/processes/#{Rails.application.secrets.id_barrio}")

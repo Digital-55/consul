@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="small-12 column">
+        <ul class="menu simple clear" id="filter-subnav">
+            <li class="<%="is-active" if params[:type_order].to_s=="all" || params[:type_order].blank?%>">
+                <% if params[:type_order].to_s=="all" || params[:type_order].blank?%>
+                    <h2><%=t('sgs.all_category')%></h2>
+                <%else%>
+                    <%= link_to t('sgs.all_category'), buscador_general_path({type_order: "all"}.merge!(params.except(:type_order))), remote: false %>
+                <%end%>
+            </li>
+            <% if !@orders_settings.blank?%>
+                <%  @orders_settings .each do |filter| %>
+                    <li class="<%="is-active" if params[:type_order].to_s==filter.title.parameterize.underscore.to_s%>">
+                        <% if params[:type_order].to_s==filter.title.parameterize.underscore.to_s %>
+                            <h2><%=filter.title%></h2>
+                        <%else%>  
+                            <%= link_to filter.title, buscador_general_path({type_order: filter.title.parameterize.underscore.to_s}.merge!(params.except(:type_order))), remote: false %>
+                        <%end%>
+                    </li>
+                <%end%>
+            <%end%>
+        </ul>
+    </div>
+</div>

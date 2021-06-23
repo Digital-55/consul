@@ -24,8 +24,12 @@
   <body class="auth-page landing-budgets">
   <div class="row" style="border-bottom: 1px solid black">
     <div class="small-12 medium-8 column" style="padding:1em"><%= t("landings.header") %></div>
-    <div class="small-12 medium-4 column" style="text-align:right"><%= image_tag(image_path_for("logo_header_web_madrid.png"), alt: t("layouts.header.logo")) %></div>
+    <div class="small-12 medium-4 column" style="text-align:right">
+      <%=link_to root_path do%>
+        <%= image_tag(image_path_for("logo_decide_madrid.png"), style: "margin-top:1em;width:200px !important;", alt: t("layouts.header.logo")) %>
+      <%end%>
     </div>
+  </div>
     <%= render "sures/header", header: @header %>
     <%= yield %>
     <div class="footer">

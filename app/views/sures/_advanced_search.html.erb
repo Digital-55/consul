@@ -5,7 +5,7 @@
                 <div class="input-group">
                     <%= text_field_tag :search, params[:search], label: false, placeholder: t("landings.search_sures")%>
                     <div class="input-group-button">
-                        <button type="submit" class="button" title="<%= t("landings.search_sures") %>">
+                        <button type="submit" class="button" style="background: rgb(0,199,210)" title="<%= t("landings.search_sures") %>">
                             <span class="show-for-sr"><%= t("landings.search_sures") %></span>
                             <span class='icon-search'></span>
                         </button>
@@ -25,17 +25,39 @@
             <div id="js-advanced-search" data-advanced-search-terms="<%= @search_terms.present? && @search_terms%>" style="display: none">
                 <%= hidden_field_tag :show_fields, true %>
                 <div class="row" style="border: 1px solid grey;margin: 0 0 5em 0;padding: 1em;">
-                <% @sures_searchs_settings.each do |search|%>
-                    <div class="small-12 large-4 column end">
-                        <%= label_tag search.title.parameterize.underscore.to_sym, search.title %>
-                        <% if search.data_type == 'select'%>
-                            <%= select_tag search.title.parameterize.underscore.to_sym, options_for_select(parse_data_json(search.data).map {|k,v| [k,v]}, params[search.title.parameterize.underscore.to_sym]),
-                                include_blank: "" %>
-                        <%else%>
-                            <%= text_field_tag search.title.parameterize.underscore.to_sym, params[search.title.parameterize.underscore.to_sym] %>
+                    <%if !@sures_searchs_settings.find_by(title: "Distrito", active: true).blank? %>
+                        <div class="small-12 large-8 column end">
+                    <%end%>
+                    <% @sures_searchs_settings.each do |search|%>
+                        <%if search.title != "Barrio" %>
+                            <div class="small-12 large-<%= @sures_searchs_settings.find_by(title: "Distrito", active: true).blank? ? "4" : "6"%> column end">
+                                <% if search.title != "Distrito" %><%= label_tag search.title.parameterize.underscore.to_sym, search.title %><% end %>
+                                <% if search.data_type == 'select'%>
+                                    <% if search.title != "Distrito" && search.title == "Estado de ejecución de la actuación"%>
+                                        <%= select_tag search.title.parameterize.underscore.to_sym, options_for_select(get_list_sures_status, params[search.title.parameterize.underscore.to_sym]),
+                                        include_blank: "" %>
+                                    <%elsif search.title == "Estratégia"%>
+                                        <%= select_tag search.title.parameterize.underscore.to_sym, options_for_select(get_list_sures_financing, params[search.title.parameterize.underscore.to_sym]),
+                                        include_blank: "" %>
+                                    <% end %>
+                                <%else%>
+                                    <%= text_field_tag search.title.parameterize.underscore.to_sym, params[search.title.parameterize.underscore.to_sym] %>
+                                <%end%>
+                            </div>
                         <%end%>
-                    </div>
-                <%end%>
+                    <%end%>
+                    <%if !@sures_searchs_settings.find_by(title: "Distrito", active: true).blank? %>
+                        </div>
+                    <%end%>
+                    
+                    <%if !@sures_searchs_settings.find_by(title: "Distrito", active: true).blank? %>
+                        <div class="small-12 large-4 column end">
+                            <%= label_tag @sures_searchs_settings.find_by(title: "Distrito").title.parameterize.underscore.to_sym, @sures_searchs_settings.find_by(title: "Distrito").title %>
+                            <%= select_tag @sures_searchs_settings.find_by(title: "Distrito").title.parameterize.underscore.to_sym, options_for_select(@districts, params[@sures_searchs_settings.find_by(title: "Distrito").title.parameterize.underscore.to_sym]),
+                                        multiple: true, id: "sures_search_select" %>
+                        </div>
+                    <%end%>
+                
                 </div>
             </div>
         </div>

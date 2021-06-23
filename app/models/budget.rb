@@ -59,6 +59,10 @@ class Budget < ApplicationRecord
     where.not(phase: "drafting").order(:created_at).last
   end
 
+  def self.translate_column_names
+    [:name ]
+  end
+
   def to_param
     slug
   end
