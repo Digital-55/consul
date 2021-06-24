@@ -201,11 +201,11 @@ namespace :admin do
     get :search, on: :collection
   end
 
-  resources :conplan_editors, only: [:index, :new, :create, :destroy] do
+  resources :complan_editors, only: [:index, :new, :create, :destroy] do
     get :search, on: :collection
   end
 
-  resources :conplan_readers, only: [:index, :new, :create, :destroy] do
+  resources :complan_readers, only: [:index, :new, :create, :destroy] do
     get :search, on: :collection
   end
 

@@ -1,7 +1,7 @@
 <ul class="menu simple clear" id="filter-subnav">
   <%if controller_name == "organizations" %>
     <% @valid_filters = has_filters %w[users superadministrators administrators sures_administrators section_administrators 
-  organizations officials moderators valuators managers consultants editors parbudget_editors parbudget_readers conplan_editors conplan_readers] %>
+      organizations officials moderators valuators managers consultants editors parbudget_editors parbudget_readers complan_editors complan_readers] %>
   <%end%>
   <% @valid_filters.each do |filter| %>
     <% if controller_name == filter %>

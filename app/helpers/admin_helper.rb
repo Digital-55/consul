@@ -34,8 +34,7 @@ module AdminHelper
   end
 
   def menu_proposals?
-    %w[proposals].include?(controller_name) ||
-    controller.class.parent == Admin::Proposals
+    %w[proposals].include?(controller_name)
   end
 
   def menu_polls?
@@ -48,7 +47,9 @@ module AdminHelper
   end
 
   def menu_profiles?
-    %w[superadministrators administrators sures_administrators section_administrators consultants editors organizations officials moderators valuators managers users].include?(controller_name)
+    %w[superadministrators administrators sures_administrators section_administrators consultants 
+      editors organizations officials moderators valuators managers users parbudget_editors parbudget_readers
+      complan_editors complan_readers].include?(controller_name)
   end
 
   def menu_settings?

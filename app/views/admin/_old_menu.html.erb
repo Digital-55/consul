@@ -1,6 +1,6 @@
 <div class="admin-sidebar" data-equalizer-watch>
   <ul id="admin_menu" data-accordion-menu data-multi-open="false">
-    <%if !current_user.parbudget_reader? && !current_user.parbudget_editor? && !current_user.conplan_editor && !current_user.conplan_reader? %>
+    <%if !current_user.parbudget_reader? && !current_user.parbudget_editor? && !current_user.complan_editor && !current_user.complan_reader? %>
       <%if !current_user.consultant?%>
         <%if !current_user.editor? %>
           <% if feature?(:proposals) %>
@@ -281,11 +281,11 @@
       </li>
       <%end%>
     <%end%>
-    <%if current_user.administrator? || current_user.super_administrator? || current_user.conplan_editor? || current_user.conplan_reader? %>
+    <%if current_user.administrator? || current_user.super_administrator? || current_user.complan_editor? || current_user.complan_reader? %>
       <li class="section-title">
         <a href="#">
           <span class="icon-edit"></span>
-          <strong><%= t("admin.menu.conplan") %></strong>
+          <strong><%= t("admin.menu.complan") %></strong>
         </a>
         <ul <%= "class=is-active" if menu_parbudget? %>>
         <li <%= "class=is-active" if controller_name == "parbudget" %>>

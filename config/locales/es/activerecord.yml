@@ -163,10 +163,10 @@ es:
       parbudget_reader:
         one: "Gestor lectura de Presupuestos Participativos"
         other: "Gestores lectores de Presupuestos Participativos"
-      conplan_editor:
+      complan_editor:
         one: "Gestor editor de Planes Concertados"
         other: "Gestores editores de Planes Concertados"
-      conplan_reader:
+      complan_reader:
         one: "Gestor lectura de Planes Concertados"
         other: "Gestores lectores de Planes Concertados"
       valuator_group:

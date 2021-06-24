@@ -125,8 +125,8 @@ class Management::UsersController < Management::BaseController
         when "9" then true if set_editor(user)
         when "10" then true if set_parbudget_editor(user)
         when "11" then true if set_parbudget_reader(user)
-        when "12" then true if set_conplan_editor(user)
-        when "13" then true if set_conplan_reader(user)
+        when "12" then true if set_complan_editor(user)
+        when "13" then true if set_complan_reader(user)
       end
     end
 
@@ -185,25 +185,25 @@ class Management::UsersController < Management::BaseController
     end
 
     def set_parbudget_editor(user)
-      profile = ParbudgetEditor.new
+      profile = Parbudget::Editor.new
       profile.user = user
       profile.save
     end
 
     def set_parbudget_reader(user)
-      profile = ParbudgetReader.new
+      profile = Parbudget::Reader.new
       profile.user = user
       profile.save
     end
 
-    def set_conplan_editor(user)
-      profile = ConplanEditor.new
+    def set_complan_editor(user)
+      profile = Complan::Editor.new
       profile.user = user
       profile.save
     end
 
-    def set_conplan_reader(user)
-      profile = ConplanReader.new
+    def set_complan_reader(user)
+      profile = Complan::Reader.new
       profile.user = user
       profile.save
     end
