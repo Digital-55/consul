@@ -1,0 +1,30 @@
+<%nome ="_#{f.index}_"%>
+<div id="<%= dom_id(f.object) %>" class="parbudget-responsibles-<%=nome%>">
+<div class="nested-fields">
+  <div class="fields">
+  <%= f.hidden_field :id %>
+    <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+      <%= f.hidden_field :parbudget_center_id, value: f.object.parbudget_center_id ||  @center.id %>
+      <div class="small-12 medium-6  column end"  >
+        <%= f.text_field :full_name %>
+      </div>
+      <div class="small-12 medium-3  column end"  >
+        <%= f.text_field :email %>
+      </div>
+      <div class="small-12 medium-3  column end"  >
+        <%= f.text_field :phone %>
+      </div>
+      
+      <div class="small-12 medium-6  column end"  >
+        <%= f.text_field :position %>
+        
+      </div>
+      <div class="small-12 column clear text-right">
+        <%= link_to_remove_association f, class: "button alert", wrapper_class: "parbudget-responsibles-#{nome}" do %>
+          <%= t("admin.parbudget.center.button_delete") %>
+        <% end %>
+      </div>
+    </fieldset>
+  </div>
+</div>
+</div>

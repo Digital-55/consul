@@ -1,0 +1,51 @@
+<%= render partial: "admin/parbudget/tabs"%>
+<%= render partial: "admin/parbudget/buttons", locals: {path: new_admin_parbudget_meeting_path, button_title: t("admin.menu.parbudget_tabs.new_meetings")}%>
+<%= render partial: "admin/parbudget/subnav"%>
+<%= render partial: "filters"%>
+
+<div class="small-12 column">
+  <% if @meetings.any? %>
+    <h3><%= page_entries_info @meetings %></h3>
+
+    <table class="stack sortable">
+      <thead>
+        <tr>
+          <%@model.get_columns.each do |c|%>
+            <th><%= link_to_parbudget_sorted_by c, @model.human_attribute_name(c) %></th>
+          <%end%>
+          <th style="width: 18em;"><%= t("admin.actions.actions") %></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @meetings.each do |meeting| %>
+            <tr id="<%= dom_id(meeting) %>">
+              <%@model.get_columns.each do |c|%>
+                <td><%=meeting.try(c).to_s.html_safe%></td>
+              <%end%>
+              <td style="width: 18em;">
+                <%= link_to admin_parbudget_meetings_path, class: "button hollow", style: "margin: 0px", title: t('admin.parbudget.show_audits'), alt: t('admin.parbudget.show_audits')  do %>
+                  <span class="icon-settings"></span>
+                <%end%>
+                <%= link_to admin_parbudget_meeting_path(meeting, format: :pdf), style: "margin: 0px", class: "button", title: t('admin.parbudget.meeting.pdf_download'), alt: t('admin.parbudget.meeting.pdf_download')  do %>
+                  <span class="icon-document"></span>
+                <%end%>
+                <%= link_to admin_parbudget_meeting_path(meeting), class: "button", style: "margin: 0px", title: t('admin.parbudget.meeting.show_meeting'), alt: t('admin.parbudget.meeting.show_meeting')  do %>
+                  <span class="icon-eye"></span>
+                <%end%>
+                <%= link_to edit_admin_parbudget_meeting_path(meeting), class: "button", style: "margin: 0px", title: t('admin.parbudget.meeting.title_update'), alt: t('admin.parbudget.meeting.title_update')  do %>
+                  <span class="icon-edit"></span>
+                <%end%>
+                <%= link_to  admin_parbudget_meeting_path(meeting),method: :delete, class: "button hollow alert", style: "margin: 0px", title: t('admin.parbudget.meeting.title_delete'), alt: t('admin.parbudget.meeting.title_delete'), data: {confirm: t('admin.parbudget.meeting.destroy_confirm')}  do %>
+                  <span class="icon-deleted"></span>
+                <%end%>
+              </td>
+            </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= paginate @meetings %>
+  <% else %>
+    <div class="callout primary"><%= page_entries_info @meetings %></div>
+  <% end %>
+</div>
