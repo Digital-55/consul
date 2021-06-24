@@ -64,10 +64,10 @@ module Abilities
       can [:search, :create, :index, :destroy], ::Consultant
       can [:search, :create, :index, :destroy], ::Editor
       can [:search, :create, :index, :destroy], ::Moderator
-      can [:search, :create, :index, :destroy], ::ParbudgetEditor
-      can [:search, :create, :index, :destroy], ::ParbudgetReader
-      can [:search, :create, :index, :destroy], ::ConplanEditor
-      can [:search, :create, :index, :destroy], ::ConplanReader
+      can [:search, :create, :index, :destroy], ::Parbudget::Editor
+      can [:search, :create, :index, :destroy], ::Parbudget::Reader
+      can [:search, :create, :index, :destroy], ::Complan::Editor
+      can [:search, :create, :index, :destroy], ::Complan::Reader
 
       can [:search, :show, :edit, :update, :create, :index, :destroy, :summary], ::Valuator
       can [:search, :create, :index, :destroy], ::Manager

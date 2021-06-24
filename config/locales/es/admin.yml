@@ -1106,7 +1106,7 @@ es:
         name: Nombre
         email: Email
         id: ID de Gestor
-        no_parbudget_editorss: No hay gestores de escritura.
+        no_parbudget_editors: No hay gestores de escritura.
       administrator:
         add: Añadir como Gestor de escritura
         delete: Borrar
@@ -1123,7 +1123,7 @@ es:
         name: Nombre
         email: Email
         id: ID de Gestor
-        no_parbudget_editorss: No hay gestores de lectura.
+        no_parbudget_editors: No hay gestores de lectura.
       administrator:
         add: Añadir como Gestor de Lectura
         delete: Borrar
@@ -1132,7 +1132,7 @@ es:
         title: "Gestores de lectura: Búsqueda de usuarios"
       new: 
         title: Crear nuevo usuario gestor de Planes Concertados
-    conplan_editors:
+    complan_editors:
       index:
         title: Gestores escritura Planes Concertados
         create: Nuevo Gestor de escritura
@@ -1140,7 +1140,7 @@ es:
         name: Nombre
         email: Email
         id: ID de Gestor
-        no_conplan_editorss: No hay gestores de escritura.
+        no_complan_editors: No hay gestores de escritura.
       administrator:
         add: Añadir como Gestor de escritura
         delete: Borrar
@@ -1149,7 +1149,7 @@ es:
         title: "Gestores de escritura: Búsqueda de usuarios"
       new: 
         title: Crear nuevo usuario gestor de Planes Concertados
-    conplan_readers:
+    complan_readers:
       index:
         title: Gestores Lectura Planes Concertados
         create: Nuevo Gestor de Lectura
@@ -1157,7 +1157,7 @@ es:
         name: Nombre
         email: Email
         id: ID de Gestor
-        no_conplan_editorss: No hay gestores de lectura.
+        no_complan_readers: No hay gestores de lectura.
       administrator:
         add: Añadir como Gestor de Lectura
         delete: Borrar

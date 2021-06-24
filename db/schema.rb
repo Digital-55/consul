@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210623135539) do
+ActiveRecord::Schema.define(version: 20210624063215) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -507,6 +507,11 @@ ActiveRecord::Schema.define(version: 20210623135539) do
     t.index ["complan_import_id"], name: "index_complan_credit_modifications_on_complan_import_id", using: :btree
   end
 
+  create_table "complan_editors", force: :cascade do |t|
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_complan_editors_on_user_id", using: :btree
+  end
+
   create_table "complan_files", force: :cascade do |t|
     t.string   "number_file"
     t.string   "type_file"
@@ -617,6 +622,11 @@ ActiveRecord::Schema.define(version: 20210623135539) do
     t.index ["complan_strategy_id"], name: "index_complan_projects_on_complan_strategy_id", using: :btree
   end
 
+  create_table "complan_readers", force: :cascade do |t|
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_complan_readers_on_user_id", using: :btree
+  end
+
   create_table "complan_strategies", force: :cascade do |t|
     t.string   "name"
     t.string   "departure"
@@ -651,16 +661,6 @@ ActiveRecord::Schema.define(version: 20210623135539) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "conplan_editors", force: :cascade do |t|
-    t.integer "user_id"
-    t.index ["user_id"], name: "index_conplan_editors_on_user_id", using: :btree
-  end
-
-  create_table "conplan_readers", force: :cascade do |t|
-    t.integer "user_id"
-    t.index ["user_id"], name: "index_conplan_readers_on_user_id", using: :btree
   end
 
   create_table "consultants", force: :cascade do |t|
@@ -2397,6 +2397,7 @@ ActiveRecord::Schema.define(version: 20210623135539) do
   add_foreign_key "complan_beneficiaries_typologies", "complan_beneficiaries"
   add_foreign_key "complan_beneficiaries_typologies", "complan_typologies"
   add_foreign_key "complan_credit_modifications", "complan_imports"
+  add_foreign_key "complan_editors", "users"
   add_foreign_key "complan_files", "complan_financings"
   add_foreign_key "complan_imports", "complan_centers"
   add_foreign_key "complan_imports", "complan_financings"
@@ -2407,10 +2408,9 @@ ActiveRecord::Schema.define(version: 20210623135539) do
   add_foreign_key "complan_performances", "complan_financings"
   add_foreign_key "complan_performances", "complan_projects"
   add_foreign_key "complan_projects", "complan_strategies"
+  add_foreign_key "complan_readers", "users"
   add_foreign_key "complan_thecnical_tables", "complan_performances"
   add_foreign_key "complan_trackings", "complan_performances"
-  add_foreign_key "conplan_editors", "users"
-  add_foreign_key "conplan_readers", "users"
   add_foreign_key "consultants", "users"
   add_foreign_key "dashboard_administrator_tasks", "users"
   add_foreign_key "dashboard_executed_actions", "dashboard_actions", column: "action_id"
