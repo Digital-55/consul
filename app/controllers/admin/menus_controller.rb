@@ -1,6 +1,7 @@
 class Admin::MenusController < Admin::BaseController
   include Translatable
   before_action :set_menu, only: [:edit, :update, :destroy]
+  after_action :set_user, only: [:create, :update]
 
   has_filters %w{all header footer}, only: :index
 
@@ -48,5 +49,9 @@ class Admin::MenusController < Admin::BaseController
 
   def set_menu
     @menu = Menu.find(params[:id])
+  end
+
+  def set_user
+    @menu.update(user: current_user) if @menu.user != current_user
   end
 end

@@ -63,6 +63,14 @@ module CustomPagesHelper
     end
   end
 
+  def custom_page_user_email(custom_page)
+    custom_page.user.email rescue ''
+  end
+
+  def custom_page_user_roles(custom_page)
+    display_user_roles(custom_page.user) rescue ''
+  end
+
   def enabled_snippets
     @custom_page.custom_page_modules.enabled.map(&:js_snippet).compact
   end

@@ -1141,8 +1141,10 @@ ActiveRecord::Schema.define(version: 20210420102437) do
     t.string   "title"
     t.string   "section"
     t.boolean  "published",  default: false
+    t.integer  "user_id"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.index ["user_id"], name: "index_menus_on_user_id", using: :btree
   end
 
   create_table "milestone_statuses", force: :cascade do |t|
@@ -2204,6 +2206,7 @@ ActiveRecord::Schema.define(version: 20210420102437) do
   add_foreign_key "locks", "users"
   add_foreign_key "managers", "users"
   add_foreign_key "menu_items", "menus"
+  add_foreign_key "menus", "users"
   add_foreign_key "moderators", "users"
   add_foreign_key "notifications", "users"
   add_foreign_key "organizations", "users"

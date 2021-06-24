@@ -17,6 +17,8 @@
         <th scope="col"><%= t("admin.menus.menu.section")%></th>
         <th scope="col"><%= t("admin.menus.menu.published")%></th>
         <th scope="col"><%= t("admin.menus.menu.date")%></th>
+        <th scope="col"><%= t("admin.menus.menu.index.user")%></th>
+        <th scope="col"><%= t("admin.menus.menu.index.roles")%></th>
         <th scope="col" class="small-4"><%= t("admin.actions.actions")%></th>
       </tr>
     </thead>
@@ -27,6 +29,8 @@
           <td><%= retrieve_options_key(section_options, menu.try(:section)) %></td>
           <td><%= retrieve_options_key(publish_options, menu.try(:published)) %></td>
           <td><%= menu.try(:updated_at).strftime("%Y-%m-%d %H:%M") %></td>
+          <td><%= menu_user_email(menu) %></td>
+          <td><%= menu_user_roles(menu) %></td>
           <td>
             <div class="small-12 medium-6 column">
               <%= link_to t("admin.menus.index.edit"), edit_admin_menu_path(menu),

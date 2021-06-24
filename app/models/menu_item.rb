@@ -23,6 +23,6 @@ class MenuItem < ApplicationRecord
 
   def url_valid?
     # !!url.match(/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-=\?]*)*\/?$/) &&
-    !!url.match(URI::regexp)
+    !!url&.match(URI::regexp)
   end
 end

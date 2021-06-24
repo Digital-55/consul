@@ -90,4 +90,12 @@ module MenusHelper
   def menu_item_target(menu_item)
     menu_item.target_blank ? '_blank' : ''
   end
+
+  def menu_user_email(menu)
+    menu.user.email rescue ''
+  end
+
+  def menu_user_roles(menu)
+    display_user_roles(menu.user) rescue ''
+  end
 end
