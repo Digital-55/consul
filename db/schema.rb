@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210517174607) do
+ActiveRecord::Schema.define(version: 20210624085951) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -432,6 +432,233 @@ ActiveRecord::Schema.define(version: 20210517174607) do
   end
 
   create_table "communities", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "complan_activities", force: :cascade do |t|
+    t.text     "description"
+    t.string   "activity"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "complan_performance_id"
+    t.index ["complan_performance_id"], name: "index_complan_activities_on_complan_performance_id", using: :btree
+  end
+
+  create_table "complan_ambits", force: :cascade do |t|
+    t.text     "description"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "complan_performance_id"
+    t.index ["complan_performance_id"], name: "index_complan_ambits_on_complan_performance_id", using: :btree
+  end
+
+  create_table "complan_assistants", force: :cascade do |t|
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "complan_person_id"
+    t.integer  "complan_thecnical_table_id"
+    t.index ["complan_person_id"], name: "index_complan_assistants_on_complan_person_id", using: :btree
+    t.index ["complan_thecnical_table_id"], name: "index_complan_assistants_on_complan_thecnical_table_id", using: :btree
+  end
+
+  create_table "complan_beneficiaries", force: :cascade do |t|
+    t.text     "description"
+    t.integer  "count_participants"
+    t.integer  "count_men"
+    t.integer  "count_women"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "complan_performance_id"
+    t.index ["complan_performance_id"], name: "index_complan_beneficiaries_on_complan_performance_id", using: :btree
+  end
+
+  create_table "complan_beneficiaries_typologies", force: :cascade do |t|
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "complan_beneficiary_id"
+    t.integer  "complan_typology_id"
+    t.index ["complan_beneficiary_id"], name: "index_complan_bt_beneficiary", using: :btree
+    t.index ["complan_typology_id"], name: "index_complan_bt_typology", using: :btree
+  end
+
+  create_table "complan_centers", force: :cascade do |t|
+    t.string   "organism"
+    t.string   "dg"
+    t.string   "sg"
+    t.string   "denomination"
+    t.string   "address"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "complan_credit_modifications", force: :cascade do |t|
+    t.string   "departure_destination"
+    t.string   "number_file"
+    t.date     "mc_accept"
+    t.date     "of_remission"
+    t.date     "posted"
+    t.string   "count_credit"
+    t.string   "ad_aprobed"
+    t.string   "o_aprobed"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.integer  "complan_import_id"
+    t.index ["complan_import_id"], name: "index_complan_credit_modifications_on_complan_import_id", using: :btree
+  end
+
+  create_table "complan_editors", force: :cascade do |t|
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_complan_editors_on_user_id", using: :btree
+  end
+
+  create_table "complan_files", force: :cascade do |t|
+    t.string   "number_file"
+    t.string   "type_file"
+    t.date     "proposal_date"
+    t.date     "start_date"
+    t.date     "approval_date"
+    t.date     "accounting_date"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.integer  "complan_financing_id"
+    t.index ["complan_financing_id"], name: "index_complan_files_on_complan_financing_id", using: :btree
+  end
+
+  create_table "complan_financings", force: :cascade do |t|
+    t.integer  "start_year"
+    t.string   "type_financing"
+    t.string   "type_subfinancing"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  create_table "complan_imports", force: :cascade do |t|
+    t.float    "import"
+    t.string   "type_import"
+    t.string   "annuity"
+    t.float    "import_start_assing"
+    t.float    "import_requested"
+    t.float    "import_remaining"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.integer  "complan_financing_id"
+    t.integer  "complan_center_id"
+    t.index ["complan_center_id"], name: "index_complan_imports_on_complan_center_id", using: :btree
+    t.index ["complan_financing_id"], name: "index_complan_imports_on_complan_financing_id", using: :btree
+  end
+
+  create_table "complan_indicators", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "numeric_value"
+    t.integer  "provided"
+    t.integer  "done"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "complan_performance_id"
+    t.index ["complan_performance_id"], name: "index_complan_indicators_on_complan_performance_id", using: :btree
+  end
+
+  create_table "complan_locations", force: :cascade do |t|
+    t.string   "district"
+    t.string   "borought"
+    t.string   "address"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.integer  "complan_financing_id"
+    t.index ["complan_financing_id"], name: "index_complan_locations_on_complan_financing_id", using: :btree
+  end
+
+  create_table "complan_medias", force: :cascade do |t|
+    t.text     "text_document"
+    t.string   "title"
+    t.string   "origin"
+    t.date     "date_document"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "complan_performance_id"
+    t.index ["complan_performance_id"], name: "index_complan_medias_on_complan_performance_id", using: :btree
+  end
+
+  create_table "complan_people", force: :cascade do |t|
+    t.string   "name"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "position"
+    t.string   "address"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "complan_center_id"
+    t.index ["complan_center_id"], name: "index_complan_people_on_complan_center_id", using: :btree
+  end
+
+  create_table "complan_performances", force: :cascade do |t|
+    t.string   "type_performance"
+    t.text     "description"
+    t.text     "comments"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.string   "status"
+    t.integer  "annuity"
+    t.integer  "valued"
+    t.integer  "vulnerability_index"
+    t.integer  "edition"
+    t.integer  "multi_year"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.integer  "complan_project_id"
+    t.integer  "complan_financing_id"
+    t.index ["complan_financing_id"], name: "index_complan_performances_on_complan_financing_id", using: :btree
+    t.index ["complan_project_id"], name: "index_complan_performances_on_complan_project_id", using: :btree
+  end
+
+  create_table "complan_projects", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "complan_strategy_id"
+    t.index ["complan_strategy_id"], name: "index_complan_projects_on_complan_strategy_id", using: :btree
+  end
+
+  create_table "complan_readers", force: :cascade do |t|
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_complan_readers_on_user_id", using: :btree
+  end
+
+  create_table "complan_strategies", force: :cascade do |t|
+    t.string   "name"
+    t.string   "departure"
+    t.text     "description"
+    t.date     "approbal_date"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "complan_thecnical_tables", force: :cascade do |t|
+    t.date     "date_at"
+    t.text     "description"
+    t.string   "name"
+    t.string   "year"
+    t.string   "type"
+    t.date     "date_agreement"
+    t.string   "sesion"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "complan_performance_id"
+    t.index ["complan_performance_id"], name: "index_complan_thecnical_tables_on_complan_performance_id", using: :btree
+  end
+
+  create_table "complan_trackings", force: :cascade do |t|
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "complan_performance_id"
+    t.index ["complan_performance_id"], name: "index_complan_trackings_on_complan_performance_id", using: :btree
+  end
+
+  create_table "complan_typologies", force: :cascade do |t|
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -1044,6 +1271,187 @@ ActiveRecord::Schema.define(version: 20210517174607) do
     t.index ["user_id"], name: "index_organizations_on_user_id", using: :btree
   end
 
+  create_table "parbudget_ambits", force: :cascade do |t|
+    t.string   "name"
+    t.string   "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "parbudget_assistants", force: :cascade do |t|
+    t.string   "full_name",            null: false
+    t.integer  "parbudget_meeting_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.index ["parbudget_meeting_id"], name: "index_parbudget_assistants_on_parbudget_meeting_id", using: :btree
+  end
+
+  create_table "parbudget_centers", force: :cascade do |t|
+    t.string   "denomination"
+    t.string   "code"
+    t.string   "code_section"
+    t.string   "code_program"
+    t.string   "responsible"
+    t.string   "government_area"
+    t.string   "general_direction"
+    t.integer  "parbudget_project_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.index ["parbudget_project_id"], name: "index_parbudget_centers_on_parbudget_project_id", using: :btree
+  end
+
+  create_table "parbudget_economic_budgets", force: :cascade do |t|
+    t.integer  "year"
+    t.decimal  "import"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.string   "count_managing_body"
+    t.string   "count_functional"
+    t.string   "economic"
+    t.string   "element_pep"
+    t.string   "financing"
+    t.string   "type_contract"
+    t.integer  "parbudget_project_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.index ["parbudget_project_id"], name: "index_parbudget_economic_budgets_on_parbudget_project_id", using: :btree
+  end
+
+  create_table "parbudget_editors", force: :cascade do |t|
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_parbudget_editors_on_user_id", using: :btree
+  end
+
+  create_table "parbudget_links", force: :cascade do |t|
+    t.string   "url",                  null: false
+    t.integer  "parbudget_project_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.index ["parbudget_project_id"], name: "index_parbudget_links_on_parbudget_project_id", using: :btree
+  end
+
+  create_table "parbudget_medias", force: :cascade do |t|
+    t.text     "text_document"
+    t.string   "title"
+    t.integer  "parbudget_project_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
+    t.index ["parbudget_project_id"], name: "index_parbudget_medias_on_parbudget_project_id", using: :btree
+  end
+
+  create_table "parbudget_meetings", force: :cascade do |t|
+    t.text     "reason"
+    t.string   "who_requests"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.datetime "date_at"
+  end
+
+  create_table "parbudget_projects", force: :cascade do |t|
+    t.string   "denomination"
+    t.integer  "code"
+    t.integer  "year"
+    t.integer  "votes"
+    t.integer  "cost"
+    t.string   "author"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "url"
+    t.text     "descriptive_memory"
+    t.string   "entity"
+    t.boolean  "plate_proceeds"
+    t.boolean  "license_plate"
+    t.integer  "code_old"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "parbudget_ambit_id"
+    t.integer  "parbudget_topic_id"
+    t.integer  "parbudget_responsible_id"
+    t.string   "status"
+    t.string   "web_title"
+    t.boolean  "plate_installed"
+    t.index ["parbudget_ambit_id"], name: "index_parbudget_projects_on_parbudget_ambit_id", using: :btree
+    t.index ["parbudget_responsible_id"], name: "index_parbudget_projects_on_parbudget_responsible_id", using: :btree
+    t.index ["parbudget_topic_id"], name: "index_parbudget_projects_on_parbudget_topic_id", using: :btree
+  end
+
+  create_table "parbudget_readers", force: :cascade do |t|
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_parbudget_readers_on_user_id", using: :btree
+  end
+
+  create_table "parbudget_responsibles", force: :cascade do |t|
+    t.string   "full_name"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "position"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "parbudget_center_id"
+    t.index ["parbudget_center_id"], name: "index_parbudget_responsibles_on_parbudget_center_id", using: :btree
+  end
+
+  create_table "parbudget_topics", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "parbudget_track_exts", force: :cascade do |t|
+    t.integer  "parbudget_tracking_external_id"
+    t.integer  "parbudget_tracking_id"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.index ["parbudget_tracking_external_id"], name: "index_parbudget_track_exts_on_parbudget_tracking_external_id", using: :btree
+    t.index ["parbudget_tracking_id"], name: "index_parbudget_track_exts_on_parbudget_tracking_id", using: :btree
+  end
+
+  create_table "parbudget_track_ints", force: :cascade do |t|
+    t.integer  "parbudget_tracking_internal_id"
+    t.integer  "parbudget_tracking_id"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.index ["parbudget_tracking_id"], name: "index_parbudget_track_ints_on_parbudget_tracking_id", using: :btree
+    t.index ["parbudget_tracking_internal_id"], name: "index_parbudget_track_ints_on_parbudget_tracking_internal_id", using: :btree
+  end
+
+  create_table "parbudget_tracking_externals", force: :cascade do |t|
+    t.string   "code"
+    t.string   "status"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.text     "status_description"
+  end
+
+  create_table "parbudget_tracking_internals", force: :cascade do |t|
+    t.text     "observations"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.boolean  "file_send",    default: false
+    t.boolean  "file_recived", default: false
+    t.boolean  "file_edited",  default: false
+  end
+
+  create_table "parbudget_trackings", force: :cascade do |t|
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.integer  "parbudget_project_id"
+    t.index ["parbudget_project_id"], name: "index_parbudget_trackings_on_parbudget_project_id", using: :btree
+  end
+
+  create_table "parbudget_trackings_meetings", force: :cascade do |t|
+    t.integer  "parbudget_meeting_id"
+    t.integer  "parbudget_tracking_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.index ["parbudget_meeting_id"], name: "index_parbudget_trackings_meetings_on_parbudget_meeting_id", using: :btree
+    t.index ["parbudget_tracking_id"], name: "index_parbudget_trackings_meetings_on_parbudget_tracking_id", using: :btree
+  end
+
   create_table "poll_answers", force: :cascade do |t|
     t.integer  "question_id"
     t.integer  "author_id"
@@ -1635,7 +2043,7 @@ ActiveRecord::Schema.define(version: 20210517174607) do
     t.datetime "updated_at",                           null: false
     t.string   "borought"
     t.string   "other"
-    t.jsonb    "geozones"
+    t.jsonb    "geozones",             default: "{}",  null: false
     t.string   "project"
     t.index ["geozones"], name: "index_sures_actuations_on_geozones", using: :gin
   end
@@ -1738,30 +2146,30 @@ ActiveRecord::Schema.define(version: 20210517174607) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                                     default: ""
-    t.string   "encrypted_password",                        default: "",                    null: false
+    t.string   "email",                                      default: ""
+    t.string   "encrypted_password",                         default: "",                    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                             default: 0,                     null: false
+    t.integer  "sign_in_count",                              default: 0,                     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                                                                null: false
-    t.datetime "updated_at",                                                                null: false
+    t.datetime "created_at",                                                                 null: false
+    t.datetime "updated_at",                                                                 null: false
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.boolean  "email_on_comment",                          default: false
-    t.boolean  "email_on_comment_reply",                    default: false
+    t.boolean  "email_on_comment",                           default: false
+    t.boolean  "email_on_comment_reply",                     default: false
     t.string   "phone_number",                   limit: 30
     t.string   "official_position"
-    t.integer  "official_level",                            default: 0
+    t.integer  "official_level",                             default: 0
     t.datetime "hidden_at"
     t.string   "sms_confirmation_code"
-    t.string   "username",                       limit: 60
+    t.string   "username",                       limit: 120
     t.string   "document_number"
     t.string   "document_type"
     t.datetime "residence_verified_at"
@@ -1772,43 +2180,43 @@ ActiveRecord::Schema.define(version: 20210517174607) do
     t.datetime "letter_requested_at"
     t.datetime "confirmed_hide_at"
     t.string   "letter_verification_code"
-    t.integer  "failed_census_calls_count",                 default: 0
+    t.integer  "failed_census_calls_count",                  default: 0
     t.datetime "level_two_verified_at"
     t.string   "erase_reason"
     t.datetime "erased_at"
-    t.boolean  "public_activity",                           default: true
-    t.boolean  "newsletter",                                default: true
-    t.integer  "notifications_count",                       default: 0
-    t.boolean  "registering_with_oauth",                    default: false
+    t.boolean  "public_activity",                            default: true
+    t.boolean  "newsletter",                                 default: true
+    t.integer  "notifications_count",                        default: 0
+    t.boolean  "registering_with_oauth",                     default: false
     t.string   "locale"
     t.string   "oauth_email"
     t.integer  "geozone_id"
     t.string   "redeemable_code"
     t.string   "gender",                         limit: 10
     t.datetime "date_of_birth"
-    t.boolean  "email_on_proposal_notification",            default: true
-    t.boolean  "email_digest",                              default: true
-    t.boolean  "email_on_direct_message",                   default: true
-    t.boolean  "official_position_badge",                   default: false
-    t.datetime "password_changed_at",                       default: '2015-01-01 01:01:01', null: false
-    t.boolean  "created_from_signature",                    default: false
-    t.integer  "failed_email_digests_count",                default: 0
-    t.boolean  "officing_voter",                            default: false
-    t.text     "former_users_data_log",                     default: ""
+    t.boolean  "email_on_proposal_notification",             default: true
+    t.boolean  "email_digest",                               default: true
+    t.boolean  "email_on_direct_message",                    default: true
+    t.boolean  "official_position_badge",                    default: false
+    t.datetime "password_changed_at",                        default: '2015-01-01 01:01:01', null: false
+    t.boolean  "created_from_signature",                     default: false
+    t.integer  "failed_email_digests_count",                 default: 0
+    t.boolean  "officing_voter",                             default: false
+    t.text     "former_users_data_log",                      default: ""
     t.integer  "balloted_heading_id"
-    t.boolean  "public_interests",                          default: false
-    t.boolean  "recommended_debates",                       default: true
-    t.boolean  "recommended_proposals",                     default: true
+    t.boolean  "public_interests",                           default: false
+    t.boolean  "recommended_debates",                        default: true
+    t.boolean  "recommended_proposals",                      default: true
     t.string   "newsletter_token"
     t.datetime "newsletter_token_used_at"
-    t.integer  "failed_attempts",                           default: 0,                     null: false
+    t.integer  "failed_attempts",                            default: 0,                     null: false
     t.datetime "locked_at"
     t.text     "access_key_generated"
     t.text     "access_key_inserted"
     t.date     "access_key_generated_at"
-    t.integer  "access_key_tried",                          default: 0
+    t.integer  "access_key_tried",                           default: 0
     t.date     "date_hide"
-    t.string   "name"
+    t.string   "first_name"
     t.string   "last_name"
     t.string   "last_name_alt"
     t.integer  "adress_id"
@@ -1981,6 +2389,28 @@ ActiveRecord::Schema.define(version: 20210517174607) do
   add_foreign_key "administrators", "users"
   add_foreign_key "adresses", "users", column: "users_id"
   add_foreign_key "budget_investments", "communities"
+  add_foreign_key "complan_activities", "complan_performances"
+  add_foreign_key "complan_ambits", "complan_performances"
+  add_foreign_key "complan_assistants", "complan_people"
+  add_foreign_key "complan_assistants", "complan_thecnical_tables"
+  add_foreign_key "complan_beneficiaries", "complan_performances"
+  add_foreign_key "complan_beneficiaries_typologies", "complan_beneficiaries"
+  add_foreign_key "complan_beneficiaries_typologies", "complan_typologies"
+  add_foreign_key "complan_credit_modifications", "complan_imports"
+  add_foreign_key "complan_editors", "users"
+  add_foreign_key "complan_files", "complan_financings"
+  add_foreign_key "complan_imports", "complan_centers"
+  add_foreign_key "complan_imports", "complan_financings"
+  add_foreign_key "complan_indicators", "complan_performances"
+  add_foreign_key "complan_locations", "complan_financings"
+  add_foreign_key "complan_medias", "complan_performances"
+  add_foreign_key "complan_people", "complan_centers"
+  add_foreign_key "complan_performances", "complan_financings"
+  add_foreign_key "complan_performances", "complan_projects"
+  add_foreign_key "complan_projects", "complan_strategies"
+  add_foreign_key "complan_readers", "users"
+  add_foreign_key "complan_thecnical_tables", "complan_performances"
+  add_foreign_key "complan_trackings", "complan_performances"
   add_foreign_key "consultants", "users"
   add_foreign_key "dashboard_administrator_tasks", "users"
   add_foreign_key "dashboard_executed_actions", "dashboard_actions", column: "action_id"
@@ -2008,6 +2438,24 @@ ActiveRecord::Schema.define(version: 20210517174607) do
   add_foreign_key "moderators", "users"
   add_foreign_key "notifications", "users"
   add_foreign_key "organizations", "users"
+  add_foreign_key "parbudget_assistants", "parbudget_meetings"
+  add_foreign_key "parbudget_centers", "parbudget_projects"
+  add_foreign_key "parbudget_economic_budgets", "parbudget_projects"
+  add_foreign_key "parbudget_editors", "users"
+  add_foreign_key "parbudget_links", "parbudget_projects"
+  add_foreign_key "parbudget_medias", "parbudget_projects"
+  add_foreign_key "parbudget_projects", "parbudget_ambits"
+  add_foreign_key "parbudget_projects", "parbudget_responsibles"
+  add_foreign_key "parbudget_projects", "parbudget_topics"
+  add_foreign_key "parbudget_readers", "users"
+  add_foreign_key "parbudget_responsibles", "parbudget_centers"
+  add_foreign_key "parbudget_track_exts", "parbudget_tracking_externals"
+  add_foreign_key "parbudget_track_exts", "parbudget_trackings"
+  add_foreign_key "parbudget_track_ints", "parbudget_tracking_internals"
+  add_foreign_key "parbudget_track_ints", "parbudget_trackings"
+  add_foreign_key "parbudget_trackings", "parbudget_projects"
+  add_foreign_key "parbudget_trackings_meetings", "parbudget_meetings"
+  add_foreign_key "parbudget_trackings_meetings", "parbudget_trackings"
   add_foreign_key "poll_answers", "poll_questions", column: "question_id"
   add_foreign_key "poll_booth_assignments", "polls"
   add_foreign_key "poll_final_recounts", "poll_booth_assignments", column: "booth_assignment_id"
