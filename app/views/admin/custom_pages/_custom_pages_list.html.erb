@@ -4,8 +4,8 @@
   <td><%= custom_page.try(:slug) %></td>
   <td><%= retrieve_options_key(publish_options, custom_page.try(:published)) %></td>
   <td><%= custom_page.try(:updated_at).strftime("%Y-%m-%d %H:%M") %></td>
-  <td><%= custom_page.user.email %></td>
-  <td><%= display_user_roles(custom_page.user) %></td>
+  <td><%= custom_page_user_email(custom_page) %></td>
+  <td><%= custom_page_user_roles(custom_page) %></td>
   <td>
     <div class="small-12 medium-4 column">
       <%= link_to '', edit_admin_custom_page_path(custom_page),
