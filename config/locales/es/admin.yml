@@ -399,10 +399,12 @@ es:
             one: "error impidió guardar el menú"
             other: "errores impidieron guardar el menú."
       menu:
-        title: Título
-        published: Estado
-        section: Sección
         date: Fecha actualización
+        published: Estado
+        roles: Roles
+        section: Sección
+        title: Título
+        user: Usuario
       menu_items:
         add: Añadir ítems
         add_url: Añadir ítems de enlace
