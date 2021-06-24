@@ -2,6 +2,7 @@ class Admin::MenusController < Admin::BaseController
   include Translatable
   before_action :set_menu, only: [:edit, :update, :destroy]
   after_action :set_user, only: [:create, :update]
+  load_and_authorize_resource
 
   has_filters %w{all header footer}, only: :index
 
