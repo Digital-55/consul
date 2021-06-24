@@ -1,0 +1,26 @@
+<fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+    <legend><%=t("admin.parbudget.project.title_data_author")%></legend>
+ 
+    <div class="small-12 medium-6  column end"  >
+      <%= f.text_field :author %>
+    </div>
+    <div class="small-12 medium-6  column end"  >
+      <%= f.text_field :entity%>
+    </div>   
+    <div class="small-12 medium-6 column end">
+        <%= f.email_field :email %>
+    </div>
+    <div class="small-12 medium-6 column end">
+        <%= f.telephone_field :phone %>
+    </div>
+
+    <div class="small-12 medium-4 column end">
+        <%= f.check_box  :plate_proceeds %>
+    </div>
+    <div class="small-12 medium-4 column end">
+        <%= f.check_box  :license_plate %>
+    </div>
+    <div class="small-12 medium-4 column end">
+        <%= f.check_box  :plate_installed %>
+    </div>    
+ </fieldset>

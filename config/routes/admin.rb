@@ -43,6 +43,16 @@ namespace :admin do
     resources :meetings
   end
 
+  namespace :complan do
+    resources :performances
+    resources :centers
+    resources :projects
+    resources :strategies
+    resources :financings
+    resources :typologies
+    resources :thecnical_tables
+  end
+
   resources :hidden_users, only: [:index, :show] do
     member do
       put :restore

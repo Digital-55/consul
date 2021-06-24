@@ -1,0 +1,33 @@
+<%=form_tag({controller: "responsibles",action: "index"}, {method: :get}) do %>
+    <div class="small-12 column">
+        <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+            <legend><%=t("admin.menu.parbudget_tabs.legend_filter")%></legend>
+            <div class="small-12 medium-4 column">
+                <%=label_tag :search_responsible, t('admin.parbudget.responsible.search_responsible')%>
+                <%= text_field_tag :search_responsible, params[:search_responsible] %>
+            </div>                
+            <div class="small-12 medium-4 column end">
+                <%=label_tag :search_phone, t('admin.parbudget.responsible.search_phone')%>
+                <%= text_field_tag :search_phone, params[:search_phone] %>
+            </div> 
+                <div class="small-12 medium-4 column end">
+                <%=label_tag :search_email, t('admin.parbudget.responsible.search_email')%>
+                <%= text_field_tag :search_email, params[:search_email] %>
+            </div>
+            <div class="small-12 medium-4 column end">
+                <%=label_tag :search_position, t('admin.parbudget.responsible.search_position')%>
+                <%= text_field_tag :search_position, params[:search_position] %>
+            </div>   
+            <%if params[:subnav].blank? || params[:subnav].to_s == "all"%>             
+                <div class="small-12 medium-4 column end">
+                    <%=label_tag :search_center, t('admin.parbudget.responsible.search_center')%>
+                    <%= text_field_tag :search_center, params[:search_center] %>
+                </div> 
+            <%end%>
+            <div class="float-right clear">
+                <%= link_to t("admin.menu.parbudget_tabs.button_clean"), admin_parbudget_responsibles_path, class: "button secondary" %>
+                <%= submit_tag t("admin.menu.parbudget_tabs.button_find"), class: "button" %>
+            </div>
+        </fieldset>
+    </div>
+<% end%>
