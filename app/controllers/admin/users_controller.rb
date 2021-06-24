@@ -125,13 +125,16 @@ class Admin::UsersController < Admin::BaseController
       remove_old_profile(user)
       user.username = "Usuario dado de baja-" + user.id.to_s + "-" + params[:hidden_data].to_s
       user.date_hide = Date.today
-      delete_email = "update users set email=null where id=#{@user.id}"
-      ActiveRecord::Base.connection.execute(delete_email)
       user.document_number = nil
       user.confirmed_phone = nil
       user.gender = nil
-      user.save
-      redirect_to admin_users_path, notice: "Usuario #{user.id.to_s} dado de baja." 
+      if user.save!
+        delete_email = "update users set email=null where id=#{@user.id}"
+        ActiveRecord::Base.connection.execute(delete_email)
+        redirect_to admin_users_path, notice: "Usuario #{user.id.to_s} dado de baja."
+      else
+        redirect_to admin_users_path, alert: "No se ha podido dar de baja el usuario."
+      end
     else
       redirect_to admin_users_path, alert: "Debe introducir la causa de la baja para poder eliminar un usuario."
     end
