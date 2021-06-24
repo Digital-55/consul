@@ -32,9 +32,9 @@ class ApplicationController < ActionController::Base
       aux_layout = ''
       if devise_controller? && params[:landing]
         aux_layout = "landing"
-      elsif devise_controller? && params[:controller].include?("sures")
+      elsif devise_controller? && !params[:controller].blank? && params[:controller].include?("sures")
         aux_layout = "sures_register"
-      elsif params[:controller].include?("sures")
+      elsif !params[:controller].blank? && params[:controller].include?("sures")
         aux_layout = "sures"
       elsif devise_controller?
         aux_layout = "devise"
