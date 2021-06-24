@@ -2,6 +2,7 @@ class Admin::CustomPagesController < Admin::BaseController
   before_action :set_custom_page, only: [:edit, :update, :destroy]
   after_action :set_published, only: [:create, :update]
   after_action :set_user, only: [:create, :update]
+  load_and_authorize_resource
 
   has_filters %w{all published draft}, only: :index
 

@@ -99,6 +99,9 @@ module Abilities
       can :manage, SiteCustomization::Image
       can :manage, SiteCustomization::ContentBlock
 
+      can [:index, :create, :edit, :update, :destroy], Menu
+      can [:index, :create, :edit, :update, :destroy], CustomPage
+
       can :access, :ckeditor
       can :manage, Ckeditor::Picture
 

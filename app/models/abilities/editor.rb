@@ -10,6 +10,8 @@ module Abilities
       can :manage, SiteCustomization::Image
       can :manage, SiteCustomization::ContentBlock
       can [:search, :edit, :update, :create, :index, :destroy], Banner
+      can [:index, :create, :edit, :update, :destroy], Menu
+      can [:index, :create, :edit, :update, :destroy], CustomPage
    
       can(:read_admin_stats, Budget) { |budget| budget.balloting_or_later? }
     end
