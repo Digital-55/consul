@@ -1,6 +1,7 @@
 class Admin::CustomPagesController < Admin::BaseController
   before_action :set_custom_page, only: [:edit, :update, :destroy]
-  after_filter :set_published, only: [:create, :update]
+  after_action :set_published, only: [:create, :update]
+  after_action :set_user, only: [:create, :update]
 
   has_filters %w{all published draft}, only: :index
 
@@ -92,5 +93,9 @@ class Admin::CustomPagesController < Admin::BaseController
     if children_pages && custom_page_params[:published] == "false"
       children_pages.published.update(published: false)
     end
+  end
+
+  def set_user
+    @custom_page.update(user: current_user) if @custom_page.user != current_user
   end
 end

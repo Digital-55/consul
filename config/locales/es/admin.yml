@@ -393,11 +393,14 @@ es:
           all: Todas
           published: Publicada
           draft: Borrador
+        role: Roles
+        parent_slug: Página padre
         preview: Previsualizar
         published: Estado
         slug: Slug
         title: Título
         updated_at: Última actualización
+        user: Usuario
     menus:
       create:
         notice: ¡Menú creado con éxito!
