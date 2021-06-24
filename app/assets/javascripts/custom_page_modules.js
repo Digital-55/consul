@@ -48,11 +48,17 @@ $(document).on('page:change', function(){
 function validateInputFields() {
   $('.custom_page_module-youtube_url').change(function(){
     var url = $(this).val();
-    var regex = new RegExp (['/^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?|',
-                              'https?:\/\/(www.)?vimeo.com\/([0-9]{9})+|',
-                              'https:\/\/([a-z0-9]+[.])*slideshare.net\/[a-zA-Z0-9\-]+\/[a-zA-Z0-9\-]+|',
-                              'https:\/\/([a-z0-9]+[.])*prezi.com\/[a-zA-Z0-9\-]+\/[a-zA-Z0-9-\/]+']
-                              .join(''));
+    var regex
+    debugger;
+    if(url.includes("youtube.com") || url.includes("youtu.be")){
+      regex = /http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?‌​[\w\?‌​=]*)?/
+    } else {
+      regex = new RegExp ([
+              'https?:\/\/(www.)?vimeo.com\/([0-9]{9})+|',
+              'https?:\/\/([a-z0-9]+[.])*slideshare.net\/[a-zA-Z0-9\-]+\/[a-zA-Z0-9\-]+|',
+              'https?:\/\/([a-z0-9]+[.])*prezi.com\/[a-zA-Z0-9\-]+\/[a-zA-Z0-9-\-/]+'
+            ].join(''));
+    }
     var urlValidation = url.match(regex) ? true : false;
     displayValidation(urlValidation, $(this))
   })
@@ -72,7 +78,7 @@ function displayValidation(validation, $this){
   if(!validation) {
     if(!$this.siblings('.error-message').length) {
       if($this.context.classList.value == "custom_page_module-youtube_url"){
-        $this.after('<small class="error-message">El enlace no corresponde a una URL de YouTube</small>');
+        $this.after('<small class="error-message">El enlace no corresponde a una URL de Vídeo o Presentación</small>');
       } else {
         $this.after('<small class="error-message">El enlace no corresponde a una URL</small>');
       }
