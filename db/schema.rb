@@ -2043,7 +2043,7 @@ ActiveRecord::Schema.define(version: 20210623135539) do
     t.datetime "updated_at",                           null: false
     t.string   "borought"
     t.string   "other"
-    t.jsonb    "geozones"
+    t.jsonb    "geozones",             default: "{}",  null: false
     t.string   "project"
     t.index ["geozones"], name: "index_sures_actuations_on_geozones", using: :gin
   end
@@ -2146,30 +2146,30 @@ ActiveRecord::Schema.define(version: 20210623135539) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                                     default: ""
-    t.string   "encrypted_password",                        default: "",                    null: false
+    t.string   "email",                                      default: ""
+    t.string   "encrypted_password",                         default: "",                    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                             default: 0,                     null: false
+    t.integer  "sign_in_count",                              default: 0,                     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                                                                null: false
-    t.datetime "updated_at",                                                                null: false
+    t.datetime "created_at",                                                                 null: false
+    t.datetime "updated_at",                                                                 null: false
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.boolean  "email_on_comment",                          default: false
-    t.boolean  "email_on_comment_reply",                    default: false
+    t.boolean  "email_on_comment",                           default: false
+    t.boolean  "email_on_comment_reply",                     default: false
     t.string   "phone_number",                   limit: 30
     t.string   "official_position"
-    t.integer  "official_level",                            default: 0
+    t.integer  "official_level",                             default: 0
     t.datetime "hidden_at"
     t.string   "sms_confirmation_code"
-    t.string   "username",                       limit: 60
+    t.string   "username",                       limit: 120
     t.string   "document_number"
     t.string   "document_type"
     t.datetime "residence_verified_at"
@@ -2180,43 +2180,43 @@ ActiveRecord::Schema.define(version: 20210623135539) do
     t.datetime "letter_requested_at"
     t.datetime "confirmed_hide_at"
     t.string   "letter_verification_code"
-    t.integer  "failed_census_calls_count",                 default: 0
+    t.integer  "failed_census_calls_count",                  default: 0
     t.datetime "level_two_verified_at"
     t.string   "erase_reason"
     t.datetime "erased_at"
-    t.boolean  "public_activity",                           default: true
-    t.boolean  "newsletter",                                default: true
-    t.integer  "notifications_count",                       default: 0
-    t.boolean  "registering_with_oauth",                    default: false
+    t.boolean  "public_activity",                            default: true
+    t.boolean  "newsletter",                                 default: true
+    t.integer  "notifications_count",                        default: 0
+    t.boolean  "registering_with_oauth",                     default: false
     t.string   "locale"
     t.string   "oauth_email"
     t.integer  "geozone_id"
     t.string   "redeemable_code"
     t.string   "gender",                         limit: 10
     t.datetime "date_of_birth"
-    t.boolean  "email_on_proposal_notification",            default: true
-    t.boolean  "email_digest",                              default: true
-    t.boolean  "email_on_direct_message",                   default: true
-    t.boolean  "official_position_badge",                   default: false
-    t.datetime "password_changed_at",                       default: '2015-01-01 01:01:01', null: false
-    t.boolean  "created_from_signature",                    default: false
-    t.integer  "failed_email_digests_count",                default: 0
-    t.boolean  "officing_voter",                            default: false
-    t.text     "former_users_data_log",                     default: ""
+    t.boolean  "email_on_proposal_notification",             default: true
+    t.boolean  "email_digest",                               default: true
+    t.boolean  "email_on_direct_message",                    default: true
+    t.boolean  "official_position_badge",                    default: false
+    t.datetime "password_changed_at",                        default: '2015-01-01 01:01:01', null: false
+    t.boolean  "created_from_signature",                     default: false
+    t.integer  "failed_email_digests_count",                 default: 0
+    t.boolean  "officing_voter",                             default: false
+    t.text     "former_users_data_log",                      default: ""
     t.integer  "balloted_heading_id"
-    t.boolean  "public_interests",                          default: false
-    t.boolean  "recommended_debates",                       default: true
-    t.boolean  "recommended_proposals",                     default: true
+    t.boolean  "public_interests",                           default: false
+    t.boolean  "recommended_debates",                        default: true
+    t.boolean  "recommended_proposals",                      default: true
     t.string   "newsletter_token"
     t.datetime "newsletter_token_used_at"
-    t.integer  "failed_attempts",                           default: 0,                     null: false
+    t.integer  "failed_attempts",                            default: 0,                     null: false
     t.datetime "locked_at"
     t.text     "access_key_generated"
     t.text     "access_key_inserted"
     t.date     "access_key_generated_at"
-    t.integer  "access_key_tried",                          default: 0
+    t.integer  "access_key_tried",                           default: 0
     t.date     "date_hide"
-    t.string   "name"
+    t.string   "first_name"
     t.string   "last_name"
     t.string   "last_name_alt"
     t.integer  "adress_id"
