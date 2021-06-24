@@ -554,8 +554,10 @@ ActiveRecord::Schema.define(version: 20210420102437) do
     t.string   "meta_keywords"
     t.boolean  "canonical"
     t.boolean  "published"
+    t.integer  "user_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.index ["user_id"], name: "index_custom_pages_on_user_id", using: :btree
   end
 
   create_table "dashboard_actions", force: :cascade do |t|
@@ -2177,6 +2179,7 @@ ActiveRecord::Schema.define(version: 20210420102437) do
   add_foreign_key "budget_valuators", "budgets"
   add_foreign_key "budget_valuators", "valuators"
   add_foreign_key "consultants", "users"
+  add_foreign_key "custom_pages", "users"
   add_foreign_key "dashboard_administrator_tasks", "users"
   add_foreign_key "dashboard_executed_actions", "dashboard_actions", column: "action_id"
   add_foreign_key "dashboard_executed_actions", "proposals"

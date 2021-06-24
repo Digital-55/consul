@@ -1,4 +1,5 @@
 class CustomPage < ApplicationRecord
+  belongs_to :user
   has_many :custom_page_modules, dependent: :destroy
   has_many :subtitles, class_name: 'SubtitleModule'
   has_many :claims, class_name: 'ClaimModule'

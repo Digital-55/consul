@@ -9,6 +9,7 @@ class CreateCustomPages < ActiveRecord::Migration[5.0]
       t.string :meta_keywords
       t.boolean :canonical
       t.boolean :published
+      t.belongs_to :user, index: true, foreign_key: true
 
       t.timestamps
     end
