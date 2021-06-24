@@ -1,0 +1,30 @@
+<div class="nested-fields">
+    <fieldset  style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+        <%= f.hidden_field :id %>
+        <div class="small-12 medium-6  column end"  >
+            <%= f.text_field :title %>
+        </div>
+        <div class="small-12 medium-6  column end"  >
+            <%= f.file_field :attachment %>
+        </div>
+        <div class="small-12  column end"  >
+            <%= f.cktext_area :text_document, ckeditor: { language: I18n.locale, toolbar: current_user.administrator? ? "admin" : 'mini' } %>
+        </div>
+        <% if !f.object.attachment.blank? %>
+            <fieldset  style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+                <div class=" small-12 column">
+                <b><%=t("admin.parbudget.project.download_file")%>: </b>
+                
+                    <%= link_to f.object.attachment.url, target: :_blank do %>
+                            <span class="icon-document"></span>
+                            <%= f.object.attachment.original_filename %>
+                    <% end %>
+                </div>
+            </fieldset>
+        <%end%>
+
+        <div class="small-12 medium-12 column action-remove text-right">
+            <%=link_to_remove_association  t("admin.parbudget.project.delete_media") , f, class: "button alert"%>
+        </div>
+    </fieldset>
+</div>

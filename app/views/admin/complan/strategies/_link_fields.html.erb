@@ -1,0 +1,16 @@
+<fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+    <legend><%=t("admin.parbudget.project.title_data_link")%></legend>
+    <div id="nested_parbudget_links">
+        <%= f.fields_for :parbudget_links do |ff| %>
+            <%= render "parbudget_link_fields", f: ff %>
+        <% end %>
+
+        <div class="js-add-fields-container">
+            <div class="small-12 medium-9 column end">
+                <%= link_to_add_association t("admin.parbudget.project.add_link"),
+                                        f, :parbudget_links, class: "button hollow"  %>
+            </div>
+        </div>
+      </div>
+       
+ </fieldset>

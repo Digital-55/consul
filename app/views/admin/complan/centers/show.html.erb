@@ -1,75 +1,47 @@
 <% provide :title do %>
- <%= t("admin.header.title") %> - <%= t("admin.menu.parbudget_maintance") %> - <%= t("admin.menu.parbudget_tabs.centers") %> - <%= @center.denomination %>
+ <%= t("admin.header.title") %> - <%= t("admin.menu.parbudget_maintance") %> - <%= t("admin.menu.parbudget_tabs.responsibles") %> - <%= @responsible.full_name %>
 <% end %>
 
-<div class="parbudget-center-show">
-  <%= back_link_to admin_parbudget_centers_path, t("admin.sures.actuations.new.back") %>
+<div class="parbudget-responsible-show">
+  <%= back_link_to admin_parbudget_responsibles_path, t("admin.sures.actuations.new.back") %>
 
  
-  <div class="small-12 column">
-    <h2><%= @center.denomination %></h2>
-    <div class="float-right">
-      <%= link_to t('admin.parbudget.center.pdf_download'), current_path_with_query_params(id: @center.id, format: :pdf), class: "button" %>
+    <div class="small-12 column">
+        <h2><%= @responsible.full_name %></h2>
+        <div class="float-right">
+            <%= link_to t('admin.parbudget.responsible.pdf_download'), current_path_with_query_params(id: @responsible.id, format: :pdf), class: "button" %>
+        </div>
     </div>
-  </div>
-
-  <div class="small-12 column">
-    <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
-        <legend><%=t("admin.parbudget.center.title_data")%></legend>
-      <div class="small-12 medium-3  column end"  >
-        <p><b><%=@model.human_attribute_name(:code)%></b></p>
-        <p><%= @center.try(:code) %></p>
-      </div>
-      <div class="small-12 medium-3  column end"  >
-        <p><b><%=@model.human_attribute_name(:code_section)%></b></p>
-        <p><%= @center.try(:code_section) %></p>
-      </div>
-      <div class="small-12 medium-3  column end"  >
-        <p><b><%=@model.human_attribute_name(:code_program)%></b></p>
-        <p><%= @center.try(:code_program) %></p>
-      </div>
-      <div class="small-12 medium-3  column end"  >
-        <p><b><%=@model.human_attribute_name(:responsible)%></b></p>
-        <p><%= @center.try(:responsible) %></p>
-      </div>
-      <div class="small-12 medium-6  column end"  >
-        <p><b><%=@model.human_attribute_name(:denomination)%></b></p>
-        <p><%= @center.try(:denomination) %></p>
-      </div>
-      <div class="small-12 medium-6  column end"  >
-        <p><b><%=@model.human_attribute_name(:government_area)%></b></p>
-        <p><%= @center.try(:government_area) %></p>
-      </div>
-      <div class="small-12  column end"  >
-        <p><b><%=@model.human_attribute_name(:general_direction)%></b></p>
-        <p><%= @center.try(:general_direction) %></p>
-      </div>
-    </fieldset>
-    <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
-      <legend><%=t("admin.parbudget.center.title_responsibles")%></legend>
-        <%@center.parbudget_responsibles.each do |responsible|%>
-          <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
-            <div class="small-12 medium-6  column end"  >
-              <p><b><%=responsible.class.human_attribute_name(:full_name)%></b></p>
-              <p><%= responsible.try(:full_name) %></p>
-            </div>
-            <div class="small-12 medium-3  column end"  >
-                <p><b><%=responsible.class.human_attribute_name(:email)%></b></p>
-                <p><%=  responsible.try(:email) %></p>
-            </div>
-            <div class="small-12 medium-3  column end"  >
-                <p><b><%=responsible.class.human_attribute_name(:phone)%></b></p>
-                <p><%=  responsible.try(:phone) %></p>
-            </div>
-            <div class="small-12 medium-6  column end"  >
-                <p><b><%=responsible.class.human_attribute_name(:position)%></b></p>
-                <p><%=  responsible.try(:position) %></p>
-            </div>
-          </fieldset>
-        <%end%>
-    </fieldset>
-  </div>
 
  
-  
+  <div class="small-12 column">
+    <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+      <legend><%=t('admin.parbudget.responsible.title_data')%></legend>
+      <div class="row">
+        <div class="small-12 medium-6  column end"  >
+            <p><b><%=@model.human_attribute_name(:full_name)%></b></p>
+            <p><%= @responsible.try(:full_name) %></p>
+        </div>
+        <div class="small-12 medium-3  column end"  >
+            <p><b><%=@model.human_attribute_name(:email)%></b></p>
+            <p><%=  @responsible.try(:email) %></p>
+        </div>
+        <div class="small-12 medium-3  column end"  >
+            <p><b><%=@model.human_attribute_name(:phone)%></b></p>
+            <p><%=  @responsible.try(:phone) %></p>
+        </div>
+        
+      </div>
+      <div class="row">
+        <div class="small-12 medium-6  column end"  >
+            <p><b><%=@model.human_attribute_name(:position)%></b></p>
+            <p><%=  @responsible.try(:position) %></p>
+        </div>
+        <div class="small-12 medium-6 column end">
+            <p><b><%=@model.human_attribute_name(:parbudget_center)%></b>
+            <p><%=  @responsible.try(:parbudget_center).try(:denomination) %></b>
+        </div>
+      </div>
+    </fieldset>
+  </div>
 </div>

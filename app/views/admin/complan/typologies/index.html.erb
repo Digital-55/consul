@@ -1,0 +1,51 @@
+<%= render partial: "admin/parbudget/tabs"%>
+<%= render partial: "admin/parbudget/buttons", locals: {path: new_admin_parbudget_typology_path, button_title: t("admin.menu.parbudget_tabs.new_typologies")}%>
+<%= render partial: "admin/parbudget/subnav"%>
+<%= render partial: "filters"%>
+
+<div class="small-12 column">
+  <% if @typologies.any? %>
+    <h3><%= page_entries_info @typologies %></h3>
+
+    <table class="stack sortable">
+      <thead>
+        <tr>
+          <%@model.get_columns.each do |c|%>
+            <th><%= link_to_parbudget_sorted_by c, @model.human_attribute_name(c) %></th>
+          <%end%>
+          <th style="width: 18em;"><%= t("admin.actions.actions") %></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @typologies.each do |typology| %>
+            <tr id="<%= dom_id(typology) %>">
+              <%@model.get_columns.each do |c|%>
+                <td><%=typology.try(c)%></td>
+              <%end%>
+              <td style="width: 18em;">
+                <%= link_to admin_parbudget_typologies_path, class: "button hollow", style: "margin: 0px", title: t('admin.parbudget.show_audits'), alt: t('admin.parbudget.show_audits')  do %>
+                  <span class="icon-settings"></span>
+                <%end%>
+                <%= link_to admin_parbudget_typology_path(typology,  format: :pdf), class: "button", style: "margin: 0px", title: t('admin.parbudget.typology.pdf_download'), alt: t('admin.parbudget.typology.pdf_download')  do %>
+                  <span class="icon-document"></span>
+                <%end%>
+                <%= link_to admin_parbudget_typology_path(typology), class: "button", style: "margin: 0px", title: t('admin.parbudget.typology.show_typology'), alt: t('admin.parbudget.typology.show_typology')  do %>
+                  <span class="icon-eye"></span>
+                <%end%>
+                <%= link_to edit_admin_parbudget_typology_path(typology), class: "button", style: "margin: 0px", title: t('admin.parbudget.typology.update_typology'), alt: t('admin.parbudget.typology.update_typology')  do %>
+                  <span class="icon-edit"></span>
+                <%end%>
+                <%= link_to  admin_parbudget_typology_path(typology),method: :delete,  class: "button hollow alert", style: "margin: 0px", title: t('admin.parbudget.typology.title_delete'), alt: t('admin.parbudget.typology.title_delete'), data: {confirm: t('admin.parbudget.typology.destroy_confirm')}  do %>
+                  <span class="icon-deleted"></span>
+                <%end%>
+              </td>
+            </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= paginate @typologies %>
+  <% else %>
+    <div class="callout primary"><%= page_entries_info @typologies %></div>
+  <% end %>
+</div>

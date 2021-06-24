@@ -1,0 +1,51 @@
+<fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+    <legend><%=t("admin.parbudget.project.title_data_center")%></legend>
+    
+    <div class="small-12 medium-3  column end"  >
+        <%= label_tag :parbudget_center, "Centro" %>
+        <%= select_tag :parbudget_center, options_for_select(@centers.map {|c| [c.denomination, c.get_list]} || []) %>
+    </div>
+    <div class="small-12 medium-3  column end"  >
+        <%=  link_to "Añadir", '#', class: "button", onclick: "App.Parbudget.add_center('#parbudget_center','#nested-parbudget-centers')"%>
+    </div>
+    <div id="nested-parbudget-centers">
+        <%f.object.parbudget_centers.each do |center|%>
+            <div class='small-12 column'>
+                <fieldset id='center_<%=center.id%>' style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+                    <input id="parbudget_project_parbudget_center_ids_[]" name="parbudget_project[parbudget_center_ids][]" type="hidden" value="<%=center.id%>">
+                    <div  class='small-12 medium-6 column'>
+                        <p><b><%=center.class.human_attribute_name(:government_area)%></b></p>
+                        <p><%=center.try(:government_area)%></p>
+                    </div>
+                    <div  class='small-12 medium-6 column'>
+                        <p><b><%=center.class.human_attribute_name(:general_direction)%></b></p>
+                        <p><%=center.try(:general_direction)%></p>
+                    </div>
+                    <div  class='small-12 medium-6 column'>
+                        <p><b><%=center.class.human_attribute_name(:denomination)%></b></p>
+                        <p><%=center.try(:denomination)%></p>
+                    </div>
+                    <div  class='small-12 medium-6 column'>
+                         <p><b><%=center.class.human_attribute_name(:responsible)%></b></p>
+                        <p><%=center.try(:responsible)%></p>
+                    </div>
+                    <div  class='small-12 medium-4 column'>
+                        <p><b><%=center.class.human_attribute_name(:code)%></b></p>
+                        <p><%=center.try(:code)%></p>
+                    </div>
+                    <div  class='small-12 medium-4 column'>
+                        <p><b><%=center.class.human_attribute_name(:code_section)%></b></p>
+                        <p><%=center.try(:code_section)%></p>
+                    </div>
+                    <div  class='small-12 medium-4 column'>
+                        <p><b><%=center.class.human_attribute_name(:code_program)%></b></p>
+                        <p><%=center.try(:code_program)%></p>
+                    </div>
+                    <div  class='small-12 column clear text-right'>
+                        <%= link_to "Borrar", "#", class: "button alert", onclick: "App.Parbudget.remove_center('#center_#{center.id}')"%>
+                    </div>
+                </fieldset>
+            </div>
+        <%end%>
+    </div>
+ </fieldset>

@@ -1,6 +1,7 @@
-<%= render partial: "admin/parbudget/tabs"%>
-<%= render partial: "admin/parbudget/buttons", locals: {path: new_admin_parbudget_center_path, button_title: t("admin.menu.parbudget_tabs.new_centers")}%>
-<%= render partial: "filters"%>
+<%= render partial: "admin/complan/tabs"%>
+<%= render partial: "admin/complan/buttons", locals: {path: new_admin_complan_center_path, button_title: t("admin.menu.complan_tabs.new_centers")}%>
+<%= render partial: "admin/complan/subnav"%>
+<%#= render partial: "filters"%>
 
 <div class="small-12 column">
   <% if @centers.any? %>
@@ -10,7 +11,7 @@
       <thead>
         <tr>
           <%@model.get_columns.each do |c|%>
-            <th><%= link_to_parbudget_sorted_by c, @model.human_attribute_name(c) %></th>
+            <th><%= link_to_complan_sorted_by c, @model.human_attribute_name(c) %></th>
           <%end%>
           <th style="width: 18em;"><%= t("admin.actions.actions") %></th>
         </tr>
@@ -23,19 +24,19 @@
                 <td><%=center.try(c)%></td>
               <%end%>
               <td style="width: 18em;">
-                <%= link_to admin_parbudget_centers_path, class: "button hollow", title: t('admin.parbudget.show_audits'), alt: t('admin.parbudget.show_audits')  do %>
+                <%= link_to admin_complan_centers_path, class: "button hollow", style: "margin: 0px", title: t('admin.complan.show_audits'), alt: t('admin.complan.show_audits')  do %>
                   <span class="icon-settings"></span>
                 <%end%>
-                <%= link_to admin_parbudget_center_path(center, format: :pdf), class: "button", style: "margin: 0px", title: t('admin.parbudget.center.pdf_download'), alt: t('admin.parbudget.center.pdf_download')  do %>
+                <%= link_to admin_complan_center_path(center, format: :pdf), class: "button", style: "margin: 0px", title: t('admin.complan.center.pdf_download'), alt: t('admin.complan.center.pdf_download')  do %>
                   <span class="icon-document"></span>
                 <%end%>
-                <%= link_to admin_parbudget_center_path(center), class: "button", style: "margin: 0px", title: t('admin.parbudget.center.show_center'), alt: t('admin.parbudget.center.show_center')  do %>
+                <%= link_to admin_complan_center_path(center), class: "button", style: "margin: 0px", title: t('admin.complan.center.show_center'), alt: t('admin.complan.center.show_center')  do %>
                   <span class="icon-eye"></span>
                 <%end%>
-                <%= link_to edit_admin_parbudget_center_path(center), class: "button", style: "margin: 0px", title: t('admin.parbudget.center.update_center'), alt: t('admin.parbudget.center.update_center')  do %>
+                <%= link_to edit_admin_complan_center_path(center), class: "button", style: "margin: 0px", title: t('admin.complan.center.title_update'), alt: t('admin.complan.center.title_update')  do %>
                   <span class="icon-edit"></span>
                 <%end%>
-                <%= link_to  admin_parbudget_center_path(center),method: :delete, class: "button hollow alert", style: "margin: 0px", title: t('admin.parbudget.center.title_delete'), alt: t('admin.parbudget.center.title_delete'), data: {confirm: t('admin.parbudget.center.destroy_confirm')}  do %>
+                <%= link_to  admin_complan_center_path(center),method: :delete, class: "button hollow alert", style: "margin: 0px", title: t('admin.complan.center.title_delete'), alt: t('admin.complan.center.title_delete'), data: {confirm: t('admin.complan.center.destroy_confirm')}  do %>
                   <span class="icon-deleted"></span>
                 <%end%>
               </td>

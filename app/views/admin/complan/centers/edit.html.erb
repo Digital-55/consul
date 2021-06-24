@@ -1,11 +1,11 @@
 <% provide :title do %>
- <%= t("admin.header.title") %> - <%= t("admin.menu.parbudget_maintance") %> - <%= t("admin.menu.parbudget_tabs.centers") %> - <%= @center.denomination %>
+ <%= t("admin.header.title") %> - <%= t("admin.menu.parbudget_maintance") %> - <%= t("admin.menu.parbudget_tabs.responsibles") %> - <%= @responsible.full_name %>
 <% end %>
 
-<div class="parbudget-center-edit">
-  <%= back_link_to admin_parbudget_centers_path, t("admin.sures.actuations.new.back") %>
+<div class="parbudget-responsible-edit">
+  <%= back_link_to admin_parbudget_responsibles_path, t("admin.sures.actuations.new.back") %>
 
-  <h2><%= @center.denomination %></h2>
+  <h2><%= @responsible.full_name %></h2>
 
   <%= render "form" %>
 </div>

@@ -1,59 +1,39 @@
 
-<%= form_for [:admin, @center], html: {data: {watch_changes: true}} do |f| %>
+<%= form_for [:admin, @responsible], html: {data: {watch_changes: true}} do |f| %>
 
-  <% if @center.errors.any? %>
+  <% if @responsible.errors.any? %>
     <div id="error_explanation" data-alert class="callout alert" data-closable>
       <button class="close-button" aria-label="<%= t("application.close") %>" type="button" data-close>
         <span aria-hidden="true">&times;</span>
       </button>
 
       <strong>
-        <%= @center.errors.count %>
-        <%= t("admin.sures.actuations.errors.form.error", count: @center.errors.count) %>
+        <%= @responsible.errors.count %>
+        <%= t("admin.sures.actuations.errors.form.error", count: @responsible.errors.count) %>
       </strong>
     </div>
   <% end %>
-
   <div class="small-12 column">
     <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
-        <legend><%=t("admin.parbudget.center.title_data")%></legend>
-      <div class="small-12 medium-3  column end"  >
-        <%= f.text_field :code %>
-      </div>
-      <div class="small-12 medium-3  column end"  >
-        <%= f.text_field :code_section %>
-      </div>
-      <div class="small-12 medium-3  column end"  >
-        <%= f.text_field :code_program %>
-      </div>
-      <div class="small-12 medium-3  column end"  >
-        <%= f.text_field :responsible %>
-      </div>
-      <div class="small-12 medium-6  column end"  >
-        <%= f.text_field :denomination %>
-      </div>
-      <div class="small-12 medium-6  column end"  >
-        <%= f.text_field :government_area %>
-      </div>
-      <div class="small-12  column end"  >
-        <%= f.text_field :general_direction %>
-      </div>
-    </fieldset>
-    <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
-      <legend><%=t("admin.parbudget.center.title_responsibles")%></legend>
-      <div id="nested_parbudget_responsibles">
-        <%= f.fields_for :parbudget_responsibles do |ff| %>
-          <%= render "parbudget_responsible_fields", f: ff if !ff.object.blank? %>
-        <% end %>
-        <div class="js-add-fields-container">
-          <div class="small-12 column end">
-            <%= link_to_add_association t("admin.parbudget.center.button_add"), f, :parbudget_responsibles, class: "button hollow"  %>
-          </div>
+      <legend><%=t('admin.parbudget.responsible.title_data')%></legend>
+        <div class="small-12 medium-6  column end"  >
+          <%= f.text_field :full_name %>
         </div>
-      </div>
+        <div class="small-12 medium-3  column end"  >
+          <%= f.text_field :email %>
+        </div>
+        <div class="small-12 medium-3  column end"  >
+          <%= f.text_field :phone %>
+        </div>
+        <div class="small-12 medium-6  column end"  >
+          <%= f.text_field :position %>
+        </div>
+        <div class="small-12 medium-3 column end">
+          <%= f.select :parbudget_center_id, options_for_select(@centers.map{|center| [center.denomination,center.id]} || [], @responsible[:parbudget_center_id]), include_blank: true %>
+        </div>
     </fieldset>
   </div>
   <div class="small-12 medium-3 column clear end">
-    <%= f.submit(class: "button success expanded", value: t("admin.parbudget.#{admin_submit_action(@center)}.submit_button")) %>
+    <%= f.submit(class: "button success expanded", value: t("admin.parbudget.#{admin_submit_action(@responsible)}.submit_button")) %>
   </div> 
 <% end %>

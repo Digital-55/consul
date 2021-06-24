@@ -1,0 +1,51 @@
+<%= render partial: "admin/complan/tabs"%>
+<%= render partial: "admin/complan/buttons", locals: {path: new_admin_complan_thecnical_table_path, button_title: t("admin.menu.complan_tabs.new_thecnical_tables")}%>
+<%= render partial: "admin/complan/subnav"%>
+<%= render partial: "filters"%>
+
+<div class="small-12 column">
+  <% if @thecnical_tables.any? %>
+    <h3><%= page_entries_info @thecnical_tables %></h3>
+
+    <table class="stack sortable">
+      <thead>
+        <tr>
+          <%@model.get_columns.each do |c|%>
+            <th><%= link_to_complan_sorted_by c, @model.human_attribute_name(c) %></th>
+          <%end%>
+          <th style="width: 18em;"><%= t("admin.actions.actions") %></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @thecnical_tables.each do |thecnical_table| %>
+            <tr id="<%= dom_id(thecnical_table) %>">
+              <%@model.get_columns.each do |c|%>
+                <td><%=thecnical_table.try(c)%></td>
+              <%end%>
+              <td style="width: 18em;">
+                <%= link_to admin_complan_thecnical_tables_path, class: "button hollow", style: "margin: 0px", title: t('admin.complan.show_audits'), alt: t('admin.complan.show_audits')  do %>
+                  <span class="icon-settings"></span>
+                <%end%>
+                <%= link_to admin_complan_thecnical_table_path(thecnical_table,  format: :pdf), class: "button", style: "margin: 0px", title: t('admin.complan.thecnical_table.pdf_download'), alt: t('admin.complan.thecnical_table.pdf_download')  do %>
+                  <span class="icon-document"></span>
+                <%end%>
+                <%= link_to admin_complan_thecnical_table_path(thecnical_table), class: "button", style: "margin: 0px", title: t('admin.complan.thecnical_table.show_thecnical_table'), alt: t('admin.complan.thecnical_table.show_thecnical_table')  do %>
+                  <span class="icon-eye"></span>
+                <%end%>
+                <%= link_to edit_admin_complan_thecnical_table_path(thecnical_table), class: "button", style: "margin: 0px", title: t('admin.complan.thecnical_table.update_thecnical_table'), alt: t('admin.complan.thecnical_table.update_thecnical_table')  do %>
+                  <span class="icon-edit"></span>
+                <%end%>
+                <%= link_to  admin_complan_thecnical_table_path(thecnical_table),method: :delete,  class: "button hollow alert", style: "margin: 0px", title: t('admin.complan.thecnical_table.title_delete'), alt: t('admin.complan.thecnical_table.title_delete'), data: {confirm: t('admin.complan.thecnical_table.destroy_confirm')}  do %>
+                  <span class="icon-deleted"></span>
+                <%end%>
+              </td>
+            </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= paginate @thecnical_tables %>
+  <% else %>
+    <div class="callout primary"><%= page_entries_info @thecnical_tables %></div>
+  <% end %>
+</div>

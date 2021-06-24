@@ -964,10 +964,33 @@ es:
           legislation/proposal: Proceso
     menu:
       sg: Gestionar buscador general
+      complan: "Planes concertados"
+      complan_maintance: "Mantenimiento"
+      complan_tracking: "Seguimientos"
+      complan_audits: "Auditorías" 
+      complan_tabs:
+        performances: Actuaciones
+        new_performances: "Nueva actuación"
+        centers: Centros gestores
+        new_centers: Nuevo centro gestor
+        projects: Proyectos
+        new_projects: Nuevo proyecto
+        strategies: Estrategias
+        new_strategies: Nueva estrategia
+        financings: Financiaciones
+        new_financings: Nueva financiación
+        typologies: Tipologías
+        new_typologies: Nueva tipología
+        thecnical_tables: Mesas técnicas
+        new_thecnical_tables: Nueva mesa técnica
+        csv_exporter: Exportar CSV
+        legend_filter: Filtros
+        button_clean: Limpiar búsqueda
+        button_find: Buscar
       parbudget: "Presupuestos participativos"
       parbudget_maintance: "Mantenimiento"
       parbudget_tracking: "Seguimientos de proyecto"
-      parbudget_audits: "Auditorías" 
+      parbudget_audits: "Auditorías"       
       parbudget_tabs:
         ambits: Ámbitos
         new_ambits: "Nuevo ámbito"
