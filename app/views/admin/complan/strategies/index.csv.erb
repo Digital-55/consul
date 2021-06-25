@@ -1,12 +1,12 @@
 <%=
   CSV.generate(col_sep: ';', encoding: 'ISO-8859-1') do |csv|
-    headers = @model.get_exporter.map {|h| @model.human_attribute_name(h)}
+    headers = @model.get_columns.map {|h| @model.human_attribute_name(h)}
     rows = []
     @filters ||= []
 
     @strategies.each do |strategy|
       aux_row = []
-      @model.get_exporter.each {|ele| aux_row = aux_row + [strategy.try(ele)] }
+      @model.get_columns.each {|ele| aux_row = aux_row + [strategy.try(ele)] }
       rows.push(aux_row)
     end
 

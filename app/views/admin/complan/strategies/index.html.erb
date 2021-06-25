@@ -1,51 +1,7 @@
 <%= render partial: "admin/complan/tabs"%>
-<%= render partial: "admin/complan/buttons", locals: {path: new_admin_complan_strategy_path, button_title: t("admin.menu.complan_tabs.new_strategies")}%>
-<%= render partial: "admin/complan/subnav"%>
+<%= render partial: "admin/complan/buttons", locals: {method: :post, remote: false, path: create_strategy_admin_complan_strategies_path(format: :html), button_title: t("admin.menu.complan_tabs.new_strategies")}%>
 <%= render partial: "filters"%>
 
-<div class="small-12 column">
-  <% if @strategies.any? %>
-    <h3><%= page_entries_info @strategies %></h3>
-
-    <table class="stack sortable">
-      <thead>
-        <tr>
-          <%@model.get_columns.each do |c|%>
-            <th><%= link_to_complan_sorted_by c, @model.human_attribute_name(c) %></th>
-          <%end%>
-          <th style="width: 18em;"><%= t("admin.actions.actions") %></th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @strategies.each do |strategy| %>
-            <tr id="<%= dom_id(strategy) %>">
-              <%@model.get_columns.each do |c|%>
-                <td><%=strategy.try(c)%></td>
-              <%end%>
-              <td style="width: 18em;">
-                <%= link_to admin_complan_strategies_path, class: "button hollow", style: "margin: 0px", title: t('admin.complan.show_audits'), alt: t('admin.complan.show_audits')  do %>
-                  <span class="icon-settings"></span>
-                <%end%>
-                <%= link_to admin_complan_strategy_path(strategy,  format: :pdf), class: "button", style: "margin: 0px", title: t('admin.complan.strategy.pdf_download'), alt: t('admin.complan.strategy.pdf_download')  do %>
-                  <span class="icon-document"></span>
-                <%end%>
-                <%= link_to admin_complan_strategy_path(strategy), class: "button", style: "margin: 0px", title: t('admin.complan.strategy.show_strategy'), alt: t('admin.complan.strategy.show_strategy')  do %>
-                  <span class="icon-eye"></span>
-                <%end%>
-                <%= link_to edit_admin_complan_strategy_path(strategy), class: "button", style: "margin: 0px", title: t('admin.complan.strategy.update_strategy'), alt: t('admin.complan.strategy.update_strategy')  do %>
-                  <span class="icon-edit"></span>
-                <%end%>
-                <%= link_to  admin_complan_strategy_path(strategy),method: :delete,  class: "button hollow alert", style: "margin: 0px", title: t('admin.complan.strategy.title_delete'), alt: t('admin.complan.strategy.title_delete'), data: {confirm: t('admin.complan.strategy.destroy_confirm')}  do %>
-                  <span class="icon-deleted"></span>
-                <%end%>
-              </td>
-            </tr>
-        <% end %>
-      </tbody>
-    </table>
-    <%= paginate @strategies %>
-  <% else %>
-    <div class="callout primary"><%= page_entries_info @strategies %></div>
-  <% end %>
+<div id = "content-strategies" class="small-12 column">
+  <%= render partial: "content_strategies" %>
 </div>

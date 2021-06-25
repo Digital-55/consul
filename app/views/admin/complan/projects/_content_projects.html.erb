@@ -1,5 +1,5 @@
-<% if @typologies.any? %>
-    <h3><%= page_entries_info @typologies %></h3>
+  <% if @projects.any? %>
+    <h3><%= page_entries_info @projects %></h3>
 
     <table class="stack sortable">
       <thead>
@@ -12,10 +12,10 @@
       </thead>
 
       <tbody>
-        <% @typologies.each do |typology| %>
-          <%= form_for typology, :url => update_typology_admin_complan_typology_path(typology), method: :post do |f| %>
-            <tr id="<%= dom_id(typology) %>">
-              <% if !params[:errors].blank? && typology.id.to_i == params[:id].to_i %>
+        <% @projects.each do |project| %>
+          <%= form_for project, :url => update_project_admin_complan_project_path(project), method: :post do |f| %>
+            <tr id="<%= dom_id(project) %>">
+              <% if !params[:errors].blank? && project.id.to_i == params[:id].to_i %>
                 <div id="error_explanation" data-alert class="callout alert" data-closable>
                   <button class="close-button" aria-label="<%= t("application.close") %>" type="button" data-close>
                     <span aria-hidden="true">&times;</span>
@@ -31,13 +31,13 @@
                 <td><%= f.text_field c, label: false, placeholder:  "#{@model.human_attribute_name(c)}..."  %></td>
               <%end%>
               <td style="width: 12em">
-                <%= link_to admin_complan_typologies_path, class: "button hollow", style: "margin: 0px", title: t('admin.complan.show_audits'), alt: t('admin.complan.show_audits')  do %>
+                <%= link_to admin_complan_projects_path, class: "button hollow", style: "margin: 0px", title: t('admin.complan.show_audits'), alt: t('admin.complan.show_audits')  do %>
                   <span class="icon-settings"></span>
                 <%end%>
-                <%= f.button :submit, class: "button", title: t('admin.complan.typology.update_typology'), alt: t('admin.complan.typology.update_typology'), style: "margin: 0px"  do %>
+                <%= f.button :submit, class: "button", title: t('admin.complan.project.update_project'), alt: t('admin.complan.project.update_project'), style: "margin: 0px"  do %>
                   <span class="icon-edit"></span>
                 <%end%>
-                <%= link_to  admin_complan_typology_path(typology),method: :delete, class: "button hollow alert", style: "margin: 0px", title:  t('admin.complan.typology.title_delete'), alt:  t('admin.complan.typology.title_delete'), data: {confirm: t('admin.complan.typology.destroy_confirm')}  do %>
+                <%= link_to  admin_complan_project_path(project),method: :delete, class: "button hollow alert", style: "margin: 0px", title:  t('admin.complan.project.title_delete'), alt:  t('admin.complan.project.title_delete'), data: {confirm: t('admin.complan.project.destroy_confirm')}  do %>
                   <span class="icon-deleted"></span>
                 <%end%>
               </td>
@@ -46,8 +46,7 @@
         <% end %>
       </tbody>
     </table>
-    <%= paginate @typologies %>
+    <%= paginate @projects %>
   <% else %>
-    <div class="callout primary"><%= page_entries_info @typologies %></div>
+    <div class="callout primary"><%= page_entries_info @projects %></div>
   <% end %>
-
