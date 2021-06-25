@@ -7,7 +7,24 @@ class Complan::ThecnicalTable < ApplicationRecord
 
     def self.get_columns
         [
-           
+            :date,
+            :name,
+            :description,
+            :year,
+            :date_agreement
+        ]
+    end
+
+    def self.get_exporter
+        [
+            :date,
+            :description,
+            :name,
+            :performance,
+            :year,
+            :type,
+            :date_agreement,
+            :session
         ]
     end
    

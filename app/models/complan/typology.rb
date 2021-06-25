@@ -5,9 +5,15 @@ class Complan::Typology < ApplicationRecord
 
     def self.get_columns
         [
-           
+           :name
         ]
     end
    
+
+    def self.get_exporter
+        [
+            :name
+        ]
+    end
 end
 

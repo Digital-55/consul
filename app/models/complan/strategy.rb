@@ -5,7 +5,19 @@ class Complan::Strategy < ApplicationRecord
 
     def self.get_columns
         [
-           
+            :name,
+            :departure,
+            :description,
+            :approval_date
+        ]
+    end
+
+    def self.get_exporter
+        [
+            :name,
+            :departure,
+            :description,
+            :approval_date
         ]
     end
    

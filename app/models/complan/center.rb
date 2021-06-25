@@ -6,7 +6,21 @@ class Complan::Center < ApplicationRecord
 
     def self.get_columns
         [
-           
+           :organism,
+           :denomination,
+           :address,
+           :dg,
+           :sg
+        ]
+    end
+
+    def self.get_exporter
+        [
+            :organism,
+            :dg,
+            :sg,
+            :denomination,
+            :address
         ]
     end
    
