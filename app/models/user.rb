@@ -202,11 +202,11 @@ class User < ApplicationRecord
   end
 
   def parbudget_editor?
-    !ParbudgetEditor.find_by(user_id: self.id).blank?
+    !Parbudget::Editor.find_by(user_id: self.id).blank?
   end
 
   def parbudget_reader?
-    !ParbudgetReader.find_by(user_id: self.id).blank?
+    !Parbudget::Reader.find_by(user_id: self.id).blank?
   end
 
   def complan_editor?

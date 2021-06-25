@@ -11,13 +11,21 @@ class Ability
       if user.consultant?
         merge Abilities::Consultant.new(user) 
       elsif user.editor?
-        merge Abilities::Editor.new(user) 
-      elsif user.administrator? || user.super_administrator?
-        merge Abilities::Administrator.new(user)
+        merge Abilities::Editor.new(user)
       elsif user.moderator?
         merge Abilities::Moderator.new(user)
       elsif user.sures?
         merge Abilities::SuresAdministrator.new(user)
+      elsif user.parbudget_editor?
+        merge Abilities::Parbudget::Editor.new(user)
+      elsif user.parbudget_reader?
+        merge Abilities::Parbudget::Reader.new(user)
+      elsif user.complan_editor?
+        merge Abilities::Complan::Reader.new(user)
+      elsif user.complan_reader?
+        merge Abilities::Complan::Reader.new(user)
+      elsif user.administrator? || user.super_administrator?
+        merge Abilities::Administrator.new(user)      
       else
         merge Abilities::Common.new(user)
       end

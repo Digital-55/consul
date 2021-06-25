@@ -1,9 +1,9 @@
 module Abilities
-  class SuresAdministrator
+  class Parbudget::Reader
     include CanCan::Ability
 
     def initialize(user)
-      merge Abilities::Administrator.new(user)
+      merge Abilities::Common.new(user)
       can :manage, Parbudget::Ambit
       can :manage, Parbudget::Project
       can :manage, Parbudget::Center

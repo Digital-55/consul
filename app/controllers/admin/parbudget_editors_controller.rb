@@ -4,21 +4,7 @@ class Admin::ParbudgetEditorsController < Admin::BaseController
       organizations officials moderators valuators managers consultants editors parbudget_editors parbudget_readers complan_editors complan_readers]
   
     def index
-      @parbudget_editors = @parbudget_editors.page(params[:page])
-    end
-  
-    def search
-      @users = User.search(params[:name_or_email])
-                   .includes(:parbudget_editors)
-                   .page(params[:page])
-                   .for_render
-    end
-  
-    def create
-      @parbudget_editors.user_id = params[:user_id]
-      @parbudget_editors.save
-  
-      redirect_to admin_parbudget_editors_path
+      @parbudget_editors = Parbudget::Editor.all.page(params[:page])
     end
   
     def destroy
@@ -26,10 +12,10 @@ class Admin::ParbudgetEditorsController < Admin::BaseController
           if !current_user.blank? && current_user.id == @parbudget_editors.user_id
             flash[:error] = I18n.t("admin.parbudget_editors.administrator.restricted_removal")
           else
-            user = User.find(@administrator.user_id)
+            user = User.find(@parbudget_editors.user_id)
             user.profiles_id = nil
             user.save
-            @administrator.destroy
+            @parbudget_editors.destroy
           end
         else
           flash[:error] = I18n.t("admin.parbudget_editors.administrator.restricted_removal")

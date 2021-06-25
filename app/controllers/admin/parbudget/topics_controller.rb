@@ -1,6 +1,7 @@
 class Admin::Parbudget::TopicsController < Admin::Parbudget::BaseController
   respond_to :html, :js, :csv
   before_action :load_resource, only: [:update_topic,:destroy]
+  before_action :authenticate_editor, only: [:index, :generate_topic, :destroy, :update_topic]
 
   def index
     search(params)

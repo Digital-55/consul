@@ -4,7 +4,7 @@ class Admin::ParbudgetReadersController < Admin::BaseController
       organizations officials moderators valuators managers consultants editors parbudget_editors parbudget_readers complan_editors complan_readers]
   
     def index
-      @parbudget_readers = @parbudget_readers.page(params[:page])
+      @parbudget_readers = Parbudget::Reader.all.page(params[:page])
     end
   
     def search
