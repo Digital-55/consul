@@ -36,7 +36,7 @@ class Complan::Performance < ApplicationRecord
             :annuity,
             :valued,
             :viability,
-            :vulnerability_index
+            :vulnerability_index,
             :edition,
             :multi_year
         ]

@@ -1,21 +1,13 @@
 class Admin::Complan::StrategiesController < Admin::Complan::BaseController
   respond_to :html, :js, :csv, :pdf
   before_action :load_data, only: [:index]
-  before_action :load_strategy
 
   def index
     search(params)
     @strategies = Kaminari.paginate_array(@strategies).page(params[:page]).per(20)
   end
 
-  def new
-    @strategy = ::Parbudget::Strategy.new
-  end
-
-  def edit
-  end
-
-  def create
+  def create_strategy
     @strategy=  @model.new(strategy_strong_params)
     if @strategy.save
       redirect_to admin_complan_strategies_path,  notice: I18n.t("admin.complan.strategy.create_success")
@@ -28,16 +20,8 @@ class Admin::Complan::StrategiesController < Admin::Complan::BaseController
     redirect_to admin_complan_strategies_path
   end
 
-  def update
+  def update_strategy
     if @strategy.update(strategy_strong_params)
-      if strategy_strong_params[:complan_strategy_ids].blank?
-        @strategy.complan_strategies.each do |strategy|
-          strategy.complan_strategy_id = nil
-          strategy.save(validate: false)
-        end
-        @strategy.complan_strategies = []
-        @strategy.save
-      end
       redirect_to admin_complan_strategies_path,  notice: I18n.t("admin.complan.strategy.update_success")
     else
       flash[:error] = I18n.t("admin.complan.strategy.update_error")
@@ -49,12 +33,6 @@ class Admin::Complan::StrategiesController < Admin::Complan::BaseController
   end
 
   def destroy
-    @strategy.complan_strategies.each do |strategy|
-      strategy.complan_strategy_id = nil
-      strategy.save(validate: false)
-    end
-    @strategy.complan_strategies = []
-    @strategy.save
     if @strategy.destroy
       redirect_to admin_complan_strategies_path,  notice: I18n.t("admin.complan.strategy.destroy_success")
     else
@@ -66,22 +44,10 @@ class Admin::Complan::StrategiesController < Admin::Complan::BaseController
     redirect_to admin_complan_strategies_path
   end
 
-  def show
-    respond_to do |format|
-      format.html
-      format.pdf do
-        render pdf: @strategy.denomination,
-        layout: 'pdf.html',
-        page_size: 'A4',
-        encoding: "UTF-8"
-      end
-    end
-  end
-
   private 
 
   def get_model
-    @model = ::Parbudget::Project
+    @model = ::Complan::Strategy
   end
 
   def strategy_strong_params
@@ -116,9 +82,9 @@ class Admin::Complan::StrategiesController < Admin::Complan::BaseController
   def load_data
     @status = []
     @subnav = [{title: "Todos",value: "all"}]
-    @model.pluck(:year).uniq.each do |year|
-      @subnav.push({title: "Año #{year}",value: year.to_s})
-    end
+    # @model.pluck(:year).uniq.each do |year|
+    #   @subnav.push({title: "Año #{year}",value: year.to_s})
+    # end
   end
 
   def search(parametrize = {})

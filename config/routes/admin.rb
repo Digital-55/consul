@@ -46,10 +46,19 @@ namespace :admin do
   namespace :complan do
     resources :performances
     resources :centers
-    resources :projects
-    resources :strategies
+    resources :projects do 
+      post :create_project, on: :collection
+      post :update_project, on: :member
+    end
+    resources :strategies do 
+      post :create_strategy, on: :collection
+      post :update_strategy, on: :member
+    end
     resources :financings
-    resources :typologies
+    resources :typologies do 
+      post :create_typology, on: :collection
+      post :update_typology, on: :member
+    end
     resources :thecnical_tables
   end
 
