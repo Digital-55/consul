@@ -213,7 +213,7 @@ function updatePromotionalsLocation(){
 
 function displayCharLimit() {
   for(var metaSelector of ['#meta-title', '#meta-description']) {
-    if ($(metaSelector).val().length > $(metaSelector).data('charLimit') ){
+    if ($(metaSelector).length && $(metaSelector).val().length > $(metaSelector).data('charLimit') ){
       $(metaSelector).css('color', '#ff0000');
       $(metaSelector).siblings('#char_num').css('color', '#ff0000');
     }
