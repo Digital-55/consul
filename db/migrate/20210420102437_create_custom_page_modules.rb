@@ -52,6 +52,12 @@ class CreateCustomPageModules < ActiveRecord::Migration[5.0]
   end
 
   def down
+    CustomPage.published.each do |custom_page|
+      page = SiteCustomization::Page.find_by(slug: custom_page.slug) ||
+             SiteCustomization::Page.find_by(slug: custom_page.slug.underscore)
+      page.update_column(:status, "published") if page.present?
+    end
+
     drop_table :custom_page_modules
   end
 
