@@ -17,7 +17,7 @@ module MenusHelper
 
   def page_link_options
     hash = { t("admin.menus.menu_items.page_link_select") => nil }
-    SiteCustomization::Page.pluck(:title, :slug).each do |key, value|
+    SiteCustomization::Page.where(status: "published").pluck(:title, :slug).each do |key, value|
       key = "#{key} (/#{value})"
       hash[key] = value
     end
@@ -39,9 +39,14 @@ module MenusHelper
 
   def custom_page_options
     hash = {}
-    CustomPage.pluck(:title, :slug).each do |key, value|
-      key = "#{key} (/#{value})"
-      hash[key] = value
+    CustomPage.pluck(:title, :parent_slug, :slug).each do |title, parent_slug, slug|
+      if parent_slug
+        title = "#{title} (/#{parent_slug}/#{slug})"
+        hash[title] = "#{parent_slug}/#{slug}"
+      else
+        title = "#{title} (/#{slug})"
+        hash[title] = slug
+      end
     end
     hash
   end
@@ -84,5 +89,13 @@ module MenusHelper
 
   def menu_item_target(menu_item)
     menu_item.target_blank ? '_blank' : ''
+  end
+
+  def menu_user_email(menu)
+    menu.user.email rescue ''
+  end
+
+  def menu_user_roles(menu)
+    display_user_roles(menu.user) rescue ''
   end
 end

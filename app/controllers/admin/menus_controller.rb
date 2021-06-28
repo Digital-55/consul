@@ -1,6 +1,8 @@
 class Admin::MenusController < Admin::BaseController
   include Translatable
   before_action :set_menu, only: [:edit, :update, :destroy]
+  after_action :set_user, only: [:create, :update]
+  load_and_authorize_resource
 
   has_filters %w{all header footer}, only: :index
 
@@ -25,7 +27,7 @@ class Admin::MenusController < Admin::BaseController
 
   def update
     if @menu.update(menu_params)
-      redirect_to admin_menus_path, notice: t("admin.menus.edit.notice")
+      redirect_to edit_admin_menu_path(@menu), notice: t("admin.menus.edit.notice")
     else
       render :edit
     end
@@ -48,5 +50,9 @@ class Admin::MenusController < Admin::BaseController
 
   def set_menu
     @menu = Menu.find(params[:id])
+  end
+
+  def set_user
+    @menu.update(user: current_user) if @menu.user != current_user
   end
 end

@@ -1,5 +1,8 @@
 class Admin::CustomPagesController < Admin::BaseController
   before_action :set_custom_page, only: [:edit, :update, :destroy]
+  after_action :set_published, only: [:create, :update]
+  after_action :set_user, only: [:create, :update]
+  load_and_authorize_resource
 
   has_filters %w{all published draft}, only: :index
 
@@ -32,6 +35,7 @@ class Admin::CustomPagesController < Admin::BaseController
 
   def destroy
     if @custom_page.destroy
+      @custom_page.children_pages.update(parent_slug: nil) if @custom_page.children_pages.present?
       flash[:notice] = t("admin.custom_pages.destroy.success")
     else
       flash[:notice] = t("admin.custom_pages.destroy.error")
@@ -48,7 +52,7 @@ class Admin::CustomPagesController < Admin::BaseController
   private
 
   def custom_page_params
-    params.require(:custom_page).permit(:title, :slug, :published, :meta_title, :meta_description, :meta_keywords, :canonical,
+    params.require(:custom_page).permit(:title, :parent_slug, :slug, :published, :meta_title, :meta_description, :meta_keywords, :canonical,
                                         custom_page_modules_attributes: [:id, :type, :position,
                                                                           :subtitle,
                                                                           :claim,
@@ -57,9 +61,9 @@ class Admin::CustomPagesController < Admin::BaseController
                                                                           :cta_text, :cta_button, :cta_link,
                                                                           :js_snippet,
                                                                           :custom_image, :custom_image_alt,
-                                                                          :promo_title_one, :promo_description_one, :promo_image_one, :promo_link_one,
-                                                                          :promo_title_two, :promo_description_two, :promo_image_two, :promo_link_two,
-                                                                          :promo_title_three, :promo_description_three, :promo_image_three, :promo_link_three,
+                                                                          :promo_location_one, :promo_title_one, :promo_description_one, :promo_image_one, :promo_alt_image_one, :promo_link_one,
+                                                                          :promo_location_two, :promo_title_two, :promo_description_two, :promo_image_two, :promo_alt_image_two, :promo_link_two,
+                                                                          :promo_location_three, :promo_title_three, :promo_description_three, :promo_image_three, :promo_alt_image_three, :promo_link_three,
                                                                           :disabled, :_destroy],
                                         subtitles_attributes: [:type, :position, :subtitle, :disabled, :_destroy],
                                         claims_attributes: [:type, :position, :claim, :disabled, :_destroy],
@@ -69,14 +73,30 @@ class Admin::CustomPagesController < Admin::BaseController
                                         js_snippets_attributes: [:type, :position, :js_snippet, :disabled, :_destroy],
                                         custom_images_attributes: [:type, :position, :custom_image, :custom_image_alt, :disabled, :_destroy],
                                         promotionals_attributes: [:type, :position,
-                                                                  :promo_title_one, :promo_description_one, :promo_image_one, :promo_link_one,
-                                                                  :promo_title_two, :promo_description_two, :promo_image_two, :promo_link_two,
-                                                                  :promo_title_three, :promo_description_three, :promo_image_three, :promo_link_three,
+                                                                  :promo_location_one, :promo_title_one, :promo_description_one, :promo_image_one, :promo_alt_image_one, :promo_link_one,
+                                                                  :promo_location_two, :promo_title_two, :promo_description_two, :promo_image_two, :promo_alt_image_two, :promo_link_two,
+                                                                  :promo_location_three, :promo_title_three, :promo_description_three, :promo_image_three, :promo_alt_image_three, :promo_link_three,
                                                                   :disabled, :_destroy]
                                       )
   end
 
   def set_custom_page
     @custom_page = CustomPage.find(params[:id])
+  end
+
+  def set_published
+    parent_page = CustomPage.find_by(slug: @custom_page.parent_slug)
+    if parent_page && custom_page_params[:published] == "true"
+      parent_page.update(published: true)
+    end
+
+    children_pages = @custom_page.children_pages
+    if children_pages && custom_page_params[:published] == "false"
+      children_pages.published.update(published: false)
+    end
+  end
+
+  def set_user
+    @custom_page.update(user: current_user) if @custom_page.user != current_user
   end
 end

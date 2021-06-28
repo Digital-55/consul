@@ -9,48 +9,74 @@
 
   <div class="row">
     <div class="row custom_page-fields">
-      <div class="small-12 medium-8 column">
-        <%= f.label :title, t("admin.custom_pages.custom_page.title") %>
-        <%= f.text_field :title,
-                          label: false,
-                          placeholder: t("admin.custom_pages.custom_page.title"),
-                          id: "title" %>
+      <div class="row">
+        <div class="small-12 medium-8 column">
+          <%= f.label :title, t("admin.custom_pages.custom_page.title") %>
+          <%= f.text_field :title,
+                            label: false,
+                            placeholder: t("admin.custom_pages.custom_page.title"),
+                            id: "title" %>
+        </div>
+
+        <div class="small-12 medium-4 column end">
+          <%= f.label :published, t("admin.custom_pages.custom_page.published") %>
+          <%= f.select :published, {}, label: false do %>
+            <%= options_for_select( publish_options, @custom_page.published) %>
+          <% end %>
+        </div>
       </div>
-      
-      <div class="small-12 medium-4 column end">
-        <%= f.label :published, t("admin.custom_pages.custom_page.published") %>
-        <%= f.select :published, {}, label: false do %>
-          <%= options_for_select( publish_options, @custom_page.published) %>
-        <% end %>
+
+      <div class="row">
+        <div class="small-12 medium-4 column">
+          <%= f.label :parent_slug, t("admin.custom_pages.custom_page.parent_slug") %>
+          <%= f.select :parent_slug, {}, label: false do %>
+            <%= options_for_select(parent_slug_options, @custom_page.parent_slug) %>
+          <% end %>
+        </div>
+        <div class="small-12 medium-1 column text-center path_slash">
+          <%= f.label '/' %>
+        </div>
+        <div class="small-12 medium-7 column end">
+          <%= f.label :slug, t("admin.custom_pages.custom_page.slug") %>
+          <%= f.text_field :slug,
+                            label: false,
+                            placeholder: t("admin.custom_pages.custom_page.slug"),
+                            id: "slug" %>
+        </div>
       </div>
-      
-      <div class="small-12 medium-12 column end">
-        <%= f.label :slug, t("admin.custom_pages.custom_page.slug") %>
-        <%= f.text_field :slug,
-                          label: false,
-                          placeholder: t("admin.custom_pages.custom_page.slug"),
-                          id: "slug" %>
-      </div>
+
       <div id='custom_page-toggle_meta_tags'>
         <div>
-          <%= link_to t("admin.custom_pages.custom_page.meta_tags"), '#', class: 'clear button secondary hollow icon-arrow-down ' %>
+          <%= link_to t("admin.custom_pages.custom_page.meta_tags"), '#', class: 'clear button secondary hollow icon-angle-down'%>
         </div>
       </div>
       <div id="custom_page-meta_tags">
         <div class="small-12 medium-10 column">
           <%= f.label :meta_title, t("admin.custom_pages.custom_page.meta_title") %>
-          <%= f.text_field :meta_title,
-                            label: false,
-                            placeholder: t("admin.custom_pages.custom_page.meta_title"),
-                            id: "meta-title" %>
+          <div class="input-group">
+            <%= f.text_field :meta_title,
+                              class: "input-group-field",
+                              label: false,
+                              placeholder: t("admin.custom_pages.custom_page.meta_title"),
+                              id: "meta-title",
+                              data: {'char-limit': 70} %>
+            <span class="input-group-label" id="char_num"><%= (70 - (@custom_page.meta_title&.chars&.count || 0)).to_s %></span>
+          </div>
         </div>
+
         <div class="small-12 medium-10 column">
           <%= f.label :meta_description, t("admin.custom_pages.custom_page.meta_description") %>
-          <%= f.text_field :meta_description,
-                            label: false,
-                            placeholder: t("admin.custom_pages.custom_page.meta_description"),
-                            id: "meta-description" %>
+          <div class="input-group">
+            <%= f.text_field :meta_description,
+                              class: "input-group-field",
+                              label: false,
+                              placeholder: t("admin.custom_pages.custom_page.meta_description"),
+                              id: "meta-description",
+                              data: {'char-limit': 160} %>
+            <span class="input-group-label" id="char_num"><%= (160 - (@custom_page.meta_title&.chars&.count || 0)).to_s %></span>
+          </div>
         </div>
+
         <div class="small-12 medium-10 column">
           <%= f.label :meta_keywords, t("admin.custom_pages.custom_page.meta_keywords") %>
           <%= f.text_field :meta_keywords,
@@ -135,13 +161,13 @@
           </div>
           <div class="float-right">
             <div class="float-left">
-                <%= link_to '', custom_page_path(@custom_page.slug),
+                <%= link_to '', custom_page_preview_path(@custom_page),
                                                                     target: '_blank',
                                                                     title: t("admin.custom_pages.index.preview"),
                                                                     class: "icon-eye button secondary hollow small" %>
             </div>
             <div id='toggle_modules_collapse_button' class="float-right">
-              <%= link_to '', '#', class: 'icon-arrow-down button secondary hollow small' %>
+              <%= link_to '', '#', class: 'icon-angle-down button secondary hollow small' %>
             </div>
           </div>
         </div>
@@ -156,7 +182,7 @@
 
     <div class="row">
       <div class="actions small-12 medium-3 column">
-        <%= f.submit(class: "button expanded", value: t("admin.menus.edit.form.submit_button")) %>
+        <%= f.submit(class: "button expanded submit_form", value: t("admin.menus.edit.form.submit_button")) %>
       </div>
     </div>
     

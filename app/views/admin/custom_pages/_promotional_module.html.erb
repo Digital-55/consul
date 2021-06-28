@@ -1,6 +1,6 @@
 <div class="card nested-fields promotional-module" id="<%= module_id(f.object) %>">
   <div class="card-divider">
-    <span class="icon-bars"><%= "<span class='icon-arrow-down'></span>".html_safe if f.object.persisted? %></span>
+    <span class="icon-bars"><%= "<span class='icon-angle-down'></span>".html_safe if f.object.persisted? %></span>
     <h5 class="small-6 column menu-item-tag"><%= t("admin.custom_pages.custom_page_modules.custom_page_module.promotional") %></h5>
     <div class="small-6 column text-right">
       <%= link_to_remove_association f do %>
@@ -9,20 +9,31 @@
     </div>
   </div>
   <div class="card-section">
+    <%= f.hidden_field :type, value: 'PromotionalModule' %>
     <ul class="tabs" data-tabs id="promotional-tabs">
-      <li class="tabs-title is-active"><a href="#promo1" aria-selected="true"><%= t("admin.custom_pages.custom_page_modules.custom_page_module.promotional_one") %></a></li>
-      <li class="tabs-title"><a href="#promo2"><%= t("admin.custom_pages.custom_page_modules.custom_page_module.promotional_two") %></a></li>
-      <li class="tabs-title"><a href="#promo3"><%= t("admin.custom_pages.custom_page_modules.custom_page_module.promotional_three") %></a></li>
+      <li class="tabs-title is-active"><a href='#<%= "#{dom_id(f.object)}_one" %>' aria-selected="true"><%= t("admin.custom_pages.custom_page_modules.custom_page_module.promotional_one") %></a></li>
+      <li class="tabs-title"><a href='#<%= "#{dom_id(f.object)}_two" %>'><%= t("admin.custom_pages.custom_page_modules.custom_page_module.promotional_two") %></a></li>
+      <li class="tabs-title"><a href='#<%= "#{dom_id(f.object)}_three" %>'><%= t("admin.custom_pages.custom_page_modules.custom_page_module.promotional_three") %></a></li>
+      <div class="row text-right">
+        <%= f.check_box :disabled, label: false, class: 'custom_page_module-disabled' %>
+        <%= f.label :disabled, t("admin.custom_pages.custom_page_modules.disabled") %>
+      </div>
     </ul>
     <div class="tabs-content" data-tabs-content="promotional-tabs">
-      <div class="tabs-panel is-active" id="promo1">
-        <div class="small-12 medium-10 column">
+      <div class="tabs-panel is-active" id='<%= "#{dom_id(f.object)}_one" %>'>
+        <div class="small-12 medium-6 column">
+          <%= f.label :promo_location_one, t("admin.custom_pages.custom_page_modules.custom_page_module.promo.promo_location_one") %>
+          <%= f.select :promo_location_one, {}, label: false do %>
+            <%= options_for_select(promo_location_options, (f.object.promo_location_one || 'left')) %>
+          <% end %>
+        </div>
+        <div class="small-12 medium-12 column">
           <%= f.label :promo_title_one, t("admin.custom_pages.custom_page_modules.custom_page_module.promo.promo_title_one") %>
-          <%= f.text_field :promo_title_one, label: false, class: 'promo-module-title-one' %>
+          <%= f.text_field :promo_title_one, label: false, class: 'custom_page_module-promo_title_one' %>
         </div>
         <div class="small-12 medium-8 column">
           <%= f.label :promo_image_one, t("admin.custom_pages.custom_page_modules.custom_page_module.promo.promo_image_one") %>
-          <%= f.file_field :promo_image_one, label: false, class: 'promo_image_one-module-file' %>
+          <%= f.file_field :promo_image_one, label: false, class: 'custom_page_module-promo_image_one' %>
         </div>
         <div class="small-12 medium-3 column">
           <% if f.object.promo_image_one.present? %>
@@ -34,26 +45,37 @@
             </small>
           <% end %>
         </div>
+        <div class="small-12 medium-12 column">
+          <%= f.label :promo_alt_image_one, t("admin.custom_pages.custom_page_modules.custom_page_module.promo.promo_alt_image_one") %>
+          <%= f.text_field :promo_alt_image_one, label: false, class: 'custom_page_module-promo_alt_image_one' %>
+        </div>
         <div class="ckeditor small-12 medium-12 column">
           <%= f.cktext_area :promo_description_one,
                             id: "promo_description_one_#{f.object.id}",
+                            class: 'custom_page_module-promo_description_one',
                             label: t("admin.custom_pages.custom_page_modules.custom_page_module.promo.promo_description_one"),
                             maxlength: RichTextModule::TEXT_MAX_LENGTH,
-                            ckeditor: { language: I18n.locale, toolbar: 'mini' } %>
+                            ckeditor: { language: I18n.locale, toolbar: 'admin' } %>
         </div>
         <div class="small-12 medium-12 column">
           <%= f.label :promo_link_one, t("admin.custom_pages.custom_page_modules.custom_page_module.promo.promo_link_one") %>
-          <%= f.text_field :promo_link_one, label: false, class: 'promo-module-link-one' %>
+          <%= f.text_field :promo_link_one, label: false, class: 'custom_page_module-promo_link_one' %>
         </div>
       </div>
-      <div class="tabs-panel" id="promo2">
-        <div class="small-12 medium-10 column">
+      <div class="tabs-panel" id='<%= "#{dom_id(f.object)}_two" %>'>
+        <div class="small-12 medium-6 column">
+          <%= f.label :promo_location_two, t("admin.custom_pages.custom_page_modules.custom_page_module.promo.promo_location_two") %>
+          <%= f.select :promo_location_two, {}, label: false do %>
+            <%= options_for_select(promo_location_options, (f.object.promo_location_two || 'center')) %>
+          <% end %>
+        </div>
+        <div class="small-12 medium-12 column">
           <%= f.label :promo_title_two, t("admin.custom_pages.custom_page_modules.custom_page_module.promo.promo_title_two") %>
-          <%= f.text_field :promo_title_two, label: false, class: 'promo-module-title-two' %>
+          <%= f.text_field :promo_title_two, label: false, class: 'custom_page_module-promo_title_two' %>
         </div>
         <div class="small-12 medium-8 column">
           <%= f.label :promo_image_two, t("admin.custom_pages.custom_page_modules.custom_page_module.promo.promo_image_two") %>
-          <%= f.file_field :promo_image_two, label: false, class: 'promo_image_two-module-file' %>
+          <%= f.file_field :promo_image_two, label: false, class: 'custom_page_module-promo_image_two' %>
         </div>
         <div class="small-12 medium-3 column">
           <% if f.object.promo_image_two.present? %>
@@ -65,26 +87,37 @@
             </small>
           <% end %>
         </div>
+        <div class="small-12 medium-12 column">
+          <%= f.label :promo_alt_image_two, t("admin.custom_pages.custom_page_modules.custom_page_module.promo.promo_alt_image_two") %>
+          <%= f.text_field :promo_alt_image_two, label: false, class: 'custom_page_module-promo_alt_image_two' %>
+        </div>
         <div class="ckeditor small-12 medium-12 column">
           <%= f.cktext_area :promo_description_two,
                             id: "promo_description_two_#{f.object.id}",
+                            class: 'custom_page_module-promo_description_two',
                             label: t("admin.custom_pages.custom_page_modules.custom_page_module.promo.promo_description_two"),
                             maxlength: RichTextModule::TEXT_MAX_LENGTH,
-                            ckeditor: { language: I18n.locale, toolbar: 'mini' } %>
+                            ckeditor: { language: I18n.locale, toolbar: 'admin' } %>
         </div>
         <div class="small-12 medium-12 column">
           <%= f.label :promo_link_two, t("admin.custom_pages.custom_page_modules.custom_page_module.promo.promo_link_two") %>
-          <%= f.text_field :promo_link_two, label: false, class: 'promo-module-link-two' %>
+          <%= f.text_field :promo_link_two, label: false, class: 'custom_page_module-promo_link_two' %>
         </div>
       </div>
-      <div class="tabs-panel" id="promo3">
-        <div class="small-12 medium-10 column">
+      <div class="tabs-panel" id='<%= "#{dom_id(f.object)}_three" %>'>
+        <div class="small-12 medium-6 column">
+          <%= f.label :promo_location_three, t("admin.custom_pages.custom_page_modules.custom_page_module.promo.promo_location_three") %>
+          <%= f.select :promo_location_three, {}, label: false do %>
+            <%= options_for_select(promo_location_options, (f.object.promo_location_three || 'right')) %>
+          <% end %>
+        </div>
+        <div class="small-12 medium-12 column">
           <%= f.label :promo_title_three, t("admin.custom_pages.custom_page_modules.custom_page_module.promo.promo_title_three") %>
-          <%= f.text_field :promo_title_three, label: false, class: 'promo-module-title-three' %>
+          <%= f.text_field :promo_title_three, label: false, class: 'custom_page_module-promo_title_three' %>
         </div>
         <div class="small-12 medium-8 column">
           <%= f.label :promo_image_three, t("admin.custom_pages.custom_page_modules.custom_page_module.promo.promo_image_three") %>
-          <%= f.file_field :promo_image_three, label: false, class: 'promo_image_three-module-file' %>
+          <%= f.file_field :promo_image_three, label: false, class: 'custom_page_module-promo_image_three' %>
         </div>
         <div class="small-12 medium-3 column">
           <% if f.object.promo_image_three.present? %>
@@ -96,22 +129,21 @@
             </small>
           <% end %>
         </div>
+        <div class="small-12 medium-12 column">
+          <%= f.label :promo_alt_image_three, t("admin.custom_pages.custom_page_modules.custom_page_module.promo.promo_alt_image_three") %>
+          <%= f.text_field :promo_alt_image_three, label: false, class: 'custom_page_module-promo_alt_image_three' %>
+        </div>
         <div class="ckeditor small-12 medium-12 column">
           <%= f.cktext_area :promo_description_three,
                             id: "promo_description_three_#{f.object.id}",
+                            class: 'custom_page_module-promo_description_three',
                             label: t("admin.custom_pages.custom_page_modules.custom_page_module.promo.promo_description_three"),
                             maxlength: RichTextModule::TEXT_MAX_LENGTH,
-                            ckeditor: { language: I18n.locale, toolbar: 'mini' } %>
+                            ckeditor: { language: I18n.locale, toolbar: 'admin' } %>
         </div>
         <div class="small-12 medium-12 column">
           <%= f.label :promo_link_three, t("admin.custom_pages.custom_page_modules.custom_page_module.promo.promo_link_three") %>
-          <%= f.text_field :promo_link_three, label: false, class: 'promo-module-link-three' %>
-        </div>
-      </div>
-      <div class="check-options">
-        <div class="small-12 medium-2 column">
-          <%= f.check_box :disabled, label: false, class: 'custom_page_module-disabled' %>
-          <%= f.label :disabled, t("admin.custom_pages.custom_page_modules.disabled") %>
+          <%= f.text_field :promo_link_three, label: false, class: 'custom_page_module-promo_link_three' %>
         </div>
       </div>
     </div>

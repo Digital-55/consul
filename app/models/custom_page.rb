@@ -1,5 +1,6 @@
 class CustomPage < ApplicationRecord
-  has_many :custom_page_modules
+  belongs_to :user
+  has_many :custom_page_modules, dependent: :destroy
   has_many :subtitles, class_name: 'SubtitleModule'
   has_many :claims, class_name: 'ClaimModule'
   has_many :rich_texts, class_name: 'RichTextModule'
@@ -20,6 +21,12 @@ class CustomPage < ApplicationRecord
 
   validates :slug, uniqueness: true, format: { with: /\A[a-z0-9-]+$\z/i }
   scope :published, -> { where(published: true) }
-  scope :draft, -> { where(published:false) }
+  scope :draft, -> { where(published: false) }
   scope :sorted, -> { order(updated_at: :desc) }
+  scope :parent_pages, -> { where(parent_slug: [nil, '']) }
+
+  def children_pages
+    CustomPage.where(parent_slug: self.slug)
+  end
+
 end

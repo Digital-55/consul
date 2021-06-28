@@ -1,42 +1,53 @@
 $(document).on('page:change', function(){  
+  sortItems();
+  updateItems();
+  toggleMenuItemCardSection();
+  toggleAllMenuItemCardSection();
+  removeItem();
 
   $('#menu-items-list').bind('cocoon:after-insert', function() {
-    $('.nesting-wrapper').sortable({
-      cursor: "move",
-      opacity: 0.7,
-      connectWith: '.nesting-wrapper',
-      placeholder: 'ui-state-hover',
-      update: function(e, ui) {
-        $.ajax({
-          url: $(this).data("url"),
-          type: "PATCH",
-          data: $(this).sortable('serialize') + '&parent_item_id=' + getParentItem(e.target)
-        });
-      },
-      start: function( e, ui ) {
-        $sortedItem = ui.item;
-        $('.nesting-wrapper').addClass('subitem');
-        $('.nesting-wrapper.subitem.dropped').removeClass('dropped');
-        // Avoids nesting more than two levels deep
-        $('.nested-fields').each(function() {
-          if($(this).parents('.nested-fields').length > 0 || $sortedItem.find('.nested-fields').length > 0){
-            $(this).find('.nesting-wrapper.subitem').addClass('dropped')
-          }
-        });
-      },
-      stop: function( e, ui ) {
-        $('.nesting-wrapper.subitem').addClass('dropped')
-        $('.nesting-wrapper').addClass('subitem')
-      }
-    })
-
-    function getParentItem(event_target) {
-      if(event_target.id !== "menu-items-list") {
-        return event_target.parentElement.getAttribute('id').split('_').pop()
-      }
-    }
+    sortItems();
   });
+});
 
+function sortItems() {
+  $('.nesting-wrapper').sortable({
+    cursor: "move",
+    opacity: 0.7,
+    connectWith: '.nesting-wrapper',
+    placeholder: 'ui-state-hover',
+    update: function(e, ui) {
+      $.ajax({
+        url: $(this).data("url"),
+        type: "PATCH",
+        data: $(this).sortable('serialize') + '&parent_item_id=' + getParentItem(e.target)
+      });
+    },
+    start: function( e, ui ) {
+      $sortedItem = ui.item;
+      $('.nesting-wrapper').addClass('subitem');
+      $('.nesting-wrapper.subitem.dropped').removeClass('dropped');
+      // Avoids nesting more than two levels deep
+      $('.nested-fields').each(function() {
+        if($(this).parents('.nested-fields').length > 0 || $sortedItem.find('.nested-fields').length > 0){
+          $(this).find('.nesting-wrapper.subitem').addClass('dropped')
+        }
+      });
+    },
+    stop: function( e, ui ) {
+      $('.nesting-wrapper.subitem').addClass('dropped')
+      $('.nesting-wrapper').addClass('subitem')
+    }
+  })
+}
+
+function getParentItem(event_target) {
+  if(event_target.id !== "menu-items-list") {
+    return event_target.parentElement.getAttribute('id').split('_').pop()
+  }
+}
+
+function updateItems() {
   $('.nesting-wrapper.nested').on('change', function(e, ui) {
     var eventTargetMenuItem = getMenuItem(e.target);
     var $menuItem = $(eventTargetMenuItem)
@@ -144,16 +155,7 @@ $(document).on('page:change', function(){
     };
     removeItem();
   })
-
-  toggleMenuItemCardSection();
-  toggleAllMenuItemCardSection();
-  removeItem();
-  // Activates 'cocoon:after-insert' to allow sorting existing menu-items
-  if($('.nested-fields').length > 0) {
-    $('.button.add_fields').click()
-    $('.remove_fields.dynamic').click()
-  }
-});
+}
 
 function removeItem() {
   $('#menu-items-list a.remove_fields').click(function(e) {
@@ -189,10 +191,10 @@ function getItemField(itemClasses) {
 }
 
 function getItemLink(menuItem) {
-  if (menuItem.find('input.menu-item-url').first().length > 0 ) {
+  if (menuItem.hasClass('url')) {
     return menuItem.find('input.menu-item-url').first().val()
   }
-  if (menuItem.find('select.menu-item-page_link').first().length > 0) {
+  if (menuItem.hasClass('page_link')) {
     return menuItem.find('select.menu-item-page_link').first().val()
   }
 }
@@ -220,13 +222,13 @@ function toggleMenuItemCardSection() {
   $('#menu-items-list .card-section').hide();
   $('#menu-items-list .card-divider').on('click', function(){
     $(this).siblings('.card-section').slideToggle();
-    var $arrowDown = $(this).find('.icon-arrow-down');
+    var $arrowDown = $(this).find('.icon-angle-down');
     if($arrowDown.length) {
-      $arrowDown.toggleClass('icon-arrow-down icon-arrow-top');
+      $arrowDown.toggleClass('icon-angle-down icon-angle-up');
     } else {
-      var $arrowTop = $(this).find('.icon-arrow-top');
+      var $arrowTop = $(this).find('.icon-angle-up');
       if($arrowTop.length){
-        $arrowTop.toggleClass('icon-arrow-top icon-arrow-down');
+        $arrowTop.toggleClass('icon-angle-up icon-angle-down');
       }
     }
   })
@@ -235,19 +237,18 @@ function toggleMenuItemCardSection() {
 function toggleAllMenuItemCardSection(e) {
   $('#toggle_menu_collapse_button').on('click', function(){
     $(this).toggleClass('toggle-open');
-    $(this).find('.icon-arrow-down').toggleClass('icon-arrow-down icon-arrow-top');
+    $(this).find('.icon-angle-down').toggleClass('icon-angle-down icon-angle-up');
     var cardSections = $('#menu-items-list .card-section')
     for(var cardSection of cardSections) {
       var $arrow = $(cardSection).siblings('.card-divider')
-      // debugger;
       if($(this).hasClass('toggle-open')){
-        $(this).find('.icon-arrow-down').toggleClass('icon-arrow-down icon-arrow-top');
+        $(this).find('.icon-angle-down').toggleClass('icon-angle-down icon-angle-up');
         cardSections.show('slow', 'swing');
-        $arrow.find('.icon-arrow-down').toggleClass('icon-arrow-down icon-arrow-top');
+        $arrow.find('.icon-angle-down').toggleClass('icon-angle-down icon-angle-up');
       } else {
-        $(this).find('.icon-arrow-top').toggleClass('icon-arrow-top icon-arrow-down');
+        $(this).find('.icon-angle-up').toggleClass('icon-angle-up icon-angle-down');
         cardSections.hide('slow', 'swing');
-        $arrow.find('.icon-arrow-top').toggleClass('icon-arrow-top icon-arrow-down');
+        $arrow.find('.icon-angle-up').toggleClass('icon-angle-up icon-angle-down');
       }
     }
     return false;

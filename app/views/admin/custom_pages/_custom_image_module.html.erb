@@ -1,6 +1,6 @@
 <div class="card nested-fields custom_image-module" id="<%= module_id(f.object) %>">
   <div class="card-divider">
-    <span class="icon-bars"><%= "<span class='icon-arrow-down'></span>".html_safe if f.object.persisted? %></span>
+    <span class="icon-bars"><%= "<span class='icon-angle-down'></span>".html_safe if f.object.persisted? %></span>
     <h5 class="small-6 column menu-item-tag"><%= t("admin.custom_pages.custom_page_modules.custom_page_module.custom_image") %></h5>
     <div class="small-6 column text-right">
       <%= link_to_remove_association f do %>
@@ -9,9 +9,10 @@
     </div>
   </div>
   <div class="card-section">
+    <%= f.hidden_field :type, value: 'CustomImageModule' %>
     <div class="small-12 medium-7 column">
       <%= f.label :custom_image, t("admin.custom_pages.custom_page_modules.custom_page_module.custom_image") %>
-      <%= f.file_field :custom_image, label: false, class: 'custom_image-module-text' %>
+      <%= f.file_field :custom_image, label: false, class: 'custom_page_module-custom_image' %>
     </div>
     <div class="small-12 medium-3 column">
       <% if f.object.persisted? %>
@@ -31,7 +32,7 @@
     </div>
     <div class="small-12 medium-12 column">
       <%= f.label :custom_image_alt, t("admin.custom_pages.custom_page_modules.custom_page_module.custom_image_alt") %>
-      <%= f.text_field :custom_image_alt, label: false, class: 'custom_image-module-text' %>
+      <%= f.text_field :custom_image_alt, label: false, class: 'custom_page_module-custom_image_alt' %>
     </div>
   </div>
 </div>

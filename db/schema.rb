@@ -513,26 +513,32 @@ ActiveRecord::Schema.define(version: 20210420102437) do
     t.integer  "custom_image_file_size"
     t.datetime "custom_image_updated_at"
     t.text     "custom_image_alt"
+    t.string   "promo_location_one"
     t.string   "promo_title_one"
     t.text     "promo_description_one"
     t.string   "promo_image_one_file_name"
     t.string   "promo_image_one_content_type"
     t.integer  "promo_image_one_file_size"
     t.datetime "promo_image_one_updated_at"
+    t.string   "promo_alt_image_one"
     t.string   "promo_link_one"
+    t.string   "promo_location_two"
     t.string   "promo_title_two"
     t.text     "promo_description_two"
     t.string   "promo_image_two_file_name"
     t.string   "promo_image_two_content_type"
     t.integer  "promo_image_two_file_size"
     t.datetime "promo_image_two_updated_at"
+    t.string   "promo_alt_image_two"
     t.string   "promo_link_two"
+    t.string   "promo_location_three"
     t.string   "promo_title_three"
     t.text     "promo_description_three"
     t.string   "promo_image_three_file_name"
     t.string   "promo_image_three_content_type"
     t.integer  "promo_image_three_file_size"
     t.datetime "promo_image_three_updated_at"
+    t.string   "promo_alt_image_three"
     t.string   "promo_link_three"
     t.datetime "created_at",                                     null: false
     t.datetime "updated_at",                                     null: false
@@ -541,14 +547,17 @@ ActiveRecord::Schema.define(version: 20210420102437) do
 
   create_table "custom_pages", force: :cascade do |t|
     t.string   "title"
+    t.string   "parent_slug"
     t.string   "slug"
     t.string   "meta_title"
     t.string   "meta_description"
     t.string   "meta_keywords"
     t.boolean  "canonical"
     t.boolean  "published"
+    t.integer  "user_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.index ["user_id"], name: "index_custom_pages_on_user_id", using: :btree
   end
 
   create_table "dashboard_actions", force: :cascade do |t|
@@ -1132,8 +1141,10 @@ ActiveRecord::Schema.define(version: 20210420102437) do
     t.string   "title"
     t.string   "section"
     t.boolean  "published",  default: false
+    t.integer  "user_id"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.index ["user_id"], name: "index_menus_on_user_id", using: :btree
   end
 
   create_table "milestone_statuses", force: :cascade do |t|
@@ -2170,6 +2181,7 @@ ActiveRecord::Schema.define(version: 20210420102437) do
   add_foreign_key "budget_valuators", "budgets"
   add_foreign_key "budget_valuators", "valuators"
   add_foreign_key "consultants", "users"
+  add_foreign_key "custom_pages", "users"
   add_foreign_key "dashboard_administrator_tasks", "users"
   add_foreign_key "dashboard_executed_actions", "dashboard_actions", column: "action_id"
   add_foreign_key "dashboard_executed_actions", "proposals"
@@ -2194,6 +2206,7 @@ ActiveRecord::Schema.define(version: 20210420102437) do
   add_foreign_key "locks", "users"
   add_foreign_key "managers", "users"
   add_foreign_key "menu_items", "menus"
+  add_foreign_key "menus", "users"
   add_foreign_key "moderators", "users"
   add_foreign_key "notifications", "users"
   add_foreign_key "organizations", "users"
