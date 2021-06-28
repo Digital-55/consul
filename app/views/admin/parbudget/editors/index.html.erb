@@ -1,8 +1,7 @@
-<h2><%= t("admin.administrators.index.title") %></h2>
-<%= render "shared/profiles_filter_subnav", i18n_namespace: "admin.users" %>
-<%= render "admin/shared/user_search", url: search_admin_parbudget_editors_path %>
+<h2><%= t("admin.parbudget_editors.index.title") %></h2>
+<%#= render "shared/profiles_filter_subnav", i18n_namespace: "admin.users" %>
 
-<div id="administrators">
+<div id="parbudget_editors">
   <% if @parbudget_editors.any? %>
     <h3 class="margin"><%= page_entries_info @parbudget_editors %></h3>
 
@@ -13,28 +12,28 @@
         <th scope="col"><%= t("admin.parbudget_editors.index.email") %></th>
         <th scope="col" class="small-3"><%= t("admin.shared.actions") %></th>
       </thead>
-      <% @parbudget_editors.each do |administrator| %>
-        <tr id="<%= dom_id(administrator)%>">
+      <% @parbudget_editors.each do |parbudget_editor| %>
+        <tr id="<%= dom_id(parbudget_editor)%>">
           <td class="text-center">
-            <%= administrator.try(:id)%>
+            <%= parbudget_editor.try(:id)%>
           </td>
           <td>
-            <%= administrator.try(:name) %>
+            <%= parbudget_editor.try(:name) %>
           </td>
           <td>
-            <%= administrator.try(:email) %>
+            <%= parbudget_editor.try(:email) %>
           </td>
           <td>
-            <% if administrator.try(:persisted?) %>
-              <%= link_to t("admin.parbudget_editors.administrator.delete"),
-                          admin_administrator_path(administrator),
+            <% if parbudget_editor.try(:persisted?) %>
+              <%= link_to t("admin.parbudget_editors.parbudget_editor.delete"),
+                          admin_parbudget_editor_path(parbudget_editor),
                           method: :delete,
                           class: "button hollow alert expanded"
               %>
             <% else %>
               <%= link_to t("admin.parbudget_editors.administrator.add"),
                           { controller: "admin/parbudget_editors", action: :create,
-                            user_id: administrator.user_id },
+                            user_id: parbudget_editor.user_id },
                             method: :post,
                             class: "button success expanded" %>
             <% end %>

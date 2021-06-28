@@ -41,6 +41,9 @@ namespace :admin do
     resources :projects
     resources :responsibles
     resources :meetings
+    resources :editors
+    resources :readers
+
   end
 
   namespace :complan do
@@ -51,6 +54,8 @@ namespace :admin do
     resources :financings
     resources :typologies
     resources :thecnical_tables
+    resources :editors
+    resources :readers
   end
 
   resources :hidden_users, only: [:index, :show] do
@@ -200,14 +205,6 @@ namespace :admin do
   end
 
   resources :consultants, only: [:index, :new, :create, :destroy] do
-    get :search, on: :collection
-  end
-
-  resources :parbudget_editors, only: [:index, :new, :create, :destroy] do
-    get :search, on: :collection
-  end
-
-  resources :parbudget_readers, only: [:index, :new, :create, :destroy] do
     get :search, on: :collection
   end
 

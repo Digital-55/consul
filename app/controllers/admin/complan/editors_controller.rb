@@ -1,4 +1,4 @@
-class Admin::ComplanEditorsController < Admin::BaseController
+class Admin::Complan::EditorsController < Admin::BaseController
   load_and_authorize_resource
   has_filters %w[users superadministrators administrators sures_administrators section_administrators 
     organizations officials moderators valuators managers consultants editors parbudget_editors parbudget_readers complan_editors complan_readers]
