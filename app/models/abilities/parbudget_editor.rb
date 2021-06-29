@@ -1,5 +1,5 @@
 module Abilities
-  class Parbudget::Editor
+  class ParbudgetEditor
     include CanCan::Ability
 
     def initialize(user)

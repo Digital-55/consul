@@ -129,6 +129,7 @@ module Abilities
       can :manage, Parbudget::Meeting
       can :manage, Parbudget::Topic
       can :manage, Parbudget::Responsible
+      
       can :manage, Parbudget::Editor
       can :manage, Parbudget::Reader
 

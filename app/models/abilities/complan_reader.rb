@@ -1,27 +1,17 @@
 module Abilities
-  class Complan::Reader
+  class ComplanReader
     include CanCan::Ability
 
     def initialize(user)
       merge Abilities::Common.new(user)
 
-      can [:index, :show], Complan::Ambit
-      cannot [:create_ambit, :update_ambit, :destroy], Complan::Ambit
-
-      can [:index, :show], Complan::Center
-      cannot [:new, :edit, :create, :update, :destroy], Complan::Center
-
-      can [:index, :show], Complan::Project
-      cannot [:new, :edit, :create, :update, :destroy], Complan::Project
-
-      can [:index, :show], Complan::Meeting
-      cannot [:new, :edit, :create, :update, :destroy], Complan::Meeting
-
-      can [:index], Complan::Topic
-      cannot [:generate_topic, :update_topic, :destroy], Complan::Topic
-
-      can [:index, :show], Complan::Responsible
-      cannot [:new, :edit, :create, :update, :destroy], Complan::Responsible
+      can :manage, Complan::Project
+      can :manage, Complan::Performance
+      can :manage, Complan::Center
+      can :manage, Complan::Financing
+      can :manage, Complan::Strategy
+      can :manage, Complan::Typology
+      can :manage, Complan::ThecnicalTable
 
     end
   end
