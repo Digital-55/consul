@@ -1,7 +1,7 @@
 class Admin::Parbudget::MeetingsController < Admin::Parbudget::BaseController
   respond_to :html, :js, :csv, :pdf
   before_action :load_data, only: [:index]
-
+  before_action :authenticate_editor, only: [:new, :create, :edit, :update, :destroy]
   def index
     search(params)
     @meetings = Kaminari.paginate_array(@meetings).page(params[:page]).per(20)

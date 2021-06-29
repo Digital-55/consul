@@ -18,7 +18,7 @@ class Admin::Parbudget::BaseController < Admin::BaseController
     end
 
     def authenticate_editor
-      #render "admin_parbudget_#{controller_name}_path" if current_user.parbudget_reader?
+     redirect_to eval("admin_parbudget_#{controller_name}_path") if current_user.parbudget_reader?
     end
 
 

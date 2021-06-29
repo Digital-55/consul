@@ -208,14 +208,6 @@ namespace :admin do
     get :search, on: :collection
   end
 
-  resources :complan_editors, only: [:index, :new, :create, :destroy] do
-    get :search, on: :collection
-  end
-
-  resources :complan_readers, only: [:index, :new, :create, :destroy] do
-    get :search, on: :collection
-  end
-
   resources :editors, only: [:index, :new, :create, :destroy] do
     get :search, on: :collection
   end

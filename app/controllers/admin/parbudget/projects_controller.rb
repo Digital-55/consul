@@ -2,7 +2,7 @@ class Admin::Parbudget::ProjectsController < Admin::Parbudget::BaseController
   respond_to :html, :js, :csv, :pdf
   before_action :load_data, only: [:index]
   before_action :load_center
-
+  before_action :authenticate_editor, only: [:new, :create, :edit, :update, :destroy]
   def index
     search(params)
     @projects = Kaminari.paginate_array(@projects).page(params[:page]).per(20)

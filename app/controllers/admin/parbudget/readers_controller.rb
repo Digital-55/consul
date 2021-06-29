@@ -1,10 +1,10 @@
 class Admin::Parbudget::ReadersController < Admin::BaseController
     load_and_authorize_resource
     has_filters %w[users superadministrators administrators sures_administrators section_administrators 
-      organizations officials moderators valuators managers consultants editors parbudget_editors parbudget_readers complan_editors complan_readers]
+      organizations officials moderators valuators managers consultants editors editors_parbudget readers_parbudget editors_complan readers_complan]
   
     def index
-      @parbudget_readers = Parbudget::Editor.all.page(params[:page])
+      @parbudget_readers = Parbudget::Reader.all.page(params[:page])
     end
   
     def destroy

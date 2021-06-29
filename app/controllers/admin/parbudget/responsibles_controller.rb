@@ -1,7 +1,7 @@
 class Admin::Parbudget::ResponsiblesController < Admin::Parbudget::BaseController
   respond_to :html, :js, :csv, :pdf
   before_action :load_data, only: [:new,:create,:edit,:update,:index]
-
+  before_action :authenticate_editor, only: [:new, :create, :edit, :update, :destroy]
   def index
     search(params)
     @responsibles = Kaminari.paginate_array(@responsibles).page(params[:page]).per(20)
