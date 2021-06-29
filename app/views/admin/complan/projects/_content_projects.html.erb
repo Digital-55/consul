@@ -28,7 +28,11 @@
                 </div>
               <% end %>
               <%@model.get_columns.each do |c|%>
-                <td><%= f.text_field c, label: false, placeholder:  "#{@model.human_attribute_name(c)}..."  %></td>
+                <%if c.to_s != "complan_strategy_id"%>
+                  <td><%= f.text_field c, label: false, placeholder:  "#{@model.human_attribute_name(c)}..."  %></td>
+                <%else%>
+                  <td><%= f.select c, options_for_select(@strategies || [], project[c]), include_blank: true, label: false, placeholder:  "#{@model.human_attribute_name(c)}..."  %></td>
+                <%end%>
               <%end%>
               <td style="width: 12em">
                 <%= link_to admin_complan_projects_path, class: "button hollow", style: "margin: 0px", title: t('admin.complan.show_audits'), alt: t('admin.complan.show_audits')  do %>

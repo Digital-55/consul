@@ -9,7 +9,7 @@ class Admin::Parbudget::ProjectsController < Admin::Parbudget::BaseController
   end
 
   def new
-    @project = ::Parbudget::Project.new
+    @project = @model.new
   end
 
   def edit
@@ -180,10 +180,10 @@ class Admin::Parbudget::ProjectsController < Admin::Parbudget::BaseController
         @projects = @projects.where("year BETWEEN ? AND ?", parametrize[:search_year_to], parametrize[:search_year_end])
       elsif !parametrize[:search_year_to].blank?
         @filters.push("#{I18n.t('admin.parbudget.project.search_year_to')}: #{parametrize[:search_year_to]}")
-        @projects = @projects.where("date_at >= ?", parametrize[:search_year_to])
+        @projects = @projects.where("year >= ?", parametrize[:search_year_to])
       elsif !parametrize[:search_year_end].blank?
         @filters.push("#{I18n.t('admin.parbudget.project.search_year_end')}: #{parametrize[:search_year_end]}")
-        @projects = @projects.where("date_at <= ?", parametrize[:search_year_end])
+        @projects = @projects.where("year <= ?", parametrize[:search_year_end])
       end
     rescue
     end
