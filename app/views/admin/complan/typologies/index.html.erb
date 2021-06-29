@@ -1,0 +1,7 @@
+<%= render partial: "admin/complan/tabs"%>
+<%= render partial: "admin/complan/buttons", locals: {method: :post, remote: false, path: create_typology_admin_complan_typologies_path(format: :html), button_title: t("admin.menu.complan_tabs.new_typologies")}%>
+<%= render partial: "filters"%>
+
+<div id = "content-typologies" class="small-12 column">
+  <%= render partial: "content_typologies" %>
+</div>

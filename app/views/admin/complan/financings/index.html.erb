@@ -1,0 +1,51 @@
+<%= render partial: "admin/complan/tabs"%>
+<%= render partial: "admin/complan/buttons", locals: {path: new_admin_complan_financing_path, button_title: t("admin.menu.complan_tabs.new_financings")}%>
+<%= render partial: "admin/complan/subnav"%>
+<%#= render partial: "filters"%>
+
+<div class="small-12 column">
+ <% if @financings.any? %>
+    <h3><%= page_entries_info @financings %></h3>
+
+    <table class="stack sortable">
+      <thead>
+        <tr>
+          <%@model.get_columns.each do |c|%>
+            <th><%= link_to_complan_sorted_by c, @model.human_attribute_name(c) %></th>
+          <%end%>
+          <th style="width: 18em;"><%= t("admin.actions.actions") %></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @financings.each do |financing| %>
+            <tr id="<%= dom_id(financing) %>">
+              <%@model.get_columns.each do |c|%>
+                <td><%=financing.try(c).to_s.html_safe%></td>
+              <%end%>
+              <td style="width: 18em;">
+                <%= link_to admin_complan_financings_path, class: "button hollow", style: "margin: 0px", title: t('admin.complan.show_audits'), alt: t('admin.complan.show_audits')  do %>
+                  <span class="icon-settings"></span>
+                <%end%>
+                <%= link_to admin_complan_financing_path(financing, format: :pdf), style: "margin: 0px", class: "button", title: t('admin.complan.financing.pdf_download'), alt: t('admin.complan.financing.pdf_download')  do %>
+                  <span class="icon-document"></span>
+                <%end%>
+                <%= link_to admin_complan_financing_path(financing), class: "button", style: "margin: 0px", title: t('admin.complan.financing.show_financing'), alt: t('admin.complan.financing.show_financing')  do %>
+                  <span class="icon-eye"></span>
+                <%end%>
+                <%= link_to edit_admin_complan_financing_path(financing), class: "button", style: "margin: 0px", title: t('admin.complan.financing.title_update'), alt: t('admin.complan.financing.title_update')  do %>
+                  <span class="icon-edit"></span>
+                <%end%>
+                <%= link_to  admin_complan_financing_path(financing),method: :delete, class: "button hollow alert", style: "margin: 0px", title: t('admin.complan.financing.title_delete'), alt: t('admin.complan.financing.title_delete'), data: {confirm: t('admin.complan.financing.destroy_confirm')}  do %>
+                  <span class="icon-deleted"></span>
+                <%end%>
+              </td>
+            </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= paginate @financings %>
+  <% else %>
+    <div class="callout primary"><%= page_entries_info @financings %></div>
+  <% end %> 
+</div>

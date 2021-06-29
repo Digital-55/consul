@@ -10,7 +10,7 @@ class Admin::Complan::FinancingsController < Admin::Complan::BaseController
   end
 
   def new
-    @financing = ::Parbudget::Financing.new
+    @financing = @model.new
   end
 
   def edit
@@ -31,14 +31,6 @@ class Admin::Complan::FinancingsController < Admin::Complan::BaseController
 
   def update
     if @financing.update(financing_strong_params)
-      if financing_strong_params[:complan_financing_ids].blank?
-        @financing.complan_financings.each do |financing|
-          financing.complan_financing_id = nil
-          financing.save(validate: false)
-        end
-        @financing.complan_financings = []
-        @financing.save
-      end
       redirect_to admin_complan_financings_path,  notice: I18n.t("admin.complan.financing.update_success")
     else
       flash[:error] = I18n.t("admin.complan.financing.update_error")
@@ -50,12 +42,6 @@ class Admin::Complan::FinancingsController < Admin::Complan::BaseController
   end
 
   def destroy
-    @financing.complan_financings.each do |financing|
-      financing.complan_financing_id = nil
-      financing.save(validate: false)
-    end
-    @financing.complan_financings = []
-    @financing.save
     if @financing.destroy
       redirect_to admin_complan_financings_path,  notice: I18n.t("admin.complan.financing.destroy_success")
     else
@@ -82,7 +68,7 @@ class Admin::Complan::FinancingsController < Admin::Complan::BaseController
   private 
 
   def get_model
-    @model = ::Parbudget::Project
+    @model = ::Complan::Financing
   end
 
   def financing_strong_params
@@ -117,9 +103,9 @@ class Admin::Complan::FinancingsController < Admin::Complan::BaseController
   def load_data
     @status = []
     @subnav = [{title: "Todos",value: "all"}]
-    @model.pluck(:year).uniq.each do |year|
-      @subnav.push({title: "Año #{year}",value: year.to_s})
-    end
+    # @model.pluck(:year).uniq.each do |year|
+    #   @subnav.push({title: "Año #{year}",value: year.to_s})
+    # end
   end
 
   def search(parametrize = {})

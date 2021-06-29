@@ -1,0 +1,15 @@
+<%= form_tag({controller: "strategies",action: "index"}, {method: :get}) do %>
+    <div class="small-12 column">
+        <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+            <legend><%=t("admin.menu.complan_tabs.legend_filter")%></legend>
+            <div class="small-12 medium-3 column">
+                <%=label_tag :search_name, t('admin.complan.strategy.search_name')%>
+                <%= text_field_tag :search_name, params[:search_name] %>
+            </div> 
+            <div class="float-right clear">
+                <%= link_to t("admin.menu.complan_tabs.button_clean"), admin_complan_strategies_path, class: "button secondary" %>
+                <%= submit_tag t("admin.menu.complan_tabs.button_find"), class: "button" %>
+            </div>
+        </fieldset>
+    </div>
+<% end%>

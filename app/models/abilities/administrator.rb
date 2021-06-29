@@ -135,6 +135,14 @@ module Abilities
       can :manage, Complan::Editor
       can :manage, Complan::Reader
 
+      can :manage, Complan::Project
+      can :manage, Complan::Performance
+      can :manage, Complan::Center
+      can :manage, Complan::Financing
+      can :manage, Complan::Strategy
+      can :manage, Complan::Typology
+      can :manage, Complan::ThecnicalTable
+
     end
   end
 end

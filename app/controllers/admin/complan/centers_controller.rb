@@ -10,7 +10,7 @@ class Admin::Complan::CentersController < Admin::Complan::BaseController
   end
 
   def new
-    @center = ::Parbudget::Center.new
+    @center = @model.new
   end
 
   def edit
@@ -31,14 +31,6 @@ class Admin::Complan::CentersController < Admin::Complan::BaseController
 
   def update
     if @center.update(center_strong_params)
-      if center_strong_params[:complan_center_ids].blank?
-        @center.complan_centers.each do |center|
-          center.complan_center_id = nil
-          center.save(validate: false)
-        end
-        @center.complan_centers = []
-        @center.save
-      end
       redirect_to admin_complan_centers_path,  notice: I18n.t("admin.complan.center.update_success")
     else
       flash[:error] = I18n.t("admin.complan.center.update_error")
@@ -50,12 +42,6 @@ class Admin::Complan::CentersController < Admin::Complan::BaseController
   end
 
   def destroy
-    @center.complan_centers.each do |center|
-      center.complan_center_id = nil
-      center.save(validate: false)
-    end
-    @center.complan_centers = []
-    @center.save
     if @center.destroy
       redirect_to admin_complan_centers_path,  notice: I18n.t("admin.complan.center.destroy_success")
     else
@@ -82,7 +68,7 @@ class Admin::Complan::CentersController < Admin::Complan::BaseController
   private 
 
   def get_model
-    @model = ::Parbudget::Project
+    @model = ::Complan::Center
   end
 
   def center_strong_params
@@ -117,9 +103,9 @@ class Admin::Complan::CentersController < Admin::Complan::BaseController
   def load_data
     @status = []
     @subnav = [{title: "Todos",value: "all"}]
-    @model.pluck(:year).uniq.each do |year|
-      @subnav.push({title: "Año #{year}",value: year.to_s})
-    end
+    # @model.pluck(:year).uniq.each do |year|
+    #   @subnav.push({title: "Año #{year}",value: year.to_s})
+    # end
   end
 
   def search(parametrize = {})

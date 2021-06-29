@@ -1,21 +1,21 @@
-<% if @ambits.any? %>
-    <h3><%= page_entries_info @ambits %></h3>
+  <% if @strategies.any? %>
+    <h3><%= page_entries_info @strategies %></h3>
 
     <table class="stack sortable">
       <thead>
         <tr>
           <%@model.get_columns.each do |c|%>
-            <th><%=link_to_parbudget_sorted_by c, @model.human_attribute_name(c) %></th>
+            <th><%=link_to_complan_sorted_by c, @model.human_attribute_name(c) %></th>
           <%end%>
           <th style="width: 12em"><%= t("admin.actions.actions") %></th>
         </tr>
       </thead>
 
       <tbody>
-        <% @ambits.each do |ambit| %>
-          <%= form_for ambit, :url => update_ambit_admin_parbudget_ambit_path(ambit), method: :post do |f| %>
-            <tr id="<%= dom_id(ambit) %>">
-              <% if !params[:errors].blank? && ambit.id.to_i == params[:id].to_i %>
+        <% @strategies.each do |strategy| %>
+          <%= form_for strategy, :url => update_strategy_admin_complan_strategy_path(strategy), method: :post do |f| %>
+            <tr id="<%= dom_id(strategy) %>">
+              <% if !params[:errors].blank? && strategy.id.to_i == params[:id].to_i %>
                 <div id="error_explanation" data-alert class="callout alert" data-closable>
                   <button class="close-button" aria-label="<%= t("application.close") %>" type="button" data-close>
                     <span aria-hidden="true">&times;</span>
@@ -31,13 +31,13 @@
                 <td><%= f.text_field c, label: false, placeholder:  "#{@model.human_attribute_name(c)}..."  %></td>
               <%end%>
               <td style="width: 12em">
-                <%= link_to admin_parbudget_ambits_path, class: "button hollow", style: "margin: 0px", title: t('admin.parbudget.show_audits'), alt: t('admin.parbudget.show_audits')  do %>
+                <%= link_to admin_complan_strategies_path, class: "button hollow", style: "margin: 0px", title: t('admin.complan.show_audits'), alt: t('admin.complan.show_audits')  do %>
                   <span class="icon-settings"></span>
                 <%end%>
-                <%= f.button :submit, class: "button", title: t('admin.parbudget.ambit.update_ambit'), alt: t('admin.parbudget.ambit.update_ambit'), style: "margin: 0px"  do %>
+                <%= f.button :submit, class: "button", title: t('admin.complan.strategy.update_strategy'), alt: t('admin.complan.strategy.update_strategy'), style: "margin: 0px"  do %>
                   <span class="icon-edit"></span>
                 <%end%>
-                <%= link_to  admin_parbudget_ambit_path(ambit),method: :delete, class: "button hollow alert", style: "margin: 0px", title:  t('admin.parbudget.ambit.title_delete'), alt:  t('admin.parbudget.ambit.title_delete'), data: {confirm: t('admin.parbudget.ambit.destroy_confirm')}  do %>
+                <%= link_to  admin_complan_strategy_path(strategy),method: :delete, class: "button hollow alert", style: "margin: 0px", title:  t('admin.complan.strategy.title_delete'), alt:  t('admin.complan.strategy.title_delete'), data: {confirm: t('admin.complan.strategy.destroy_confirm')}  do %>
                   <span class="icon-deleted"></span>
                 <%end%>
               </td>
@@ -46,7 +46,7 @@
         <% end %>
       </tbody>
     </table>
-    <%= paginate @ambits %>
+    <%= paginate @strategies %>
   <% else %>
-    <div class="callout primary"><%= page_entries_info @ambits %></div>
+    <div class="callout primary"><%= page_entries_info @strategies %></div>
   <% end %>

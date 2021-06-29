@@ -4,9 +4,9 @@
     rows = []
     @filters ||= []
 
-    @responsibles.each do |responsible|
+    @financings.each do |financing|
       aux_row = []
-      @model.get_exporter.each {|ele| aux_row = aux_row + [responsible.try(ele)] }
+      @model.get_exporter.each {|ele| aux_row = aux_row + [financing.try(ele)] }
       rows.push(aux_row)
     end
 

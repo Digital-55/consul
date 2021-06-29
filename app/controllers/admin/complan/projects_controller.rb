@@ -1,4 +1,4 @@
-class Admin::Complan::FinancingsController < Admin::Complan::BaseController
+class Admin::Complan::ProjectsController < Admin::Complan::BaseController
   respond_to :html, :js, :csv, :pdf
   before_action :load_data, only: [:index]
   before_action :load_financing
@@ -6,145 +6,112 @@ class Admin::Complan::FinancingsController < Admin::Complan::BaseController
 
   def index
     search(params)
-    @financings = Kaminari.paginate_array(@financings).page(params[:page]).per(20)
+    @projects = Kaminari.paginate_array(@projects).page(params[:page]).per(20)
   end
 
-  def new
-    @financing = ::Parbudget::Financing.new
-  end
-
-  def edit
-  end
-
-  def create
-    @financing=  @model.new(financing_strong_params)
-    if @financing.save
-      redirect_to admin_complan_financings_path,  notice: I18n.t("admin.complan.financing.create_success")
+  def create_project
+    @project=  @model.new(project_strong_params)
+    if @project.save
+      redirect_to admin_complan_projects_path,  notice: I18n.t("admin.complan.project.create_success")
     else
-      flash[:error] = I18n.t("admin.complan.financing.create_error")
+      flash[:error] = I18n.t("admin.complan.project.create_error")
       render :new
     end
   rescue
-    flash[:error] = I18n.t("admin.complan.financing.create_error")
-    redirect_to admin_complan_financings_path
+    flash[:error] = I18n.t("admin.complan.project.create_error")
+    redirect_to admin_complan_projects_path
   end
 
-  def update
-    if @financing.update(financing_strong_params)
-      if financing_strong_params[:complan_financing_ids].blank?
-        @financing.complan_financings.each do |financing|
-          financing.complan_financing_id = nil
-          financing.save(validate: false)
-        end
-        @financing.complan_financings = []
-        @financing.save
-      end
-      redirect_to admin_complan_financings_path,  notice: I18n.t("admin.complan.financing.update_success")
+  def update_project
+    if @project.update(project_strong_params)
+      redirect_to admin_complan_projects_path,  notice: I18n.t("admin.complan.project.update_success")
     else
-      flash[:error] = I18n.t("admin.complan.financing.update_error")
+      flash[:error] = I18n.t("admin.complan.project.update_error")
       render :edit
     end
   rescue
-    flash[:error] = I18n.t("admin.complan.financing.update_error")
-    redirect_to admin_complan_financings_path    
+    flash[:error] = I18n.t("admin.complan.project.update_error")
+    redirect_to admin_complan_projects_path    
   end
 
   def destroy
-    @financing.complan_financings.each do |financing|
-      financing.complan_financing_id = nil
-      financing.save(validate: false)
-    end
-    @financing.complan_financings = []
-    @financing.save
-    if @financing.destroy
-      redirect_to admin_complan_financings_path,  notice: I18n.t("admin.complan.financing.destroy_success")
+    if @project.destroy
+      redirect_to admin_complan_projects_path,  notice: I18n.t("admin.complan.project.destroy_success")
     else
-      flash[:error] = I18n.t("admin.complan.financing.destroy_error")
-      redirect_to admin_complan_financings_path(errors: @financing.errors.full_messages)
+      flash[:error] = I18n.t("admin.complan.project.destroy_error")
+      redirect_to admin_complan_projects_path(errors: @project.errors.full_messages)
     end
   rescue
-    flash[:error] = I18n.t("admin.complan.financing.destroy_error")
-    redirect_to admin_complan_financings_path
-  end
-
-  def show
-    respond_to do |format|
-      format.html
-      format.pdf do
-        render pdf: @financing.denomination,
-        layout: 'pdf.html',
-        page_size: 'A4',
-        encoding: "UTF-8"
-      end
-    end
+    flash[:error] = I18n.t("admin.complan.project.destroy_error")
+    redirect_to admin_complan_projects_path
   end
 
   private 
 
   def get_model
-    @model = ::Parbudget::Project
+    @model = ::Complan::Project
   end
 
-  def financing_strong_params
-    params.require(:complan_financing).permit(:denomination, :code, :year,:web_title,:votes, :cost, :author, :complan_ambit_id,
+  def project_strong_params
+    params.require(:complan_project).permit(:denomination, :code, :year,:web_title,:votes, :cost, :author, :complan_ambit_id,
       :email, :phone, :url, :descriptive_memory, :complan_topic_id, :entity, :complan_responsible_id, :status,
-      :plate_proceeds, :license_plate, :plate_installed, :code_old, :complan_financing_ids => [],
+      :plate_proceeds, :license_plate, :plate_installed, :code_old, :complan_project_ids => [],
       :complan_economic_budgets_attributes=> [:id, :year, :import, :start_date, :end_date, :count_managing_body, :count_functional,
-        :economic,:element_pep,:financing,:type_contract,:_destroy], :complan_medias_attributes => [:id, :title, :text_document, 
+        :economic,:element_pep,:project,:type_contract,:_destroy], :complan_medias_attributes => [:id, :title, :text_document, 
         :attachment,  :_destroy], :complan_links_attributes => [:id,:url, :_destroy])
   end
 
   def load_resource
-    @financing = @model.find(params[:id])
+    @project = @model.find(params[:id])
   rescue
-    @financing = nil
+    @project = nil
   end
 
-  def load_financing
-    @financings = ::Parbudget::Financing.all
+  def load_project
+    @projects = ::Parbudget::Financing.all
     @ambits = ::Parbudget::Ambit.all.select(:id, :name, :code)
     @topics = ::Parbudget::Topic.all.select(:id,:name)
     @responsibles = ::Parbudget::Responsible.all.select(:id, :full_name)
     @status = [
-      [I18n.t('admin.complan.financing.status.definition'),I18n.t('admin.complan.financing.status.definition')],
-      [I18n.t('admin.complan.financing.status.contract'),I18n.t('admin.complan.financing.status.contract')],
-      [I18n.t('admin.complan.financing.status.exec'),I18n.t('admin.complan.financing.status.exec')],
-      [I18n.t('admin.complan.financing.status.finished'),I18n.t('admin.complan.financing.status.finished')],
-      [I18n.t('admin.complan.financing.status.invalid'),I18n.t('admin.complan.financing.status.invalid')]
+      [I18n.t('admin.complan.project.status.definition'),I18n.t('admin.complan.project.status.definition')],
+      [I18n.t('admin.complan.project.status.contract'),I18n.t('admin.complan.project.status.contract')],
+      [I18n.t('admin.complan.project.status.exec'),I18n.t('admin.complan.project.status.exec')],
+      [I18n.t('admin.complan.project.status.finished'),I18n.t('admin.complan.project.status.finished')],
+      [I18n.t('admin.complan.project.status.invalid'),I18n.t('admin.complan.project.status.invalid')]
     ]
   end
 
   def load_data
     @status = []
     @subnav = [{title: "Todos",value: "all"}]
-    @model.pluck(:year).uniq.each do |year|
-      @subnav.push({title: "Año #{year}",value: year.to_s})
-    end
+    # @model.pluck(:year).uniq.each do |year|
+    #   @subnav.push({title: "Año #{year}",value: year.to_s})
+    # end
   end
 
   def search(parametrize = {})
-    @financings = @model.all
+    @projects = @model.all
     @filters = []
 
     begin
       if !params[:subnav].blank? && params[:subnav].to_s != "all"
-        @financings = @financings.where(year: params[:subnav])
+        @projects = @projects.where(year: params[:subnav])
       end
     rescue
     end
 
     begin
       if !parametrize[:search_identificator].blank?
-        @filters.push("#{I18n.t('admin.complan.financing.search_identificator')}: #{parametrize[:search_identificator]}")
-        @financings = @financings.where("translate(UPPER(cast(code as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_identificator]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')")
+        @filters.push("#{I18n.t('admin.complan.project.search_identificator')}: #{parametrize[:search_identificator]}")
+        @projects = @projects.where("translate(UPPER(cast(code as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_identificator]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')")
       end
     rescue
     end
 
     begin
       if !parametrize[:search_title].blank?
-        @filters.push("#{I18n.t('admin.complan.financing.search_title')}: #{parametrize[:search_title]}")
-        @financings = @financings.where("translate(UPPER(cast(web_title as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_title]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU') OR
+        @filters.push("#{I18n.t('admin.complan.project.search_title')}: #{parametrize[:search_title]}")
+        @projects = @projects.where("translate(UPPER(cast(web_title as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_title]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU') OR
           translate(UPPER(cast(denomination as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_title]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')")
       end
     rescue
@@ -152,39 +119,39 @@ class Admin::Complan::FinancingsController < Admin::Complan::BaseController
 
     begin
       if !parametrize[:search_memory].blank?
-        @filters.push("#{I18n.t('admin.complan.financing.search_memory')}: #{parametrize[:search_memory]}")
-        @financings = @financings.where("translate(UPPER(cast(descriptive_memory as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_memory]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')")
+        @filters.push("#{I18n.t('admin.complan.project.search_memory')}: #{parametrize[:search_memory]}")
+        @projects = @projects.where("translate(UPPER(cast(descriptive_memory as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_memory]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')")
       end
     rescue
     end
 
     begin
       if !parametrize[:search_status].blank?
-        @filters.push("#{I18n.t('admin.complan.financing.search_status')}: #{parametrize[:search_status]}")
-        @financings = @financings.where("translate(UPPER(cast(status as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_status]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')")
+        @filters.push("#{I18n.t('admin.complan.project.search_status')}: #{parametrize[:search_status]}")
+        @projects = @projects.where("translate(UPPER(cast(status as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_status]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')")
       end
     rescue
     end
 
     begin
-      if !parametrize[:search_financing].blank?
-        @filters.push("#{I18n.t('admin.complan.financing.search_financing')}: #{parametrize[:search_financing]}")
-        @financings = @financings.where("id in (?)", ::Parbudget::Financing.where("translate(UPPER(cast(denomination as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_financing]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')").select(:complan_financing_id))
+      if !parametrize[:search_project].blank?
+        @filters.push("#{I18n.t('admin.complan.project.search_project')}: #{parametrize[:search_project]}")
+        @projects = @projects.where("id in (?)", ::Parbudget::Financing.where("translate(UPPER(cast(denomination as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast('%#{parametrize[:search_project]}%' as varchar)), 'ÁÉÍÓÚ', 'AEIOU')").select(:complan_project_id))
       end
     rescue
     end
 
     begin
       if !parametrize[:search_year_to].blank? && !parametrize[:search_year_end].blank?
-        @filters.push("#{I18n.t('admin.complan.financing.search_year_to')}: #{parametrize[:search_year_to]}")
-        @filters.push("#{I18n.t('admin.complan.financing.search_year_end')}: #{parametrize[:search_year_end]}")
-        @financings = @financings.where("year BETWEEN ? AND ?", parametrize[:search_year_to], parametrize[:search_year_end])
+        @filters.push("#{I18n.t('admin.complan.project.search_year_to')}: #{parametrize[:search_year_to]}")
+        @filters.push("#{I18n.t('admin.complan.project.search_year_end')}: #{parametrize[:search_year_end]}")
+        @projects = @projects.where("year BETWEEN ? AND ?", parametrize[:search_year_to], parametrize[:search_year_end])
       elsif !parametrize[:search_year_to].blank?
-        @filters.push("#{I18n.t('admin.complan.financing.search_year_to')}: #{parametrize[:search_year_to]}")
-        @financings = @financings.where("date_at >= ?", parametrize[:search_year_to])
+        @filters.push("#{I18n.t('admin.complan.project.search_year_to')}: #{parametrize[:search_year_to]}")
+        @projects = @projects.where("date_at >= ?", parametrize[:search_year_to])
       elsif !parametrize[:search_year_end].blank?
-        @filters.push("#{I18n.t('admin.complan.financing.search_year_end')}: #{parametrize[:search_year_end]}")
-        @financings = @financings.where("date_at <= ?", parametrize[:search_year_end])
+        @filters.push("#{I18n.t('admin.complan.project.search_year_end')}: #{parametrize[:search_year_end]}")
+        @projects = @projects.where("date_at <= ?", parametrize[:search_year_end])
       end
     rescue
     end
@@ -192,17 +159,17 @@ class Admin::Complan::FinancingsController < Admin::Complan::BaseController
     begin
       if !parametrize[:sort_by].blank?
         if parametrize[:direction].blank? || parametrize[:direction].to_s == "asc"
-          @financings = @financings.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }
+          @projects = @projects.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }
         else
-          @financings = @financings.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }.reverse
+          @projects = @projects.sort_by { |a| a.try(parametrize[:sort_by].to_sym) }.reverse
         end
       else
-        @financings = @financings.sort_by { |a| a.try(@model.get_columns[0].to_sym) }
+        @projects = @projects.sort_by { |a| a.try(@model.get_columns[0].to_sym) }
       end
     rescue
     end
   rescue
-    @financings = []
+    @projects = []
     @filters = []
   end
 end

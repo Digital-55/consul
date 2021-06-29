@@ -31,6 +31,8 @@ class ProbeOptionsController < ApplicationController
 
     def load_probe_option
       @probe_option = @probe.probe_options.find(params[:id])
+    rescue 
+      @probe_option = nil
     end
 
     def load_user_selection

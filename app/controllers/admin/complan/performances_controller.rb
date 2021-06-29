@@ -10,7 +10,7 @@ class Admin::Complan::PerformancesController < Admin::Complan::BaseController
   end
 
   def new
-    @performance = ::Parbudget::Performance.new
+    @performance = @model.new
   end
 
   def edit
@@ -31,14 +31,6 @@ class Admin::Complan::PerformancesController < Admin::Complan::BaseController
 
   def update
     if @performance.update(performance_strong_params)
-      if performance_strong_params[:complan_center_ids].blank?
-        @performance.complan_centers.each do |center|
-          center.complan_performance_id = nil
-          center.save(validate: false)
-        end
-        @performance.complan_centers = []
-        @performance.save
-      end
       redirect_to admin_complan_performances_path,  notice: I18n.t("admin.complan.performance.update_success")
     else
       flash[:error] = I18n.t("admin.complan.performance.update_error")
@@ -50,12 +42,6 @@ class Admin::Complan::PerformancesController < Admin::Complan::BaseController
   end
 
   def destroy
-    @performance.complan_centers.each do |center|
-      center.complan_performance_id = nil
-      center.save(validate: false)
-    end
-    @performance.complan_centers = []
-    @performance.save
     if @performance.destroy
       redirect_to admin_complan_performances_path,  notice: I18n.t("admin.complan.performance.destroy_success")
     else
@@ -82,7 +68,7 @@ class Admin::Complan::PerformancesController < Admin::Complan::BaseController
   private 
 
   def get_model
-    @model = ::Parbudget::Project
+    @model = ::Complan::Performance
   end
 
   def performance_strong_params
@@ -117,9 +103,9 @@ class Admin::Complan::PerformancesController < Admin::Complan::BaseController
   def load_data
     @status = []
     @subnav = [{title: "Todos",value: "all"}]
-    @model.pluck(:year).uniq.each do |year|
-      @subnav.push({title: "Año #{year}",value: year.to_s})
-    end
+    # @model.pluck(:year).uniq.each do |year|
+    #   @subnav.push({title: "Año #{year}",value: year.to_s})
+    # end
   end
 
   def search(parametrize = {})
