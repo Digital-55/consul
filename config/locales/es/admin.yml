@@ -723,7 +723,15 @@ es:
         update_typology: "Actualizar tipología"        
         title_delete: Borrar tipología
       thecnical_table:
-        search_name: Tipología
+        search_description: Descripción
+        search_name: Nombre
+        search_type: Tipo
+        search_start_date: Fecha desde
+        search_end_date: Fecha hasta
+        search_concert_start_date: Fecha concertación desde
+        search_concert_end_date: Fecha concertación hasta
+        search_year_start: Año desde
+        search_year_end: Año hasta
         create_success: "Se ha creado correctamente la mesa técnica"
         create_error: "No se ha podido crear la mesa técnica"
         update_success: "Se ha actualizado correctamente la mesa técnica"
@@ -773,7 +781,11 @@ es:
         title_data_person: Personas
         title_data: Datos del centro
       financing:
-        search_name: Tipología
+        search_description: Descripción
+        search_name: Nombre
+        search_departure: Partida
+        search_date_start: Fecha desde
+        search_date_end: Fecha hasta
         create_success: "Se ha creado correctamente la financiación"
         create_error: "No se ha podido crear la financiación"
         update_success: "Se ha actualizado correctamente la financiación"
@@ -784,7 +796,14 @@ es:
         update_financing: "Actualizar financiación"        
         title_delete: Borrar financiación
       performance:
-        search_name: Tipología
+        search_description: Descripción
+        search_project: Proyecto
+        search_financing: Financiación
+        search_status: Estado
+        search_vulnerability_index: Índice de vulnerabilidad
+        search_type: Tipo
+        search_start_date: Fecha desde
+        search_end_date: Fecha hasta
         create_success: "Se ha creado correctamente la actuación"
         create_error: "No se ha podido crear la actuación"
         update_success: "Se ha actualizado correctamente la actuación"
@@ -1073,8 +1092,8 @@ es:
       complan_tabs:
         performances: Actuaciones
         new_performances: "Nueva actuación"
-        centers: Centros gestores
-        new_centers: Nuevo centro gestor
+        centers: Centros
+        new_centers: Nuevo centro
         projects: Proyectos
         new_projects: Nuevo proyecto
         strategies: Estrategias

@@ -2,40 +2,47 @@
     <div class="small-12 column">
         <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
             <legend><%=t("admin.menu.complan_tabs.legend_filter")%></legend>
-            <div class="small-12 medium-4 column">
+            <div class="small-12 column">
+            <div class="small-12 medium-4 column ">
                 <%=label_tag :search_description, t('admin.complan.performance.search_description')%>
                 <%= text_field_tag :search_description, params[:search_description] %>
             </div>
-            <div class="small-12 medium-4 column">
+            <div class="small-12 medium-4 column ">
                 <%=label_tag :search_project, t('admin.complan.performance.search_project')%>
                 <%= select_tag :search_project, options_for_select(@projects || [], params[:search_project]), include_blank: true %>
             </div>
-            <div class="small-12 medium-4 column">
+            <div class="small-12 medium-4 column ">
                 <%=label_tag :search_financing, t('admin.complan.performance.search_financing')%>
                 <%= select_tag :search_financing, options_for_select(@financings || [], params[:search_financing]), include_blank: true %>
             </div>
+            </div>
+            <div class="small-12 column">
             <%if params[:subnav].blank? || params[:subnav].to_s=="all"%>
-                <div class="small-12 medium-4 column">
+                <div class="small-12 medium-4 column ">
                     <%=label_tag :search_status, t('admin.complan.performance.search_status')%>
                     <%= select_tag :search_status, options_for_select(@statuses || [], params[:search_status]), include_blank: true %>
                 </div>
             <%end%>
-            <div class="small-12 medium-4 column">
-                <%=label_tag :search_start_date, t('admin.complan.performance.search_start_date')%>
-                <%= date_field_tag :search_start_date,  params[:search_start_date] %>
-            </div>
-            <div class="small-12 medium-4 column">
-                <%=label_tag :search_end_date, t('admin.complan.performance.search_end_date')%>
-                <%= date_field_tag :search_end_date,  params[:search_end_date] %>
-            </div>              
-            <div class="small-12 medium-4 column end">
+            <div class="small-12 medium-4 column ">
                 <%=label_tag :search_vulnerability_index, t('admin.complan.performance.search_vulnerability_index')%>
                 <%= text_field_tag :search_vulnerability_index, params[:search_vulnerability_index] %>
             </div>  
-             <div class="small-12 medium-4 column end">
+             <div class="small-12 medium-4 column ">
                 <%=label_tag :search_type, t('admin.complan.performance.search_type')%>
                 <%= select_tag :search_type, options_for_select(@types_performances || [], params[:search_type]), include_blank: true %>
-            </div>           
+            </div>
+            </div>
+            <div class="small-12 column">
+            <div class="small-12 medium-4 column end">
+                <%=label_tag :search_start_date, t('admin.complan.performance.search_start_date')%>
+                <%= date_field_tag :search_start_date,  params[:search_start_date] %>
+            </div>
+            <div class="small-12 medium-4 column end">
+                <%=label_tag :search_end_date, t('admin.complan.performance.search_end_date')%>
+                <%= date_field_tag :search_end_date,  params[:search_end_date] %>
+            </div>       
+            </div>       
+                       
             <div class="float-right clear">
                 <%= link_to t("admin.menu.complan_tabs.button_clean"), admin_complan_performances_path, class: "button secondary" %>
                 <%= submit_tag t("admin.menu.complan_tabs.button_find"), class: "button" %>
