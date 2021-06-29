@@ -12,7 +12,6 @@ module Abilities
       can :manage, Complan::Strategy
       can :manage, Complan::Typology
       can :manage, Complan::ThecnicalTable
-
     end
   end
 end

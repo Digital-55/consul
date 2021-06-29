@@ -1,7 +1,6 @@
 class Admin::Complan::ProjectsController < Admin::Complan::BaseController
   respond_to :html, :js, :csv, :pdf
   before_action :load_data, only: [:index]
-  before_action :load_financing
   before_action :authenticate_editor, only: [:new, :create, :edit, :update, :destroy]
 
   def index
