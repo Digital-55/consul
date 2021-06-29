@@ -2,9 +2,25 @@
     <div class="small-12 column">
         <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
             <legend><%=t("admin.menu.complan_tabs.legend_filter")%></legend>
+            <div class="small-12 medium-6 column">
+                <%=label_tag :search_description, t('admin.complan.strategy.search_description')%>
+                <%= text_field_tag :search_description, params[:search_description] %>
+            </div> 
             <div class="small-12 medium-3 column">
                 <%=label_tag :search_name, t('admin.complan.strategy.search_name')%>
                 <%= text_field_tag :search_name, params[:search_name] %>
+            </div> 
+            <div class="small-12 medium-3 column">
+                <%=label_tag :search_departure, t('admin.complan.strategy.search_departure')%>
+                <%= text_field_tag :search_departure, params[:search_departure] %>
+            </div> 
+            <div class="small-12 medium-3 column end">
+                <%=label_tag :search_start_date, t('admin.complan.strategy.search_start_date')%>
+                <%= date_field_tag :search_start_date, params[:search_start_date] %>
+            </div> 
+            <div class="small-12 medium-3 column end">
+                <%=label_tag :search_end_date, t('admin.complan.strategy.search_end_date')%>
+                <%= date_field_tag :search_end_date, params[:search_end_date] %>
             </div> 
             <div class="float-right clear">
                 <%= link_to t("admin.menu.complan_tabs.button_clean"), admin_complan_strategies_path, class: "button secondary" %>

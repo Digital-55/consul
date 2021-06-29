@@ -734,7 +734,11 @@ es:
         update_thecnical_table: "Actualizar mesa técnica"        
         title_delete: Borrar mesa técnica
       strategy:
-        search_name: Tipología
+        search_name: Nombre
+        search_description: Descripción
+        search_departure: Partida
+        search_start_date: Fecha desde
+        search_end_date: Fecha hasta
         create_success: "Se ha creado correctamente la estrategia"
         create_error: "No se ha podido crear la estrategia"
         update_success: "Se ha actualizado correctamente la estrategia"
@@ -745,16 +749,29 @@ es:
         update_strategy: "Actualizar estrategia"        
         title_delete: Borrar estrategia
       center:
-        search_name: Tipología
+        search_organism: "Organismo"
+        search_denomination: "Denominación"
+        search_address: "Dirección"
+        search_dg: "DG"
+        search_sg: "SG"
         create_success: "Se ha creado correctamente el centro"
         create_error: "No se ha podido crear el centro"
         update_success: "Se ha actualizado correctamente el centro"
         update_error: "No se ha podido actualizar el centro"
         destroy_success: "Se ha eliminado correctamente el centro"
         destroy_error: "No se ha podido eliminar el centro"
-        destroy_confirm: "¿Desea eliminar el centro seleccionada?"
-        update_center: "Actualizar centro"        
+        destroy_confirm: "¿Desea eliminar el centro seleccionado?"
+        update_center: "Actualizar centro"  
+        show_center: "Ver centro"
+        title_new: Nuevo centro
+        title_update: Editar centro
+        pdf_download: "Descargar PDF del centro"      
         title_delete: Borrar centro
+        add_person: "Añadir persona"
+        delete_person: "Borrar persona"
+        subtitle_person: Persona
+        title_data_person: Personas
+        title_data: Datos del centro
       financing:
         search_name: Tipología
         create_success: "Se ha creado correctamente la financiación"
@@ -778,6 +795,18 @@ es:
         update_performance: "Actualizar actuación"        
         title_delete: Borrar actuación
       project:
+        search_name: "Nombre"
+        search_description: "Descripción"
+        search_strategy: "Estrategia"
+        create_success: "Se ha creado correctamente el proyecto"
+        create_error: "No se ha podido crear el proyecto"
+        update_success: "Se ha actualizado correctamente el proyecto"
+        update_error: "No se ha podido actualizar el proyecto"
+        destroy_success: "Se ha eliminado correctamente el proyecto"
+        destroy_error: "No se ha podido eliminar el proyecto"
+        destroy_confirm: "¿Desea eliminar el proyecto seleccionado?"
+        update_project: "Actualizar proyecto"        
+        title_delete: Borrar proyecto
     parbudget:
       edit:
         submit_button: "Guardar cambios"

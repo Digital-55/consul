@@ -1,47 +1,72 @@
 <% provide :title do %>
- <%= t("admin.header.title") %> - <%= t("admin.menu.parbudget_maintance") %> - <%= t("admin.menu.parbudget_tabs.responsibles") %> - <%= @responsible.full_name %>
+  <%= t("admin.header.title") %> - <%= t("admin.menu.complan_maintance") %> - <%= t("admin.menu.complan_tabs.centers") %> - <%= @center.denomination %>
 <% end %>
 
-<div class="parbudget-responsible-show">
-  <%= back_link_to admin_parbudget_responsibles_path, t("admin.sures.actuations.new.back") %>
-
- 
-    <div class="small-12 column">
-        <h2><%= @responsible.full_name %></h2>
-        <div class="float-right">
-            <%= link_to t('admin.parbudget.responsible.pdf_download'), current_path_with_query_params(id: @responsible.id, format: :pdf), class: "button" %>
-        </div>
+<div class="complan-center-show">
+  <%= back_link_to admin_complan_centers_path, t("admin.sures.actuations.new.back") %>
+  <div class="small-12 column">
+    <h2><%= @center.denomination %></h2>
+    <div class="float-right">
+      <%= link_to t('admin.complan.center.pdf_download'), current_path_with_query_params(id: @center.id, format: :pdf), class: "button" %>
     </div>
-
- 
+  </div> 
   <div class="small-12 column">
     <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
-      <legend><%=t('admin.parbudget.responsible.title_data')%></legend>
-      <div class="row">
-        <div class="small-12 medium-6  column end"  >
-            <p><b><%=@model.human_attribute_name(:full_name)%></b></p>
-            <p><%= @responsible.try(:full_name) %></p>
-        </div>
-        <div class="small-12 medium-3  column end"  >
-            <p><b><%=@model.human_attribute_name(:email)%></b></p>
-            <p><%=  @responsible.try(:email) %></p>
-        </div>
-        <div class="small-12 medium-3  column end"  >
-            <p><b><%=@model.human_attribute_name(:phone)%></b></p>
-            <p><%=  @responsible.try(:phone) %></p>
-        </div>
-        
+      <legend><%=t("admin.complan.center.title_data")%></legend>
+  
+      <div class="small-12 medium-6  column end"  >
+        <p><b><%=@model.human_attribute_name(:denomination)%></b></p>
+        <p><%= @center.try(:denomination) %></p>
       </div>
-      <div class="row">
-        <div class="small-12 medium-6  column end"  >
-            <p><b><%=@model.human_attribute_name(:position)%></b></p>
-            <p><%=  @responsible.try(:position) %></p>
-        </div>
-        <div class="small-12 medium-6 column end">
-            <p><b><%=@model.human_attribute_name(:parbudget_center)%></b>
-            <p><%=  @responsible.try(:parbudget_center).try(:denomination) %></b>
-        </div>
+      <div class="small-12 medium-6  column end"  >
+        <p><b><%=@model.human_attribute_name(:organism)%></b></p>
+        <p><%= @center.try(:organism) %></p>
       </div>
+      <div class="small-12 medium-6  column end"  >
+        <p><b><%=@model.human_attribute_name(:address)%></b></p>
+        <p><%= @center.try(:address) %></p>
+      </div>
+      <div class="small-12 medium-3  column end"  >
+        <p><b><%=@model.human_attribute_name(:dg)%></b></p>
+        <p><%= @center.try(:dg) %></p>
+      </div>
+      <div class="small-12 medium-3  column end"  >
+        <p><b><%=@model.human_attribute_name(:sg)%></b></p>
+        <p><%= @center.try(:sg) %></p>
+      </div>
+    </fieldset>
+    <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+      <legend><%=t("admin.complan.center.title_data_person")%></legend>
+      <div id="nested_complan_people">
+        <% @center.try(:complan_people).each do |person| %>
+          <div id="<%= dom_id(person) %>" class="nested-fields">
+            <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+              <legend><%=t("admin.complan.center.subtitle_person", i: "")%></legend>
+              
+              <div class="small-12 medium-6  column end"  >
+                <p><b><%=person.class.human_attribute_name(:name)%></b></p>
+                <p><%= person.try(:name) %></p>
+              </div>
+              <div class="small-12 medium-6 column end"  >
+                <p><b><%=person.class.human_attribute_name(:position)%></b></p>
+                <p><%= person.try(:position) %></p>
+              </div>
+              <div class="small-12 medium-6  column end"  >
+                <p><b><%=person.class.human_attribute_name(:phone)%></b></p>
+                <p><%= person.try(:phone) %></p>
+              </div>
+              <div class="small-12 medium-6  column end"  >
+                <p><b><%=person.class.human_attribute_name(:email)%></b></p>
+                <p><%= person.try(:email) %></p>
+              </div>
+              <div class="small-12 medium-12  column end"  >
+                <p><b><%=person.class.human_attribute_name(:address)%></b></p>
+                <p><%= person.try(:address) %></p>
+              </div>
+            </fieldset>
+          </div>
+        <% end %>
+      </div>       
     </fieldset>
   </div>
 </div>

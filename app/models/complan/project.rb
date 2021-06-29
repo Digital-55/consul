@@ -7,8 +7,22 @@ class Complan::Project < ApplicationRecord
 
     def self.get_columns
         [
-           
+           :name,
+           :description,
+           :complan_strategy_id
         ]
+    end
+
+    def self.get_exporter
+        [
+           :name,
+           :description,
+           :strategy
+        ]
+    end
+
+    def strategy
+        self.try(:complan_strategy).try(:name)
     end
    
 end

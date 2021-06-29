@@ -8,7 +8,7 @@ class Complan::Strategy < ApplicationRecord
             :name,
             :departure,
             :description,
-            :approval_date
+            :approbal_date
         ]
     end
 
@@ -17,7 +17,7 @@ class Complan::Strategy < ApplicationRecord
             :name,
             :departure,
             :description,
-            :approval_date
+            :approbal_date
         ]
     end
    

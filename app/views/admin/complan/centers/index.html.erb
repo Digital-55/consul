@@ -1,7 +1,6 @@
 <%= render partial: "admin/complan/tabs"%>
 <%= render partial: "admin/complan/buttons", locals: {path: new_admin_complan_center_path, button_title: t("admin.menu.complan_tabs.new_centers")}%>
-<%= render partial: "admin/complan/subnav"%>
-<%#= render partial: "filters"%>
+<%= render partial: "filters"%>
 
 <div class="small-12 column">
   <% if @centers.any? %>

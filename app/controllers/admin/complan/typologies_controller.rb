@@ -10,8 +10,8 @@ class Admin::Complan::TypologiesController < Admin::Complan::BaseController
   end
   
   def create_typology
-    @typology=  @model.new(typology_strong_params)
-    if @typology.save
+    @typology=  @model.new
+    if @typology.save(validate: false)
       redirect_to admin_complan_typologies_path,  notice: I18n.t("admin.complan.typology.create_success")
     else
       flash[:error] = I18n.t("admin.complan.typology.create_error")
