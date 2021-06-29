@@ -705,6 +705,79 @@ es:
       milestones:
         index:
           title: Seguimiento
+    complan:
+      edit:
+        submit_button: "Guardar cambios"
+      new:
+        submit_button: "Crear"
+      show_audits: "Ver auditorias"
+      typology:
+        search_name: Tipología
+        create_success: "Se ha creado correctamente la tipología"
+        create_error: "No se ha podido crear la tipología"
+        update_success: "Se ha actualizado correctamente la tipología"
+        update_error: "No se ha podido actualizar la tipología"
+        destroy_success: "Se ha eliminado correctamente la tipología"
+        destroy_error: "No se ha podido eliminar la tipología"
+        destroy_confirm: "¿Desea eliminar la tipología seleccionada?"
+        update_typology: "Actualizar tipología"        
+        title_delete: Borrar tipología
+      thecnical_table:
+        search_name: Tipología
+        create_success: "Se ha creado correctamente la mesa técnica"
+        create_error: "No se ha podido crear la mesa técnica"
+        update_success: "Se ha actualizado correctamente la mesa técnica"
+        update_error: "No se ha podido actualizar la mesa técnica"
+        destroy_success: "Se ha eliminado correctamente la mesa técnica"
+        destroy_error: "No se ha podido eliminar la mesa técnica"
+        destroy_confirm: "¿Desea eliminar la mesa técnica seleccionada?"
+        update_thecnical_table: "Actualizar mesa técnica"        
+        title_delete: Borrar mesa técnica
+      strategy:
+        search_name: Tipología
+        create_success: "Se ha creado correctamente la estrategia"
+        create_error: "No se ha podido crear la estrategia"
+        update_success: "Se ha actualizado correctamente la estrategia"
+        update_error: "No se ha podido actualizar la estrategia"
+        destroy_success: "Se ha eliminado correctamente la estrategia"
+        destroy_error: "No se ha podido eliminar la estrategia"
+        destroy_confirm: "¿Desea eliminar la estrategia seleccionada?"
+        update_strategy: "Actualizar estrategia"        
+        title_delete: Borrar estrategia
+      center:
+        search_name: Tipología
+        create_success: "Se ha creado correctamente el centro"
+        create_error: "No se ha podido crear el centro"
+        update_success: "Se ha actualizado correctamente el centro"
+        update_error: "No se ha podido actualizar el centro"
+        destroy_success: "Se ha eliminado correctamente el centro"
+        destroy_error: "No se ha podido eliminar el centro"
+        destroy_confirm: "¿Desea eliminar el centro seleccionada?"
+        update_center: "Actualizar centro"        
+        title_delete: Borrar centro
+      financing:
+        search_name: Tipología
+        create_success: "Se ha creado correctamente la financiación"
+        create_error: "No se ha podido crear la financiación"
+        update_success: "Se ha actualizado correctamente la financiación"
+        update_error: "No se ha podido actualizar la financiación"
+        destroy_success: "Se ha eliminado correctamente la financiación"
+        destroy_error: "No se ha podido eliminar la financiación"
+        destroy_confirm: "¿Desea eliminar la financiación seleccionada?"
+        update_financing: "Actualizar financiación"        
+        title_delete: Borrar financiación
+      performance:
+        search_name: Tipología
+        create_success: "Se ha creado correctamente la actuación"
+        create_error: "No se ha podido crear la actuación"
+        update_success: "Se ha actualizado correctamente la actuación"
+        update_error: "No se ha podido actualizar la actuación"
+        destroy_success: "Se ha eliminado correctamente la actuación"
+        destroy_error: "No se ha podido eliminar la actuación"
+        destroy_confirm: "¿Desea eliminar la actuación seleccionada?"
+        update_performance: "Actualizar actuación"        
+        title_delete: Borrar actuación
+      project:
     parbudget:
       edit:
         submit_button: "Guardar cambios"
