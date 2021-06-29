@@ -1,53 +1,53 @@
 <% provide :title do %>
- <%= t("admin.header.title") %> - <%= t("admin.menu.parbudget_maintance") %> - <%= t("admin.menu.parbudget_tabs.centers") %> - <%= @center.denomination %>
+ <%= t("admin.header.title") %> - <%= t("admin.menu.complan_maintance") %> - <%= t("admin.menu.complan_tabs.performances") %> - <%= @performance.denomination %>
 <% end %>
 
-<div class="parbudget-center-show">
-  <%= back_link_to admin_parbudget_centers_path, t("admin.sures.actuations.new.back") %>
+<div class="complan-performance-show">
+  <%= back_link_to admin_complan_performances_path, t("admin.sures.actuations.new.back") %>
 
  
   <div class="small-12 column">
-    <h2><%= @center.denomination %></h2>
+    <h2><%= @performance.denomination %></h2>
     <div class="float-right">
-      <%= link_to t('admin.parbudget.center.pdf_download'), current_path_with_query_params(id: @center.id, format: :pdf), class: "button" %>
+      <%= link_to t('admin.complan.performance.pdf_download'), current_path_with_query_params(id: @performance.id, format: :pdf), class: "button" %>
     </div>
   </div>
 
   <div class="small-12 column">
     <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
-        <legend><%=t("admin.parbudget.center.title_data")%></legend>
+        <legend><%=t("admin.complan.performance.title_data")%></legend>
       <div class="small-12 medium-3  column end"  >
         <p><b><%=@model.human_attribute_name(:code)%></b></p>
-        <p><%= @center.try(:code) %></p>
+        <p><%= @performance.try(:code) %></p>
       </div>
       <div class="small-12 medium-3  column end"  >
         <p><b><%=@model.human_attribute_name(:code_section)%></b></p>
-        <p><%= @center.try(:code_section) %></p>
+        <p><%= @performance.try(:code_section) %></p>
       </div>
       <div class="small-12 medium-3  column end"  >
         <p><b><%=@model.human_attribute_name(:code_program)%></b></p>
-        <p><%= @center.try(:code_program) %></p>
+        <p><%= @performance.try(:code_program) %></p>
       </div>
       <div class="small-12 medium-3  column end"  >
         <p><b><%=@model.human_attribute_name(:responsible)%></b></p>
-        <p><%= @center.try(:responsible) %></p>
+        <p><%= @performance.try(:responsible) %></p>
       </div>
       <div class="small-12 medium-6  column end"  >
         <p><b><%=@model.human_attribute_name(:denomination)%></b></p>
-        <p><%= @center.try(:denomination) %></p>
+        <p><%= @performance.try(:denomination) %></p>
       </div>
       <div class="small-12 medium-6  column end"  >
         <p><b><%=@model.human_attribute_name(:government_area)%></b></p>
-        <p><%= @center.try(:government_area) %></p>
+        <p><%= @performance.try(:government_area) %></p>
       </div>
       <div class="small-12  column end"  >
         <p><b><%=@model.human_attribute_name(:general_direction)%></b></p>
-        <p><%= @center.try(:general_direction) %></p>
+        <p><%= @performance.try(:general_direction) %></p>
       </div>
     </fieldset>
     <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
-      <legend><%=t("admin.parbudget.center.title_responsibles")%></legend>
-        <%@center.parbudget_responsibles.each do |responsible|%>
+      <legend><%=t("admin.complan.performance.title_responsibles")%></legend>
+        <%@performance.complan_responsibles.each do |responsible|%>
           <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
             <div class="small-12 medium-6  column end"  >
               <p><b><%=responsible.class.human_attribute_name(:full_name)%></b></p>
