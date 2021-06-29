@@ -1,5 +1,5 @@
 class Admin::Complan::EditorsController < Admin::BaseController
-  load_and_authorize_resource
+  load_and_authorize_resource :editor, class: "Complan::Editor"
   has_filters %w[users superadministrators administrators sures_administrators section_administrators 
     organizations officials moderators valuators managers consultants editors editors_parbudget readers_parbudget editors_complan readers_complan]
 
@@ -8,6 +8,8 @@ class Admin::Complan::EditorsController < Admin::BaseController
   end
 
   def destroy
+    begin
+      @complan_editor = Complan::Editor.find(params[:id])
       if !@complan_editor.blank?
         if !current_user.blank? && current_user.id == @complan_editor.user_id
           flash[:error] = I18n.t("admin.complan_editors.administrator.restricted_removal")
@@ -22,8 +24,9 @@ class Admin::Complan::EditorsController < Admin::BaseController
       end
 
       redirect_to admin_complan_editors_path
-  rescue
-    flash[:error] = I18n.t("admin.complan_editors.administrator.restricted_removal")
-    redirect_to admin_complan_editors_path
+    rescue
+      flash[:error] = I18n.t("admin.complan_editors.administrator.restricted_removal")
+      redirect_to admin_complan_editors_path
+    end
   end
 end

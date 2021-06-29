@@ -12,31 +12,23 @@
         <th scope="col"><%= t("admin.complan_editors.index.email") %></th>
         <th scope="col" class="small-3"><%= t("admin.shared.actions") %></th>
       </thead>
-      <% @complan_editors.each do |complan_readers| %>
-        <tr id="<%= dom_id(complan_readers)%>">
+      <% @complan_editors.each do |complan_editor| %>
+        <tr id="<%= dom_id(complan_editor)%>">
           <td class="text-center">
-            <%= complan_readers.try(:id)%>
+            <%= complan_editor.try(:id)%>
           </td>
           <td>
-            <%= complan_readers.try(:name) %>
+            <%= complan_editor.try(:name) %>
           </td>
           <td>
-            <%= complan_readers.try(:email) %>
+            <%= complan_editor.try(:email) %>
           </td>
           <td>
-            <% if complan_readers.try(:persisted?) %>
-              <%= link_to t("admin.complan_editors.complan_readers.delete"),
-                          admin_complan_readers_path(complan_readers),
-                          method: :delete,
-                          class: "button hollow alert expanded"
-              %>
-            <% else %>
-              <%= link_to t("admin.complan_editors.complan_readers.add"),
-                          { controller: "admin/complan_editors", action: :create,
-                            user_id: complan_readers.user_id },
-                            method: :post,
-                            class: "button success expanded" %>
-            <% end %>
+            <%= link_to t("admin.complan_editors.complan_editor.delete"),
+                        admin_complan_editor_path(complan_editor),
+                        method: :delete,
+                        class: "button hollow alert expanded"
+            %>
           </td>
         </tr>
       <% end %>

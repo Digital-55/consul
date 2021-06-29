@@ -41,8 +41,12 @@ namespace :admin do
     resources :projects
     resources :responsibles
     resources :meetings
-    resources :editors
-    resources :readers
+    resources :editors, only: [:index, :new, :create, :destroy] do
+      get :search, on: :collection
+    end
+    resources :readers, only: [:index, :new, :create, :destroy] do
+      get :search, on: :collection
+    end
 
   end
 
@@ -63,8 +67,12 @@ namespace :admin do
       post :update_typology, on: :member
     end
     resources :thecnical_tables
-    resources :editors
-    resources :readers
+    resources :editors, only: [:index, :new, :create, :destroy] do
+      get :search, on: :collection
+    end
+    resources :readers, only: [:index, :new, :create, :destroy] do
+      get :search, on: :collection
+    end
   end
 
   resources :hidden_users, only: [:index, :show] do

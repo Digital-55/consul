@@ -76,6 +76,22 @@ FactoryBot.define do
     user
   end
 
+  factory :parbudget_editor do
+    user
+  end
+
+  factory :parbudget_reader do
+    user
+  end
+
+  factory :complan_editor do
+    user
+  end
+
+  factory :complan_reader do
+    user
+  end
+
   factory :poll_officer, class: "Poll::Officer" do
     user
   end

@@ -24,19 +24,11 @@
             <%= parbudget_reader.try(:email) %>
           </td>
           <td>
-            <% if parbudget_reader.try(:persisted?) %>
-              <%= link_to t("admin.parbudget_readers.administrator.delete"),
-                          admin_parbudget_reader_path(parbudget_reader),
-                          method: :delete,
-                          class: "button hollow alert expanded"
-              %>
-            <% else %>
-              <%= link_to t("admin.parbudget_readers.administrator.add"),
-                          { controller: "admin/parbudget_readers", action: :create,
-                            user_id: parbudget_reader.user_id },
-                            method: :post,
-                            class: "button success expanded" %>
-            <% end %>
+            <%= link_to t("admin.parbudget_readers.administrator.delete"),
+                        admin_parbudget_reader_path(parbudget_reader),
+                        method: :delete,
+                        class: "button hollow alert expanded"
+            %>
           </td>
         </tr>
       <% end %>

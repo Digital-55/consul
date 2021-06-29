@@ -1230,7 +1230,7 @@ es:
         title: Crear nuevo usuario gestor de Planes Concertados
     complan_editors:
       index:
-        title: Gestores escritura Planes Concertados
+        title: Gestores Escritura Planes Concertados
         create: Nuevo Gestor de escritura
         back: Volver
         name: Nombre
