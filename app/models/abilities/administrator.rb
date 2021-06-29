@@ -64,10 +64,6 @@ module Abilities
       can [:search, :create, :index, :destroy], ::Consultant
       can [:search, :create, :index, :destroy], ::Editor
       can [:search, :create, :index, :destroy], ::Moderator
-      can [:search, :create, :index, :destroy], ::Parbudget::Editor
-      can [:search, :create, :index, :destroy], ::Parbudget::Reader
-      can [:search, :create, :index, :destroy], ::Complan::Editor
-      can [:search, :create, :index, :destroy], ::Complan::Reader
 
       can [:search, :show, :edit, :update, :create, :index, :destroy, :summary], ::Valuator
       can [:search, :create, :index, :destroy], ::Manager
@@ -133,6 +129,12 @@ module Abilities
       can :manage, Parbudget::Meeting
       can :manage, Parbudget::Topic
       can :manage, Parbudget::Responsible
+      
+      can :manage, Parbudget::Editor
+      can :manage, Parbudget::Reader
+
+      can :manage, Complan::Editor
+      can :manage, Complan::Reader
 
       can :manage, Complan::Project
       can :manage, Complan::Performance

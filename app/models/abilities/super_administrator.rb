@@ -117,6 +117,21 @@ module Abilities
       can :create, ModeratedTexts::Import
 
       can :manage, ImportUser
+
+      can :manage, Parbudget::Editor
+      can :manage, Parbudget::Reader
+
+      can :manage, Parbudget::Ambit
+      can :manage, Parbudget::Project
+      can :manage, Parbudget::Center
+      can :manage, Parbudget::Meeting
+      can :manage, Parbudget::Topic
+      can :manage, Parbudget::Responsible
+      can :manage, Parbudget::Editor
+      can :manage, Parbudget::Reader
+
+      can :manage, Complan::Editor
+      can :manage, Complan::Reader
     end
   end
 end

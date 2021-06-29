@@ -1,6 +1,6 @@
 <div class="admin-sidebar" data-equalizer-watch>
   <ul id="admin_menu" data-accordion-menu data-multi-open="false">
-    <%if !current_user.parbudget_reader? && !current_user.parbudget_editor? && !current_user.complan_editor && !current_user.complan_reader? %>
+    <%if !current_user.parbudget_reader? && !current_user.parbudget_editor? && !current_user.complan_editor? && !current_user.complan_reader? %>
       <%if !current_user.consultant?%>
         <%if !current_user.editor? %>
           <% if feature?(:proposals) %>

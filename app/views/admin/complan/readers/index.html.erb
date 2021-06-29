@@ -1,6 +1,5 @@
 <h2><%= t("admin.complan_readers.index.title") %></h2>
 <%= render "shared/profiles_filter_subnav", i18n_namespace: "admin.users" %>
-<%= render "admin/shared/user_search", url: search_admin_complan_readers_path %>
 
 <div id="complan_readers">
   <% if @complan_readers.any? %>
@@ -25,19 +24,11 @@
             <%= complan_reader.try(:email) %>
           </td>
           <td>
-            <% if complan_reader.try(:persisted?) %>
-              <%= link_to t("admin.complan_readers.complan_reader.delete"),
-                          admin_complan_reader_path(complan_reader),
-                          method: :delete,
-                          class: "button hollow alert expanded"
-              %>
-            <% else %>
-              <%= link_to t("admin.complan_readers.complan_reader.add"),
-                          { controller: "admin/complan_readers", action: :create,
-                            user_id: complan_reader.user_id },
-                            method: :post,
-                            class: "button success expanded" %>
-            <% end %>
+            <%= link_to t("admin.complan_readers.complan_reader.delete"),
+                        admin_complan_reader_path(complan_reader),
+                        method: :delete,
+                        class: "button hollow alert expanded"
+            %>
           </td>
         </tr>
       <% end %>

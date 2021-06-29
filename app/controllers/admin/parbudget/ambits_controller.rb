@@ -1,9 +1,10 @@
 class Admin::Parbudget::AmbitsController < Admin::Parbudget::BaseController
   respond_to :html, :js, :csv
   before_action :load_resource, only: [:update_ambit,:destroy]
+  before_action :authenticate_editor, only: [:create_ambit, :destroy, :update_ambit]
 
   load_and_authorize_resource :ambit, class: "Parbudget::Ambit"
-
+  
   def index
     search(params)
     @ambits = Kaminari.paginate_array(@ambits).page(params[:page]).per(20)

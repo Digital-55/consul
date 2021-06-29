@@ -1,6 +1,7 @@
 class Admin::Complan::PerformancesController < Admin::Complan::BaseController
   respond_to :html, :js, :csv, :pdf
   before_action :load_data, only: [:index]
+  before_action :authenticate_editor, only: [:new, :create, :edit, :update, :destroy]
 
   def index
     search(params)

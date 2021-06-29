@@ -1,6 +1,17 @@
 <div class="admin-sidebar" data-equalizer-watch>
   <ul id="admin_menu" data-accordion-menu data-multi-open="false">
-    <%if current_user.super_administrator? || current_user.administrator?%>
+    <% if current_user.parbudget_editor? || current_user.parbudget_reader? %>
+      <%= render "admin/shared/menu_items/parbudget" %>
+    <% elsif current_user.complan_editor? || current_user.complan_reader? %>
+      <%= render "admin/shared/menu_items/complan" %>
+    <% elsif current_user.consultant?%>
+      <%= render "admin/shared/menu_items/stats" %>
+    <% elsif current_user.editor?%>
+      <%= render "admin/shared/menu_items/message_users" %>
+      <%= render "admin/shared/menu_items/site_customization" %>
+    <% elsif current_user.sures? %>
+      <%= render "admin/shared/menu_items/sures" %>
+    <% elsif current_user.super_administrator? || current_user.administrator? %>
       <%= render "admin/shared/menu_items/proposals" %>
       <%= render "admin/shared/menu_items/polls" %>
       <%= render "admin/shared/menu_items/legislation" %>
@@ -16,23 +27,6 @@
       <%= render "admin/shared/menu_items/settings" %>
       <%= render "admin/shared/menu_items/complan" %>
       <%= render "admin/shared/menu_items/parbudget" %>
-    <%end%>
-      
-    <%if current_user.editor?%>
-      <%= render "admin/shared/menu_items/message_users" %>
-      <%= render "admin/shared/menu_items/site_customization" %>
-    <%end%>
-
-    <%if current_user.consultant?%>
-      <%= render "admin/shared/menu_items/stats" %>
     <% end %>
-
-    <%if current_user.complan_editor? || current_user.complan_reader? %>
-      <%= render "admin/shared/menu_items/complan" %>
-    <%end%>
-
-    <%if current_user.parbudget_editor? || current_user.parbudget_reader? %>
-      <%= render "admin/shared/menu_items/parbudget" %>
-    <%end%>
   </ul>
 </div>

@@ -1,9 +1,9 @@
 class Admin::Complan::TypologiesController < Admin::Complan::BaseController
   respond_to :html, :js, :csv
   before_action :load_resource, only: [:update_typology,:destroy]
-
   load_and_authorize_resource :typology, class: "Complan::Typology"
-
+  before_action :authenticate_editor, only: [:new, :create, :edit, :update, :destroy]
+  
   def index
     search(params)
     @typologies = Kaminari.paginate_array(@typologies).page(params[:page]).per(20)

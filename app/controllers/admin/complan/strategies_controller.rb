@@ -4,6 +4,7 @@ class Admin::Complan::StrategiesController < Admin::Complan::BaseController
 
   load_and_authorize_resource :strategy, class: "Complan::Strategy"
 
+  before_action :authenticate_editor, only: [:new, :create, :edit, :update, :destroy]
   def index
     search(params)
     @strategies = Kaminari.paginate_array(@strategies).page(params[:page]).per(20)

@@ -1,13 +1,25 @@
 <ul class="menu simple clear" id="filter-subnav">
   <%if controller_name == "organizations" %>
     <% @valid_filters = has_filters %w[users superadministrators administrators sures_administrators section_administrators 
-      organizations officials moderators valuators managers consultants editors parbudget_editors parbudget_readers complan_editors complan_readers] %>
+      organizations officials moderators valuators managers consultants editors editors_parbudget readers_parbudget editors_complan readers_complan] %>
   <%end%>
   <% @valid_filters.each do |filter| %>
-    <% if controller_name == filter %>
-      <li class="is-active"><h2><%= t("admin.#{filter}.index.title") %></h2></li>
-    <% else %>
-      <li><%= link_to t("admin.#{filter}.index.title"), filter == "organizations" ? admin_organizations_path : filter %></li>
+    <% if controller.class.parent.to_s.include?("Parbudget") && filter.include?("parbudget") && controller_name == filter.split("_")[0] %>
+      <li><li class="is-active"><h2><%= t("admin.parbudget_#{filter.split("_")[0]}.index.title") %></h2></li></li>
+    <% elsif controller.class.parent.to_s.include?("Complan") && filter.include?("complan") && controller_name == filter.split("_")[0] %>
+      <li><li class="is-active"><h2><%= t("admin.complan_#{filter.split("_")[0]}.index.title") %></h2></li></li>
+    <%else%>
+      <% if controller_name == filter && !controller.class.parent.to_s.include?("Parbudget") && !controller.class.parent.to_s.include?("Complan")%>
+        <li class="is-active"><h2><%= t("admin.#{filter}.index.title") %></h2></li>
+      <%else%>
+        <% if filter.include?("parbudget") %>
+          <li><%= link_to t("admin.parbudget_#{filter.split("_")[0]}.index.title"), eval("admin_parbudget_#{filter.split("_")[0]}_path") %></li>
+        <% elsif filter.include?("complan") %>
+          <li><%= link_to t("admin.complan_#{filter.split("_")[0]}.index.title"), eval("admin_complan_#{filter.split("_")[0]}_path") %></li>
+        <%else%>
+          <li><%= link_to t("admin.#{filter}.index.title"), filter == "organizations" ? admin_organizations_path : eval("admin_#{filter}_path") %></li>
+        <% end %>
+      <% end %>
     <% end %>
   <% end %>
 </ul>

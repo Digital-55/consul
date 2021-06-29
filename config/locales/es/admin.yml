@@ -1244,7 +1244,7 @@ es:
         title: Crear nuevo usuario administrador
     parbudget_editors:
       index:
-        title: Gestores escritura Presupuestos Participativos
+        title: Gestores Escritura Presupuestos Participativos
         create: Nuevo Gestor de escritura
         back: Volver
         name: Nombre
@@ -1278,7 +1278,7 @@ es:
         title: Crear nuevo usuario gestor de Planes Concertados
     complan_editors:
       index:
-        title: Gestores escritura Planes Concertados
+        title: Gestores Escritura Planes Concertados
         create: Nuevo Gestor de escritura
         back: Volver
         name: Nombre
