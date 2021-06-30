@@ -1,9 +1,9 @@
 <% provide :title do %>
- <%= t("admin.header.title") %> - <%= t("admin.menu.parbudget_maintance") %> - <%= t("admin.menu.parbudget_tabs.thecnical_tables") %> - <%= @thecnical_table.denomination %>
+ <%= t("admin.header.title") %> - <%= t("admin.menu.complan_maintance") %> - <%= t("admin.menu.complan_tabs.thecnical_tables") %> - <%= @thecnical_table.denomination %>
 <% end %>
 
-<div class="parbudget-thecnical_table-edit">
-  <%= back_link_to admin_parbudget_thecnical_tables_path, t("admin.sures.actuations.new.back") %>
+<div class="complan-thecnical_table-edit">
+  <%= back_link_to admin_complan_thecnical_tables_path, t("admin.sures.actuations.new.back") %>
 
   <h2><%= @thecnical_table.denomination %></h2>
 

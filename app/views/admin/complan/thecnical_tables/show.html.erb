@@ -1,22 +1,22 @@
 <% provide :title do %>
- <%= t("admin.header.title") %> - <%= t("admin.menu.parbudget_maintance") %> - <%= t("admin.menu.parbudget_tabs.thecnical_tables") %> - <%= @thecnical_table.denomination %>
+ <%= t("admin.header.title") %> - <%= t("admin.menu.complan_maintance") %> - <%= t("admin.menu.complan_tabs.thecnical_tables") %> - <%= @thecnical_table.denomination %>
 <% end %>
 
-<div class="parbudget-thecnical_table-show">
-  <%= back_link_to admin_parbudget_thecnical_tables_path, t("admin.sures.actuations.new.back") %>
+<div class="complan-thecnical_table-show">
+  <%= back_link_to admin_complan_thecnical_tables_path, t("admin.sures.actuations.new.back") %>
 
  
     <div class="small-12 column">
         <h2><%= @thecnical_table.denomination %></h2>
         <div class="float-right">
-            <%= link_to t('admin.parbudget.thecnical_table.pdf_download'), current_path_with_query_params(id: @thecnical_table.id, format: :pdf), class: "button" %>
+            <%= link_to t('admin.complan.thecnical_table.pdf_download'), current_path_with_query_params(id: @thecnical_table.id, format: :pdf), class: "button" %>
         </div>
     </div>
 
  
   <div class="small-12 column">
     <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
-      <legend><%=t("admin.parbudget.thecnical_table.title_data")%></legend>
+      <legend><%=t("admin.complan.thecnical_table.title_data")%></legend>
   
       <div class="small-12 medium-2  column end"  >
         <p><b><%=@model.human_attribute_name(:year)%></b></p>
@@ -73,8 +73,8 @@
     </fieldset>
 
     <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
-      <legend><%=t("admin.parbudget.thecnical_table.title_data_center")%></legend>
-      <%@thecnical_table.parbudget_centers.each do |center|%>
+      <legend><%=t("admin.complan.thecnical_table.title_data_center")%></legend>
+      <%@thecnical_table.complan_centers.each do |center|%>
         <div class='small-12 column'>
           <fieldset  style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
             <div  class='small-12 medium-6 column'>
@@ -111,7 +111,7 @@
     </fieldset>
 
     <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
-      <legend><%=t("admin.parbudget.thecnical_table.title_data_author")%></legend>
+      <legend><%=t("admin.complan.thecnical_table.title_data_author")%></legend>
       <div class="small-12 medium-6  column end"  >
         <p><b><%=@model.human_attribute_name(:author)%></b></p>
         <p><%= @thecnical_table.try(:author) %></p>
@@ -143,10 +143,10 @@
     </fieldset>
 
     <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
-      <legend><%=t("admin.parbudget.thecnical_table.title_data_economic")%></legend>
-      <%@thecnical_table.parbudget_economic_budgets.each do |economic|%>
+      <legend><%=t("admin.complan.thecnical_table.title_data_economic")%></legend>
+      <%@thecnical_table.complan_economic_budgets.each do |economic|%>
         <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
-          <legend><%=t("admin.parbudget.thecnical_table.subtitle_economic", i: "")%></legend>
+          <legend><%=t("admin.complan.thecnical_table.subtitle_economic", i: "")%></legend>
           <div class="small-12 medium-2  column end"  >
             <p><b><%=economic.class.human_attribute_name(:year)%></b></p>
             <p><%= economic.try(:year) %></p>
@@ -192,8 +192,8 @@
     </fieldset>
 
     <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
-      <legend><%=t("admin.parbudget.thecnical_table.title_data_media")%></legend>
-      <% @thecnical_table.parbudget_medias.each do |media| %>
+      <legend><%=t("admin.complan.thecnical_table.title_data_media")%></legend>
+      <% @thecnical_table.complan_medias.each do |media| %>
         <fieldset  style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
           <div class="small-12 medium-3  column end"  >
             <p><b><%=media.class.human_attribute_name(:title)%></b></p>
@@ -204,7 +204,7 @@
             <p><%= media.try(:text_document).html_safe %></p>
           </div>
           <div class="small-12 medium-3  column end"  >
-            <p><b><%=t("admin.parbudget.thecnical_table.download_file")%>: </b></p>
+            <p><b><%=t("admin.complan.thecnical_table.download_file")%>: </b></p>
             <% if !media.attachment.blank? %>
               <p>
                 <%= link_to media.attachment.url, target: :_blank do %>
@@ -219,8 +219,8 @@
     </fieldset>
 
     <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
-      <legend><%=t("admin.parbudget.thecnical_table.title_data_link")%></legend>
-      <% @thecnical_table.parbudget_links.each do |link| %>
+      <legend><%=t("admin.complan.thecnical_table.title_data_link")%></legend>
+      <% @thecnical_table.complan_links.each do |link| %>
         <div class="small-12 column end">
           <p><%= link_to link.url, link.url, target: "_blank" %></p>
         </div>

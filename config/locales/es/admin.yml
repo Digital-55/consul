@@ -739,8 +739,13 @@ es:
         destroy_success: "Se ha eliminado correctamente la mesa técnica"
         destroy_error: "No se ha podido eliminar la mesa técnica"
         destroy_confirm: "¿Desea eliminar la mesa técnica seleccionada?"
-        update_thecnical_table: "Actualizar mesa técnica"        
+        update_thecnical_table: "Actualizar mesa técnica"
+        show_thecnical_table: "Ver mesa técnica"
+        title_new: Nueva mesa técnica
+        title_update: Editar mesa técnica
+        pdf_download: "Descargar PDF de la mesa técnica"       
         title_delete: Borrar mesa técnica
+        title_data: Datos de la mesa técnica
       strategy:
         search_name: Nombre
         search_description: Descripción
@@ -793,8 +798,25 @@ es:
         destroy_success: "Se ha eliminado correctamente la financiación"
         destroy_error: "No se ha podido eliminar la financiación"
         destroy_confirm: "¿Desea eliminar la financiación seleccionada?"
-        update_financing: "Actualizar financiación"        
+        update_financing: "Actualizar financiación" 
+        show_financing: "Ver financiación"
+        title_new: Nueva financiación
+        title_update: Editar financiación
+        pdf_download: "Descargar PDF de la financiación"       
         title_delete: Borrar financiación
+        subtitle_credit_modification: Modificación de crédito
+        add_credit_modification: Añadir modificación de crédito
+        delete_credit_modification: Borrar modificación de crédito
+        subtitle_file: Expediente
+        add_file: Añadir expediente
+        delete_file: Borrar expediente
+        subtitle_import: Importe
+        add_import: Añadir importe
+        delete_import: Borrar impote
+        title_data_import: Importes
+        title_data_file: Expedientes
+        title_data_credit_modifications: Modificaciones de crédito
+        title_data: Datos de la financiación
       performance:
         search_description: Descripción
         search_project: Proyecto
