@@ -1267,7 +1267,7 @@ es:
         name: Nombre
         email: Email
         id: ID de Gestor
-        no_parbudget_editors: No hay gestores de lectura.
+        no_parbudget_readers: No hay gestores de lectura.
       administrator:
         add: Añadir como Gestor de Lectura
         delete: Borrar
@@ -1293,6 +1293,8 @@ es:
         title: "Gestores de escritura: Búsqueda de usuarios"
       new: 
         title: Crear nuevo usuario gestor de Planes Concertados
+      single_count: "Hay 1 Gestor"
+      multiple_count: "Hay #{count} gestores"
     complan_readers:
       index:
         title: Gestores Lectura Planes Concertados

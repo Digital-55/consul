@@ -3,7 +3,7 @@
 
 <div id="complan_editors">
   <% if @complan_editors.any? %>
-    <h3 class="margin"><%= page_entries_info @complan_editors %></h3>
+    <h3 class="margin"><%= page_entries_info @complan_editors, entry_name: @complan_editors.count.to_i > 1 ? "Gestores" : "Gestor" %></h3>
 
     <table>
       <thead>
@@ -24,11 +24,10 @@
             <%= complan_editor.try(:email) %>
           </td>
           <td>
-            <%= link_to t("admin.complan_editors.complan_editor.delete"),
+            <%= link_to t("admin.complan_editors.administrator.delete"),
                         admin_complan_editor_path(complan_editor),
                         method: :delete,
-                        class: "button hollow alert expanded"
-            %>
+                        class: "button hollow alert expanded" %>
           </td>
         </tr>
       <% end %>

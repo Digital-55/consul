@@ -10,7 +10,7 @@ es:
       one_page:
         display_entries:
           zero: "No se han encontrado %{entry_name}"
-          one: Hay <strong>1 %{entry_name}</strong>
+          one: "Hay <strong>1 %{entry_name}</strong>"
           other: Hay <strong>%{count} %{entry_name}</strong>
   views:
     pagination:

@@ -3,7 +3,7 @@
 
 <div id="parbudget_readers">
   <% if @parbudget_readers.any? %>
-    <h3 class="margin"><%= page_entries_info @parbudget_readers %></h3>
+    <h3 class="margin"><%= page_entries_info @parbudget_readers, entry_name: @parbudget_readers.count.to_i > 1 ? "Gestores" : "Gestor" %></h3>
 
     <table>
       <thead>

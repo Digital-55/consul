@@ -3,8 +3,7 @@
 
 <div id="parbudget_editors">
   <% if @parbudget_editors.any? %>
-    <h3 class="margin"><%= page_entries_info @parbudget_editors %></h3>
-
+    <h3 class="margin"><%=  page_entries_info @parbudget_editors, entry_name: @parbudget_editors.count.to_i > 1 ? "Gestores" : "Gestor"  %></h3>
     <table>
       <thead>
         <th scope="col" class="text-center"><%= t("admin.parbudget_editors.index.id") %></th>
