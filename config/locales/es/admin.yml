@@ -811,8 +811,33 @@ es:
         destroy_success: "Se ha eliminado correctamente la actuación"
         destroy_error: "No se ha podido eliminar la actuación"
         destroy_confirm: "¿Desea eliminar la actuación seleccionada?"
-        update_performance: "Actualizar actuación"        
+        update_performance: "Actualizar actuación"   
+        show_performancer: "Ver actuación"
+        title_new: Nueva actuación
+        title_update: Editar actuación
+        pdf_download: "Descargar PDF de la actuación"       
         title_delete: Borrar actuación
+        subtitle_beneficiary: Beneficiario
+        subtitle_ambit: Ámbito
+        subtitle_ambit: Actividad
+        subtitle_indicator: Indicador
+        subtitle_media: Archivo adjunto
+        title_data: Datos de la actuación
+        title_data_activity: Actividades
+        title_data_ambit: Ámbitos
+        title_data_indicator: Indicadores
+        title_data_beneficiary: Beneficiarios
+        title_data_media: Archivos adjuntos
+        add_activity: Añadir actividad
+        add_ambit: Añadir ámbito
+        add_indicator: Añadir indicador
+        add_beneficiary: Añadir beneficiario
+        add_media: Añadir archivo
+        delete_activity: Eliminar actividad
+        delete_ambit: Eliminar ámbito
+        delete_indicator: Eliminar indicador
+        delete_beneficiary: Eliminar beneficiario
+        delete_media: Eliminar archivo
       project:
         search_name: "Nombre"
         search_description: "Descripción"

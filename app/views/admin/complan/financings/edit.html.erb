@@ -1,11 +1,11 @@
 <% provide :title do %>
- <%= t("admin.header.title") %> - <%= t("admin.menu.parbudget_maintance") %> - <%= t("admin.menu.parbudget_tabs.meetings") %> - <%= "#{@meeting.who_requests} - #{@meeting.date_at_convert}" %>
+ <%= t("admin.header.title") %> - <%= t("admin.menu.complan_maintance") %> - <%= t("admin.menu.complan_tabs.financings") %> - <%= "#{@financing.who_requests} - #{@financing.date_at_convert}" %>
 <% end %>
 
-<div class="parbudget-meeting-edit">
-  <%= back_link_to admin_parbudget_meetings_path, t("admin.sures.actuations.new.back") %>
+<div class="complan-financing-edit">
+  <%= back_link_to admin_complan_financings_path, t("admin.sures.actuations.new.back") %>
 
-  <h2><%= "#{@meeting.who_requests} - #{@meeting.date_at_convert}"%></h2>
+  <h2><%= "#{@financing.who_requests} - #{@financing.date_at_convert}"%></h2>
 
   <%= render "form" %>
 </div>

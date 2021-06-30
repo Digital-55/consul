@@ -1,0 +1,15 @@
+<fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+    <legend><%=t("admin.complan.performance.title_data_indicator")%></legend>
+    <div id="nested_complan_indicators">
+        <%= f.fields_for :complan_indicators do |ff| %>
+            <%= render "complan_indicator_fields", f: ff %>
+        <% end %>
+
+        <div class="js-add-fields-container">
+            <div class="small-12 medium-9 column end">
+                <%= link_to_add_association t("admin.complan.performance.add_indicator"),
+                                        f, :complan_indicators, class: "button hollow"  %>
+            </div>
+        </div>
+    </div>       
+ </fieldset>

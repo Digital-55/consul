@@ -1,0 +1,15 @@
+<fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+    <legend><%=t("admin.complan.performance.title_data_media")%></legend>
+    <div id="nested_complan_medias">
+        <%= f.fields_for :complan_medias do |ff| %>
+            <%= render "complan_media_fields", f: ff %>
+        <% end %>
+
+        <div class="js-add-fields-container">
+            <div class="small-12 medium-9 column end">
+                <%= link_to_add_association t("admin.complan.performance.add_media"),
+                                        f, :complan_medias, class: "button hollow"  %>
+            </div>
+        </div>
+    </div>       
+ </fieldset>
