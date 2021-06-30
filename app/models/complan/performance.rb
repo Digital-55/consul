@@ -9,6 +9,20 @@ class Complan::Performance < ApplicationRecord
     has_many :complan_thecnical_tables, foreign_key: "complan_performance_id", class_name: "Complan::ThecnicalTable", dependent: :destroy
     has_many :complan_indicators, foreign_key: "complan_performance_id", class_name: "Complan::Indicator", dependent: :destroy
 
+    accepts_nested_attributes_for :complan_activities, allow_destroy: true
+    accepts_nested_attributes_for :complan_trackings, allow_destroy: true
+    accepts_nested_attributes_for :complan_medias, allow_destroy: true
+    accepts_nested_attributes_for :complan_ambits, allow_destroy: true
+    accepts_nested_attributes_for :complan_beneficiaries, allow_destroy: true
+    accepts_nested_attributes_for :complan_indicators, allow_destroy: true
+
+    validates_associated :complan_activities
+    validates_associated :complan_trackings
+    validates_associated :complan_medias
+    validates_associated :complan_ambits
+    validates_associated :complan_beneficiaries
+    validates_associated :complan_indicators
+
     self.table_name = "complan_performances"
 
     def self.get_columns

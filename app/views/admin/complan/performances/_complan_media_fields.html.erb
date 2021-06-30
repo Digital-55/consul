@@ -1,0 +1,22 @@
+<div id="<%= dom_id(f.object) %>" class="nested-fields">
+    <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+        <legend><%=t("admin.complan.performance.subtitle_media", i: "")%></legend>
+        <%= f.hidden_field :id %>
+        <div class="small-12 medium-6  column end"  >
+            <%= f.text_field :text_document %>
+        </div>
+        <div class="small-12 medium-6 column end"  >
+            <%= f.text_field :title %>
+        </div>
+        <div class="small-12 medium-6 column end"  >
+            <%= f.text_field :origin %>
+        </div>
+        <div class="small-12 medium-6 column end"  >
+            <%= f.text_field :date_document %>
+        </div>
+           
+        <div class="small-12 medium-4 column action-remove text-right">
+            <%=link_to_remove_association  t("admin.complan.performance.delete_media") , f, class: "button alert"%>
+        </div>
+    </fieldset>
+</div>

@@ -14,45 +14,13 @@
     </div>
   <% end %>
 
-  <div class="small-12 column">
-    <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
-        <legend><%=t("admin.parbudget.performance.title_data")%></legend>
-      <div class="small-12 medium-3  column end"  >
-        <%= f.text_field :code %>
-      </div>
-      <div class="small-12 medium-3  column end"  >
-        <%= f.text_field :code_section %>
-      </div>
-      <div class="small-12 medium-3  column end"  >
-        <%= f.text_field :code_program %>
-      </div>
-      <div class="small-12 medium-3  column end"  >
-        <%= f.text_field :responsible %>
-      </div>
-      <div class="small-12 medium-6  column end"  >
-        <%= f.text_field :denomination %>
-      </div>
-      <div class="small-12 medium-6  column end"  >
-        <%= f.text_field :government_area %>
-      </div>
-      <div class="small-12  column end"  >
-        <%= f.text_field :general_direction %>
-      </div>
-    </fieldset>
-    <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
-      <legend><%=t("admin.parbudget.performance.title_responsibles")%></legend>
-      <div id="nested_parbudget_responsibles">
-        <%= f.fields_for :parbudget_responsibles do |ff| %>
-          <%= render "parbudget_responsible_fields", f: ff if !ff.object.blank? %>
-        <% end %>
-        <div class="js-add-fields-container">
-          <div class="small-12 column end">
-            <%= link_to_add_association t("admin.parbudget.performance.button_add"), f, :parbudget_responsibles, class: "button hollow"  %>
-          </div>
-        </div>
-      </div>
-    </fieldset>
-  </div>
+  <%=render "data_performance", f: f%>
+  <%=render "data_activities", f: f%>
+  <%=render "data_ambits", f: f%>
+  <%=render "data_indicators", f: f%>
+  <%=render "data_beneficiaries", f: f%>
+  <%=render "data_medias", f: f%>
+
   <div class="small-12 medium-3 column clear end">
     <%= f.submit(class: "button success expanded", value: t("admin.parbudget.#{admin_submit_action(@performance)}.submit_button")) %>
   </div> 
