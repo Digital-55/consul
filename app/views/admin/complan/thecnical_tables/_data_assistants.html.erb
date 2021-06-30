@@ -1,0 +1,15 @@
+<fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+    <legend><%=t("admin.complan.thecnical_table.title_data_assistant")%></legend>
+    <div id="nested_complan_assistants">
+        <%= f.fields_for :complan_assistants do |ff| %>
+            <%= render "complan_assistant_fields", f: ff %>
+        <% end %>
+
+        <div class="js-add-fields-container">
+            <div class="small-12 medium-9 column end">
+                <%= link_to_add_association t("admin.complan.thecnical_table.add_assistant"),
+                                        f, :complan_assistants, class: "button hollow"  %>
+            </div>
+        </div>
+    </div>       
+ </fieldset>

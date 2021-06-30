@@ -1,0 +1,34 @@
+<div id="<%= dom_id(f.object) %>" class="nested-fields">
+    <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+        <legend><%=t("admin.complan.financing.subtitle_credit_modification", i: "")%></legend>
+        <%= f.hidden_field :id %>
+        <div class="small-12 medium-6  column end"  >
+            <%= f.text_field :departure_destination %>
+        </div>
+            <div class="small-12 medium-6 column end"  >
+            <%= f.text_field :number_file %>
+        </div>
+            <div class="small-12 medium-6  column end"  >
+            <%= f.text_field :mc_accept %>
+        </div>
+            <div class="small-12 medium-6  column end"  >
+            <%= f.text_field :of_remission %>
+        </div>
+        <div class="small-12 medium-12  column end"  >
+            <%= f.text_field :posted %>
+        </div>
+        <div class="small-12 medium-12  column end"  >
+            <%= f.text_field :count_credit %>
+        </div>
+        <div class="small-12 medium-12  column end"  >
+            <%= f.text_field :ad_aprobed %>
+        </div>
+        <div class="small-12 medium-12  column end"  >
+            <%= f.text_field :o_aprobed %>
+        </div>
+        <div class="small-12 medium-4 column action-remove text-right">
+            <%=link_to_remove_association  t("admin.complan.financing.delete_credit_modification") , f, class: "button alert"%>
+        </div>
+    </fieldset>
+</div>
+

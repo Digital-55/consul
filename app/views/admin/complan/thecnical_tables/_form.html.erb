@@ -15,10 +15,10 @@
   <% end %>
 
   <%=render "data_thecnical_table", f: f%>
-  <%=render "data_assistants", f: f%>
+  <%#=render "data_assistants", f: f%>
   
   <div class="small-12 medium-3 column clear end">
-    <%= f.submit(class: "button success expanded", value: t("admin.parbudget.#{admin_submit_action(@thecnical_table)}.submit_button")) %>
+    <%= f.submit(class: "button success expanded", value: t("admin.complan.#{admin_submit_action(@thecnical_table)}.submit_button")) %>
   </div> 
 
 <% end %>
