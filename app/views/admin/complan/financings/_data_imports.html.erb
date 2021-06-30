@@ -1,0 +1,15 @@
+<fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+    <legend><%=t("admin.complan.financing.title_data_import")%></legend>
+    <div id="nested_complan_imports">
+        <%= f.fields_for :complan_imports do |ff| %>
+            <%= render "complan_import_fields", f: ff %>
+        <% end %>
+
+        <div class="js-add-fields-container">
+            <div class="small-12 medium-9 column end">
+                <%= link_to_add_association t("admin.complan.financing.add_import"),
+                                        f, :complan_imports, class: "button hollow"  %>
+            </div>
+        </div>
+    </div>       
+ </fieldset>

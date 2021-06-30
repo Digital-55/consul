@@ -1,9 +1,0 @@
-<div class="nested-fields">
-    <%= f.hidden_field :id %>
-    <div class="small-12 medium-8  column end"  >
-        <%= f.text_field :full_name, placeholder: f.object.class.human_attribute_name(:full_name), label: false %>
-    </div>
-    <div class="medium-4 column action-remove text-right">
-        <%=link_to_remove_association  t("admin.parbudget.meeting.delete_assistant") , f, class: "button alert"%>
-    </div>
-</div>
