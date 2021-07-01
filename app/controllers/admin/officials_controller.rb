@@ -1,6 +1,6 @@
 class Admin::OfficialsController < Admin::BaseController
   has_filters %w[users superadministrators administrators sures_administrators section_administrators 
-    organizations officials moderators valuators managers consultants editors editors_parbudget readers_parbudget editors_complan readers_complan]
+    organizations officials moderators valuators managers consultants editors editors_parbudget readers_parbudget  ]
 
   def index
     @officials = User.officials.page(params[:page]).for_render

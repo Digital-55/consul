@@ -1,7 +1,7 @@
 class Admin::Parbudget::EditorsController < Admin::BaseController
   load_and_authorize_resource :editor, class: "Parbudget::Editor"
   has_filters %w[users superadministrators administrators sures_administrators section_administrators 
-    organizations officials moderators valuators managers consultants editors editors_parbudget readers_parbudget editors_complan readers_complan]
+    organizations officials moderators valuators managers consultants editors editors_parbudget readers_parbudget  ]
   
   def index
     @parbudget_editors = Parbudget::Editor.all.page(params[:page])
