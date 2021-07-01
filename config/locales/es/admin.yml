@@ -310,6 +310,7 @@ es:
           custom_image_alt: Texto Alternativo
           js_snippet: Código Javascript
           promo:
+            display_link: Ver enlace
             promo_title_one: Título 1
             promo_title_two: Título 2
             promo_title_three: Título 3
