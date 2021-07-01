@@ -2,8 +2,8 @@
   <ul id="admin_menu" data-accordion-menu data-multi-open="false">
     <% if current_user.parbudget_editor? || current_user.parbudget_reader? %>
       <%= render "admin/shared/menu_items/parbudget" %>
-    <% elsif current_user.complan_editor? || current_user.complan_reader? %>
-      <%= render "admin/shared/menu_items/complan" %>
+    <%# elsif current_user.complan_editor? || current_user.complan_reader? %>
+      <%#= render "admin/shared/menu_items/complan" %>
     <% elsif current_user.consultant?%>
       <%= render "admin/shared/menu_items/stats" %>
     <% elsif current_user.editor?%>
@@ -25,7 +25,7 @@
       <%= render "admin/shared/menu_items/profiles" %>
       <%= render "admin/shared/menu_items/stats" %>
       <%= render "admin/shared/menu_items/settings" %>
-      <%= render "admin/shared/menu_items/complan" %>
+      <%#= render "admin/shared/menu_items/complan" %>
       <%= render "admin/shared/menu_items/parbudget" %>
     <% end %>
   </ul>
