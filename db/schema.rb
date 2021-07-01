@@ -501,7 +501,7 @@ ActiveRecord::Schema.define(version: 20210420102437) do
     t.integer  "position",                       default: 0
     t.boolean  "disabled",                       default: false
     t.string   "subtitle"
-    t.string   "claim"
+    t.text     "claim"
     t.text     "rich_text"
     t.string   "youtube_url"
     t.string   "cta_text"
