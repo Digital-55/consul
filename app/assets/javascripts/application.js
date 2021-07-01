@@ -89,6 +89,7 @@
 //= require login_form
 //= require starrr.js
 //= require sg.js
+//= require parbudget
 
 var initialize_modules = function() {
   App.Answers.initialize();

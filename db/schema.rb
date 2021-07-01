@@ -2043,7 +2043,7 @@ ActiveRecord::Schema.define(version: 20210624085951) do
     t.datetime "updated_at",                           null: false
     t.string   "borought"
     t.string   "other"
-    t.jsonb    "geozones",             default: "{}",  null: false
+    t.jsonb    "geozones"
     t.string   "project"
     t.index ["geozones"], name: "index_sures_actuations_on_geozones", using: :gin
   end
@@ -2216,7 +2216,7 @@ ActiveRecord::Schema.define(version: 20210624085951) do
     t.date     "access_key_generated_at"
     t.integer  "access_key_tried",                           default: 0
     t.date     "date_hide"
-    t.string   "first_name"
+    t.string   "name"
     t.string   "last_name"
     t.string   "last_name_alt"
     t.integer  "adress_id"

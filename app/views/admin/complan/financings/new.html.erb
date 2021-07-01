@@ -1,0 +1,11 @@
+<% provide :title do %>
+  <%= t("admin.header.title") %> - <%= t("admin.menu.complan_maintance") %> - <%= t("admin.menu.complan_tabs.financings") %> - <%= t("admin.complan.financing.title_new") %>
+<% end %>
+
+<div class="complan-financing-new">
+  <%= back_link_to admin_complan_financings_path, t("admin.sures.actuations.new.back") %>
+
+  <h2><%= t("admin.complan.financing.title_new") %></h2>
+
+  <%= render "form" %>
+</div>

@@ -705,6 +705,308 @@ es:
       milestones:
         index:
           title: Seguimiento
+    complan:
+      edit:
+        submit_button: "Guardar cambios"
+      new:
+        submit_button: "Crear"
+      show_audits: "Ver auditorias"
+      typology:
+        search_name: Tipología
+        create_success: "Se ha creado correctamente la tipología"
+        create_error: "No se ha podido crear la tipología"
+        update_success: "Se ha actualizado correctamente la tipología"
+        update_error: "No se ha podido actualizar la tipología"
+        destroy_success: "Se ha eliminado correctamente la tipología"
+        destroy_error: "No se ha podido eliminar la tipología"
+        destroy_confirm: "¿Desea eliminar la tipología seleccionada?"
+        update_typology: "Actualizar tipología"        
+        title_delete: Borrar tipología
+      thecnical_table:
+        search_description: Descripción
+        search_name: Nombre
+        search_type: Tipo
+        search_start_date: Fecha desde
+        search_end_date: Fecha hasta
+        search_concert_start_date: Fecha concertación desde
+        search_concert_end_date: Fecha concertación hasta
+        search_year_start: Año desde
+        search_year_end: Año hasta
+        create_success: "Se ha creado correctamente la mesa técnica"
+        create_error: "No se ha podido crear la mesa técnica"
+        update_success: "Se ha actualizado correctamente la mesa técnica"
+        update_error: "No se ha podido actualizar la mesa técnica"
+        destroy_success: "Se ha eliminado correctamente la mesa técnica"
+        destroy_error: "No se ha podido eliminar la mesa técnica"
+        destroy_confirm: "¿Desea eliminar la mesa técnica seleccionada?"
+        update_thecnical_table: "Actualizar mesa técnica"
+        show_thecnical_table: "Ver mesa técnica"
+        title_new: Nueva mesa técnica
+        title_update: Editar mesa técnica
+        pdf_download: "Descargar PDF de la mesa técnica"       
+        title_delete: Borrar mesa técnica
+        title_data: Datos de la mesa técnica
+      strategy:
+        search_name: Nombre
+        search_description: Descripción
+        search_departure: Partida
+        search_start_date: Fecha desde
+        search_end_date: Fecha hasta
+        create_success: "Se ha creado correctamente la estrategia"
+        create_error: "No se ha podido crear la estrategia"
+        update_success: "Se ha actualizado correctamente la estrategia"
+        update_error: "No se ha podido actualizar la estrategia"
+        destroy_success: "Se ha eliminado correctamente la estrategia"
+        destroy_error: "No se ha podido eliminar la estrategia"
+        destroy_confirm: "¿Desea eliminar la estrategia seleccionada?"
+        update_strategy: "Actualizar estrategia"        
+        title_delete: Borrar estrategia
+      center:
+        search_organism: "Organismo"
+        search_denomination: "Denominación"
+        search_address: "Dirección"
+        search_dg: "DG"
+        search_sg: "SG"
+        create_success: "Se ha creado correctamente el centro"
+        create_error: "No se ha podido crear el centro"
+        update_success: "Se ha actualizado correctamente el centro"
+        update_error: "No se ha podido actualizar el centro"
+        destroy_success: "Se ha eliminado correctamente el centro"
+        destroy_error: "No se ha podido eliminar el centro"
+        destroy_confirm: "¿Desea eliminar el centro seleccionado?"
+        update_center: "Actualizar centro"  
+        show_center: "Ver centro"
+        title_new: Nuevo centro
+        title_update: Editar centro
+        pdf_download: "Descargar PDF del centro"      
+        title_delete: Borrar centro
+        add_person: "Añadir persona"
+        delete_person: "Borrar persona"
+        subtitle_person: Persona
+        title_data_person: Personas
+        title_data: Datos del centro
+      financing:
+        search_description: Descripción
+        search_name: Nombre
+        search_departure: Partida
+        search_date_start: Fecha desde
+        search_date_end: Fecha hasta
+        create_success: "Se ha creado correctamente la financiación"
+        create_error: "No se ha podido crear la financiación"
+        update_success: "Se ha actualizado correctamente la financiación"
+        update_error: "No se ha podido actualizar la financiación"
+        destroy_success: "Se ha eliminado correctamente la financiación"
+        destroy_error: "No se ha podido eliminar la financiación"
+        destroy_confirm: "¿Desea eliminar la financiación seleccionada?"
+        update_financing: "Actualizar financiación" 
+        show_financing: "Ver financiación"
+        title_new: Nueva financiación
+        title_update: Editar financiación
+        pdf_download: "Descargar PDF de la financiación"       
+        title_delete: Borrar financiación
+        subtitle_credit_modification: Modificación de crédito
+        add_credit_modification: Añadir modificación de crédito
+        delete_credit_modification: Borrar modificación de crédito
+        subtitle_file: Expediente
+        add_file: Añadir expediente
+        delete_file: Borrar expediente
+        subtitle_import: Importe
+        add_import: Añadir importe
+        delete_import: Borrar impote
+        title_data_import: Importes
+        title_data_file: Expedientes
+        title_data_credit_modifications: Modificaciones de crédito
+        title_data: Datos de la financiación
+      performance:
+        search_description: Descripción
+        search_project: Proyecto
+        search_financing: Financiación
+        search_status: Estado
+        search_vulnerability_index: Índice de vulnerabilidad
+        search_type: Tipo
+        search_start_date: Fecha desde
+        search_end_date: Fecha hasta
+        create_success: "Se ha creado correctamente la actuación"
+        create_error: "No se ha podido crear la actuación"
+        update_success: "Se ha actualizado correctamente la actuación"
+        update_error: "No se ha podido actualizar la actuación"
+        destroy_success: "Se ha eliminado correctamente la actuación"
+        destroy_error: "No se ha podido eliminar la actuación"
+        destroy_confirm: "¿Desea eliminar la actuación seleccionada?"
+        update_performance: "Actualizar actuación"   
+        show_performancer: "Ver actuación"
+        title_new: Nueva actuación
+        title_update: Editar actuación
+        pdf_download: "Descargar PDF de la actuación"       
+        title_delete: Borrar actuación
+        subtitle_beneficiary: Beneficiario
+        subtitle_ambit: Ámbito
+        subtitle_ambit: Actividad
+        subtitle_indicator: Indicador
+        subtitle_media: Archivo adjunto
+        title_data: Datos de la actuación
+        title_data_activity: Actividades
+        title_data_ambit: Ámbitos
+        title_data_indicator: Indicadores
+        title_data_beneficiary: Beneficiarios
+        title_data_media: Archivos adjuntos
+        add_activity: Añadir actividad
+        add_ambit: Añadir ámbito
+        add_indicator: Añadir indicador
+        add_beneficiary: Añadir beneficiario
+        add_media: Añadir archivo
+        delete_activity: Eliminar actividad
+        delete_ambit: Eliminar ámbito
+        delete_indicator: Eliminar indicador
+        delete_beneficiary: Eliminar beneficiario
+        delete_media: Eliminar archivo
+      project:
+        search_name: "Nombre"
+        search_description: "Descripción"
+        search_strategy: "Estrategia"
+        create_success: "Se ha creado correctamente el proyecto"
+        create_error: "No se ha podido crear el proyecto"
+        update_success: "Se ha actualizado correctamente el proyecto"
+        update_error: "No se ha podido actualizar el proyecto"
+        destroy_success: "Se ha eliminado correctamente el proyecto"
+        destroy_error: "No se ha podido eliminar el proyecto"
+        destroy_confirm: "¿Desea eliminar el proyecto seleccionado?"
+        update_project: "Actualizar proyecto"        
+        title_delete: Borrar proyecto
+    parbudget:
+      edit:
+        submit_button: "Guardar cambios"
+      new:
+        submit_button: "Crear"
+      show_audits: "Ver auditorias"
+      ambit:
+        search_code: Código
+        search_ambit: Ámbito
+        create_success: "Se ha creado correctamente el ámbito"
+        create_error: "No se ha podido crear el ámbito"
+        update_success: "Se ha actualizado correctamente el ámbito"
+        update_error: "No se ha podido actualizar el ámbito"
+        destroy_success: "Se ha eliminado correctamente el ámbito"
+        destroy_error: "No se ha podido eliminar el ámbito"
+        destroy_confirm: "¿Desea eliminar el ámbito seleccionado?"
+        update_ambit: "Actualizar ámbito"        
+        title_delete: Borrar ámbito
+      center:
+        search_center_code: Código centro
+        search_section_code: Código sección
+        search_program_code: "Código programa"
+        search_denomination: "Denominación"
+        search_responsible: "Responsable"
+        search_project: "Proyecto"
+        create_success: "Se ha creado correctamente el centro gestor"
+        create_error: "No se ha podido crear el centro gestor"
+        update_success: "Se ha actualizado correctamente el centro gestor"
+        update_error: "No se ha podido actualizar el centro gestor"
+        destroy_success: "Se ha eliminado correctamente el centro gestor"
+        destroy_error: "No se ha podido eliminar el centro gestor"
+        destroy_confirm: "¿Desea eliminar el centro gestor seleccionado?"
+        update_center: "Actualizar centro gestor"
+        show_center: "Ver centro gestor"
+        title_new: Nuevo centro
+        title_update: Editar centro
+        title_delete: Borrar centro
+        pdf_download: "Descargar PDF del centro"
+        title_data: "Datos del centro"
+        title_responsibles: "Responsables"
+        button_add: "Añadir responsable"
+        button_delete: "Borrar responsable"
+      project:
+        search_identificator: "Identificador"
+        search_title: "Título"
+        search_year_to: "Año desde"
+        search_year_end: "Año hasta"
+        search_memory: "Memoria"
+        search_status: "Estado"
+        search_center: "Centro gestor"
+        create_success: "Se ha creado correctamente el proyecto"
+        create_error: "No se ha podido crear el proyecto"
+        update_success: "Se ha actualizado correctamente el proyecto"
+        update_error: "No se ha podido actualizar el proyecto"
+        destroy_success: "Se ha eliminado correctamente el proyecto"
+        destroy_error: "No se ha podido eliminar el proyecto"
+        destroy_confirm: "¿Desea eliminar el proyecto seleccionado?"
+        update_project: "Actualizar proyecto"
+        show_project: "Ver proyecto"
+        title_new: Nuevo proyecto
+        title_update: Editar proyecto
+        title_delete: Borrar proyecto
+        pdf_download: "Descargar PDF del proyecto"
+        title_data: "Datos del proyecto"
+        title_data_center: "Datos unidad responsable"
+        title_data_author: "Datos del responsable"
+        title_data_economic: "Económico-presupuestario"
+        subtitle_economic: "Presupuesto %{i}"
+        title_data_media: "Archivos adjuntos"
+        title_data_link: "Enlaces"
+        add_media: Añadir archivo
+        delete_media: Eliminar archivo
+        add_economic: Añadir presupuesto
+        add_link: Añadir enlace
+        delete_economic: Borrar presupuesto
+        delete_link: Borrar enlace
+        download_file: Archivo descargable
+        status:
+          definition: En definición
+          contract: En contratación
+          exec: En ejecución
+          finished: Finalizado
+          invalid: Inviable
+      responsible:
+        search_responsible: "Responsable"
+        search_phone: "Teléfono"
+        search_email: "Correo electrónico"
+        search_position: "Cargo"
+        search_center: "Centro"
+        create_success: "Se ha creado correctamente el responsable"
+        create_error: "No se ha podido crear el responsable"
+        update_success: "Se ha actualizado correctamente el responsable"
+        update_error: "No se ha podido actualizar el responsable"
+        destroy_success: "Se ha eliminado correctamente el responsable"
+        destroy_error: "No se ha podido eliminar el responsable"
+        destroy_confirm: "¿Desea eliminar el responsable seleccionado?"
+        update_responsible: "Actualizar responsable"
+        show_responsible: "Ver responsable"
+        title_new: Nuevo responsable
+        title_update: Editar responsable
+        title_delete: Borrar responsable
+        pdf_download: "Descargar PDF del responsable"
+        title_data: "Datos del responsable"
+      meeting:
+        search_date_start: "Fecha desde"
+        search_date_end: "Fecha hasta"
+        create_success: "Se ha creado correctamente la reunión"
+        create_error: "No se ha podido crear la reunión"
+        update_success: "Se ha actualizado correctamente la reunión"
+        update_error: "No se ha podido actualizar la reunión"
+        destroy_success: "Se ha eliminado correctamente la reunión"
+        destroy_error: "No se ha podido eliminar la reunión"
+        destroy_confirm: "¿Desea eliminar la reunión seleccionado?"
+        update_meeting: "Actualizar reunión"
+        show_meeting: "Ver reunión"
+        title_new: Nueva reunión
+        title_update: Editar reunión
+        title_delete: Borrar reunión
+        pdf_download: "Descargar PDF de la reunión"
+        title_data: "Datos de la reunión"
+        title_data_assistant: "Invitados / Asistentes"
+        add_assistant: "Añadir invitado / asistente"
+        delete_assistant: "Borrar invitado / asistente"
+      topic:
+        search_topic: "Tema"
+        create_success: "Se ha creado correctamente el tema"
+        create_error: "No se ha podido crear el tema"
+        update_success: "Se ha actualizado correctamente el tema"
+        update_error: "No se ha podido actualizar el tema"
+        destroy_success: "Se ha eliminado correctamente el tema"
+        destroy_error: "No se ha podido eliminar el tema"
+        destroy_confirm: "¿Desea eliminar el tema seleccionado?"
+        update_topic: "Actualizar tema"
+        title_delete: Borrar tema
     sures:
       actuations:
         create:
@@ -830,6 +1132,50 @@ es:
           legislation/proposal: Proceso
     menu:
       sg: Gestionar buscador general
+      complan: "Planes concertados"
+      complan_maintance: "Mantenimiento"
+      complan_tracking: "Seguimientos"
+      complan_audits: "Auditorías" 
+      complan_tabs:
+        performances: Actuaciones
+        new_performances: "Nueva actuación"
+        centers: Centros
+        new_centers: Nuevo centro
+        projects: Proyectos
+        new_projects: Nuevo proyecto
+        strategies: Estrategias
+        new_strategies: Nueva estrategia
+        financings: Financiaciones
+        new_financings: Nueva financiación
+        typologies: Tipologías
+        new_typologies: Nueva tipología
+        thecnical_tables: Mesas técnicas
+        new_thecnical_tables: Nueva mesa técnica
+        csv_exporter: Exportar CSV
+        legend_filter: Filtros
+        button_clean: Limpiar búsqueda
+        button_find: Buscar
+      parbudget: "Presupuestos participativos"
+      parbudget_maintance: "Mantenimiento"
+      parbudget_tracking: "Seguimientos de proyecto"
+      parbudget_audits: "Auditorías"       
+      parbudget_tabs:
+        ambits: Ámbitos
+        new_ambits: "Nuevo ámbito"
+        centers: Centros gestores
+        new_centers: Nuevo centro gestor
+        projects: Proyectos
+        new_projects: Nuevo proyecto
+        responsibles: Responsables
+        new_responsibles: Nuevo responsable
+        meetings: Reuniones
+        new_meetings: Nueva reunión
+        topics: Temas
+        new_topics: Nuevo tema
+        csv_exporter: Exportar CSV
+        legend_filter: Filtros
+        button_clean: Limpiar búsqueda
+        button_find: Buscar
       activity: Actividad de moderadores
       admin: Menú de administración
       banner: Gestionar banners
@@ -943,6 +1289,76 @@ es:
         title: "Administradores: Búsqueda de usuarios"
       new: 
         title: Crear nuevo usuario administrador
+    parbudget_editors:
+      index:
+        title: Gestores Escritura Presupuestos Participativos
+        create: Nuevo Gestor de escritura
+        back: Volver
+        name: Nombre
+        email: Email
+        id: ID de Gestor
+        no_parbudget_editors: No hay gestores de escritura.
+      administrator:
+        add: Añadir como Gestor de escritura
+        delete: Borrar
+        restricted_removal: "Lo sentimos, no puedes eliminarte a ti mismo de la lista"
+      search:
+        title: "Gestores de escritura: Búsqueda de usuarios"
+      new: 
+        title: Crear nuevo usuario gestor de Presupuestos Participativos
+    parbudget_readers:
+      index:
+        title: Gestores Lectura Presupuestos Participativos
+        create: Nuevo Gestor de Lectura
+        back: Volver
+        name: Nombre
+        email: Email
+        id: ID de Gestor
+        no_parbudget_readers: No hay gestores de lectura.
+      administrator:
+        add: Añadir como Gestor de Lectura
+        delete: Borrar
+        restricted_removal: "Lo sentimos, no puedes eliminarte a ti mismo de la lista"
+      search:
+        title: "Gestores de lectura: Búsqueda de usuarios"
+      new: 
+        title: Crear nuevo usuario gestor de Planes Concertados
+    complan_editors:
+      index:
+        title: Gestores Escritura Planes Concertados
+        create: Nuevo Gestor de escritura
+        back: Volver
+        name: Nombre
+        email: Email
+        id: ID de Gestor
+        no_complan_editors: No hay gestores de escritura.
+      administrator:
+        add: Añadir como Gestor de escritura
+        delete: Borrar
+        restricted_removal: "Lo sentimos, no puedes eliminarte a ti mismo de la lista"
+      search:
+        title: "Gestores de escritura: Búsqueda de usuarios"
+      new: 
+        title: Crear nuevo usuario gestor de Planes Concertados
+      single_count: "Hay 1 Gestor"
+      multiple_count: "Hay #{count} gestores"
+    complan_readers:
+      index:
+        title: Gestores Lectura Planes Concertados
+        create: Nuevo Gestor de Lectura
+        back: Volver
+        name: Nombre
+        email: Email
+        id: ID de Gestor
+        no_complan_readers: No hay gestores de lectura.
+      administrator:
+        add: Añadir como Gestor de Lectura
+        delete: Borrar
+        restricted_removal: "Lo sentimos, no puedes eliminarte a ti mismo de la lista"
+      search:
+        title: "Gestores de lectura: Búsqueda de usuarios"
+      new:
+        title: Crear nuevo usuario gestor de Planes Concertados
     sures_administrators:
       index:
         title: Administradores de Sures

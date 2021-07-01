@@ -1,0 +1,230 @@
+<% provide :title do %>
+ <%= t("admin.header.title") %> - <%= t("admin.menu.complan_maintance") %> - <%= t("admin.menu.complan_tabs.thecnical_tables") %> - <%= @thecnical_table.denomination %>
+<% end %>
+
+<div class="complan-thecnical_table-show">
+  <%= back_link_to admin_complan_thecnical_tables_path, t("admin.sures.actuations.new.back") %>
+
+ 
+    <div class="small-12 column">
+        <h2><%= @thecnical_table.denomination %></h2>
+        <div class="float-right">
+            <%= link_to t('admin.complan.thecnical_table.pdf_download'), current_path_with_query_params(id: @thecnical_table.id, format: :pdf), class: "button" %>
+        </div>
+    </div>
+
+ 
+  <div class="small-12 column">
+    <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+      <legend><%=t("admin.complan.thecnical_table.title_data")%></legend>
+  
+      <div class="small-12 medium-2  column end"  >
+        <p><b><%=@model.human_attribute_name(:year)%></b></p>
+        <p><%= @thecnical_table.try(:year) %></p>
+      </div>
+      <div class="small-12 medium-4  column end"  >
+        <p><b><%=@model.human_attribute_name(:code)%></b></p>
+        <p><%= @thecnical_table.try(:code) %></p>
+      </div>
+      <div class="small-12 medium-3  column end"  >
+        <p><b><%=@model.human_attribute_name(:ambit)%></b></p>
+        <p><%= @thecnical_table.try(:ambit) %></p>
+      </div>
+      <div class="small-12 medium-3  column end"  >
+        <p><b><%=@model.human_attribute_name(:status)%></b></p>
+        <p><%= @thecnical_table.try(:status) %></p>
+      </div>
+      <div class="small-12 column end">
+        <p><b><%=@model.human_attribute_name(:web_title)%></b></p>
+        <p><%= @thecnical_table.try(:web_title) %></p>
+      </div>
+      <div class="ckeditor small-12 column">
+        <p><b><%=@model.human_attribute_name(:descriptive_memory)%></b></p>
+        <p><%= @thecnical_table.try(:descriptive_memory).html_safe %></p>
+      </div>
+      <div class="small-12 medium-2 column end">
+        <p><b><%=@model.human_attribute_name(:votes)%></b></p>
+        <p><%= @thecnical_table.try(:votes) %></p>
+      </div>
+      <div class="small-12 medium-3 column end">
+        <p><b><%=@model.human_attribute_name(:cost)%></b></p>
+        <p><%= @thecnical_table.try(:cost) %></p>
+      </div>
+      <div class="small-12 medium-4 column end">
+        <p><b><%=@model.human_attribute_name(:url)%></b></p>
+        <p><%= @thecnical_table.try(:url) %></p>
+      </div>
+      <div class="small-12 medium-3 column end">
+        <p><b><%=@model.human_attribute_name(:code_old)%></b></p>
+        <p><%= @thecnical_table.try(:code_old) %></p>
+      </div>
+      <div class="small-12 column end">
+        <p><b><%=@model.human_attribute_name(:denomination)%></b></p>
+        <p><%= @thecnical_table.try(:denomination) %></p>
+      </div>
+      <div class="small-12 medium-4  column end"  >
+        <p><b><%=@model.human_attribute_name(:topic)%></b></p>
+        <p><%= @thecnical_table.try(:topic) %></p>
+      </div>
+      <div class="small-12 medium-4  column end"  >
+        <p><b><%=@model.human_attribute_name(:responsible)%></b></p>
+        <p><%= @thecnical_table.try(:responsible) %></p>
+      </div>
+    </fieldset>
+
+    <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+      <legend><%=t("admin.complan.thecnical_table.title_data_center")%></legend>
+      <%@thecnical_table.complan_centers.each do |center|%>
+        <div class='small-12 column'>
+          <fieldset  style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+            <div  class='small-12 medium-6 column'>
+              <p><b><%=center.class.human_attribute_name(:government_area)%></b></p>
+              <p><%=center.try(:government_area)%></p>
+            </div>
+            <div  class='small-12 medium-6 column'>
+              <p><b><%=center.class.human_attribute_name(:general_direction)%></b></p>
+              <p><%=center.try(:general_direction)%></p>
+            </div>
+            <div  class='small-12 medium-6 column'>
+              <p><b><%=center.class.human_attribute_name(:denomination)%></b></p>
+              <p><%=center.try(:denomination)%></p>
+            </div>
+            <div  class='small-12 medium-6 column'>
+              <p><b><%=center.class.human_attribute_name(:responsible)%></b></p>
+              <p><%=center.try(:responsible)%></p>
+            </div>
+            <div  class='small-12 medium-4 column'>
+              <p><b><%=center.class.human_attribute_name(:code)%></b></p>
+              <p><%=center.try(:code)%></p>
+            </div>
+            <div  class='small-12 medium-4 column'>
+              <p><b><%=center.class.human_attribute_name(:code_section)%></b></p>
+              <p><%=center.try(:code_section)%></p>
+            </div>
+            <div  class='small-12 medium-4 column'>
+              <p><b><%=center.class.human_attribute_name(:code_program)%></b></p>
+              <p><%=center.try(:code_program)%></p>
+            </div>
+          </fieldset>
+        </div>
+      <%end%>
+    </fieldset>
+
+    <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+      <legend><%=t("admin.complan.thecnical_table.title_data_author")%></legend>
+      <div class="small-12 medium-6  column end"  >
+        <p><b><%=@model.human_attribute_name(:author)%></b></p>
+        <p><%= @thecnical_table.try(:author) %></p>
+      </div>
+      <div class="small-12 medium-6  column end"  >
+        <p><b><%=@model.human_attribute_name(:entity)%></b></p>
+        <p><%= @thecnical_table.try(:entity) %></p>
+      </div>   
+      <div class="small-12 medium-6 column end">
+        <p><b><%=@model.human_attribute_name(:email)%></b></p>
+        <p><%= @thecnical_table.try(:email) %></p>
+      </div>
+      <div class="small-12 medium-6 column end">
+        <p><b><%=@model.human_attribute_name(:phone)%></b></p>
+        <p><%= @thecnical_table.try(:phone) %></p>
+      </div>
+      <div class="small-12 medium-4 column end">
+        <p><b><%=@model.human_attribute_name(:plate_proceeds)%></b></p>
+        <p><%= t(@thecnical_table.try(:plate_proceeds).to_s) %></p>
+      </div>
+      <div class="small-12 medium-4 column end">
+        <p><b><%=@model.human_attribute_name(:license_plate)%></b></p>
+        <p><%= t(@thecnical_table.try(:license_plate).to_s) %></p>
+      </div>
+      <div class="small-12 medium-4 column end">
+        <p><b><%=@model.human_attribute_name(:plate_installed)%></b></p>
+        <p><%= t(@thecnical_table.try(:plate_installed).to_s) %></p>
+      </div>    
+    </fieldset>
+
+    <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+      <legend><%=t("admin.complan.thecnical_table.title_data_economic")%></legend>
+      <%@thecnical_table.complan_economic_budgets.each do |economic|%>
+        <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+          <legend><%=t("admin.complan.thecnical_table.subtitle_economic", i: "")%></legend>
+          <div class="small-12 medium-2  column end"  >
+            <p><b><%=economic.class.human_attribute_name(:year)%></b></p>
+            <p><%= economic.try(:year) %></p>
+          </div>
+          <div class="small-12 medium-4  column end"  >
+            <p><b><%=economic.class.human_attribute_name(:import)%></b></p>
+            <p><%= economic.try(:import) %></p>
+          </div>
+          <div class="small-12 medium-3  column end"  >
+            <p><b><%=economic.class.human_attribute_name(:start_date)%></b></p>
+            <p><%= economic.try(:start_date) %></p>
+          </div>
+          <div class="small-12 medium-3  column end"  >
+            <p><b><%=economic.class.human_attribute_name(:end_date)%></b></p>
+            <p><%= economic.try(:end_date) %></p>
+          </div>
+          <div class="small-12 medium-3  column end"  >
+            <p><b><%=economic.class.human_attribute_name(:count_managing_body)%></b></p>
+            <p><%= economic.try(:count_managing_body) %></p>
+          </div>
+          <div class="small-12 medium-3 column end"  >
+            <p><b><%=economic.class.human_attribute_name(:count_functional)%></b></p>
+            <p><%= economic.try(:count_functional) %></p>
+          </div>
+          <div class="small-12 medium-3  column end"  >
+            <p><b><%=economic.class.human_attribute_name(:economic)%></b></p>
+            <p><%= economic.try(:economic) %></p>
+          </div>
+          <div class="small-12 medium-3  column end"  >
+            <p><b><%=economic.class.human_attribute_name(:element_pep)%></b></p>
+            <p><%= economic.try(:element_pep) %></p>
+          </div>
+          <div class="small-12 medium-4  column end"  >
+            <p><b><%=economic.class.human_attribute_name(:financing)%></b></p>
+            <p><%= economic.try(:financing) %></p>
+          </div>
+          <div class="small-12 medium-4  column end"  >
+            <p><b><%=economic.class.human_attribute_name(:type_contract)%></b></p>
+            <p><%= economic.try(:type_contract) %></p>
+          </div>
+        </fieldset>
+      <%end%>
+    </fieldset>
+
+    <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+      <legend><%=t("admin.complan.thecnical_table.title_data_media")%></legend>
+      <% @thecnical_table.complan_medias.each do |media| %>
+        <fieldset  style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+          <div class="small-12 medium-3  column end"  >
+            <p><b><%=media.class.human_attribute_name(:title)%></b></p>
+            <p><%= media.try(:title) %></p>
+          </div>
+          <div class="small-12 medium-6  column end"  >
+            <p><b><%=media.class.human_attribute_name(:text_document)%></b></p>
+            <p><%= media.try(:text_document).html_safe %></p>
+          </div>
+          <div class="small-12 medium-3  column end"  >
+            <p><b><%=t("admin.complan.thecnical_table.download_file")%>: </b></p>
+            <% if !media.attachment.blank? %>
+              <p>
+                <%= link_to media.attachment.url, target: :_blank do %>
+                              <span class="icon-document"></span>
+                              <%= media.attachment.original_filename %>
+                <% end %>
+              </p>
+            <%end%>
+          </div>
+        </fieldset>
+      <%end%>
+    </fieldset>
+
+    <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+      <legend><%=t("admin.complan.thecnical_table.title_data_link")%></legend>
+      <% @thecnical_table.complan_links.each do |link| %>
+        <div class="small-12 column end">
+          <p><%= link_to link.url, link.url, target: "_blank" %></p>
+        </div>
+      <% end %>
+    </fieldset>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<% provide :title do %>
+ <%= t("admin.header.title") %> - <%= t("admin.menu.complan_maintance") %> - <%= t("admin.menu.complan_tabs.performances") %> - <%= @performance.denomination %>
+<% end %>
+
+<div class="complan-performance-edit">
+  <%= back_link_to admin_complan_performances_path, t("admin.sures.actuations.new.back") %>
+
+  <h2><%= @performance.denomination %></h2>
+
+  <%= render "form" %>
+</div>

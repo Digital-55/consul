@@ -33,6 +33,10 @@ module AdminHelper
     controller_name.starts_with?("budget")
   end
 
+  def menu_proposals?
+    %w[proposals].include?(controller_name)
+  end
+
   def menu_polls?
     %w[polls active_polls recounts results questions answers].include?(controller_name) ||
     controller.class.parent == Admin::Poll::Questions::Answers
@@ -43,7 +47,9 @@ module AdminHelper
   end
 
   def menu_profiles?
-    %w[superadministrators administrators sures_administrators section_administrators consultants editors organizations officials moderators valuators managers users].include?(controller_name)
+    %w[superadministrators administrators sures_administrators section_administrators consultants 
+      editors organizations officials moderators valuators managers users parbudget_editors parbudget_readers
+      complan_editors complan_readers].include?(controller_name)
   end
 
   def menu_settings?
@@ -86,6 +92,22 @@ module AdminHelper
 
   def menu_dashboard?
     ["actions", "administrator_tasks"].include?(controller_name)
+  end
+
+  def menu_parbudget?   
+    controller.class.parent.to_s == "Admin::Parbudget" && !["editors", "readers"].include?(controller_name)
+  end
+
+  def menu_parbudget_maintence?
+    ["ambits", "topics", "centers", "projects", "responsibles", "meetings"].include?(controller_name) && controller.class.parent.to_s == "Admin::Parbudget"
+  end
+
+  def menu_complan?   
+    controller.class.parent.to_s == "Admin::Complan" && !["editors", "readers"].include?(controller_name)
+  end
+
+  def menu_complan_maintence?
+    ["projects", "performances", "centers", "strategies", "typologies", "thecnical_tables"].include?(controller_name) && controller.class.parent.to_s == "Admin::Complan"
   end
 
   def moderated_texts_section?

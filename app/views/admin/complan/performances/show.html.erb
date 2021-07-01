@@ -1,0 +1,75 @@
+<% provide :title do %>
+ <%= t("admin.header.title") %> - <%= t("admin.menu.complan_maintance") %> - <%= t("admin.menu.complan_tabs.performances") %> - <%= @performance.denomination %>
+<% end %>
+
+<div class="complan-performance-show">
+  <%= back_link_to admin_complan_performances_path, t("admin.sures.actuations.new.back") %>
+
+ 
+  <div class="small-12 column">
+    <h2><%= @performance.denomination %></h2>
+    <div class="float-right">
+      <%= link_to t('admin.complan.performance.pdf_download'), current_path_with_query_params(id: @performance.id, format: :pdf), class: "button" %>
+    </div>
+  </div>
+
+  <div class="small-12 column">
+    <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+        <legend><%=t("admin.complan.performance.title_data")%></legend>
+      <div class="small-12 medium-3  column end"  >
+        <p><b><%=@model.human_attribute_name(:code)%></b></p>
+        <p><%= @performance.try(:code) %></p>
+      </div>
+      <div class="small-12 medium-3  column end"  >
+        <p><b><%=@model.human_attribute_name(:code_section)%></b></p>
+        <p><%= @performance.try(:code_section) %></p>
+      </div>
+      <div class="small-12 medium-3  column end"  >
+        <p><b><%=@model.human_attribute_name(:code_program)%></b></p>
+        <p><%= @performance.try(:code_program) %></p>
+      </div>
+      <div class="small-12 medium-3  column end"  >
+        <p><b><%=@model.human_attribute_name(:responsible)%></b></p>
+        <p><%= @performance.try(:responsible) %></p>
+      </div>
+      <div class="small-12 medium-6  column end"  >
+        <p><b><%=@model.human_attribute_name(:denomination)%></b></p>
+        <p><%= @performance.try(:denomination) %></p>
+      </div>
+      <div class="small-12 medium-6  column end"  >
+        <p><b><%=@model.human_attribute_name(:government_area)%></b></p>
+        <p><%= @performance.try(:government_area) %></p>
+      </div>
+      <div class="small-12  column end"  >
+        <p><b><%=@model.human_attribute_name(:general_direction)%></b></p>
+        <p><%= @performance.try(:general_direction) %></p>
+      </div>
+    </fieldset>
+    <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+      <legend><%=t("admin.complan.performance.title_responsibles")%></legend>
+        <%@performance.complan_responsibles.each do |responsible|%>
+          <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+            <div class="small-12 medium-6  column end"  >
+              <p><b><%=responsible.class.human_attribute_name(:full_name)%></b></p>
+              <p><%= responsible.try(:full_name) %></p>
+            </div>
+            <div class="small-12 medium-3  column end"  >
+                <p><b><%=responsible.class.human_attribute_name(:email)%></b></p>
+                <p><%=  responsible.try(:email) %></p>
+            </div>
+            <div class="small-12 medium-3  column end"  >
+                <p><b><%=responsible.class.human_attribute_name(:phone)%></b></p>
+                <p><%=  responsible.try(:phone) %></p>
+            </div>
+            <div class="small-12 medium-6  column end"  >
+                <p><b><%=responsible.class.human_attribute_name(:position)%></b></p>
+                <p><%=  responsible.try(:position) %></p>
+            </div>
+          </fieldset>
+        <%end%>
+    </fieldset>
+  </div>
+
+ 
+  
+</div>

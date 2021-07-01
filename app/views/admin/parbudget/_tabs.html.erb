@@ -1,0 +1,10 @@
+<h2 class="inline-block"><%= t("admin.menu.parbudget_maintance") %></h2>
+<ul class="menu simple clear" >
+    <%@maintance_array.each do |ma|%> 
+        <% if controller_name == ma %>
+            <li class="is-active"><h2><%=t("admin.menu.parbudget_tabs.#{ma}") %></h2></li>
+        <% else %>
+            <li><%= link_to t("admin.menu.parbudget_tabs.#{ma}"),eval("admin_parbudget_#{ma}_path") %></li>
+        <% end %> 
+    <% end %> 
+</ul>

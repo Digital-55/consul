@@ -1,0 +1,68 @@
+<div class="small-12 column">
+    <h2><%= @center.denomination %></h2>
+</div>
+
+<div class="small-12 column">
+    <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+        <legend><%=t("admin.parbudget.center.title_data")%></legend>
+        <table>
+            <tr>
+                <th style="width: 25%"><%=@model.human_attribute_name(:code)%></th>
+                <th style="width: 25%"><%=@model.human_attribute_name(:code_section)%></th>
+                <th style="width: 25%"><%=@model.human_attribute_name(:code_program)%></th>
+                <th style="width: 25%"><%=@model.human_attribute_name(:responsible)%></th>
+            <tr>
+            <tr>
+                <td style="width: 25%"><%= @center.try(:code) %></td>
+                <td style="width: 25%"><%= @center.try(:code_section) %></td>
+                <td style="width: 25%"><%= @center.try(:code_program) %></td>
+                <td style="width: 25%"><%= @center.try(:responsible) %></td>
+            <tr>
+        </table>
+        <table>
+            <tr>
+                <th style="width: 50%"><%=@model.human_attribute_name(:denomination)%></th>
+                <th style="width: 50%"><%=@model.human_attribute_name(:government_area)%></th>
+            <tr>
+            <tr>
+                <td style="width: 50%"><%= @center.try(:denomination) %></td>
+                <td style="width: 50%"><%= @center.try(:government_area) %></td>
+            <tr>
+        </table>
+        <table>
+            <tr>
+                <th><%=@model.human_attribute_name(:general_direction)%></th>
+            <tr>
+            <tr>
+                <td><%= @center.try(:general_direction) %></td>
+            <tr>
+        </table>
+    </fieldset>
+    <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+      <legend><%=t("admin.parbudget.center.title_responsibles")%></legend>
+        <%@center.parbudget_responsibles.each do |responsible|%>
+          <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+            <table>
+                <tr>
+                    <th style="width: 50%"><%=responsible.class.human_attribute_name(:full_name)%></th>
+                    <th style="width: 25%"><%=responsible.class.human_attribute_name(:email)%></th>
+                    <th style="width: 25%"><%=responsible.class.human_attribute_name(:phone)%></th>
+                <tr>
+                <tr>
+                    <td style="width: 50%"><%= responsible.try(:full_name) %></td>
+                    <td style="width: 25%"><%= responsible.try(:email) %></td>
+                    <td style="width: 25%"><%= responsible.try(:phone) %></td>
+                <tr>
+            </table>
+            <table>
+                <tr>
+                    <th style="width: 50%"><%=responsible.class.human_attribute_name(:position)%></th>
+                <tr>
+                <tr>
+                    <td style="width: 50%"><%= responsible.try(:position) %></td>
+                <tr>
+            </table>
+          </fieldset>
+        <%end%>
+    </fieldset>
+</div>

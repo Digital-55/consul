@@ -64,6 +64,7 @@ module Abilities
       can [:search, :create, :index, :destroy], ::Consultant
       can [:search, :create, :index, :destroy], ::Editor
       can [:search, :create, :index, :destroy], ::Moderator
+
       can [:search, :show, :edit, :update, :create, :index, :destroy, :summary], ::Valuator
       can [:search, :create, :index, :destroy], ::Manager
       can [:search, :index, :new, :destroy, :update_padron, :edit, :update], ::User
@@ -121,6 +122,28 @@ module Abilities
       can :create, ModeratedTexts::Import
 
       can :manage, ImportUser
+
+      can :manage, Parbudget::Ambit
+      can :manage, Parbudget::Project
+      can :manage, Parbudget::Center
+      can :manage, Parbudget::Meeting
+      can :manage, Parbudget::Topic
+      can :manage, Parbudget::Responsible
+      
+      can :manage, Parbudget::Editor
+      can :manage, Parbudget::Reader
+
+      can :manage, Complan::Editor
+      can :manage, Complan::Reader
+
+      can :manage, Complan::Project
+      can :manage, Complan::Performance
+      can :manage, Complan::Center
+      can :manage, Complan::Financing
+      can :manage, Complan::Strategy
+      can :manage, Complan::Typology
+      can :manage, Complan::ThecnicalTable
+
     end
   end
 end

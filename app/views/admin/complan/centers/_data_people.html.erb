@@ -1,0 +1,15 @@
+<fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+    <legend><%=t("admin.complan.center.title_data_person")%></legend>
+    <div id="nested_complan_people">
+        <%= f.fields_for :complan_people do |ff| %>
+            <%= render "complan_person_fields", f: ff %>
+        <% end %>
+
+        <div class="js-add-fields-container">
+            <div class="small-12 medium-9 column end">
+                <%= link_to_add_association t("admin.complan.center.add_person"),
+                                        f, :complan_people, class: "button hollow"  %>
+            </div>
+        </div>
+    </div>       
+ </fieldset>

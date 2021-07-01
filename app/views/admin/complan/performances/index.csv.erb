@@ -1,0 +1,21 @@
+<%=
+  CSV.generate(col_sep: ';', encoding: 'ISO-8859-1') do |csv|
+    headers = @model.get_exporter.map {|h| @model.human_attribute_name(h)}
+    rows = []
+    @filters ||= []
+
+    @performances.each do |performance|
+      aux_row = []
+      @model.get_exporter.each {|ele| aux_row = aux_row + [performance.try(ele)] }
+      rows.push(aux_row)
+    end
+
+    if !@filters.blank?
+      csv << ["Filtros:"]
+      csv << @filters
+      csv << [""]
+    end
+    csv << headers
+    rows.each {|r| csv << r}
+  end.html_safe
+%>

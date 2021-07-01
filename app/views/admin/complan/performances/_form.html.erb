@@ -1,0 +1,27 @@
+
+<%= form_for [:admin, @performance], html: {data: {watch_changes: true}} do |f| %>
+
+  <% if @performance.errors.any? %>
+    <div id="error_explanation" data-alert class="callout alert" data-closable>
+      <button class="close-button" aria-label="<%= t("application.close") %>" type="button" data-close>
+        <span aria-hidden="true">&times;</span>
+      </button>
+
+      <strong>
+        <%= @performance.errors.count %>
+        <%= t("admin.sures.actuations.errors.form.error", count: @performance.errors.count) %>
+      </strong>
+    </div>
+  <% end %>
+
+  <%=render "data_performance", f: f%>
+  <%=render "data_activities", f: f%>
+  <%=render "data_ambits", f: f%>
+  <%=render "data_indicators", f: f%>
+  <%=render "data_beneficiaries", f: f%>
+  <%=render "data_medias", f: f%>
+
+  <div class="small-12 medium-3 column clear end">
+    <%= f.submit(class: "button success expanded", value: t("admin.parbudget.#{admin_submit_action(@performance)}.submit_button")) %>
+  </div> 
+<% end %>

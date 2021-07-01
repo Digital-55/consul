@@ -1,0 +1,38 @@
+<li class="section-title">
+    <a href="#">
+        <span class="icon-edit"></span>
+        <strong><%= t("admin.menu.title_site_customization") %></strong>
+    </a>
+    <ul <%= "class=is-active" if menu_customization? &&
+                                controller.class.parent != Admin::Poll::Questions::Answers %>>
+
+        <li <%= "class=is-active" if menu_homepage? %>>
+        <%= link_to t("admin.menu.site_customization.homepage"), admin_homepage_path %>
+        </li>
+
+        <li <%= "class=is-active" if menu_pages? || controller_name == "pages" %>>
+        <%= link_to t("admin.menu.site_customization.pages"), admin_site_customization_pages_path %>
+        </li>
+
+        <li <%= "class=is-active" if controller_name == "banners" %>>
+        <%= link_to t("admin.menu.banner"), admin_banners_path %>
+        </li>
+
+        <li <%= "class=is-active" if controller_name == "event_agends" %>>
+        <%= link_to t("admin.menu.site_customization.event_agends"),
+                    admin_event_agends_path %>
+        </li>
+
+        <li <%= "class=is-active" if controller_name == "information_texts" %>>
+        <%= link_to t("admin.menu.site_customization.information_texts"), admin_site_customization_information_texts_path %>
+        </li>
+
+        <li <%= "class=is-active" if controller_name == "documents" %>>
+        <%= link_to t("admin.menu.site_customization.documents"),
+                    admin_site_customization_documents_path %>
+        </li>
+        <li <%= "class=is-active" if menu_sg? %>>
+        <%= link_to t("admin.menu.sg"), admin_sgs_path %>
+        </li>
+    </ul>
+</li>

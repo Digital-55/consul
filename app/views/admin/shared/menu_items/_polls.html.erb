@@ -1,0 +1,8 @@
+<% if feature?(:polls) %>
+    <li class="section-title <%= "is-active" if menu_polls? %>">
+        <%= link_to admin_polls_path do %>
+        <span class="icon-checkmark-circle"></span>
+        <strong><%= t("admin.menu.polls") %></strong>
+        <% end %>
+    </li>
+<% end %>

@@ -1,0 +1,43 @@
+<h2><%= t("admin.parbudget_readers.index.title") %></h2>
+<%= render "shared/profiles_filter_subnav", i18n_namespace: "admin.users" %>
+
+<div id="parbudget_readers">
+  <% if @parbudget_readers.any? %>
+    <h3 class="margin"><%= page_entries_info @parbudget_readers, entry_name: @parbudget_readers.count.to_i > 1 ? "Gestores" : "Gestor" %></h3>
+
+    <table>
+      <thead>
+        <th scope="col" class="text-center"><%= t("admin.parbudget_readers.index.id") %></th>
+        <th scope="col"><%= t("admin.parbudget_readers.index.name") %></th>
+        <th scope="col"><%= t("admin.parbudget_readers.index.email") %></th>
+        <th scope="col" class="small-3"><%= t("admin.shared.actions") %></th>
+      </thead>
+      <% @parbudget_readers.each do |parbudget_reader| %>
+        <tr id="<%= dom_id(parbudget_reader)%>">
+          <td class="text-center">
+            <%= parbudget_reader.try(:id)%>
+          </td>
+          <td>
+            <%= parbudget_reader.try(:name) %>
+          </td>
+          <td>
+            <%= parbudget_reader.try(:email) %>
+          </td>
+          <td>
+            <%= link_to t("admin.parbudget_readers.administrator.delete"),
+                        admin_parbudget_reader_path(parbudget_reader),
+                        method: :delete,
+                        class: "button hollow alert expanded"
+            %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+
+    <%= paginate @parbudget_readers %>
+  <% else %>
+    <div class="callout primary margin">
+      <%= t("admin.parbudget_readers.index.no_parbudget_readers") %>
+    </div>
+  <% end %>
+</div>

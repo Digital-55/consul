@@ -1,0 +1,70 @@
+  <div class="small-12 column">
+    <h2><%= @center.denomination %></h2>
+  </div> 
+  <div class="small-12 column">
+    <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+        <legend><%=t("admin.complan.center.title_data")%></legend>
+        <table>
+            <tr>
+                <th style="width: 50%"><%=@model.human_attribute_name(:denomination)%></th>
+                <th style="width: 50%"><%=@model.human_attribute_name(:organism)%></th>
+            <tr>
+            <tr>
+                <td style="width: 50%"><%= @center.try(:denomination) %></td>
+                <td style="width: 50%"><%= @center.try(:organism) %></td>
+            <tr>
+        </table>
+        <table>
+            <tr>
+                <th style="width: 50%"><%=@model.human_attribute_name(:address)%></th>
+                <th style="width: 25%"><%=@model.human_attribute_name(:dg)%></th>
+                <th style="width: 25%"><%=@model.human_attribute_name(:sg)%></th>
+            <tr>
+            <tr>
+                <td style="width: 50%"><%= @center.try(:address) %></td>
+                <td style="width: 25%"><%= @center.try(:dg) %></td>
+                <td style="width: 25%"><%= @center.try(:sg) %></td>
+            <tr>
+        </table>
+    </fieldset>
+    <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+      <legend><%=t("admin.complan.center.title_data_person")%></legend>
+      <div id="nested_complan_people">
+        <% @center.try(:complan_people).each do |person| %>
+          <div id="<%= dom_id(person) %>" class="nested-fields">
+            <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+              <legend><%=t("admin.complan.center.subtitle_person", i: "")%></legend>
+                <table>
+                    <tr>
+                        <th style="width: 50%"><%=person.class.human_attribute_name(:name)%></th>
+                        <th style="width: 50%"><%=person.class.human_attribute_name(:position)%></th>
+                    <tr>
+                    <tr>
+                        <td style="width: 50%"><%= person.try(:name) %></td>
+                        <td style="width: 50%"><%= person.try(:position) %></td>
+                    <tr>
+                </table>
+                <table>
+                    <tr>
+                        <th style="width: 50%"><%=person.class.human_attribute_name(:phone)%></th>
+                        <th style="width: 50%"><%=person.class.human_attribute_name(:email)%></th>
+                    <tr>
+                    <tr>
+                        <td style="width: 50%"><%= person.try(:phone) %></td>
+                        <td style="width: 50%"><%= person.try(:email) %></td>
+                    <tr>
+                </table>
+                <table>
+                    <tr>
+                        <th><%=person.class.human_attribute_name(:address)%></th>
+                    <tr>
+                    <tr>
+                        <td><%= person.try(:address) %></td>
+                    <tr>
+                </table>
+            </fieldset>
+          </div>
+        <% end %>
+      </div>       
+    </fieldset>
+  </div>

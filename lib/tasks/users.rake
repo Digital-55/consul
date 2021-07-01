@@ -456,7 +456,9 @@ namespace :users do
 
   desc "create user profiles"
   task create_profiles: :environment do
-    [["Super Administrador", 1], ["Administrador", 2], ["Administrador Sures",3], ["Administrador Sectorial",4], ["Gestor",5], ["Moderador", 6], ["Evaluador", 7], ["Consultor", 8], ["Editor", 9]].each do |p|
+    [["Super Administrador", 1], ["Administrador", 2], ["Administrador Sures",3], ["Administrador Sectorial",4], ["Gestor",5], ["Moderador", 6],
+     ["Evaluador", 7], ["Consultor", 8], ["Editor", 9], ["Gestor editor Participación", 10], ["Gestor lectura Participación", 11],
+      ["Gestor editor Planes Concertados", 12], ["Gestor lectura Planes Concertados", 13]].each do |p|
       profile = Profile.find_by(name: p[0].to_s)
 
       if !profile.blank?

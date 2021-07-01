@@ -1,0 +1,8 @@
+<% if feature?(:proposals) %>
+    <li class="section-title <%= "is-active" if menu_proposals? %>">
+        <%= link_to admin_proposals_path do %>
+            <span class="icon-proposals"></span>
+            <strong><%= t("admin.menu.proposals") %></strong>
+        <% end %>
+    </li>
+<% end %>

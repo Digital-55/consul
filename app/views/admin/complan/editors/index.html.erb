@@ -1,0 +1,42 @@
+<h2><%= t("admin.complan_editors.index.title") %></h2>
+<%= render "shared/profiles_filter_subnav", i18n_namespace: "admin.users" %>
+
+<div id="complan_editors">
+  <% if @complan_editors.any? %>
+    <h3 class="margin"><%= page_entries_info @complan_editors, entry_name: @complan_editors.count.to_i > 1 ? "Gestores" : "Gestor" %></h3>
+
+    <table>
+      <thead>
+        <th scope="col" class="text-center"><%= t("admin.complan_editors.index.id") %></th>
+        <th scope="col"><%= t("admin.complan_editors.index.name") %></th>
+        <th scope="col"><%= t("admin.complan_editors.index.email") %></th>
+        <th scope="col" class="small-3"><%= t("admin.shared.actions") %></th>
+      </thead>
+      <% @complan_editors.each do |complan_editor| %>
+        <tr id="<%= dom_id(complan_editor)%>">
+          <td class="text-center">
+            <%= complan_editor.try(:id)%>
+          </td>
+          <td>
+            <%= complan_editor.try(:name) %>
+          </td>
+          <td>
+            <%= complan_editor.try(:email) %>
+          </td>
+          <td>
+            <%= link_to t("admin.complan_editors.administrator.delete"),
+                        admin_complan_editor_path(complan_editor),
+                        method: :delete,
+                        class: "button hollow alert expanded" %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+
+    <%= paginate @complan_editors %>
+  <% else %>
+    <div class="callout primary margin">
+      <%= t("admin.complan_editors.index.no_complan_editors") %>
+    </div>
+  <% end %>
+</div>

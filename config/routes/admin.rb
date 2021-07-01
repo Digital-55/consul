@@ -28,6 +28,53 @@ namespace :admin do
     get :delete_table_select, on: :member
   end
 
+  namespace :parbudget do
+    resources :ambits do
+      post :create_ambit, on: :collection
+      post :update_ambit, on: :member
+    end
+    resources :topics do
+      post :generate_topic, on: :collection
+      post :update_topic, on: :member
+    end
+    resources :centers
+    resources :projects
+    resources :responsibles
+    resources :meetings
+    resources :editors, only: [:index, :new, :create, :destroy] do
+      get :search, on: :collection
+    end
+    resources :readers, only: [:index, :new, :create, :destroy] do
+      get :search, on: :collection
+    end
+
+  end
+
+  namespace :complan do
+    resources :performances
+    resources :centers
+    resources :projects do 
+      post :create_project, on: :collection
+      post :update_project, on: :member
+    end
+    resources :strategies do 
+      post :create_strategy, on: :collection
+      post :update_strategy, on: :member
+    end
+    resources :financings
+    resources :typologies do 
+      post :create_typology, on: :collection
+      post :update_typology, on: :member
+    end
+    resources :thecnical_tables
+    resources :editors, only: [:index, :new, :create, :destroy] do
+      get :search, on: :collection
+    end
+    resources :readers, only: [:index, :new, :create, :destroy] do
+      get :search, on: :collection
+    end
+  end
+
   resources :hidden_users, only: [:index, :show] do
     member do
       put :restore

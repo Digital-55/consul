@@ -1,0 +1,43 @@
+<% provide :title do %>
+ <%= t("admin.header.title") %> - <%= t("admin.menu.parbudget_maintance") %> - <%= t("admin.menu.parbudget_tabs.financings") %> - <%= "#{@financing.who_requests} - #{@financing.date_at_convert}"%>
+<% end %>
+
+<div class="parbudget-financing-show">
+  <%= back_link_to admin_parbudget_financings_path, t("admin.sures.actuations.new.back") %>
+
+ 
+    <div class="small-12 column">
+        <h2><%= "#{@financing.who_requests} - #{@financing.date_at_convert}"%></h2>
+        <div class="float-right">
+            <%= link_to t('admin.parbudget.financing.pdf_download'), current_path_with_query_params(id: @financing.id, format: :pdf), class: "button" %>
+        </div>
+    </div>
+
+ 
+   <div class="small-12 column">
+        <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+            <legend><%=t('admin.parbudget.financing.title_data')%></legend>
+            <div class="row">
+                <div class="small-12 medium-3 column end">
+                    <p><b><%=@model.human_attribute_name(:date_at_convert)%></b></p>
+                    <p><%= @financing.try(:date_at_convert) %></p>
+                </div>
+                <div class="small-12 medium-9 column end">
+                    <p><b><%=@model.human_attribute_name(:who_requests)%></b></p>
+                    <p><%= @financing.try(:who_requests) %></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-12 medium-12  column end">
+                    <p><b><%=@model.human_attribute_name(:reason)%></b></p>
+                    <p><%=@financing.try(:reason).to_s.html_safe%></p>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+            <legend><%=t('admin.parbudget.financing.title_data_assistant')%></legend>
+            <div class="small-12 medium-12 column end"><%=  @financing.try(:assistants)%></div>
+        </fieldset>
+    </div>
+  </div>
+</div>

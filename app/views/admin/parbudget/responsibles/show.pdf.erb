@@ -1,0 +1,32 @@
+<div class="small-12 column">
+    <h2><%= @responsible.full_name %></h2>
+</div>
+
+
+<div class="small-12 column">
+    <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+        <legend><%=t('admin.parbudget.responsible.title_data')%></legend>
+        <table>
+            <tr>
+                <th style="width: 50%"><%=@model.human_attribute_name(:full_name)%></th>
+                <th style="width: 25%"><%=@model.human_attribute_name(:email)%></th>
+                <th style="width: 25%"><%=@model.human_attribute_name(:phone)%></th>
+            <tr>
+            <tr>
+                <td style="width: 50%"><%= @responsible.try(:full_name) %></td>
+                <td style="width: 25%"><%= @responsible.try(:email) %></td>
+                <td style="width: 25%"><%= @responsible.try(:phone) %></td>
+            <tr>
+        </table>
+        <table >
+            <tr>
+                <th style="width: 50%"><%=@model.human_attribute_name(:position)%></th>
+                <th style="width: 50%"><%=@model.human_attribute_name(:parbudget_center)%></th>
+            <tr>
+            <tr>
+                <td style="width: 50%"><%= @responsible.try(:position) %></td>
+                <td style="width: 50%"><%= @responsible.try(:parbudget_center).try(:denomination) %></td>
+            <tr>
+        </table>
+    </fieldset>
+</div>

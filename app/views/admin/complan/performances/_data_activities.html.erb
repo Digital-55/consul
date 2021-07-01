@@ -1,0 +1,15 @@
+<fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+    <legend><%=t("admin.complan.performance.title_data_activity")%></legend>
+    <div id="nested_complan_activities">
+        <%= f.fields_for :complan_activities do |ff| %>
+            <%= render "complan_activity_fields", f: ff %>
+        <% end %>
+
+        <div class="js-add-fields-container">
+            <div class="small-12 medium-9 column end">
+                <%= link_to_add_association t("admin.complan.performance.add_activity"),
+                                        f, :complan_activities, class: "button hollow"  %>
+            </div>
+        </div>
+    </div>       
+ </fieldset>

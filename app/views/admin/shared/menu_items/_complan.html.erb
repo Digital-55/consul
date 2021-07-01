@@ -1,0 +1,17 @@
+<li class="section-title">
+    <a href="#">
+        <span class="icon-edit"></span>
+        <strong><%= t("admin.menu.complan") %></strong>
+    </a>
+    <ul <%= "class=is-active" if menu_complan? %>>
+    <li <%= "class=is-active" if controller_name == "complan" %>>
+        <%= link_to t("admin.menu.complan_tracking"), admin_complan_performances_path %>
+        </li>
+        <li <%= "class=is-active" if  menu_complan_maintence? %>>
+        <%= link_to t("admin.menu.complan_maintance"), admin_complan_performances_path %>
+        </li>
+        <li <%= "class=is-active" if controller_name == "complan" %>>
+        <%= link_to t("admin.menu.complan_audits"), admin_complan_performances_path  %>
+        </li>
+    </ul>
+</li>

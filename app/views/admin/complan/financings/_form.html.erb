@@ -1,0 +1,20 @@
+<%= form_for [:admin, @financing], html: {data: {watch_changes: true}} do |f| %>
+  <% if @financing.errors.any? %>
+    <div id="error_explanation" data-alert class="callout alert" data-closable>
+      <button class="close-button" aria-label="<%= t("application.close") %>" type="button" data-close>
+        <span aria-hidden="true">&times;</span>
+      </button>
+
+      <strong>
+        <%= @financing.errors.count %>
+        <%= t("admin.sures.actuations.errors.form.error", count: @financing.errors.count) %>
+      </strong>
+    </div>
+  <% end %>
+  <%=render "data_financing", f: f%>
+  <%=render "data_files", f: f%>
+  <%=render "data_imports", f: f%>
+  <div class="small-12 medium-3 column clear end">
+    <%= f.submit(class: "button success expanded", value: t("admin.complan.#{admin_submit_action(@financing)}.submit_button")) %>
+  </div>
+<% end %>
