@@ -44,6 +44,26 @@
                             id: "slug" %>
         </div>
       </div>
+      <div class="row">
+        <div class="small-12 medium-4 column">
+          <%= f.label :font_color, t("admin.custom_pages.custom_page.font_color"), for: "font_color_input" %>
+          <div class="row collapse">
+            <div class="small-12 medium-6 column">
+              <%= f.text_field :font_color, label: false, type: :color,
+                                            value: custom_page_font_color_or_default %>
+            </div>
+            <div class="small-12 medium-6 column">
+              <%= f.text_field :font_color, label: false, id: "font_color_input" %>
+            </div>
+          </div>
+        </div>
+        <div class="small-12 medium-4 column end">
+          <%= f.label :font_type, t("admin.custom_pages.custom_page.font_type") %>
+          <%= f.select :font_type, {}, label: false do %>
+            <%= options_for_select(font_type_options, @custom_page.font_type) %>
+          <% end %>
+        </div>
+      </div>
 
       <div id='custom_page-toggle_meta_tags'>
         <div>

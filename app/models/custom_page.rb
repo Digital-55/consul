@@ -25,8 +25,15 @@ class CustomPage < ApplicationRecord
   scope :sorted, -> { order(updated_at: :desc) }
   scope :parent_pages, -> { where(parent_slug: [nil, '']) }
 
+  before_save :set_valid_font_color
+  DEFAULT_FONT_COLOR = '#222222'
+
   def children_pages
     CustomPage.where(parent_slug: self.slug)
+  end
+
+  def set_valid_font_color
+    self.font_color = DEFAULT_FONT_COLOR unless !!self.font_color.match(/\A#?(?:[A-F0-9]{3}){1,2}\z/i)
   end
 
 end

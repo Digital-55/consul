@@ -43,10 +43,11 @@ $(document).on('page:change', function(){
   validateInputFields();
   updatePromotionalsLocation();
   displayCharLimit();
+  displayFontColor();
 });
 
 function validateInputFields() {
-  $('.custom_page_module-youtube_url').change(function(){
+  $('.custom_page_module-youtube_url').on('change', function(){
     var url = $(this).val();
     var regex
     debugger;
@@ -181,7 +182,7 @@ function slugAutoFill(){
 }
 
 function updatePromotionalsLocation(){
-  $('[id*="_promo_location_one"], [id*="_promo_location_two"], [id*="_promo_location_three"]').change(function(){
+  $('[id*="_promo_location_one"], [id*="_promo_location_two"], [id*="_promo_location_three"]').on('change', function(){
     var targetId = this.id.split("_").map(Number).filter(Number).toString() || "0";
     var promoOneLocation, promoTwoLocation, promoThreeLocation;
     var selectValues = {};
@@ -231,4 +232,17 @@ function displayCharLimit() {
       }
     })
   }
-};
+}
+
+function displayFontColor(){
+  $('#custom_page_font_color').on('change', function(){
+    var color = $(this).val()
+    $('#font_color_input')[0].text = color
+    $('#font_color_input')[0].value = color
+  })
+
+  $('#font_color_input').on('keyup', function(){
+    var color = $(this).val()
+    $('#custom_page_font_color')[0].value = color
+  })
+}

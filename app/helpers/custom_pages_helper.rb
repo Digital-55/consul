@@ -25,6 +25,33 @@ module CustomPagesHelper
     slugs
   end
 
+  def font_type_options
+    {
+      "Arial" => "'Arial', sans-serif",
+      "Arial Black" => "'Arial Black', sans-serif",
+      "Verdana" => "'Verdana', sans-serif",
+      "Tahoma" => "'Tahoma', sans-serif",
+      "Trebuchet MS" => "'Trebuchet MS', sans-serif",
+      "Impact" => "'Impact', sans-serif",
+      "Times New Roman" => "'Times New Roman', serif",
+      "Didot" => "'Didot', serif",
+      "Georgia" => "'Georgia', serif",
+      "American Typewriter" => "'American Typewriter', serif",
+      "Andale Mono" => "'Andale Mono', monospace",
+      "Courier" => "'Courier', monospace",
+      "Courier New" => "'Courier New', monospace",
+      "Lucida Console" => "'Lucida Console', monospace",
+      "Monaco" => "'Monaco', monospace",
+      "Bradley Hand" => "'Bradley Hand', cursive",
+      "Brush Script MT" => "'Brush Script MT', cursive",
+      "Garamond" => "'Garamond', serif",
+      "Helvetica" => "'Helvetica', sans-serif",
+      "Lato" => "'Lato', sans-serif;",
+      "Luminary" => "'Luminary', fantasy;",
+      "Comic Sans" => "'Comic Sans', cursive;",
+    }
+  end
+
   def promo_location_options
     {
       "Izquierda" => 'left',
@@ -73,6 +100,10 @@ module CustomPagesHelper
 
   def enabled_snippets
     @custom_page.custom_page_modules.enabled.map(&:js_snippet).compact
+  end
+
+  def custom_page_font_color_or_default
+    @custom_page.font_color.present? ? @custom_page.font_color : CustomPage::DEFAULT_FONT_COLOR
   end
 
   def video_thumbnail(url)

@@ -788,6 +788,8 @@ ActiveRecord::Schema.define(version: 20210624085951) do
     t.string   "meta_keywords"
     t.boolean  "canonical"
     t.boolean  "published"
+    t.string   "font_color"
+    t.string   "font_type"
     t.integer  "user_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
