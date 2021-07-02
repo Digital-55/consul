@@ -60,7 +60,7 @@ class Legislation::AnswersController < Legislation::BaseController
       ans = Legislation::Answer.find_by(legislation_question_id: params[:question_id], user_id: current_user.id)
       if !ans.blank?
         ans.legislation_question_option_id = params[:legislation_answer][:legislation_question_option_id]
-        ans.save!
+        ans.save
         redirect_to legislation_process_question_path(@process, @question), notice: t("legislation.questions.show.answer_question")
       else
         if @process.debate_phase.open?

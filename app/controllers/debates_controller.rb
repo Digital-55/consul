@@ -73,8 +73,11 @@ class DebatesController < ApplicationController
   end
 
   def borought
-    @district = Geozone.find(params[:geozone])
+    @district =  Geozone.find(params[:geozone])
     @proposals = Proposal.where(geozone_id: params[:geozone],comunity_hide: true).order(title: :asc)
+  rescue
+    @district = nil
+    @proposals= []
   end
 
   def district_geozone
