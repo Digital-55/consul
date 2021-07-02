@@ -1334,7 +1334,7 @@ code {
 }
 
 .cta-module {
-  h4 {
+  .custom-h4 {
     padding: 26px;
   }
   .text-center{
@@ -1379,4 +1379,19 @@ td.children-page {
 // Foundation override
 .custom-page .card p {
   padding: 0 !important;
+}
+
+.custom-h2 {
+ font-size: 1.5em;
+ font-weight: bold;
+}
+
+.custom-h3 {
+  font-size: 1.17em;
+  font-weight: bold;
+}
+
+.custom-h4 {
+  font-size: 1em;
+  font-weight: bold;
 }

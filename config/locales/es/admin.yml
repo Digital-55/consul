@@ -348,6 +348,8 @@ es:
         canonical: URL canónica
         creating: Crear página personalizada
         custom_page_items: Módulos
+        font_color: Color de texto
+        font_type: Fuente de texto
         index: Módulos de página
         meta_description: Meta-descripción (aprox. 160 caracteres)
         meta_keywords: Palabras clave separadas por "comas"

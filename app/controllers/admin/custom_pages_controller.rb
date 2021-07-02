@@ -52,7 +52,7 @@ class Admin::CustomPagesController < Admin::BaseController
   private
 
   def custom_page_params
-    params.require(:custom_page).permit(:title, :parent_slug, :slug, :published, :meta_title, :meta_description, :meta_keywords, :canonical,
+    params.require(:custom_page).permit(:title, :parent_slug, :slug, :published, :meta_title, :meta_description, :meta_keywords, :canonical, :font_color, :font_type,
                                         custom_page_modules_attributes: [:id, :type, :position,
                                                                           :subtitle,
                                                                           :claim,
