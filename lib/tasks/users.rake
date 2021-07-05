@@ -11,6 +11,19 @@ namespace :users do
     end
   end
 
+  desc "Actualización de datos DEMAD-142"
+task change: :environment do
+  pwd = Rails.application.secrets.password_config.to_s
+  user = User.find_by(email: 'elenarudelato@gmail.com')
+  user.password=  pwd,
+  user.password_confirmation=pwd,
+ 
+  if user.save
+    puts "usuario #{user.email} cambiado #{pwd}"
+  end
+end
+
+
   desc "Actualización de datos DEMAD-106"
   task update_106: :environment do
     #RAKE temporal
