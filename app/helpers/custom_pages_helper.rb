@@ -149,25 +149,40 @@ module CustomPagesHelper
 
   ## Youtube
 
-  def default_video_size
+  def default_video_size(text_position)
+    if text_position == 'none'
+      {
+        width: '800',
+        height: '450'
+      }
+    else
+      {
+        width: '500',
+        height: '280'
+      }
+    end
+  end
+
+  def youtube_position_options
     {
-      width: '800',
-      height: '450'
+      "Texto no visible" => 'none',
+      "Texto a la derecha" => 'right',
+      "Texto a la izquierda" => 'left',
     }
   end
 
-  def render_video_resource(url)
+  def render_video_resource(url, text_position)
     if url.include?("vimeo.com")
-      return "<iframe src='https://player.vimeo.com/video/#{video_id(url, "vimeo")}?color=ffffff&title=0&byline=0&portrait=0' width='#{default_video_size[:width]}' height='#{default_video_size[:height]}' frameborder='0' allow='autoplay; fullscreen; picture-in-picture' allowfullscreen></iframe>".html_safe
+      return "<iframe src='https://player.vimeo.com/video/#{video_id(url, "vimeo")}?color=ffffff&title=0&byline=0&portrait=0' width='#{default_video_size(text_position)[:width]}' height='#{default_video_size(text_position)[:height]}' frameborder='0' allow='autoplay; fullscreen; picture-in-picture' allowfullscreen></iframe>".html_safe
     end
     if url.include?("youtu")
-      return "<iframe width='#{default_video_size[:width]}' height='#{default_video_size[:height]}' src='https://www.youtube.com/embed/#{video_id(url, "youtube")}' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>".html_safe
+      return "<iframe width='#{default_video_size(text_position)[:width]}' height='#{default_video_size(text_position)[:height]}' src='https://www.youtube.com/embed/#{video_id(url, "youtube")}' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>".html_safe
     end
     if url.include?("slideshare.net")
       return slideshare_render(url).html_safe
     end
     if url.include?("prezi.com")
-      return "<iframe src='https://prezi.com/embed/#{video_id(url, "prezi")}' id='iframe_container' frameborder='0' height='#{default_video_size[:height]}' width='#{default_video_size[:width]}'></iframe>".html_safe
+      return "<iframe src='https://prezi.com/embed/#{video_id(url, "prezi")}' id='iframe_container' frameborder='0' height='#{default_video_size(text_position)[:height]}' width='#{default_video_size(text_position)[:width]}'></iframe>".html_safe
     end
   end
 
