@@ -302,7 +302,14 @@ es:
           cta: Call to Action
           cta_text: Texto Call to Action
           cta_button: Texto botón Call to Action
+          cta_button_color: Color botón
+          cta_text_button_color: Color texto botón
+          cta_image: Imagen Call to Action
+          cta_height_position: Posición vert.
           cta_link: Enlace botón Call to Action
+          cta_overlay_color: Color overlay
+          cta_overlay_opacity: Opacidad overlay (%)
+          cta_width_position: Posición horizontal
         disabled: Desactivado
         custom_page_module:
           claim: Claim

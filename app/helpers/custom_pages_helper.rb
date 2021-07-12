@@ -106,6 +106,14 @@ module CustomPagesHelper
     @custom_page.font_color.present? ? @custom_page.font_color : CustomPage::DEFAULT_FONT_COLOR
   end
 
+  def custom_page_module_renders(custom_page)
+    renders = []
+    custom_page.custom_page_modules.enabled.sorted.each do |custom_page_module|
+      renders << render_module(custom_page_module)
+    end
+    renders.compact
+  end
+
   def video_thumbnail(url)
     if url.include?("youtu")
       return "<img src='https://img.youtube.com/vi/#{video_id(url, 'youtube')}/hqdefault.jpg'>".html_safe
@@ -135,17 +143,11 @@ module CustomPagesHelper
     end
   end
 
-  def custom_page_module_renders(custom_page)
-    renders = []
-    custom_page.custom_page_modules.enabled.sorted.each do |custom_page_module|
-      renders << render_module(custom_page_module)
-    end
-    renders.compact
-  end
-
   def render_module(custom_page_module)
     render partial: "/custom_pages/#{custom_page_module.type.underscore}", locals: {custom_page_module: custom_page_module} rescue nil
   end
+
+  ## Youtube
 
   def default_video_size
     {
@@ -206,6 +208,33 @@ module CustomPagesHelper
     else
       nil
     end
+  end
+
+  ## CTA
+
+  def get_image_height(cta_image)
+    geometry = Paperclip::Geometry.from_file(cta_image)
+    geometry.height.to_f*(CTAModule::IMAGE_WIDTH/geometry.width.to_f)
+  end
+
+  def get_rgba_color(overlay_color, overlay_opacity)
+    rgba = overlay_color.match(/^#(..)(..)(..)$/).captures.map(&:hex)
+    opacity_ratio = overlay_opacity.to_f/100
+    "rgba(#{rgba[0]}, #{rgba[1]}, #{rgba[2]}, #{opacity_ratio})"
+  end
+
+  def set_cta_content_height(height_position, cta_image)
+    image_height = get_image_height(cta_image)
+    ratio = image_height*height_position.to_f/image_height/100
+    "#{image_height*(1-ratio)}px"
+  end
+
+  def cta_width_position_options
+    {
+      "Alineado izquierda" => 'left',
+      "Centrado" => 'center',
+      "Alineado derecha" => 'right'
+    }
   end
 
 end
