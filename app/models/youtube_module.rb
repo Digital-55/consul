@@ -1,5 +1,6 @@
 class YoutubeModule < CustomPageModule
   belongs_to :custom_page
+  TEXT_MAX_LENGTH = 20000
   validates :youtube_url,
             presence: true,
             format: { with:

@@ -504,6 +504,8 @@ ActiveRecord::Schema.define(version: 20210420102437) do
     t.text     "claim"
     t.text     "rich_text"
     t.string   "youtube_url"
+    t.text     "youtube_text"
+    t.string   "youtube_text_position"
     t.text     "cta_text"
     t.string   "cta_image_file_name"
     t.string   "cta_image_content_type"

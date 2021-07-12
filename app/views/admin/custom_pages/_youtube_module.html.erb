@@ -23,6 +23,21 @@
         </div>
       <% end %>
     </div>
+    <div class="ckeditor small-12 medium-10 column">
+      <%= f.cktext_area :youtube_text,
+                        id: "youtube_text_area_#{f.object.id}",
+                        class: 'custom_page_module-youtube_text',
+                        label: t("admin.custom_pages.custom_page_modules.custom_page_module.youtube_text"),
+                        maxlength: YoutubeModule::TEXT_MAX_LENGTH,
+                        ckeditor: { language: I18n.locale, toolbar: 'admin' } %>
+    </div>
+
+    <div class="small-12 medium-4 column">
+      <%= f.label :youtube_text_position,  t("admin.custom_pages.custom_page_modules.custom_page_module.youtube_text_position") %>
+      <%= f.select :youtube_text_position, {}, label: false do %>
+        <%= options_for_select(youtube_position_options, f.object.youtube_text_position) %>
+      <% end %>
+    </div>
     <div class="check-options">
       <div class="small-12 medium-2 column">
         <%= f.check_box :disabled, label: false, class: 'custom_page_module-disabled' %>

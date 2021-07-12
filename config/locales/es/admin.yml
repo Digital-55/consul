@@ -343,7 +343,9 @@ es:
           rich_text: Texto
           subtitle: Subtítulo
           youtube: Vídeo/Presentación
-          youtube_url: URL de Vídeo o Presentación(YouTube, Vimeo, Slideshare, Prezi)
+          youtube_text: Texto vídeo/presentación
+          youtube_text_position: Posición del texto
+          youtube_url: URL de Vídeo o Presentación (YouTube, Vimeo, Slideshare, Prezi)
       destroy:
         alert_notice: Esta acción eliminará la página personalizada y todos sus módulos, y las páginas "hija" perderán la página "padre".
         success: ¡Página personalizada eliminada con éxito!
