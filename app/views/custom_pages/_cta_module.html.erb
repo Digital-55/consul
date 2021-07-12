@@ -1,11 +1,33 @@
+<%# byebug %>
+<div class="<%= custom_page_module.type.underscore.dasherize %>">
 
-<div class="row cta-module-background">
-  <div class="<%= custom_page_module.type.underscore.dasherize %>">
-    <div class="small-12 medium-8 column">
-      <div class="custom-h4" ><%= custom_page_module.cta_text %></div>
+  <% if custom_page_module.cta_image_file_name.present? %>
+    <div class="cta-module-background" style="background-image: url(<%= custom_page_module.cta_image.url(:large) %>); height: <%= get_image_height(custom_page_module.cta_image) %>px; position: relative">
+      <div class="cta-overlay" style="background-color: <%= get_rgba_color(custom_page_module.cta_overlay_color, custom_page_module.cta_overlay_opacity)%>; height: <%= get_image_height(custom_page_module.cta_image) %>px;  position: absolute; width: 100%; height: 100%;">
+        <div class="cta-text-button text-<%= custom_page_module.cta_width_position %>" style="margin-top: <%= set_cta_content_height(custom_page_module.cta_height_position, custom_page_module.cta_image) %>; position: absolute">
+          <div class="cta-text custom-h4"><%= custom_page_module.cta_text.html_safe %></div>
+          <% if custom_page_module.cta_link.present? %>
+            <div class="cta-button center %>">
+              <%= button_to custom_page_module.cta_button, custom_page_module.cta_link, class: 'button',
+                                                                                        target: '_blank',
+                                                                                        style: "background-color: #{custom_page_module.cta_button_color}; color: #{custom_page_module.cta_text_button_color}" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
     </div>
-    <div class="small-12 medium-4 column text-center">
-      <%= link_to custom_page_module.cta_button, custom_page_module.cta_link, class: 'button', target: '_blank' %>
+  <% else %>
+    <div class="cta-module-background" style="background-color: <%= get_rgba_color(custom_page_module.cta_overlay_color, custom_page_module.cta_overlay_opacity) %>">
+      <div class="cta-text-button text-<%= custom_page_module.cta_width_position %>">
+        <div class="cta-text custom-h4"><%= custom_page_module.cta_text.html_safe %></div>
+        <% if custom_page_module.cta_link.present? %>
+          <div class="cta-button center %>">
+            <%= button_to custom_page_module.cta_button, custom_page_module.cta_link, class: 'button',
+                                                                                      target: '_blank',
+                                                                                      style: "background-color: #{custom_page_module.cta_button_color}; color: #{custom_page_module.cta_text_button_color}" %>
+          </div>
+        <% end %>
+      </div>
     </div>
-  </div>
+  <% end %>
 </div>

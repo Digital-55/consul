@@ -1357,18 +1357,23 @@ code {
   font-size: 24px;
 }
 
-.cta-module {
-  .custom-h4 {
-    padding: 26px;
-  }
-  .text-center{
-    margin-top: 2rem;
-  }
-}
-
 .cta-module-background {
-  background-color: #cacaca;
-  min-height: 100px;
+  overflow: hidden;
+  background-position: center;
+  .cta-text-button{
+    padding: 26px;
+    width: 100%;
+    z-index: 1;
+    &.text-right{
+      text-align: right;
+    }
+    &.text-left{
+      text-align: left;
+    }
+    &.text-center{
+      text-align: center;
+    }
+  }
 }
 
 #add_modules_button a.icon-plus-square::before,
