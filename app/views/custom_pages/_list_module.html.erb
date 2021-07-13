@@ -1,0 +1,19 @@
+<div class="<%= custom_page_module.type.underscore.dasherize %>">
+    <div class="row medium-unstack">
+      <% ['one', 'two', 'three'].each do |list_number| %>
+        <div class="small-12 medium-4 column">
+          <div class="media-object">
+            <div class="media-object-section">
+              <div class="">
+                <%= image_tag(custom_page_module.send("list_icon_#{list_number}").url(:icon)) %>
+              </div>
+            </div>
+            <div class="media-object-section">
+              <div class="custom-h4"><%= custom_page_module.send("list_title_#{list_number}") %></div>
+              <div><%= custom_page_module.send("list_description_#{list_number}").html_safe %></div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+</div>

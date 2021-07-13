@@ -164,6 +164,12 @@
                                                             'data-association-insertion-node': '#custom-page-modules-list',
                                                             'data-association-insertion-method': 'prepend' %>
 
+            <%= link_to_add_association t("admin.custom_pages.custom_page_modules.add_list"), f, :lists,
+                                                            class: 'icon-plus-square button hollow cell',
+                                                            partial: 'list_module',
+                                                            'data-association-insertion-node': '#custom-page-modules-list',
+                                                            'data-association-insertion-method': 'prepend' %>
+
             <%= link_to_add_association t("admin.custom_pages.custom_page_modules.add_js_snippet"), f, :js_snippets,
                                                             class: 'icon-plus-square button hollow cell',
                                                             partial: 'js_snippet_module',

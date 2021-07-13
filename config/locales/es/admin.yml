@@ -322,6 +322,7 @@ es:
         add_cta: CTA
         add_custom_image: Imagen
         add_js_snippet: Javascript
+        add_list: Añadir Listado
         add_module: Añadir Módulo
         add_promotional: Promocionales
         add_rich_text: Texto
@@ -345,6 +346,20 @@ es:
           custom_image: Imagen Personalizada
           custom_image_alt: Texto Alternativo
           js_snippet: Código Javascript
+          list:
+            list_title_one: Título 1
+            list_title_two: Título 2
+            list_title_three: Título 3
+            list_description_one: Descripción 1
+            list_description_two: Descripción 2
+            list_description_three: Descripción 3
+            list_icon_one: Icono 1
+            list_icon_two: Icono 2
+            list_icon_three: Icono 3
+          list_module: Listado
+          list_one: Ítem 1
+          list_two: Ítem 2
+          list_three: Ítem 3
           promo:
             display_link: Ver enlace
             promo_title_one: Título 1
