@@ -7,6 +7,7 @@ class CustomPageModule < ApplicationRecord
   scope :cta, -> { where(type: 'CTAModule') }
   scope :custom_image, -> { where(type: 'CustomImageModule') }
   scope :promotional, -> { where(type: 'PromotionalModule') }
+  scope :list, -> { where(type: 'ListModule') }
   scope :enabled, -> { where(disabled: false)}
   scope :sorted, -> { order(position: :asc, updated_at: :desc) }
 

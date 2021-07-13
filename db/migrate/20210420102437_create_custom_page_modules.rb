@@ -42,6 +42,15 @@ class CreateCustomPageModules < ActiveRecord::Migration[5.0]
       t.attachment :promo_image_three
       t.string :promo_alt_image_three
       t.string :promo_link_three
+      t.attachment :list_icon_one
+      t.string :list_title_one
+      t.text :list_description_one
+      t.attachment :list_icon_two
+      t.string :list_title_two
+      t.text :list_description_two
+      t.attachment :list_icon_three
+      t.string :list_title_three
+      t.text :list_description_three
 
       t.timestamps
     end

@@ -64,6 +64,9 @@ class Admin::CustomPagesController < Admin::BaseController
                                                                           :promo_location_one, :promo_title_one, :promo_description_one, :promo_image_one, :promo_alt_image_one, :promo_link_one,
                                                                           :promo_location_two, :promo_title_two, :promo_description_two, :promo_image_two, :promo_alt_image_two, :promo_link_two,
                                                                           :promo_location_three, :promo_title_three, :promo_description_three, :promo_image_three, :promo_alt_image_three, :promo_link_three,
+                                                                          :list_icon_one, :list_title_one, :list_description_one,
+                                                                          :list_icon_two, :list_title_two, :list_description_two,
+                                                                          :list_icon_three, :list_title_three, :list_description_three,
                                                                           :disabled, :_destroy],
                                         subtitles_attributes: [:type, :position, :subtitle, :disabled, :_destroy],
                                         claims_attributes: [:type, :position, :claim, :disabled, :_destroy],
@@ -76,6 +79,11 @@ class Admin::CustomPagesController < Admin::BaseController
                                                                   :promo_location_one, :promo_title_one, :promo_description_one, :promo_image_one, :promo_alt_image_one, :promo_link_one,
                                                                   :promo_location_two, :promo_title_two, :promo_description_two, :promo_image_two, :promo_alt_image_two, :promo_link_two,
                                                                   :promo_location_three, :promo_title_three, :promo_description_three, :promo_image_three, :promo_alt_image_three, :promo_link_three,
+                                                                  :disabled, :_destroy],
+                                        lists_attributes: [:type, :position,
+                                                                  :list_icon_one, :list_title_one, :list_description_one,
+                                                                  :list_icon_two, :list_title_two, :list_description_two,
+                                                                  :list_icon_three, :list_title_three, :list_description_three,
                                                                   :disabled, :_destroy]
                                       )
   end

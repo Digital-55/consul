@@ -50,7 +50,6 @@ function validateInputFields() {
   $('.custom_page_module-youtube_url').on('change', function(){
     var url = $(this).val();
     var regex
-    debugger;
     if(url.includes("youtube.com") || url.includes("youtu.be")){
       regex = /http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?‌​[\w\?‌​=]*)?/
     } else {
