@@ -107,7 +107,7 @@ CKEDITOR.editorConfig = function( config )
   ]);
 
   config.toolbar_mini_admin = config.toolbar_mini.concat([
-    { name: "styles", items: [ "FontSize" ] },
+    { name: "styles", items: [ "Font", "FontSize" ] },
     { name: "colors", items: [ "TextColor", "BGColor" ] },
   ]);
 
