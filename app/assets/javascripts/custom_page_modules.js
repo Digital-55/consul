@@ -44,6 +44,7 @@ $(document).on('page:change', function(){
   updatePromotionalsLocation();
   displayCharLimit();
   displayFontColor();
+  clearCustomImage();
 });
 
 function validateInputFields() {
@@ -243,5 +244,11 @@ function displayFontColor(){
   $('#font_color_input').on('keyup', function(){
     var color = $(this).val()
     $('#custom_page_font_color')[0].value = color
+  })
+}
+
+function clearCustomImage(){
+  $('.module-image-preview .icon-x.delete').on('click', function(){
+    $(this).parents('.module-image-preview').hide();
   })
 }
