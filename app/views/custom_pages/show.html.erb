@@ -7,10 +7,10 @@
   <%= render "shared/canonical", href: custom_page_url(@custom_page.slug) %>
 <% end if @custom_page.canonical %>
 
-<div class="custom-page">
+<div class="custom-page" style=" color: <%= @custom_page.font_color %>; font-family: <%= @custom_page.font_type %>">
   <div class="row margin-top">
     <div class="small-12 medium-12 column">
-      <h2><%= @custom_page.title %></h2>
+      <div class="custom-h2"><%= @custom_page.title %></div>
     </div>
   </div>
   <% custom_page_module_renders(@custom_page).each do |custom_page_module_render| %>

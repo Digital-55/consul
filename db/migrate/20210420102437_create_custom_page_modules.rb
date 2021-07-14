@@ -6,12 +6,21 @@ class CreateCustomPageModules < ActiveRecord::Migration[5.0]
       t.integer :position, default: 0
       t.boolean :disabled, default: false
       t.string :subtitle
-      t.string :claim
+      t.text :claim
       t.text :rich_text
       t.string :youtube_url
-      t.string :cta_text
+      t.text :youtube_text
+      t.string :youtube_text_position
+      t.text :cta_text
+      t.attachment :cta_image
       t.string :cta_button
+      t.string :cta_button_color
+      t.string :cta_text_button_color
       t.string :cta_link
+      t.string :cta_overlay_color
+      t.string :cta_overlay_opacity
+      t.string :cta_height_position
+      t.string :cta_width_position
       t.text :js_snippet
       t.attachment :custom_image
       t.text :custom_image_alt
@@ -33,6 +42,15 @@ class CreateCustomPageModules < ActiveRecord::Migration[5.0]
       t.attachment :promo_image_three
       t.string :promo_alt_image_three
       t.string :promo_link_three
+      t.attachment :list_icon_one
+      t.string :list_title_one
+      t.text :list_description_one
+      t.attachment :list_icon_two
+      t.string :list_title_two
+      t.text :list_description_two
+      t.attachment :list_icon_three
+      t.string :list_title_three
+      t.text :list_description_three
 
       t.timestamps
     end
@@ -52,6 +70,12 @@ class CreateCustomPageModules < ActiveRecord::Migration[5.0]
   end
 
   def down
+    CustomPage.published.each do |custom_page|
+      page = SiteCustomization::Page.find_by(slug: custom_page.slug) ||
+             SiteCustomization::Page.find_by(slug: custom_page.slug.underscore)
+      page.update_column(:status, "published") if page.present?
+    end
+
     drop_table :custom_page_modules
   end
 

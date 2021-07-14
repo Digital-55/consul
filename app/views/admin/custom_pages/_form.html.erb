@@ -44,6 +44,26 @@
                             id: "slug" %>
         </div>
       </div>
+      <div class="row">
+        <div class="small-12 medium-4 column">
+          <%= f.label :font_color, t("admin.custom_pages.custom_page.font_color"), for: "font_color_input" %>
+          <div class="row collapse">
+            <div class="small-12 medium-6 column">
+              <%= f.text_field :font_color, label: false, type: :color,
+                                            value: custom_page_font_color_or_default %>
+            </div>
+            <div class="small-12 medium-6 column">
+              <%= f.text_field :font_color, label: false, id: "font_color_input" %>
+            </div>
+          </div>
+        </div>
+        <div class="small-12 medium-4 column end">
+          <%= f.label :font_type, t("admin.custom_pages.custom_page.font_type") %>
+          <%= f.select :font_type, {}, label: false do %>
+            <%= options_for_select(font_type_options, @custom_page.font_type) %>
+          <% end %>
+        </div>
+      </div>
 
       <div id='custom_page-toggle_meta_tags'>
         <div>
@@ -100,7 +120,7 @@
       <div class="row">
         <div class="tiny reveal" id="add_modules" data-reveal>
           <h4 class="inline-block"><%= t("admin.custom_pages.custom_page_modules.add_module") %></h4>
-          <div class="row grid-x grid-padding-x small-up-2 medium-up-4 large-up-6">
+          <div class="row grid-x grid-padding-x small-up-2 medium-up-4 large-up-6 text-center">
 
             <%= link_to_add_association t("admin.custom_pages.custom_page_modules.add_subtitle"), f, :subtitles,
                                                             class: 'icon-plus-square button hollow cell',
@@ -141,6 +161,12 @@
             <%= link_to_add_association t("admin.custom_pages.custom_page_modules.add_promotional"), f, :promotionals,
                                                             class: 'icon-plus-square button hollow cell',
                                                             partial: 'promotional_module',
+                                                            'data-association-insertion-node': '#custom-page-modules-list',
+                                                            'data-association-insertion-method': 'prepend' %>
+
+            <%= link_to_add_association t("admin.custom_pages.custom_page_modules.add_list"), f, :lists,
+                                                            class: 'icon-plus-square button hollow cell',
+                                                            partial: 'list_module',
                                                             'data-association-insertion-node': '#custom-page-modules-list',
                                                             'data-association-insertion-method': 'prepend' %>
 

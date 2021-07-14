@@ -106,6 +106,11 @@ CKEDITOR.editorConfig = function( config )
     { name: "insert", items: [ "Image", "Table", "-", "Source" ] }
   ]);
 
+  config.toolbar_mini_admin = config.toolbar_mini.concat([
+    { name: "styles", items: [ "Font", "FontSize" ] },
+    { name: "colors", items: [ "TextColor", "BGColor" ] },
+  ]);
+
   config.toolbar_questions = [
     { name: "links", items: [ "Link", "Unlink" ] },
     { name: "basicstyles", groups: [ "basicstyles", "cleanup" ], items: [ "Bold", "Italic", "Underline", "Strike" ] }

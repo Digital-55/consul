@@ -2,20 +2,25 @@
   <div class="small-12 medium-12 column">
     <div class="row medium-unstack">
       <% promo_location_sort(custom_page_module).each do |promo_number| %>
-        <%= link_to custom_page_module.send("promo_link_#{promo_number}") do %>
-          <div class="column medium-4">
-            <div class="card">
-              <%= image_tag(
-                            custom_page_module.send("promo_image_#{promo_number}").url(:content),
-                            alt: custom_page_module.send("promo_alt_image_#{promo_number}"))
-                            %>
-              <div class="row card-section">
-                <h4><%= custom_page_module.send("promo_title_#{promo_number}") %></h4>
-                <%= custom_page_module.send("promo_description_#{promo_number}").html_safe %>
-              </div>
+        <div class="column medium-4">
+          <div class="card">
+            <%= image_tag(
+                          custom_page_module.send("promo_image_#{promo_number}").url(:content),
+                          alt: custom_page_module.send("promo_alt_image_#{promo_number}"))
+                          %>
+            <div class="row card-section" style="color: <%= @custom_page.font_color %>">
+              <div class="custom-h4"><%= custom_page_module.send("promo_title_#{promo_number}") %></div>
+              <div><%= custom_page_module.send("promo_description_#{promo_number}").html_safe %></div>
+              <% if custom_page_module.send("promo_link_#{promo_number}").presence %>
+                <%= link_to custom_page_module.send("promo_link_#{promo_number}") do %>
+                  <div class="float-right">
+                    <%= t("admin.custom_pages.custom_page_modules.custom_page_module.promo.display_link") %>
+                  </div>
+                <% end %>
+              <% end %>
             </div>
           </div>
-        <% end %>
+        </div>
       <% end %>
     </div>
   </div>

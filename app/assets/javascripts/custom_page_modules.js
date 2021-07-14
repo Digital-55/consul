@@ -43,13 +43,14 @@ $(document).on('page:change', function(){
   validateInputFields();
   updatePromotionalsLocation();
   displayCharLimit();
+  displayFontColor();
+  clearCustomImage();
 });
 
 function validateInputFields() {
-  $('.custom_page_module-youtube_url').change(function(){
+  $('.custom_page_module-youtube_url').on('change', function(){
     var url = $(this).val();
     var regex
-    debugger;
     if(url.includes("youtube.com") || url.includes("youtu.be")){
       regex = /http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?‌​[\w\?‌​=]*)?/
     } else {
@@ -181,7 +182,7 @@ function slugAutoFill(){
 }
 
 function updatePromotionalsLocation(){
-  $('[id*="_promo_location_one"], [id*="_promo_location_two"], [id*="_promo_location_three"]').change(function(){
+  $('[id*="_promo_location_one"], [id*="_promo_location_two"], [id*="_promo_location_three"]').on('change', function(){
     var targetId = this.id.split("_").map(Number).filter(Number).toString() || "0";
     var promoOneLocation, promoTwoLocation, promoThreeLocation;
     var selectValues = {};
@@ -213,7 +214,7 @@ function updatePromotionalsLocation(){
 
 function displayCharLimit() {
   for(var metaSelector of ['#meta-title', '#meta-description']) {
-    if ($(metaSelector).val().length > $(metaSelector).data('charLimit') ){
+    if ($(metaSelector).length && $(metaSelector).val().length > $(metaSelector).data('charLimit') ){
       $(metaSelector).css('color', '#ff0000');
       $(metaSelector).siblings('#char_num').css('color', '#ff0000');
     }
@@ -231,4 +232,23 @@ function displayCharLimit() {
       }
     })
   }
-};
+}
+
+function displayFontColor(){
+  $('#custom_page_font_color').on('change', function(){
+    var color = $(this).val()
+    $('#font_color_input')[0].text = color
+    $('#font_color_input')[0].value = color
+  })
+
+  $('#font_color_input').on('keyup', function(){
+    var color = $(this).val()
+    $('#custom_page_font_color')[0].value = color
+  })
+}
+
+function clearCustomImage(){
+  $('.module-image-preview .icon-x.delete').on('click', function(){
+    $(this).parents('.module-image-preview').hide();
+  })
+}

@@ -293,6 +293,7 @@ es:
         add_cta: CTA
         add_custom_image: Imagen
         add_js_snippet: Javascript
+        add_list: Listado
         add_module: Añadir Módulo
         add_promotional: Promocionales
         add_rich_text: Texto
@@ -302,14 +303,36 @@ es:
           cta: Call to Action
           cta_text: Texto Call to Action
           cta_button: Texto botón Call to Action
+          cta_button_color: Color botón
+          cta_text_button_color: Color texto botón
+          cta_image: Imagen Call to Action
+          cta_height_position: Posición vert.
           cta_link: Enlace botón Call to Action
+          cta_overlay_color: Color overlay
+          cta_overlay_opacity: Opacidad overlay (%)
+          cta_width_position: Posición horizontal
         disabled: Desactivado
         custom_page_module:
           claim: Claim
           custom_image: Imagen Personalizada
           custom_image_alt: Texto Alternativo
           js_snippet: Código Javascript
+          list:
+            list_title_one: Título 1
+            list_title_two: Título 2
+            list_title_three: Título 3
+            list_description_one: Descripción 1
+            list_description_two: Descripción 2
+            list_description_three: Descripción 3
+            list_icon_one: Icono 1
+            list_icon_two: Icono 2
+            list_icon_three: Icono 3
+          list_module: Listado
+          list_one: Ítem 1
+          list_two: Ítem 2
+          list_three: Ítem 3
           promo:
+            display_link: Ver enlace
             promo_title_one: Título 1
             promo_title_two: Título 2
             promo_title_three: Título 3
@@ -335,7 +358,9 @@ es:
           rich_text: Texto
           subtitle: Subtítulo
           youtube: Vídeo/Presentación
-          youtube_url: URL de Vídeo o Presentación(YouTube, Vimeo, Slideshare, Prezi)
+          youtube_text: Texto vídeo/presentación
+          youtube_text_position: Posición del texto
+          youtube_url: URL de Vídeo o Presentación (YouTube, Vimeo, Slideshare, Prezi)
       destroy:
         alert_notice: Esta acción eliminará la página personalizada y todos sus módulos, y las páginas "hija" perderán la página "padre".
         success: ¡Página personalizada eliminada con éxito!
@@ -347,6 +372,8 @@ es:
         canonical: URL canónica
         creating: Crear página personalizada
         custom_page_items: Módulos
+        font_color: Color de texto
+        font_type: Fuente de texto
         index: Módulos de página
         meta_description: Meta-descripción (aprox. 160 caracteres)
         meta_keywords: Palabras clave separadas por "comas"

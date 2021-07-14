@@ -25,6 +25,33 @@ module CustomPagesHelper
     slugs
   end
 
+  def font_type_options
+    {
+      "Arial" => "'Arial', sans-serif",
+      "Arial Black" => "'Arial Black', sans-serif",
+      "Verdana" => "'Verdana', sans-serif",
+      "Tahoma" => "'Tahoma', sans-serif",
+      "Trebuchet MS" => "'Trebuchet MS', sans-serif",
+      "Impact" => "'Impact', sans-serif",
+      "Times New Roman" => "'Times New Roman', serif",
+      "Didot" => "'Didot', serif",
+      "Georgia" => "'Georgia', serif",
+      "American Typewriter" => "'American Typewriter', serif",
+      "Andale Mono" => "'Andale Mono', monospace",
+      "Courier" => "'Courier', monospace",
+      "Courier New" => "'Courier New', monospace",
+      "Lucida Console" => "'Lucida Console', monospace",
+      "Monaco" => "'Monaco', monospace",
+      "Bradley Hand" => "'Bradley Hand', cursive",
+      "Brush Script MT" => "'Brush Script MT', cursive",
+      "Garamond" => "'Garamond', serif",
+      "Helvetica" => "'Helvetica', sans-serif",
+      "Lato" => "'Lato', sans-serif;",
+      "Luminary" => "'Luminary', fantasy;",
+      "Comic Sans" => "'Comic Sans', cursive;",
+    }
+  end
+
   def promo_location_options
     {
       "Izquierda" => 'left',
@@ -75,6 +102,18 @@ module CustomPagesHelper
     @custom_page.custom_page_modules.enabled.map(&:js_snippet).compact
   end
 
+  def custom_page_font_color_or_default
+    @custom_page.font_color.present? ? @custom_page.font_color : CustomPage::DEFAULT_FONT_COLOR
+  end
+
+  def custom_page_module_renders(custom_page)
+    renders = []
+    custom_page.custom_page_modules.enabled.sorted.each do |custom_page_module|
+      renders << render_module(custom_page_module)
+    end
+    renders.compact
+  end
+
   def video_thumbnail(url)
     if url.include?("youtu")
       return "<img src='https://img.youtube.com/vi/#{video_id(url, 'youtube')}/hqdefault.jpg'>".html_safe
@@ -104,37 +143,46 @@ module CustomPagesHelper
     end
   end
 
-  def custom_page_module_renders(custom_page)
-    renders = []
-    custom_page.custom_page_modules.enabled.sorted.each do |custom_page_module|
-      renders << render_module(custom_page_module)
-    end
-    renders.compact
-  end
-
   def render_module(custom_page_module)
     render partial: "/custom_pages/#{custom_page_module.type.underscore}", locals: {custom_page_module: custom_page_module} rescue nil
   end
 
-  def default_video_size
+  ## Youtube
+
+  def default_video_size(text_position)
+    if text_position == 'none'
+      {
+        width: '800',
+        height: '450'
+      }
+    else
+      {
+        width: '500',
+        height: '280'
+      }
+    end
+  end
+
+  def youtube_position_options
     {
-      width: '800',
-      height: '450'
+      "Texto no visible" => 'none',
+      "Texto a la derecha" => 'right',
+      "Texto a la izquierda" => 'left',
     }
   end
 
-  def render_video_resource(url)
+  def render_video_resource(url, text_position)
     if url.include?("vimeo.com")
-      return "<iframe src='https://player.vimeo.com/video/#{video_id(url, "vimeo")}?color=ffffff&title=0&byline=0&portrait=0' width='#{default_video_size[:width]}' height='#{default_video_size[:height]}' frameborder='0' allow='autoplay; fullscreen; picture-in-picture' allowfullscreen></iframe>".html_safe
+      return "<iframe src='https://player.vimeo.com/video/#{video_id(url, "vimeo")}?color=ffffff&title=0&byline=0&portrait=0' width='#{default_video_size(text_position)[:width]}' height='#{default_video_size(text_position)[:height]}' frameborder='0' allow='autoplay; fullscreen; picture-in-picture' allowfullscreen></iframe>".html_safe
     end
     if url.include?("youtu")
-      return "<iframe width='#{default_video_size[:width]}' height='#{default_video_size[:height]}' src='https://www.youtube.com/embed/#{video_id(url, "youtube")}' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>".html_safe
+      return "<iframe width='#{default_video_size(text_position)[:width]}' height='#{default_video_size(text_position)[:height]}' src='https://www.youtube.com/embed/#{video_id(url, "youtube")}' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>".html_safe
     end
     if url.include?("slideshare.net")
       return slideshare_render(url).html_safe
     end
     if url.include?("prezi.com")
-      return "<iframe src='https://prezi.com/embed/#{video_id(url, "prezi")}' id='iframe_container' frameborder='0' height='#{default_video_size[:height]}' width='#{default_video_size[:width]}'></iframe>".html_safe
+      return "<iframe src='https://prezi.com/embed/#{video_id(url, "prezi")}' id='iframe_container' frameborder='0' height='#{default_video_size(text_position)[:height]}' width='#{default_video_size(text_position)[:width]}'></iframe>".html_safe
     end
   end
 
@@ -175,6 +223,33 @@ module CustomPagesHelper
     else
       nil
     end
+  end
+
+  ## CTA
+
+  def get_image_height(cta_image)
+    geometry = Paperclip::Geometry.from_file(cta_image)
+    geometry.height.to_f*(CTAModule::IMAGE_WIDTH/geometry.width.to_f)
+  end
+
+  def get_rgba_color(overlay_color, overlay_opacity)
+    rgba = overlay_color.match(/^#(..)(..)(..)$/).captures.map(&:hex)
+    opacity_ratio = overlay_opacity.to_f/100
+    "rgba(#{rgba[0]}, #{rgba[1]}, #{rgba[2]}, #{opacity_ratio})"
+  end
+
+  def set_cta_content_height(height_position, cta_image)
+    image_height = get_image_height(cta_image)
+    ratio = image_height*height_position.to_f/image_height/100
+    "#{image_height*(1-ratio)}px"
+  end
+
+  def cta_width_position_options
+    {
+      "Alineado izquierda" => 'left',
+      "Centrado" => 'center',
+      "Alineado derecha" => 'right'
+    }
   end
 
 end
