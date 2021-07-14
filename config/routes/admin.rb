@@ -177,6 +177,7 @@ namespace :admin do
   resources :custom_pages do
     get :draft_preview
     resources :custom_page_modules do
+      put :clear_image
       collection do
         patch :sort
       end
@@ -186,6 +187,7 @@ namespace :admin do
     resources :rich_texts, controller: :custom_page_modules, type: 'RichTextModule'
     resources :youtubes, controller: :custom_page_modules, type: 'YoutubeModule'
     resources :ctas, controller: :custom_page_modules, type: 'CTAModule'
+    resources :custom_images, controller: :custom_page_modules, type: 'CustomImageModule'
     resources :lists, controller: :custom_page_modules, type: 'ListModule'
   end
 
