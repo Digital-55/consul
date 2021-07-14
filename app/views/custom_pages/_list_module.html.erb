@@ -4,13 +4,13 @@
         <div class="small-12 medium-4 column">
           <div class="media-object">
             <div class="media-object-section">
-              <div class="">
+              <% if custom_page_module.send("list_icon_#{list_number}").present? %>
                 <%= image_tag(custom_page_module.send("list_icon_#{list_number}").url(:icon)) %>
-              </div>
+              <% end %>
             </div>
             <div class="media-object-section">
-              <div class="custom-h4"><%= custom_page_module.send("list_title_#{list_number}") %></div>
-              <div><%= custom_page_module.send("list_description_#{list_number}").html_safe %></div>
+              <div class="custom-h4"><%= custom_page_module.send("list_title_#{list_number}") if custom_page_module.send("list_title_#{list_number}").present? %></div>
+              <div><%= custom_page_module.send("list_description_#{list_number}").html_safe if custom_page_module.send("list_description_#{list_number}").present? %></div>
             </div>
           </div>
         </div>
