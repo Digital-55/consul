@@ -34,6 +34,9 @@ class CustomPage < ApplicationRecord
     CustomPage.where(parent_slug: self.slug)
   end
 
+
+  private
+
   def set_valid_font_color
     self.font_color = DEFAULT_FONT_COLOR unless !!self.font_color.match(/\A#?(?:[A-F0-9]{3}){1,2}\z/i)
   end

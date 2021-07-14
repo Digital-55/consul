@@ -115,12 +115,12 @@ describe "Admin custom pages management" do
       end
       find('button.close-button').click
       within(".claim-module") do
-        fill_in "Claim", with: "Claim text"
+        fill_in_ckeditor 'claim_text_area_', with: 'Claim Text'
       end
       find('.submit_form').click
 
       visit "/#{@custom_page.slug}"
-      expect(page).to have_content(@custom_page.custom_page_modules.first.claim)
+      expect(page).to have_content("Claim Text")
     end
 
     scenario "CTA Module", :js do
@@ -129,28 +129,27 @@ describe "Admin custom pages management" do
       end
       find('button.close-button').click
       within(".cta-module") do
-        fill_in "Texto Call to Action", with: "CTA text"
-        fill_in "Texto botón Call to Action", with: "CTA button"
+        fill_in_ckeditor 'cta_text_area_', with: 'CTA Text'
+        fill_in "Texto botón Call to Action", with: 'CTA button'
         fill_in "Enlace botón Call to Action", with: "https://decide.madrid.es"
       end
       find('.submit_form').click
 
       visit "/#{@custom_page.slug}"
-      expect(page).to have_content(@custom_page.custom_page_modules.first.cta_text)
-      expect(page).to have_content(@custom_page.custom_page_modules.first.cta_button)
-      new_window = window_opened_by { click_link "CTA button" }
-      within_window new_window do
-        expect(page).to have_current_path(@custom_page.custom_page_modules.first.cta_link)
-      end
+      expect(page).to have_content('CTA Text')
+      expect(page).to have_button(value: @custom_page.custom_page_modules.first.cta_button)
+
+      click_button 'CTA button'
+      expect(page).to have_current_path(@custom_page.custom_page_modules.first.cta_link)
     end
 
     scenario "Youtube Module", :js do
       within("#add_modules") do
-        click_link "YouTube"
+        click_link "Vídeo/Presentación"
       end
       find('button.close-button').click
       within(".youtube-module") do
-        fill_in "URL de YouTube", with: "https://www.youtube.com/watch?v=w-2Zk9or8bs"
+        fill_in "URL de Vídeo o Presentación (YouTube, Vimeo, Slideshare, Prezi)", with: "https://www.youtube.com/watch?v=w-2Zk9or8bs"
       end
       find('.submit_form').click
 
@@ -234,7 +233,7 @@ describe "Admin custom pages management" do
       end
       find('button.close-button').click
       within(".js_snippet-module") do
-        find('.custom_page_module-js_snippet').set( "document.getElementsByTagName('h2')[0].textContent='Changed Title';")
+        find('.custom_page_module-js_snippet').set( "document.getElementsByClassName('custom-h2')[0].textContent='Changed Title';")
       end
       find('.submit_form').click
 
