@@ -227,6 +227,48 @@ describe "Admin custom pages management" do
       expect(page).to have_content("Promo Three Text")
     end
 
+    scenario "List Module", :js do
+      within("#add_modules") do
+        click_link "Listado"
+      end
+      find('button.close-button').click
+      within(".list-module") do
+        fill_in "Título 1", with: "List Title One"
+        within(".tabs-content") do
+          attach_file "Icono 1", Rails.root.join("spec/fixtures/files/custom_map.jpg")
+        end
+        fill_in_ckeditor 'list_description_one_', with: 'List One Text'
+        
+        click_link "Ítem 2"
+        fill_in "Título 2", with: "List Title Two"
+        within(".tabs-content") do
+          attach_file "Icono 2", Rails.root.join("spec/fixtures/files/logo_header.jpg")
+        end
+        fill_in_ckeditor 'list_description_two_', with: 'List Two Text'
+        
+        click_link "Ítem 3"
+        fill_in "Título 3", with: "List Title Three"
+        within(".tabs-content") do
+          attach_file "Icono 3", Rails.root.join("spec/fixtures/files/clippy.jpg")
+        end
+        fill_in_ckeditor 'list_description_three_', with: 'List Three Text'
+        
+      end
+      find('.submit_form').click
+
+      visit "/#{@custom_page.slug}"
+      expect(page).to have_content(@custom_page.custom_page_modules.first.list_title_one)
+      expect(page).to have_css("img[src*='custom_map.jpg']")
+      expect(page).to have_content("List One Text")
+      expect(page).to have_content(@custom_page.custom_page_modules.first.list_title_two)
+      expect(page).to have_css("img[src*='logo_header.jpg']")
+      expect(page).to have_content("List Two Text")
+      expect(page).to have_content(@custom_page.custom_page_modules.first.list_title_three)
+      expect(page).to have_css("img[src*='clippy.jpg']")
+      expect(page).to have_content("List Three Text")
+
+    end
+
     scenario "JS Snippet Module", :js do
       within("#add_modules") do
         click_link "Javascript"
