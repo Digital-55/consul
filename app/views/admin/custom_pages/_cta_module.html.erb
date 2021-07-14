@@ -56,6 +56,7 @@
 
     <div class="ckeditor small-12 medium-10 column">
       <%= f.cktext_area :cta_text,
+                        id: "cta_text_area_#{f.object.id}",
                         class: 'custom_page_module-cta_text',
                         label: t("admin.custom_pages.custom_page_modules.cta_module.cta_text"),
                         maxlength: CTAModule::TEXT_MAX_LENGTH,
