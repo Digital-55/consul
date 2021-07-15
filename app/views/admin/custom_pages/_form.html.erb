@@ -1,0 +1,216 @@
+<%= javascript_include_tag 'swfobject' %>
+
+<% provide :title do %>
+  <%= t("admin.header.title") %> - <%= t("admin.custom_pages.custom_pages_manager") %>
+<% end %>
+
+<%= form_for [:admin, @custom_page] do |f| %>
+  <%= render "errors" %>
+
+  <div class="row">
+    <div class="row custom_page-fields">
+      <div class="row">
+        <div class="small-12 medium-8 column">
+          <%= f.label :title, t("admin.custom_pages.custom_page.title") %>
+          <%= f.text_field :title,
+                            label: false,
+                            placeholder: t("admin.custom_pages.custom_page.title"),
+                            id: "title" %>
+        </div>
+
+        <div class="small-12 medium-4 column end">
+          <%= f.label :published, t("admin.custom_pages.custom_page.published") %>
+          <%= f.select :published, {}, label: false do %>
+            <%= options_for_select( publish_options, @custom_page.published) %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="small-12 medium-4 column">
+          <%= f.label :parent_slug, t("admin.custom_pages.custom_page.parent_slug") %>
+          <%= f.select :parent_slug, {}, label: false do %>
+            <%= options_for_select(parent_slug_options, @custom_page.parent_slug) %>
+          <% end %>
+        </div>
+        <div class="small-12 medium-1 column text-center path_slash">
+          <%= f.label '/' %>
+        </div>
+        <div class="small-12 medium-7 column end">
+          <%= f.label :slug, t("admin.custom_pages.custom_page.slug") %>
+          <%= f.text_field :slug,
+                            label: false,
+                            placeholder: t("admin.custom_pages.custom_page.slug"),
+                            id: "slug" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-12 medium-4 column">
+          <%= f.label :font_color, t("admin.custom_pages.custom_page.font_color"), for: "font_color_input" %>
+          <div class="row collapse">
+            <div class="small-12 medium-6 column">
+              <%= f.text_field :font_color, label: false, type: :color,
+                                            value: custom_page_font_color_or_default %>
+            </div>
+            <div class="small-12 medium-6 column">
+              <%= f.text_field :font_color, label: false, id: "font_color_input" %>
+            </div>
+          </div>
+        </div>
+        <div class="small-12 medium-4 column end">
+          <%= f.label :font_type, t("admin.custom_pages.custom_page.font_type") %>
+          <%= f.select :font_type, {}, label: false do %>
+            <%= options_for_select(font_type_options, @custom_page.font_type) %>
+          <% end %>
+        </div>
+      </div>
+
+      <div id='custom_page-toggle_meta_tags'>
+        <div>
+          <%= link_to t("admin.custom_pages.custom_page.meta_tags"), '#', class: 'clear button secondary hollow icon-angle-down'%>
+        </div>
+      </div>
+      <div id="custom_page-meta_tags">
+        <div class="small-12 medium-10 column">
+          <%= f.label :meta_title, t("admin.custom_pages.custom_page.meta_title") %>
+          <div class="input-group">
+            <%= f.text_field :meta_title,
+                              class: "input-group-field",
+                              label: false,
+                              placeholder: t("admin.custom_pages.custom_page.meta_title"),
+                              id: "meta-title",
+                              data: {'char-limit': 70} %>
+            <span class="input-group-label" id="char_num"><%= (70 - (@custom_page.meta_title&.chars&.count || 0)).to_s %></span>
+          </div>
+        </div>
+
+        <div class="small-12 medium-10 column">
+          <%= f.label :meta_description, t("admin.custom_pages.custom_page.meta_description") %>
+          <div class="input-group">
+            <%= f.text_field :meta_description,
+                              class: "input-group-field",
+                              label: false,
+                              placeholder: t("admin.custom_pages.custom_page.meta_description"),
+                              id: "meta-description",
+                              data: {'char-limit': 160} %>
+            <span class="input-group-label" id="char_num"><%= (160 - (@custom_page.meta_title&.chars&.count || 0)).to_s %></span>
+          </div>
+        </div>
+
+        <div class="small-12 medium-10 column">
+          <%= f.label :meta_keywords, t("admin.custom_pages.custom_page.meta_keywords") %>
+          <%= f.text_field :meta_keywords,
+                            label: false,
+                            placeholder: t("admin.custom_pages.custom_page.meta_keywords"),
+                            id: "meta-keywords" %>
+        </div>
+        <div class="canonical-options">
+          <div class="small-12 medium-2 column">
+            <%= f.check_box :canonical, label: false, class: 'custom_page_module-canonical' %>
+            <%= f.label :canonical, t("admin.custom_pages.custom_page_modules.canonical") %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+
+
+    <% if @custom_page.persisted? %>
+      <h4 class="inline-block"><%= t("admin.custom_pages.custom_page.index") %></h4>
+      <div class="row">
+        <div class="tiny reveal" id="add_modules" data-reveal>
+          <h4 class="inline-block"><%= t("admin.custom_pages.custom_page_modules.add_module") %></h4>
+          <div class="row grid-x grid-padding-x small-up-2 medium-up-4 large-up-6 text-center">
+
+            <%= link_to_add_association t("admin.custom_pages.custom_page_modules.add_subtitle"), f, :subtitles,
+                                                            class: 'icon-plus-square button hollow cell',
+                                                            partial: 'subtitle_module',
+                                                            'data-association-insertion-node': '#custom-page-modules-list',
+                                                            'data-association-insertion-method': 'prepend' %>
+
+            <%= link_to_add_association t("admin.custom_pages.custom_page_modules.add_claim"), f, :claims,
+                                                            class: 'icon-plus-square button hollow cell',
+                                                            partial: 'claim_module',
+                                                            'data-association-insertion-node': '#custom-page-modules-list',
+                                                            'data-association-insertion-method': 'prepend' %>
+
+            <%= link_to_add_association t("admin.custom_pages.custom_page_modules.add_rich_text"), f, :rich_texts,
+                                                            class: 'icon-plus-square button hollow cell',
+                                                            partial: 'rich_text_module',
+                                                            'data-association-insertion-node': '#custom-page-modules-list',
+                                                            'data-association-insertion-method': 'prepend' %>
+
+            <%= link_to_add_association t("admin.custom_pages.custom_page_modules.add_youtube"), f, :youtubes,
+                                                            class: 'icon-plus-square button hollow cell',
+                                                            partial: 'youtube_module',
+                                                            'data-association-insertion-node': '#custom-page-modules-list',
+                                                            'data-association-insertion-method': 'prepend' %>
+
+            <%= link_to_add_association t("admin.custom_pages.custom_page_modules.add_cta"), f, :ctas,
+                                                            class: 'icon-plus-square button hollow cell',
+                                                            partial: 'cta_module',
+                                                            'data-association-insertion-node': '#custom-page-modules-list',
+                                                            'data-association-insertion-method': 'prepend' %>
+
+            <%= link_to_add_association t("admin.custom_pages.custom_page_modules.add_custom_image"), f, :custom_images,
+                                                            class: 'icon-plus-square button hollow cell',
+                                                            partial: 'custom_image_module',
+                                                            'data-association-insertion-node': '#custom-page-modules-list',
+                                                            'data-association-insertion-method': 'prepend' %>
+
+            <%= link_to_add_association t("admin.custom_pages.custom_page_modules.add_promotional"), f, :promotionals,
+                                                            class: 'icon-plus-square button hollow cell',
+                                                            partial: 'promotional_module',
+                                                            'data-association-insertion-node': '#custom-page-modules-list',
+                                                            'data-association-insertion-method': 'prepend' %>
+
+            <%= link_to_add_association t("admin.custom_pages.custom_page_modules.add_list"), f, :lists,
+                                                            class: 'icon-plus-square button hollow cell',
+                                                            partial: 'list_module',
+                                                            'data-association-insertion-node': '#custom-page-modules-list',
+                                                            'data-association-insertion-method': 'prepend' %>
+
+            <%= link_to_add_association t("admin.custom_pages.custom_page_modules.add_js_snippet"), f, :js_snippets,
+                                                            class: 'icon-plus-square button hollow cell',
+                                                            partial: 'js_snippet_module',
+                                                            'data-association-insertion-node': '#custom-page-modules-list',
+                                                            'data-association-insertion-method': 'prepend' %>
+
+            <button class="close-button" data-close aria-label="Close reveal" type="button">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </div>
+        <div class="clearfix">
+          <div id='add_modules_button' class="float-left">
+            <%= link_to t("admin.custom_pages.custom_page_modules.add_module"), '#', class: 'icon-plus-square button hollow', 'data-open': 'add_modules' %>
+          </div>
+          <div class="float-right">
+            <div class="float-left">
+                <%= link_to '', custom_page_preview_path(@custom_page),
+                                                                    target: '_blank',
+                                                                    title: t("admin.custom_pages.index.preview"),
+                                                                    class: "icon-eye button secondary hollow small" %>
+            </div>
+            <div id='toggle_modules_collapse_button' class="float-right">
+              <%= link_to '', '#', class: 'icon-angle-down button secondary hollow small' %>
+            </div>
+          </div>
+        </div>
+
+        <div class="small-12 medium-12 column end nesting-wrapper" id="custom-page-modules-list" data-url="<%= sort_admin_custom_page_custom_page_modules_path(@custom_page) if @custom_page.present? %>">
+          <%= f.fields_for :custom_page_modules, @custom_page.custom_page_modules.sorted do |custom_page_module_form| %>
+            <%= render custom_page_module_form.object.type.underscore, f: custom_page_module_form %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="row">
+      <div class="actions small-12 medium-3 column">
+        <%= f.submit(class: "button expanded submit_form", value: t("admin.menus.edit.form.submit_button")) %>
+      </div>
+    </div>
+    
+  </div>
+<% end %>

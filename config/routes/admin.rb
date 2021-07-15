@@ -166,6 +166,31 @@ namespace :admin do
     collection { get :search }
   end
 
+  resources :menus do
+    resources :menu_items do
+      collection do
+        patch :sort
+      end
+    end
+  end
+
+  resources :custom_pages do
+    get :draft_preview
+    resources :custom_page_modules do
+      put :clear_image
+      collection do
+        patch :sort
+      end
+    end
+    resources :subtitles, controller: :custom_page_modules, type: 'SubtitleModule'
+    resources :claims, controller: :custom_page_modules, type: 'ClaimModule'
+    resources :rich_texts, controller: :custom_page_modules, type: 'RichTextModule'
+    resources :youtubes, controller: :custom_page_modules, type: 'YoutubeModule'
+    resources :ctas, controller: :custom_page_modules, type: 'CTAModule'
+    resources :custom_images, controller: :custom_page_modules, type: 'CustomImageModule'
+    resources :lists, controller: :custom_page_modules, type: 'ListModule'
+  end
+
   resources :comments, only: :index do
     member do
       put :restore

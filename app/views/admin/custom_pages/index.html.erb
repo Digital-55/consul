@@ -1,0 +1,36 @@
+<% provide :title do %>
+  <%= t("admin.header.title") %> - <%= t("admin.menu.custom_pages") %>
+<% end %>
+
+<%= link_to t("admin.custom_pages.index.create"),
+              new_admin_custom_page_path, class: "button float-right" %>
+
+<h2 class="inline-block"><%= t("admin.menu.custom_pages") %></h2>
+
+<%= render "shared/filter_subnav", i18n_namespace: "admin.custom_pages.index" %>
+
+<h3><%= page_entries_info @custom_pages %></h3>
+  <table>
+    <thead>
+      <tr>
+        <th scope="col"><%= t("admin.custom_pages.index.title")%></th>
+        <th scope="col"><%= t("admin.custom_pages.index.parent_slug")%></th>
+        <th scope="col"><%= t("admin.custom_pages.index.slug")%></th>
+        <th scope="col"><%= t("admin.custom_pages.index.published")%></th>
+        <th scope="col"><%= t("admin.custom_pages.index.updated_at")%></th>
+        <th scope="col"><%= t("admin.custom_pages.index.user")%></th>
+        <th scope="col"><%= t("admin.custom_pages.index.roles")%></th>
+        <th scope="col" class="small-3"><%= t("admin.actions.actions")%></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @custom_pages.parent_pages.sorted.each do |custom_page| %>
+        <%= render 'custom_pages_list', custom_page: custom_page %>
+        <% custom_page.children_pages.sorted.each do |children_page| %>
+          <%= render 'custom_pages_list', custom_page: children_page %>
+        <% end%>
+      <% end%>
+    </tbody>
+  </table>
+
+<%= paginate @custom_pages %>

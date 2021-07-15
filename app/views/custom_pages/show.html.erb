@@ -1,0 +1,22 @@
+<% provide :title do %>
+  <%= @custom_page.meta_title.present? ? @custom_page.meta_title : @custom_page.title %> - <%= t("application.title") %>
+<% end %>
+<% provide :meta_description, @custom_page.meta_description if @custom_page.meta_description %>
+<% provide :meta_keywords, @custom_page.meta_keywords if @custom_page.meta_keywords%>
+<% content_for :canonical do %>
+  <%= render "shared/canonical", href: custom_page_url(@custom_page.slug) %>
+<% end if @custom_page.canonical %>
+
+<div class="custom-page" style=" color: <%= @custom_page.font_color %>; font-family: <%= @custom_page.font_type %>">
+  <div class="row margin-top">
+    <div class="small-12 medium-12 column">
+      <div class="custom-h2"><%= @custom_page.title %></div>
+    </div>
+  </div>
+  <% custom_page_module_renders(@custom_page).each do |custom_page_module_render| %>
+      <div class="row margin-top">
+        <%= custom_page_module_render %>
+      </div>
+  <% end %>
+  <div id="<%=dom_id(@custom_page)%>" class="js_snippets hidden" data-snippets="<%= enabled_snippets %>"></div>
+</div>

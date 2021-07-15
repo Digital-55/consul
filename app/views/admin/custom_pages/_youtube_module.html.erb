@@ -1,0 +1,48 @@
+<div class="card nested-fields youtube-module" id="<%= module_id(f.object) %>">
+  <div class="card-divider">
+    <span class="icon-bars"><%= "<span class='icon-angle-down'></span>".html_safe if f.object.persisted? %></span>
+    <h5 class="small-6 column menu-item-tag"><%= t("admin.custom_pages.custom_page_modules.custom_page_module.youtube") %></h5>
+    <div class="small-6 column text-right">
+      <%= link_to_remove_association f do %>
+        <span class="icon-x delete float-right"></span>
+      <% end %>
+    </div>
+  </div>
+  <div class="card-section">
+    <%= f.hidden_field :type, value: 'YoutubeModule' %>
+    <div class="small-12 medium-7 column">
+      <%= f.label :youtube_url, t("admin.custom_pages.custom_page_modules.custom_page_module.youtube_url") %>
+      <%= f.text_field :youtube_url, label: false, class: 'custom_page_module-youtube_url' %>
+    </div>
+    <div class="small-12 medium-3 column">
+      <% if f.object.persisted? %>
+        <div>
+          <%= link_to f.object.youtube_url do %>
+              <%= video_thumbnail(f.object.youtube_url) %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <div class="ckeditor small-12 medium-10 column">
+      <%= f.cktext_area :youtube_text,
+                        id: "youtube_text_area_#{f.object.id}",
+                        class: 'custom_page_module-youtube_text',
+                        label: t("admin.custom_pages.custom_page_modules.custom_page_module.youtube_text"),
+                        maxlength: YoutubeModule::TEXT_MAX_LENGTH,
+                        ckeditor: { language: I18n.locale, toolbar: 'admin' } %>
+    </div>
+
+    <div class="small-12 medium-4 column">
+      <%= f.label :youtube_text_position,  t("admin.custom_pages.custom_page_modules.custom_page_module.youtube_text_position") %>
+      <%= f.select :youtube_text_position, {}, label: false do %>
+        <%= options_for_select(youtube_position_options, f.object.youtube_text_position) %>
+      <% end %>
+    </div>
+    <div class="check-options">
+      <div class="small-12 medium-2 column">
+        <%= f.check_box :disabled, label: false, class: 'custom_page_module-disabled' %>
+        <%= f.label :disabled, t("admin.custom_pages.custom_page_modules.disabled") %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -281,6 +281,47 @@ en:
         undefined: Undefined
         user_groups: "Groups"
       search_unfeasible: Search unfeasible
+    menus:
+      create:
+        notice: Menu created successfully!
+      destroy:
+        alert_notice: This action will remove the menu and all its items.
+        success: Menu deleted successfully!
+        error: An error has ocurred while deleting menu. Please, try again.
+      edit:
+        editing: Edit menu
+        form:
+          submit_button: Save changes
+        notice: Menu updated successfully!
+      index:
+        create: Create a menu
+        delete: Delete menu
+        edit: Edit menu
+        filters:
+          all: All
+          header: Header
+          footer: Footer
+        title: Menus
+      menu:
+        title: Title
+        enabled: State
+        section: Section
+        date: Date
+      menu_items:
+        add: Add items
+        index: Menu items
+        new: New item
+        no_target: Open in same tab
+        target: Target
+        target_blank: Open in new tab
+        title: Title
+      new:
+        creating: Create menu
+        draft: Draft
+        published: Published
+        footer: Footer
+        header: Header
+        section_select: Select section
     milestones:
       index:
         table_id: "ID"
@@ -735,6 +776,7 @@ en:
       administrators: Administrators
       managers: Managers
       moderators: Moderators
+      menus: Menus
       messaging_users: Messages to users
       newsletters: Newsletters
       admin_notifications: Notifications

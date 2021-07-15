@@ -1,0 +1,22 @@
+<div class="<%= custom_page_module.type.underscore.dasherize %>">
+  <% text_position = custom_page_module.youtube_text_position %>
+  <% if text_position == 'none' %>
+    <div class="small-12 medium-12 column text-center">
+      <%= render_video_resource(custom_page_module.youtube_url, text_position) %>
+    </div>
+  <% elsif text_position == 'right' %>
+    <div class="small-12 medium-6 column text-center">
+      <%= render_video_resource(custom_page_module.youtube_url, text_position) %>
+    </div>
+    <div class="small-12 medium-6 column">
+      <%= custom_page_module.youtube_text.html_safe %>
+    </div>
+  <% elsif text_position == 'left' %>
+    <div class="small-12 medium-6 column">
+      <%= custom_page_module.youtube_text.html_safe %>
+    </div>
+    <div class="small-12 medium-6 column text-center">
+      <%= render_video_resource(custom_page_module.youtube_url, text_position) %>
+    </div>
+  <% end %>
+</div>

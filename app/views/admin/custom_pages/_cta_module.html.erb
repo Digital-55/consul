@@ -1,0 +1,121 @@
+<% rand_1 = SecureRandom.hex %>
+<% rand_2 = SecureRandom.hex %>
+<div class="card nested-fields cta-module" id="<%= module_id(f.object) %>">
+  <div class="card-divider">
+    <span class="icon-bars"><%= "<span class='icon-angle-down'></span>".html_safe if f.object.persisted? %></span>
+    <h5 class="small-6 column menu-item-tag"><%= t("admin.custom_pages.custom_page_modules.cta_module.cta") %></h5>
+    <div class="small-6 column text-right">
+      <%= link_to_remove_association f do %>
+        <span class="icon-x delete float-right"></span>
+      <% end %>
+    </div>
+  </div>
+  <div class="card-section">
+    <%= f.hidden_field :type, value: 'CTAModule' %>
+
+    <div class="small-12 medium-8 column">
+      <%= f.label :cta_image, t("admin.custom_pages.custom_page_modules.cta_module.cta_image") %>
+      <%= f.file_field :cta_image, label: false, class: 'custom_page_module-cta_image' %>
+    </div>
+    <div class="small-12 medium-4 column end module-image-preview">
+      <% if f.object&.cta_image.present? %>
+        <div class="small-12 medium-6 column">
+          <%= image_tag f.object.cta_image.url(:thumb) %>
+        </div>
+        <div class="small-12 medium-4 column float-left">
+          <%= link_to admin_custom_page_custom_page_module_clear_image_path(f.object.custom_page, f.object), method: :put, remote: true do %>
+            <span class="icon-x delete"></span>
+          <% end %>
+        </div>
+        <small>
+          <%= f.object.cta_image.instance.cta_image_file_name %>
+        </small>
+      <% end %>
+    </div>
+
+    <div class="small-12 medium-6 column">
+      <%= f.label :cta_overlay_color, t("admin.custom_pages.custom_page_modules.cta_module.cta_overlay_color"), for: "overlay_color_input" %>
+      <div class="row collapse">
+        <div class="small-12 medium-8 column">
+          <%= f.text_field :cta_overlay_color, label: false, type: :color, value: f.object.cta_overlay_color || "#ffffff" %>
+        </div>
+      </div>
+    </div>
+    <div class="small-12 medium-6 column">
+      <%= f.label :cta_overlay_opacity, t("admin.custom_pages.custom_page_modules.cta_module.cta_overlay_opacity") %>
+      <div class="small-12 medium-10 column">
+        <div class="slider" data-slider data-initial-start="<%= f.object.cta_overlay_opacity || 100 %>">
+          <span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput<%= dom_id(f.object) + rand_1 %>"></span>
+          <span class="slider-fill" data-slider-fill></span>
+        </div>
+      </div>
+      <div class="small-12 medium-2 column">
+        <%= f.text_field :cta_overlay_opacity, label: false, class: 'custom_page_module-cta_button', id: "sliderOutput#{dom_id(f.object) + rand_1}",  value: f.object.cta_overlay_opacity || 100 %>
+      </div>
+    </div>
+
+    <div class="ckeditor small-12 medium-10 column">
+      <%= f.cktext_area :cta_text,
+                        id: "cta_text_area_#{f.object.id}",
+                        class: 'custom_page_module-cta_text',
+                        label: t("admin.custom_pages.custom_page_modules.cta_module.cta_text"),
+                        maxlength: CTAModule::TEXT_MAX_LENGTH,
+                        ckeditor: { language: I18n.locale, toolbar: 'mini_admin' } %>
+    </div>
+
+    <div class="small-12 medium-2 column">
+      <%= f.label :cta_height_position, t("admin.custom_pages.custom_page_modules.cta_module.cta_height_position") %>
+      <div class="small-12 medium-4 column">
+        <div class="slider vertical" data-slider data-initial-start="<%= f.object.cta_height_position || 50 %>" data-vertical="true">
+          <span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput_<%= dom_id(f.object) + rand_2 %>"></span>
+          <span class="slider-fill" data-slider-fill></span>
+        </div>
+      </div>
+      <div class="small-12 medium-8 column">
+        <%= f.text_field :cta_height_position, label: false, class: 'custom_page_module-cta_button', id: "sliderOutput_#{dom_id(f.object) + rand_2}", value: f.object.cta_height_position || 50 %>
+      </div>
+
+    </div>
+
+    <div class="small-12 medium-6 column">
+      <%= f.label :cta_button, t("admin.custom_pages.custom_page_modules.cta_module.cta_button") %>
+      <%= f.text_field :cta_button, label: false, class: 'custom_page_module-cta_button' %>
+    </div>
+    <div class="small-12 medium-3 column">
+      <%= f.label :cta_button_color, t("admin.custom_pages.custom_page_modules.cta_module.cta_button_color"), for: "button_color_input" %>
+      <div class="row collapse">
+        <div class="small-12 medium-12 column">
+          <%= f.text_field :cta_button_color, label: false, type: :color, value: f.object.cta_button_color || "#00adb1" %>
+        </div>
+      </div>
+    </div>
+    <div class="small-12 medium-3 column">
+      <%= f.label :cta_text_button_color, t("admin.custom_pages.custom_page_modules.cta_module.cta_text_button_color"), for: "text_button_color_input" %>
+      <div class="row collapse">
+        <div class="small-12 medium-12 column">
+          <%= f.text_field :cta_text_button_color, label: false, type: :color, value: f.object.cta_text_button_color || "#ffffff" %>
+        </div>
+      </div>
+    </div>
+    <div class="small-12 medium-12 column">
+      <%= f.label :cta_link, t("admin.custom_pages.custom_page_modules.cta_module.cta_link") %>
+      <%= f.text_field :cta_link, label: false, class: 'custom_page_module-cta_link' %>
+    </div>
+
+    <div class="small-12 medium-4 column">
+      <%= f.label :cta_width_position,  t("admin.custom_pages.custom_page_modules.cta_module.cta_width_position") %>
+      <%= f.select :cta_width_position, {}, label: false do %>
+        <%= options_for_select(cta_width_position_options, f.object.cta_width_position) %>
+      <% end %>
+    </div>
+
+    <div class="check-options">
+      <div class="small-12 medium-4 column ">
+        <%= f.check_box :disabled, label: false, class: 'custom_page_module-disabled' %>
+        <%= f.label :disabled, t("admin.custom_pages.custom_page_modules.disabled") %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%# :cta_height_position %>

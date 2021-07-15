@@ -1,0 +1,115 @@
+<div class="card nested-fields list-module" id="<%= module_id(f.object) %>">
+  <div class="card-divider">
+    <span class="icon-bars"><%= "<span class='icon-angle-down'></span>".html_safe if f.object.persisted? %></span>
+    <h5 class="small-6 column menu-item-tag"><%= t("admin.custom_pages.custom_page_modules.custom_page_module.list_module") %></h5>
+    <div class="small-6 column text-right">
+      <%= link_to_remove_association f do %>
+        <span class="icon-x delete float-right"></span>
+      <% end %>
+    </div>
+  </div>
+  <div class="card-section">
+    <%= f.hidden_field :type, value: 'ListModule' %>
+    <ul class="tabs" data-tabs id="list-tabs">
+      <li class="tabs-title is-active"><a href='#<%= "#{dom_id(f.object)}_one" %>' aria-selected="true"><%= t("admin.custom_pages.custom_page_modules.custom_page_module.list_one") %></a></li>
+      <li class="tabs-title"><a href='#<%= "#{dom_id(f.object)}_two" %>'><%= t("admin.custom_pages.custom_page_modules.custom_page_module.list_two") %></a></li>
+      <li class="tabs-title"><a href='#<%= "#{dom_id(f.object)}_three" %>'><%= t("admin.custom_pages.custom_page_modules.custom_page_module.list_three") %></a></li>
+      <div class="row text-right">
+        <%= f.check_box :disabled, label: false, class: 'custom_page_module-disabled' %>
+        <%= f.label :disabled, t("admin.custom_pages.custom_page_modules.disabled") %>
+      </div>
+    </ul>
+    <div class="tabs-content" data-tabs-content="list-tabs">
+      <div class="tabs-panel is-active" id='<%= "#{dom_id(f.object)}_one" %>'>
+        <div class="small-12 medium-8 column">
+          <%= f.label :list_icon_one, t("admin.custom_pages.custom_page_modules.custom_page_module.list.list_icon_one") %>
+          <%= f.file_field :list_icon_one, label: false, class: 'custom_page_module-list_icon_one' %>
+        </div>
+        <div class="small-12 medium-3 column">
+          <% if f.object.list_icon_one.present? %>
+            <div>
+              <%= image_tag f.object.list_icon_one.url(:icon) %>
+            </div>
+            <small>
+              <%= f.object.list_icon_one.instance.list_icon_one_file_name %>
+            </small>
+          <% end %>
+        </div>
+        <div class="small-12 medium-12 column">
+          <%= f.label :list_title_one, t("admin.custom_pages.custom_page_modules.custom_page_module.list.list_title_one") %>
+          <%= f.text_field :list_title_one, label: false, class: 'custom_page_module-list_title_one' %>
+        </div>
+        <div class="ckeditor small-12 medium-12 column">
+          <%= f.cktext_area :list_description_one,
+                            id: "list_description_one_#{f.object.id}",
+                            class: 'custom_page_module-list_description_one',
+                            label: t("admin.custom_pages.custom_page_modules.custom_page_module.list.list_description_one"),
+                            maxlength: RichTextModule::TEXT_MAX_LENGTH,
+                            ckeditor: { language: I18n.locale, toolbar: 'admin' } %>
+        </div>
+      </div>
+      <div class="tabs-panel" id='<%= "#{dom_id(f.object)}_two" %>'>
+        <div class="small-12 medium-8 column">
+          <%= f.label :list_icon_two, t("admin.custom_pages.custom_page_modules.custom_page_module.list.list_icon_two") %>
+          <%= f.file_field :list_icon_two, label: false, class: 'custom_page_module-list_icon_two' %>
+        </div>
+        <div class="small-12 medium-3 column">
+          <% if f.object.list_icon_two.present? %>
+            <div>
+              <%= image_tag f.object.list_icon_two.url(:icon) %>
+            </div>
+            <small>
+              <%= f.object.list_icon_two.instance.list_icon_two_file_name %>
+            </small>
+          <% end %>
+        </div>
+        <div class="small-12 medium-12 column">
+          <%= f.label :list_title_two, t("admin.custom_pages.custom_page_modules.custom_page_module.list.list_title_two") %>
+          <%= f.text_field :list_title_two, label: false, class: 'custom_page_module-list_title_two' %>
+        </div>
+        <div class="ckeditor small-12 medium-12 column">
+          <%= f.cktext_area :list_description_two,
+                            id: "list_description_two_#{f.object.id}",
+                            class: 'custom_page_module-list_description_two',
+                            label: t("admin.custom_pages.custom_page_modules.custom_page_module.list.list_description_two"),
+                            maxlength: RichTextModule::TEXT_MAX_LENGTH,
+                            ckeditor: { language: I18n.locale, toolbar: 'admin' } %>
+        </div>
+      </div>
+      <div class="tabs-panel" id='<%= "#{dom_id(f.object)}_three" %>'>
+        <div class="small-12 medium-8 column">
+          <%= f.label :list_icon_three, t("admin.custom_pages.custom_page_modules.custom_page_module.list.list_icon_three") %>
+          <%= f.file_field :list_icon_three, label: false, class: 'custom_page_module-list_icon_three' %>
+        </div>
+        <div class="small-12 medium-3 column">
+          <% if f.object.list_icon_three.present? %>
+            <div>
+              <%= image_tag f.object.list_icon_three.url(:icon) %>
+            </div>
+            <small>
+              <%= f.object.list_icon_three.instance.list_icon_three_file_name %>
+            </small>
+          <% end %>
+        </div>
+        <div class="small-12 medium-12 column">
+          <%= f.label :list_title_three, t("admin.custom_pages.custom_page_modules.custom_page_module.list.list_title_three") %>
+          <%= f.text_field :list_title_three, label: false, class: 'custom_page_module-list_title_three' %>
+        </div>
+        <div class="ckeditor small-12 medium-12 column">
+          <%= f.cktext_area :list_description_three,
+                            id: "list_description_three_#{f.object.id}",
+                            class: 'custom_page_module-list_description_three',
+                            label: t("admin.custom_pages.custom_page_modules.custom_page_module.list.list_description_three"),
+                            maxlength: RichTextModule::TEXT_MAX_LENGTH,
+                            ckeditor: { language: I18n.locale, toolbar: 'admin' } %>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<script>
+  $('[data-tabs]').foundation()
+</script>
+

@@ -96,12 +96,19 @@ CKEDITOR.editorConfig = function( config )
   config.toolbar_mini = [
     { name: "paragraph", groups: [ "list" ], items: [ "NumberedList", "BulletedList" ] },
     { name: "links", items: [ "Link", "Unlink" ] },
-    { name: "styles", items: [ "Format" ] },
-    { name: "basicstyles", groups: [ "basicstyles", "cleanup" ], items: [ "Bold", "Italic", "Underline", "Strike" ] }
+    { name: "basicstyles", groups: [ "basicstyles", "cleanup" ], items: [ "Bold", "Italic", "Underline", "Strike" ] },
+    { name: "styles", items: [ "Format" ] }
   ];
 
   config.toolbar_admin = config.toolbar_mini.concat([
-    { name: "insert", items: [ "Image", "Table" ] }
+    { name: "styles", items: [ "Font", "FontSize" ] },
+    { name: "colors", items: [ "TextColor", "BGColor" ] },
+    { name: "insert", items: [ "Image", "Table", "-", "Source" ] }
+  ]);
+
+  config.toolbar_mini_admin = config.toolbar_mini.concat([
+    { name: "styles", items: [ "Font", "FontSize" ] },
+    { name: "colors", items: [ "TextColor", "BGColor" ] },
   ]);
 
   config.toolbar_questions = [
