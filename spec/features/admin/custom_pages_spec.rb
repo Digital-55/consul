@@ -15,23 +15,23 @@ describe "Admin custom pages management" do
       visit admin_root_path
 
       within("#side_menu") do
-        expect(page).to have_link "Páginas personalizadas (WIP)"
+        expect(page).to have_link "Páginas personalizadas"
       end
     end
 
     scenario "Index show all custom pages" do
       visit admin_custom_pages_path(filter: "all")
-      expect(page).to have_content("There is 1 custom page")
+      expect(page).to have_content("Hay 1 custom page")
     end
 
     scenario "Index show published custom pages" do
       visit admin_custom_pages_path(filter: "published")
-      expect(page).to have_content("custom pages cannot be found")
+      expect(page).to have_content("No se han encontrado custom pages")
     end
 
     scenario "Index show draft custom pages" do
       visit admin_custom_pages_path(filter: "draft")
-      expect(page).to have_content("There is 1 custom page")
+      expect(page).to have_content("Hay 1 custom page")
     end
 
     scenario "Draft custom page is an admin page" do
