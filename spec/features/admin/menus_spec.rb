@@ -15,23 +15,23 @@ describe "Admin menus management" do
       visit admin_root_path
   
       within("#side_menu") do
-        expect(page).to have_link "Menus"
+        expect(page).to have_link "Menús"
       end
     end
 
     scenario "Index show all menus" do
       visit admin_menus_path(filter: "all")
-      expect(page).to have_content("There is 1 menu")
+      expect(page).to have_content("Hay 1 menu")
     end
 
     scenario "Index show header menus" do
       visit admin_menus_path(filter: "header")
-      expect(page).to have_content("There is 1 menu")
+      expect(page).to have_content("Hay 1 menu")
     end
 
     scenario "Index show footer menus" do
       visit admin_menus_path(filter: "footer")
-      expect(page).to have_content("menus cannot be found")
+      expect(page).to have_content("No se han encontrado menus")
     end
   end
 
