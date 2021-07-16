@@ -156,6 +156,7 @@ module AdminHelper
     roles << :poll_officer if user.poll_officer?
     roles << :official if user.official?
     roles << :organization if user.organization?
+    roles << :editor if user.editor?
     roles
   end
 
