@@ -1,5 +1,6 @@
 class Admin::CustomPagesController < Admin::BaseController
   before_action :set_custom_page, only: [:edit, :update, :destroy]
+  before_action :set_parent_pages, only: [:new, :edit, :update, :destroy]
   after_action :set_published, only: [:create, :update]
   after_action :set_user, only: [:create, :update]
   load_and_authorize_resource
@@ -106,5 +107,9 @@ class Admin::CustomPagesController < Admin::BaseController
 
   def set_user
     @custom_page.update(user: current_user) if @custom_page.user != current_user
+  end
+
+  def set_parent_pages
+    @parent_pages = CustomPage.parent_pages
   end
 end
