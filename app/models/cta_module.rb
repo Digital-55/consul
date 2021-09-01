@@ -8,7 +8,6 @@ class CTAModule < CustomPageModule
                     styles: { content: "800>", large: "1230x", thumb: "118x100#" }
   validates_attachment_size :cta_image, less_than: 2.megabytes
   validates_attachment_content_type :cta_image, content_type: /\Aimage/
-  validates :cta_text, presence: true
   validate :link_format
 
   def link_format
