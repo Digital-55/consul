@@ -16,8 +16,8 @@ module CustomPagesHelper
 
   def parent_slug_options
     slugs = ['']
-    unless @custom_page.children_pages.present?
-      CustomPage.parent_pages.pluck(:slug).each do |slug|
+    if @custom_page.children_pages.blank? || @parent_pages.present?
+      @parent_pages.pluck(:slug).each do |slug|
         slugs << slug
       end
       slugs -= [@custom_page.slug]
